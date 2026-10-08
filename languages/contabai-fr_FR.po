@@ -1458,3 +1458,6 @@ msgstr "Photo précédente"
 
 msgid "Next photo"
 msgstr "Photo suivante"
+
+msgid "Other"
+msgstr "Autres"

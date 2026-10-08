@@ -1281,3 +1281,6 @@ msgstr ""
 
 msgid "Next photo"
 msgstr ""
+
+msgid "Other"
+msgstr ""

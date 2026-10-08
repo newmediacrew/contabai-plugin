@@ -273,17 +273,37 @@ ob_start();
                 </section>
             <?php endif; ?>
             <?php if (! empty($listing['amenities'])): ?>
+                <?php
+                $amenityGroups = [];
+                foreach (($labels['amenities_catalogue'] ?? []) as $groupKey => $items) {
+                    $inGroup = is_array($items) ? array_values(array_intersect(array_keys($items), $listing['amenities'])) : [];
+                    if ($inGroup !== []) {
+                        $amenityGroups[] = [(string) ($labels['amenity_categories'][$groupKey] ?? ucfirst(str_replace('_', ' ', (string) $groupKey))), $inGroup];
+                    }
+                }
+                $amenityOther = array_values(array_diff($listing['amenities'], array_keys($amenityLabels)));
+                if ($amenityOther !== []) {
+                    $amenityGroups[] = [__('Other', 'contabai'), $amenityOther];
+                }
+                ?>
                 <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                     <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></h2>
                     <div class="border-t border-neutral-200 px-5 py-5">
-                            <div class="flex flex-wrap gap-x-8 gap-y-2">
-                                <?php foreach ($listing['amenities'] as $amenityKey): ?>
-                                    <div class="flex items-center gap-2 text-sm text-neutral-700">
-                                        <?php echo \Contabai\Heroicon::outline('check-circle', 'w-4 h-4 shrink-0 text-green-600'); ?>
-                                        <span><?php echo esc_html($amenityLabels[$amenityKey] ?? ucfirst(str_replace('_', ' ', (string) $amenityKey))); ?></span>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
+                        <div class="gap-8 sm:columns-2 xl:columns-3">
+                            <?php foreach ($amenityGroups as [$groupTitle, $groupKeys]): ?>
+                                <div class="mb-5 break-inside-avoid last:mb-0">
+                                    <h3 class="mb-2 text-sm font-semibold text-neutral-900"><?php echo esc_html($groupTitle); ?></h3>
+                                    <ul class="space-y-1.5">
+                                        <?php foreach ($groupKeys as $amenityKey): ?>
+                                            <li class="flex items-center gap-2 text-sm text-neutral-700">
+                                                <?php echo \Contabai\Heroicon::outline('check-circle', 'w-4 h-4 shrink-0 text-green-600'); ?>
+                                                <span><?php echo esc_html($amenityLabels[$amenityKey] ?? ucfirst(str_replace('_', ' ', (string) $amenityKey))); ?></span>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </section>
             <?php endif; ?>

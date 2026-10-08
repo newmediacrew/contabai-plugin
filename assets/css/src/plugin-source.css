@@ -23,7 +23,6 @@
 }
 @media (min-width: 441px)  { .contabai-listings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 768px)  { .contabai-listings-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (min-width: 1280px) { .contabai-listings-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 .contabai-search-submit {
     display: inline-flex;
@@ -96,7 +95,7 @@
 .contabai-listing-hero-img { animation: cb-listing-zoom 30s ease-in-out infinite alternate; }
 @keyframes cb-listing-zoom { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1%, 0); } }
 .contabai-listing-hero-shade { background: linear-gradient(180deg, rgba(15, 23, 30, .55) 0%, rgba(15, 23, 30, 0) 30%, rgba(15, 23, 30, .15) 55%, rgba(15, 23, 30, .82) 100%); }
-.contabai-listing-hero-shade::before { content: ""; position: absolute; inset: 0; background: var(--hero-overlay-color, #0f171e); opacity: var(--hero-overlay-opacity, .5); }
+.contabai-listing-hero-shade::before { content: ""; position: absolute; inset: 0; background: var(--hero-overlay-color, #0f171e); opacity: var(--hero-overlay-opacity, .3); }
 .contabai-listing-hero-title { font-family: var(--theme-heading-font, inherit); text-shadow: 0 2px 30px rgba(0, 0, 0, .3); }
 .contabai-listing-hero nav[aria-label="breadcrumb"] a,
 .contabai-listing-hero nav[aria-label="breadcrumb"] span,
