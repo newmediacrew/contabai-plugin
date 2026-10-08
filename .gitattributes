@@ -1,0 +1,9 @@
+/.gitattributes export-ignore
+/README.md export-ignore
+/.gitignore export-ignore
+/.github export-ignore
+/docs export-ignore
+/assets/css/src export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore
+/composer.json export-ignore
