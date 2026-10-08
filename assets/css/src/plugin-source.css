@@ -103,3 +103,13 @@
 .contabai-listing-eyebrow { color: var(--hero-eyebrow-color, #ffd9c9); text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
 .contabai-listing-eyebrow-light { color: var(--eyebrow-color, #8f5320); }
 @media (prefers-reduced-motion: reduce) { .contabai-listing-hero-img { animation: none; } }
+.contabai-seo-band { position: relative; isolation: isolate; overflow: hidden; color: #fff; background: #0f171e;
+    --heading-color: #ffffff; --content-text-color: #ece3d9; --content-link-color: #ffd9b8;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 40C240 10 480 15 720 40C960 70 1200 75 1440 35V80H0Z'/%3E%3C/svg%3E") top / 100% 80px no-repeat, linear-gradient(#000 0 0) center / 100% calc(100% - 158px) no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V40C1200 75 960 70 720 40C480 10 240 15 0 45Z'/%3E%3C/svg%3E") bottom / 100% 80px no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 40C240 10 480 15 720 40C960 70 1200 75 1440 35V80H0Z'/%3E%3C/svg%3E") top / 100% 80px no-repeat, linear-gradient(#000 0 0) center / 100% calc(100% - 158px) no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V40C1200 75 960 70 720 40C480 10 240 15 0 45Z'/%3E%3C/svg%3E") bottom / 100% 80px no-repeat;
+}
+.contabai-seo-band-img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.contabai-seo-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(15, 23, 30, .9) 0%, rgba(15, 23, 30, .8) 55%, rgba(15, 23, 30, .65) 100%); }
+.contabai-seo-band-eyebrow { color: var(--hero-eyebrow-color, #ffd9c9); }
+.contabai-seo-place { font-family: var(--theme-heading-font, inherit); }
+.contabai-seo-glass { background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .2); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }

@@ -1467,3 +1467,6 @@ msgstr "Nächstes Foto"
 
 msgid "Other"
 msgstr "Sonstiges"
+
+msgid "Good to know"
+msgstr "Gut zu wissen"

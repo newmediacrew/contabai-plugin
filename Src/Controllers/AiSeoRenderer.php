@@ -12,26 +12,15 @@ class AiSeoRenderer
         return (string) get_post_meta($pageId, '_contabai_seo_generated', true) !== '';
     }
 
-    public static function content(int $pageId): string
+    public static function content(int $pageId, string $bandImage = ''): string
     {
         [$h1, $intro, $rest] = self::article_parts($pageId);
         $location = get_the_title($pageId);
+        $faq   = self::faq_list($pageId);
+        $areas = self::best_areas_cards($pageId);
+        $hasArticle = trim($rest) !== '';
 
-        $panels = [];
-        if (trim($rest) !== '') {
-            $panels[] = ['key' => 'more', 'title' => sprintf(__('More about %s', 'contabai'), $location),
-                         'body' => '<div class="entry-content">' . wp_kses_post($rest) . '</div>'];
-        }
-        $table = self::best_areas_table($pageId);
-        if ($table !== '') {
-            $panels[] = ['key' => 'areas', 'title' => __('Best areas nearby', 'contabai'), 'body' => $table];
-        }
-        $faq = self::faq_list($pageId);
-        if ($faq !== '') {
-            $panels[] = ['key' => 'faq', 'title' => __('Frequently asked questions', 'contabai'), 'body' => $faq];
-        }
-
-        if ($h1 === '' && trim($intro) === '' && ! $panels) {
+        if ($h1 === '' && trim($intro) === '' && ! $hasArticle && $faq === '' && $areas === '') {
             return '';
         }
 
@@ -47,16 +36,35 @@ class AiSeoRenderer
             echo '</section>';
         }
 
-        if ($panels) {
-            echo '<section class="mx-auto w-full max-w-7xl px-4 py-6" x-data="{ open: \'\', toggle(k) { this.open = this.open === k ? \'\' : k } }">';
-            echo '<div class="space-y-3">';
-            foreach ($panels as $panel) {
-                $acc_key   = $panel['key'];
-                $acc_title = $panel['title'];
-                $acc_body  = $panel['body'];
-                include CONTABAI_PLUGIN_DIR . 'Src/Views/components/accordion-section.php';
+        if ($hasArticle || $faq !== '' || $areas !== '') {
+            $eyebrow = 'contabai-seo-band-eyebrow mb-3 text-xs font-semibold uppercase tracking-[0.28em]';
+            echo '<section class="contabai-seo-band mt-12">';
+            if ($bandImage !== '') {
+                echo '<img src="' . esc_url($bandImage) . '" alt="" loading="lazy" decoding="async" class="contabai-seo-band-img">';
             }
-            echo '</div></section>';
+            echo '<div class="mx-auto grid w-full max-w-7xl gap-12 px-4 pb-16 pt-32 lg:grid-cols-[minmax(0,1fr)_24rem]">';
+            if ($hasArticle) {
+                echo '<div class="min-w-0">';
+                echo '<p class="' . $eyebrow . '">' . esc_html__('Good to know', 'contabai') . '</p>';
+                echo '<h2 class="contabai-heading text-4xl text-white">' . esc_html(sprintf(__('More about %s', 'contabai'), $location)) . '</h2>';
+                echo '<div class="entry-content mt-6">' . wp_kses_post($rest) . '</div>';
+                echo '</div>';
+            }
+            if ($faq !== '') {
+                echo '<div class="lg:sticky lg:top-28 lg:self-start">';
+                echo '<p class="' . $eyebrow . '">' . esc_html__('Frequently asked questions', 'contabai') . '</p>';
+                echo $faq;
+                echo '</div>';
+            }
+            echo '</div>';
+            if ($areas !== '') {
+                echo '<div class="mx-auto w-full max-w-7xl px-4 pb-16">';
+                echo '<p class="' . $eyebrow . '">' . esc_html__('Best areas nearby', 'contabai') . '</p>';
+                echo $areas;
+                echo '</div>';
+            }
+            echo '<div class="pb-16"></div>';
+            echo '</section>';
         }
 
         return (string) ob_get_clean();
@@ -93,21 +101,23 @@ class AiSeoRenderer
         return [$h1, $intro, $rest];
     }
 
-    private static function best_areas_table(int $pageId): string
+    private static function best_areas_cards(int $pageId): string
     {
         $rows = get_post_meta($pageId, '_contabai_seo_best_areas', true);
         if (empty($rows) || ! is_array($rows)) {
             return '';
         }
 
-        $table_headers = [__('Location', 'contabai'), __('Distance / relation', 'contabai'), __('Best for', 'contabai')];
-        $table_rows = [];
-        foreach ($rows as $r) {
-            $table_rows[] = [$r['location'] ?? '', $r['relation'] ?? '', $r['best_for'] ?? ''];
-        }
-
         ob_start();
-        include CONTABAI_PLUGIN_DIR . 'Src/Views/components/table.php';
+        echo '<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">';
+        foreach ($rows as $r) {
+            echo '<li class="contabai-seo-glass rounded-2xl p-5">';
+            echo '<p class="contabai-heading contabai-seo-place text-xl text-white">' . esc_html($r['location'] ?? '') . '</p>';
+            echo '<p class="mt-1 text-sm text-[#ece3d9]">' . esc_html($r['relation'] ?? '') . '</p>';
+            echo '<p class="mt-3 text-sm text-white"><span class="font-semibold">' . esc_html__('Best for', 'contabai') . ':</span> ' . esc_html($r['best_for'] ?? '') . '</p>';
+            echo '</li>';
+        }
+        echo '</ul>';
 
         return (string) ob_get_clean();
     }
@@ -120,12 +130,12 @@ class AiSeoRenderer
         }
 
         ob_start();
-        echo '<div class="divide-y divide-neutral-200">';
+        echo '<div class="space-y-3">';
         foreach ($faq as $item) {
-            echo '<div class="py-4">';
-            echo '<h4 class="contabai-heading text-[color:var(--heading-color,#111827)]">' . esc_html($item['question'] ?? '') . '</h4>';
-            echo '<div class="mt-2 leading-relaxed text-neutral-700">' . wp_kses_post($item['answer'] ?? '') . '</div>';
-            echo '</div>';
+            echo '<details class="contabai-seo-glass group rounded-2xl px-5 py-4">';
+            echo '<summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-white [&::-webkit-details-marker]:hidden">' . esc_html($item['question'] ?? '') . '<span class="shrink-0 transition group-open:rotate-180">' . \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4') . '</span></summary>';
+            echo '<div class="mt-3 text-sm leading-relaxed text-[#ece3d9]">' . wp_kses_post($item['answer'] ?? '') . '</div>';
+            echo '</details>';
         }
         echo '</div>';
 
@@ -141,13 +151,13 @@ class AiSeoRenderer
         foreach ($links as $l) {
             $url = self::url_for_location($l['target_location'] ?? '');
             if ($url && $url !== get_permalink($pageId)) {
-                $items[$url] = $l['anchor'] ?: ($l['target_location'] ?? '');
+                $items[$url] = [(string) ($l['target_location'] ?? ''), (string) ($l['anchor'] ?: ($l['target_location'] ?? ''))];
             }
         }
         foreach ($related as $name) {
             $url = self::url_for_location((string) $name);
             if ($url && $url !== get_permalink($pageId) && ! isset($items[$url])) {
-                $items[$url] = $name;
+                $items[$url] = [(string) $name, (string) $name];
             }
         }
         if (! $items) {
@@ -155,11 +165,16 @@ class AiSeoRenderer
         }
 
         ob_start();
-        echo '<section class="mx-auto w-full max-w-7xl px-4 py-6">';
-        echo '<h2 class="contabai-heading mb-4 text-2xl text-[color:var(--heading-color,#111827)]">' . esc_html__('Related destinations', 'contabai') . '</h2>';
-        echo '<ul class="flex flex-wrap gap-2">';
-        foreach ($items as $url => $anchor) {
-            echo '<li><a href="' . esc_url($url) . '" class="inline-block rounded-md border border-neutral-200 bg-white px-3 py-1.5 text-sm text-neutral-700 no-underline transition hover:bg-neutral-50">' . esc_html(self::ucfirst_mb((string) $anchor)) . '</a></li>';
+        echo '<section class="mx-auto w-full max-w-7xl px-4 pb-16 pt-4">';
+        echo '<h2 class="contabai-heading mb-6 text-3xl text-[color:var(--heading-color,#111827)]">' . esc_html__('Related destinations', 'contabai') . '</h2>';
+        echo '<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">';
+        foreach ($items as $url => [$name, $anchor]) {
+            echo '<li><a href="' . esc_url($url) . '" class="group flex h-full items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-white p-5 no-underline shadow-sm transition hover:shadow-lg">';
+            echo '<span class="min-w-0"><span class="contabai-heading contabai-seo-place block text-xl text-[color:var(--heading-color,#111827)]">' . esc_html($name) . '</span>';
+            if (mb_strtolower($anchor) !== mb_strtolower($name)) {
+                echo '<span class="mt-1 block text-sm text-neutral-500">' . esc_html(self::ucfirst_mb($anchor)) . '</span>';
+            }
+            echo '</span><span class="shrink-0 text-neutral-400 transition group-hover:text-[color:var(--theme-color)]">' . \Contabai\Heroicon::outline('arrow-right', 'w-5 h-5') . '</span></a></li>';
         }
         echo '</ul></section>';
 
