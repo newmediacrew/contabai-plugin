@@ -1,0 +1,20 @@
+{
+    "private": true,
+    "scripts": {
+        "build:css": "npx @tailwindcss/cli -i ./assets/css/src/plugin-source.css -o ./assets/css/plugin.css --minify",
+        "dev:css": "npx @tailwindcss/cli -i ./assets/css/src/plugin-source.css -o ./assets/css/plugin.css --watch",
+        "copy:vendor": "cp node_modules/alpinejs/dist/cdn.min.js assets/js/alpine.min.js && cp node_modules/@alpinejs/collapse/dist/cdn.min.js assets/js/alpine-collapse.min.js && mkdir -p assets/js/vanilla-calendar && cp node_modules/vanilla-calendar-pro/index.mjs assets/js/vanilla-calendar/index.js && cp node_modules/vanilla-calendar-pro/styles/index.css assets/css/vanilla-calendar.css",
+        "build": "npm run build:css && npm run copy:vendor"
+    },
+    "devDependencies": {
+        "@tailwindcss/cli": "^4.3.3",
+        "@tailwindcss/forms": "^0.5.11",
+        "@tailwindcss/typography": "^0.5.20",
+        "tailwindcss": "^4.3.3"
+    },
+    "dependencies": {
+        "@alpinejs/collapse": "^3.17.4",
+        "alpinejs": "^3.17.4",
+        "vanilla-calendar-pro": "3.4.0"
+    }
+}

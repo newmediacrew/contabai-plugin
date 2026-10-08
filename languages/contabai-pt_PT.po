@@ -1,0 +1,1443 @@
+# Portuguese translations for contabai package.
+# Copyright (C) 2026 THE contabai'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the contabai package.
+# Contabai, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: contabai\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-18 17:33+0200\n"
+"PO-Revision-Date: 2026-07-17 20:43+0200\n"
+"Last-Translator: Contabai\n"
+"Language-Team: Portuguese\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%1$s–%2$s nights"
+msgstr "%1$s–%2$s noites"
+
+msgid "%d city"
+msgid_plural "%d cities"
+msgstr[0] "%d cidade"
+msgstr[1] "%d cidades"
+
+msgid "%d night"
+msgid_plural "%d nights"
+msgstr[0] "%d noite"
+msgstr[1] "%d noites"
+
+msgid "%d page queued for generation."
+msgid_plural "%d pages queued for generation."
+msgstr[0] "%d página em fila para geração."
+msgstr[1] "%d páginas em fila para geração."
+
+msgid "%d page still needs generating."
+msgid_plural "%d pages still need generating."
+msgstr[0] "Falta gerar %d página."
+msgstr[1] "Faltam gerar %d páginas."
+
+msgid "%d photo"
+msgid_plural "%d photos"
+msgstr[0] "%d foto"
+msgstr[1] "%d fotos"
+
+msgid "%d review"
+msgid_plural "%d reviews"
+msgstr[0] "%d avaliação"
+msgstr[1] "%d avaliações"
+
+msgid ""
+"(optional) A tighter, narrower bar for above a results grid. Set it to 1. "
+"The grid shortcode already does this for you."
+msgstr ""
+"(opcional) Uma barra mais compacta e estreita para colocar por cima de uma "
+"grelha de resultados. Define como 1. O shortcode da grelha já faz isto por "
+"ti."
+
+msgid "(optional) How many listings to show (1–50). Default: 8"
+msgstr "(opcional) Quantos alojamentos mostrar (1–50). Predefinição: 8"
+
+msgid "(optional) Listings per page, 1–50. Default: 36"
+msgstr "(opcional) Alojamentos por página, 1–50. Predefinição: 36"
+
+msgid ""
+"(optional) Lock the grid to a location (codes, e.g. cw / willemstad). Used "
+"by the auto-generated location pages."
+msgstr ""
+"(opcional) Fixa a grelha a uma localização (códigos, p. ex. cw / "
+"willemstad). Utilizado pelas páginas de localização geradas automaticamente."
+
+msgid "(optional) Where the search submits to. Default: the %s page."
+msgstr ""
+"(opcional) Para onde a pesquisa é enviada. Por predefinição: a página %s."
+
+msgid "+ Add area"
+msgstr "+ Adicionar zona"
+
+msgid "+ Add question"
+msgstr "+ Adicionar pergunta"
+
+msgid "/ night"
+msgstr "/ noite"
+
+msgid "1 week"
+msgstr "1 semana"
+
+msgid "2 weeks"
+msgstr "2 semanas"
+
+msgid "A FQDN without a trailing slash."
+msgstr "Um FQDN sem barra final."
+
+msgid "AI SEO Settings"
+msgstr "Definições de SEO com IA"
+
+msgid "AI SEO settings saved."
+msgstr "Definições de SEO com IA guardadas."
+
+msgid "About host"
+msgstr "Sobre o anfitrião"
+
+msgid "Accommodation"
+msgstr "Alojamento"
+
+msgid "Account (logged-in, auto-created pages)"
+msgstr "Conta (com sessão iniciada, páginas criadas automaticamente)"
+
+msgid "Action"
+msgstr "Ação"
+
+msgid "Active now"
+msgstr "Ativo agora"
+
+msgid "Add guests"
+msgstr "Adicionar hóspedes"
+
+msgid "Additional costs"
+msgstr "Custos adicionais"
+
+msgid "Additional costs calculated at booking"
+msgstr "Os custos adicionais são calculados na reserva"
+
+msgid "Address"
+msgstr "Endereço"
+
+msgid "Adults"
+msgstr "Adultos"
+
+msgid "All pages generated."
+msgstr "Todas as páginas estão geradas."
+
+msgid "Already exist (kept)"
+msgstr "Já existem (mantidas)"
+
+msgid "Already have an account?"
+msgstr "Já tens uma conta?"
+
+msgid "Always included"
+msgstr "Sempre incluído"
+
+msgid "Amenities"
+msgstr "Comodidades"
+
+msgid "Answer"
+msgstr "Resposta"
+
+msgid "Any dates"
+msgstr "Qualquer data"
+
+msgid "Any place"
+msgstr "Qualquer lugar"
+
+msgid "Article"
+msgstr "Artigo"
+
+msgid "Article HTML"
+msgstr "HTML do artigo"
+
+msgid "Auth (auto-created pages)"
+msgstr "Autenticação (páginas criadas automaticamente)"
+
+msgid "Availability"
+msgstr "Disponibilidade"
+
+msgid "Available Shortcodes"
+msgstr "Shortcodes disponíveis"
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Back"
+msgstr "Voltar"
+
+msgid "Back to login"
+msgstr "Voltar ao início de sessão"
+
+msgid "Back to site"
+msgstr "Voltar ao site"
+
+msgid "Back to the properties"
+msgstr "Voltar aos alojamentos"
+
+msgid ""
+"Base of the single-listing URL: /{slug}/{country}/{city}/{title}-{id}. After "
+"changing this, visit Settings → Permalinks → Save to refresh the rewrite."
+msgstr ""
+"Base do URL de um alojamento individual: /{slug}/{country}/{city}/{title}-"
+"{id}. Depois de alterar isto, vai a Definições → Ligações permanentes → "
+"Guardar para atualizar a reescrita."
+
+msgid "Bathrooms"
+msgstr "Casas de banho"
+
+msgid "Bedrooms"
+msgstr "Quartos"
+
+msgid "Best areas"
+msgstr "Melhores zonas"
+
+msgid "Best areas nearby"
+msgstr "Melhores zonas nas proximidades"
+
+msgid "Best for"
+msgstr "Ideal para"
+
+msgid "Book now"
+msgstr "Reservar"
+
+msgid "Book your stay"
+msgstr "Reserva a tua estadia"
+
+msgid "Booking"
+msgstr "Reserva"
+
+msgid "Booking reference"
+msgstr "Referência da reserva"
+
+msgid "Booking requires a verified account"
+msgstr "A reserva requer uma conta verificada"
+
+msgid ""
+"Booking wizard (party, your details, final check). Auto-created on the %s "
+"page. Reached from the Book now button on a property, which passes the "
+"property and the chosen dates in the URL."
+msgstr ""
+"Assistente de reserva (grupo, os teus dados, verificação final). Criada "
+"automaticamente na página %s. Acedida a partir do botão Reservar agora de um "
+"alojamento, que passa o alojamento e as datas escolhidas no URL."
+
+msgid "Calculating your total…"
+msgstr "A calcular o teu total…"
+
+msgid "Cancellation policy"
+msgstr "Política de cancelamento"
+
+msgid "Catalogue"
+msgstr "Catálogo"
+
+msgid "Change password"
+msgstr "Alterar palavra-passe"
+
+msgid "Chat with the host"
+msgstr "Conversar com o anfitrião"
+
+# # Chat rename (Messages -> Chat)
+msgid "Chats"
+msgstr "Conversas"
+
+msgid "Check your email"
+msgstr "Verifica o teu e-mail"
+
+msgid "Check-in / Check-out"
+msgstr "Check-in / Check-out"
+
+msgid "Children"
+msgstr "Crianças"
+
+msgid "Choose different dates"
+msgstr "Escolher outras datas"
+
+msgid "City"
+msgstr "Cidade"
+
+msgid "Clear all"
+msgstr "Limpar tudo"
+
+msgid "Clear all filters"
+msgstr "Limpar todos os filtros"
+
+msgid ""
+"Click it to activate your account, then log in. Didn't get it? Resend below."
+msgstr ""
+"Clica nele para ativar a tua conta e depois inicia sessão. Não o recebeste? "
+"Reenvia abaixo."
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Confirm"
+msgstr "Confirmar"
+
+msgid "Confirm new password"
+msgstr "Confirmar nova palavra-passe"
+
+msgid "Confirm password"
+msgstr "Confirmar palavra-passe"
+
+msgid ""
+"Connect OpenAI and Pexels, and set the prompt used to generate SEO text for "
+"each location page."
+msgstr ""
+"Liga o OpenAI e o Pexels e define o prompt utilizado para gerar o texto de "
+"SEO de cada página de localização."
+
+msgid "Connection error."
+msgstr "Erro de ligação."
+
+msgid "Contabai SEO content"
+msgstr "Conteúdo de SEO da Contabai"
+
+msgid "Contabai Settings"
+msgstr "Definições da Contabai"
+
+msgid "Contact details"
+msgstr "Dados de contacto"
+
+msgid "Continue"
+msgstr "Continuar"
+
+msgid ""
+"Could not load locations from the API — check the connection before syncing."
+msgstr ""
+"Não foi possível carregar as localizações da API — verifica a ligação antes "
+"de sincronizar."
+
+msgid "Could not load locations from the API — nothing was changed."
+msgstr "Não foi possível carregar as localizações da API — nada foi alterado."
+
+msgid "Could not load the booking."
+msgstr "Não foi possível carregar a reserva."
+
+msgid "Could not load the chat."
+msgstr "Não foi possível carregar a conversa."
+
+msgid "Could not load the reviews."
+msgstr "Não foi possível carregar as avaliações."
+
+msgid "Could not load your account."
+msgstr "Não foi possível carregar a tua conta."
+
+msgid "Could not load your chats."
+msgstr "Não foi possível carregar as tuas conversas."
+
+msgid "Could not post your review."
+msgstr "Não foi possível publicar a tua avaliação."
+
+msgid "Could not send your message."
+msgstr "Não foi possível enviar a tua mensagem."
+
+msgid "Counting…"
+msgstr "A contar…"
+
+msgid "Countries"
+msgstr "Países"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Country list saved."
+msgstr "Lista de países guardada."
+
+msgid "Create account"
+msgstr "Criar conta"
+
+msgid "Creating account..."
+msgstr "A criar conta..."
+
+msgid "Dates"
+msgstr "Datas"
+
+msgid "Deposit"
+msgstr "Caução"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Displays listings in a paginated grid. Use on the page with slug %s."
+msgstr ""
+"Mostra os alojamentos numa grelha paginada. Utiliza na página com o slug %s."
+
+msgid "Distance / relation"
+msgstr "Distância / relação"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Enable SSL verification for API requests."
+msgstr "Ativar a verificação SSL para os pedidos à API."
+
+msgid "Enter your username and we will email you a reset link."
+msgstr ""
+"Introduz o teu nome de utilizador e enviar-te-emos um link de reposição por "
+"e-mail."
+
+msgid "Enter your username and we will send a new verification link."
+msgstr ""
+"Introduz o teu nome de utilizador e enviaremos um novo link de verificação."
+
+msgid "Entities"
+msgstr "Entidades"
+
+msgid "Exact dates"
+msgstr "Datas exatas"
+
+msgid "Examples: minimal, low, medium, high, xhigh."
+msgstr "Exemplos: minimal, low, medium, high, xhigh."
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "Failed"
+msgstr "Falhou"
+
+msgid "Failed · %s"
+msgstr "Falhou · %s"
+
+msgid "Fewer"
+msgstr "Menos"
+
+msgid "Filters"
+msgstr "Filtros"
+
+msgid "Final check"
+msgstr "Verificação final"
+
+msgid "Find your destination"
+msgstr "Encontra o teu destino"
+
+msgid "Find your place"
+msgstr "Encontra o teu lugar"
+
+msgid "First name"
+msgstr "Nome próprio"
+
+msgid "Focus keyword"
+msgstr "Palavra-chave principal"
+
+msgid "Forgot password"
+msgstr "Palavra-passe esquecida"
+
+msgid "Forgot password?"
+msgstr "Esqueceste-te da palavra-passe?"
+
+msgid ""
+"Forgot-password request form. Auto-created on the %s page. (The reset-"
+"password step itself stays on the Laravel host.)"
+msgstr ""
+"Formulário de pedido de palavra-passe esquecida. Criado automaticamente na "
+"página %s. (O passo de reposição da palavra-passe permanece no host do "
+"Laravel.)"
+
+msgid "Frequently asked questions"
+msgstr "Perguntas frequentes"
+
+msgid "Generate"
+msgstr "Gerar"
+
+msgid "Generate / sync location pages"
+msgstr "Gerar / sincronizar páginas de localização"
+
+msgid "Generate all"
+msgstr "Gerar tudo"
+
+msgid ""
+"Generate the AI SEO article + metadata for each location page. Each page "
+"calls OpenAI and takes a few minutes. Generation keeps running on the "
+"server, so you can close this page and come back later — the status column "
+"updates automatically while it is open."
+msgstr ""
+"Gera o artigo de SEO com IA + os metadados de cada página de localização. "
+"Cada página chama o OpenAI e demora alguns minutos. A geração continua no "
+"servidor, por isso podes fechar esta página e voltar mais tarde — a coluna "
+"de estado é atualizada automaticamente enquanto estiver aberta."
+
+msgid "Generate this page now?"
+msgstr "Gerar esta página agora?"
+
+msgid "Generated"
+msgstr "Gerado"
+
+msgid "Generated · %s"
+msgstr "Gerado · %s"
+
+msgid ""
+"Generates a nested page per country and city from the Laravel locations "
+"endpoint, each showing that location's listings. Only pages created by this "
+"tool are ever touched — your other pages are never modified. This view is a "
+"preview; nothing changes until you click the button."
+msgstr ""
+"Gera uma página aninhada por país e cidade a partir do endpoint de "
+"localizações do Laravel, cada uma a mostrar os alojamentos dessa "
+"localização. Só as páginas criadas por esta ferramenta são tocadas — as tuas "
+"outras páginas nunca são modificadas. Esta vista é uma pré-visualização; "
+"nada muda até clicares no botão."
+
+msgid "Generating…"
+msgstr "A gerar…"
+
+msgid "Go to your chats"
+msgstr "Ir para as tuas conversas"
+
+msgid ""
+"Guest account self-service (profile, contact details, avatar, email, "
+"password). Auto-created on the %s page."
+msgstr ""
+"Autogestão da conta do hóspede (perfil, dados de contacto, avatar, e-mail, "
+"palavra-passe). Criada automaticamente na página %s."
+
+msgid ""
+"Guest booking history — list, detail and PDF. Auto-created on the %s page."
+msgstr ""
+"Histórico de reservas do hóspede — lista, detalhe e PDF. Criado "
+"automaticamente na página %s."
+
+msgid "Guest login form. Auto-created on the %s page."
+msgstr ""
+"Formulário de início de sessão do hóspede. Criado automaticamente na página "
+"%s."
+
+msgid ""
+"Guest registration form (with language select). Auto-created on the %s page."
+msgstr ""
+"Formulário de registo do hóspede (com seleção de idioma). Criado "
+"automaticamente na página %s."
+
+msgid "Guest ↔ host chat (inbox + thread). Auto-created on the %s page."
+msgstr ""
+"Conversa entre hóspede e anfitrião (caixa de entrada + conversa). Criada "
+"automaticamente na página %s."
+
+msgid "Guests"
+msgstr "Hóspedes"
+
+msgid "Home"
+msgstr "Início"
+
+msgid "Host"
+msgstr "Anfitrião"
+
+msgid "Host since %s"
+msgstr "Anfitrião desde %s"
+
+msgid "House rules"
+msgstr "Regras da casa"
+
+msgid "How many of you?"
+msgstr "Quantas pessoas?"
+
+msgid "How many?"
+msgstr "Quantos?"
+
+msgid "Hub"
+msgstr "Área"
+
+msgid "I have read and accept the house rules."
+msgstr "Li e aceito as regras da casa."
+
+msgid "I have read and accept the terms and conditions."
+msgstr "Li e aceito os termos e condições."
+
+msgid "If an account exists, a reset link has been sent."
+msgstr "Se existir uma conta, foi enviado um link de reposição."
+
+msgid "If an unverified account exists, a verification link has been sent."
+msgstr ""
+"Se existir uma conta não verificada, foi enviado um link de verificação."
+
+msgid "In queue:"
+msgstr "Em fila:"
+
+msgid "Infants"
+msgstr "Bebés"
+
+msgid "Insufficient permissions."
+msgstr "Permissões insuficientes."
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Last name"
+msgstr "Apelido"
+
+msgid "Last seen"
+msgstr "Visto pela última vez"
+
+msgid ""
+"Leave OFF for a local .test site with a self-signed certificate. Turn ON in "
+"production."
+msgstr ""
+"Deixa DESLIGADO para um site local .test com um certificado autoassinado. "
+"Liga em produção."
+
+msgid "Leave a review"
+msgstr "Escrever uma avaliação"
+
+msgid "Length of stay"
+msgstr "Duração da estadia"
+
+msgid "Loading..."
+msgstr "A carregar..."
+
+msgid "Loading…"
+msgstr "A carregar…"
+
+msgid "Loads the default prompt into the editor — click Save to keep it."
+msgstr ""
+"Carrega o prompt predefinido no editor — clica em Guardar para o manter."
+
+msgid "Location"
+msgstr "Localização"
+
+msgid "Location pages"
+msgstr "Páginas de localização"
+
+msgid "Location pages synced — created %1$d, kept %2$d, trashed %3$d."
+msgstr ""
+"Páginas de localização sincronizadas — criadas %1$d, mantidas %2$d, enviadas "
+"para o lixo %3$d."
+
+msgid "Log in"
+msgstr "Iniciar sessão"
+
+msgid "Log in to book"
+msgstr "Inicia sessão para reservar"
+
+msgid "Log in to chat"
+msgstr "Inicia sessão para conversar"
+
+msgid "Log out"
+msgstr "Terminar sessão"
+
+msgid ""
+"Logged-in account hub linking to profile and bookings. Auto-created on the "
+"%s page."
+msgstr ""
+"Área de conta com sessão iniciada, com ligações ao perfil e às reservas. "
+"Criada automaticamente na página %s."
+
+msgid "Logging in..."
+msgstr "A iniciar sessão..."
+
+msgid "Login"
+msgstr "Iniciar sessão"
+
+msgid "Login failed."
+msgstr "Falha ao iniciar sessão."
+
+msgid "Mandatory"
+msgstr "Obrigatório"
+
+msgid "Mention the property so the host knows which listing you mean."
+msgstr ""
+"Menciona o alojamento para que o anfitrião saiba a que anúncio te referes."
+
+msgid "Message sent."
+msgstr "Mensagem enviada."
+
+msgid "Message to the host (optional)"
+msgstr "Mensagem para o anfitrião (opcional)"
+
+msgid "Meta description"
+msgstr "Meta-descrição"
+
+msgid "Midweek"
+msgstr "Meio da semana"
+
+msgid "More"
+msgstr "Mais"
+
+msgid "More about %s"
+msgstr "Mais sobre %s"
+
+msgid "My account"
+msgstr "A minha conta"
+
+msgid "My bookings"
+msgstr "As minhas reservas"
+
+msgid "My chats"
+msgstr "As minhas conversas"
+
+msgid "My hub"
+msgstr "A minha área"
+
+msgid "New message"
+msgstr "Nova mensagem"
+
+msgid "New message from %s"
+msgstr "Nova mensagem de %s"
+
+msgid "New password"
+msgstr "Nova palavra-passe"
+
+msgid "Newest"
+msgstr "Mais recentes"
+
+msgid "Next"
+msgstr "Seguinte"
+
+msgid "Nickname"
+msgstr "Alcunha"
+
+msgid "Nights"
+msgstr "Noites"
+
+msgid "No bookings yet."
+msgstr "Ainda não tens reservas."
+
+msgid "No chats yet."
+msgstr "Ainda não há conversas."
+
+msgid "No countries available from the API yet."
+msgstr "Ainda não há países disponíveis a partir da API."
+
+msgid "No destinations found."
+msgstr "Nenhum destino encontrado."
+
+msgid "No file uploaded."
+msgstr "Nenhum ficheiro carregado."
+
+msgid "No listings found."
+msgstr "Nenhum alojamento encontrado."
+
+msgid "No messages yet. Say hello."
+msgstr "Ainda não há mensagens. Diz olá."
+
+msgid "No response from OpenAI (network error or timeout)."
+msgstr "Sem resposta do OpenAI (erro de rede ou tempo esgotado)."
+
+msgid "No reviews yet."
+msgstr "Ainda sem avaliações."
+
+msgid "No verification email?"
+msgstr "Não recebeste o e-mail de verificação?"
+
+msgid "Not generated"
+msgstr "Não gerado"
+
+msgid ""
+"Nothing to generate — those pages already have content (tick “Regenerate” to "
+"force)."
+msgstr ""
+"Nada para gerar — essas páginas já têm conteúdo (assinala «Regenerar» para "
+"forçar)."
+
+msgid "Number of people"
+msgstr "Número de pessoas"
+
+msgid "One per line."
+msgstr "Uma por linha."
+
+msgid "OpenAI API key"
+msgstr "Chave de API do OpenAI"
+
+msgid "OpenAI model"
+msgstr "Modelo do OpenAI"
+
+msgid "OpenAI returned no usable JSON."
+msgstr "O OpenAI não devolveu JSON utilizável."
+
+msgid "Optional extras"
+msgstr "Extras opcionais"
+
+msgid ""
+"Optional filters (all fixed for this placement): country, city, area, "
+"guests, bedrooms, bathrooms, price_min, price_max (prices in cents, e.g. "
+"20000 = 200.00), and comma-separated property_type and amenities."
+msgstr ""
+"Filtros opcionais (todos fixos para esta colocação): country, city, area, "
+"guests, bedrooms, bathrooms, price_min, price_max (preços em cêntimos, p. "
+"ex. 20000 = 200,00) e property_type e amenities separados por vírgulas."
+
+msgid "Party"
+msgstr "Grupo"
+
+msgid "Password"
+msgstr "Palavra-passe"
+
+msgid "Payment details"
+msgstr "Detalhes de pagamento"
+
+msgid "Pets"
+msgstr "Animais"
+
+msgid "Pexels API key"
+msgstr "Chave de API do Pexels"
+
+msgid "Phone"
+msgstr "Telefone"
+
+msgid "Pick an arrival date — departure is set automatically."
+msgstr "Escolhe uma data de chegada — a partida é definida automaticamente."
+
+msgid "Pick your dates"
+msgstr "Escolhe as tuas datas"
+
+msgid "Please choose a rating between 1 and 5."
+msgstr "Escolhe uma classificação entre 1 e 5."
+
+msgid "Please complete every field before you continue."
+msgstr "Preenche todos os campos antes de continuares."
+
+msgid "Pool"
+msgstr "Piscina"
+
+msgid "Post review"
+msgstr "Publicar avaliação"
+
+msgid ""
+"Post this review? It's public and can't be edited or removed once posted."
+msgstr ""
+"Publicar esta avaliação? É pública e não pode ser editada nem removida "
+"depois de publicada."
+
+msgid ""
+"Post-registration \"check your email\" screen with resend-verification. Auto-"
+"created on the %s page."
+msgstr ""
+"Ecrã «verifica o teu e-mail» após o registo, com reenvio da verificação. "
+"Criado automaticamente na página %s."
+
+msgid "Postcode"
+msgstr "Código postal"
+
+msgid "Posting…"
+msgstr "A publicar…"
+
+msgid "Press Enter to send · Shift+Enter for a new line"
+msgstr "Prime Enter para enviar · Shift+Enter para uma nova linha"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Price"
+msgstr "Preço"
+
+msgid "Price: high to low"
+msgstr "Preço: do mais alto ao mais baixo"
+
+msgid "Price: low to high"
+msgstr "Preço: do mais baixo ao mais alto"
+
+msgid "Profile"
+msgstr "Perfil"
+
+msgid "Property type"
+msgstr "Tipo de alojamento"
+
+msgid "Question"
+msgstr "Pergunta"
+
+msgid "Queued"
+msgstr "Em fila"
+
+msgid "Rated %d out of 5"
+msgstr "%d de 5 estrelas"
+
+msgid "Reasoning effort"
+msgstr "Esforço de raciocínio"
+
+msgid "Reasoning guide"
+msgstr "Guia de raciocínio"
+
+msgid "Regenerate"
+msgstr "Regenerar"
+
+msgid "Regenerate pages that already have content"
+msgstr "Regenerar as páginas que já têm conteúdo"
+
+msgid "Regenerating this page (Tools → Generate) overwrites everything here."
+msgstr ""
+"Regenerar esta página (Ferramentas → Gerar) substitui tudo o que está aqui."
+
+msgid "Register as Guest"
+msgstr "Registar como hóspede"
+
+msgid "Registration failed."
+msgstr "Falha no registo."
+
+msgid "Related"
+msgstr "Relacionado"
+
+msgid "Related destinations"
+msgstr "Destinos relacionados"
+
+msgid "Related locations"
+msgstr "Localizações relacionadas"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Remove avatar"
+msgstr "Remover avatar"
+
+msgid ""
+"Renders a single listing detail page. Use on the page with slug %1$s. The "
+"listing is looked up by the trailing integer id in the URL /%2$s/{country}/"
+"{city}/{title}-{id}."
+msgstr ""
+"Apresenta a página de detalhe de um alojamento. Utiliza na página com o slug "
+"%1$s. O alojamento é identificado pelo id inteiro final no URL /%2$s/"
+"{country}/{city}/{title}-{id}."
+
+msgid "Resend in"
+msgstr "Reenviar em"
+
+msgid "Restore default prompt"
+msgstr "Restaurar o prompt predefinido"
+
+# --- Guest reviews (stage 5) ---
+msgid "Reviews"
+msgstr "Avaliações"
+
+msgid "Reviews are public and cannot be edited after posting."
+msgstr "As avaliações são públicas e não podem ser editadas após a publicação."
+
+msgid "SEO prompt"
+msgstr "Prompt de SEO"
+
+msgid "SEO title"
+msgstr "Título de SEO"
+
+msgid "Save AI SEO settings"
+msgstr "Guardar definições de SEO com IA"
+
+msgid "Save countries"
+msgstr "Guardar países"
+
+msgid "Saved."
+msgstr "Guardado."
+
+msgid "Search"
+msgstr "Pesquisar"
+
+msgid ""
+"Search bar (Where / When / Who) that navigates to the listings results grid "
+"with the chosen filters in the URL. Rendered automatically in the front-page "
+"hero; place it on any other page too, and more than once per page. Best on a "
+"template without .entry-content — theme prose styles otherwise add spacing "
+"inside the panels."
+msgstr ""
+"Barra de pesquisa (Onde / Quando / Quem) que navega para a grelha de "
+"resultados com os filtros escolhidos no URL. É apresentada automaticamente "
+"no hero da página inicial; coloca-a também em qualquer outra página, e mais "
+"do que uma vez por página. Melhor num template sem .entry-content — caso "
+"contrário, os estilos de texto do tema adicionam espaço dentro dos painéis."
+
+msgid "Search destinations"
+msgstr "Pesquisar destinos"
+
+msgid "Secondary keywords"
+msgstr "Palavras-chave secundárias"
+
+msgid "Security deposit"
+msgstr "Caução"
+
+msgid "Security deposit (refundable)"
+msgstr "Caução (acertada depois da tua estadia)"
+
+msgid "See all OpenAI models"
+msgstr "Ver todos os modelos do OpenAI"
+
+msgid "Select dates"
+msgstr "Selecionar datas"
+
+msgid "Select country"
+msgstr "Seleciona um país"
+
+msgid "Select language"
+msgstr "Seleciona um idioma"
+
+msgid "Semantic HTML (h1, h2, p, ul). Rendered as-is."
+msgstr "HTML semântico (h1, h2, p, ul). Apresentado tal como está."
+
+msgid "Send message"
+msgstr "Enviar mensagem"
+
+msgid "Send reset link"
+msgstr "Enviar link de reposição"
+
+msgid "Send verification email"
+msgstr "Enviar e-mail de verificação"
+
+msgid "Sending..."
+msgstr "A enviar..."
+
+msgid "Sending…"
+msgstr "A enviar…"
+
+msgid ""
+"Sent to OpenAI per page. These placeholders are filled in automatically: "
+"{{site_title}}, {{site_tagline}}, {{target_location}}, {{target_type}}, "
+"{{country}}, {{city}}, {{area}}, {{nearby_locations}}."
+msgstr ""
+"Enviado ao OpenAI por página. Estes marcadores são preenchidos "
+"automaticamente: {{site_title}}, {{site_tagline}}, {{target_location}}, "
+"{{target_type}}, {{country}}, {{city}}, {{area}}, {{nearby_locations}}."
+
+msgid "Share a few words about your stay (optional)…"
+msgstr "Partilha algumas palavras sobre a tua estadia (opcional)…"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Shortcodes provided by the Contabai plugin."
+msgstr "Shortcodes fornecidos pelo plugin Contabai."
+
+msgid "Show all photos"
+msgstr "Ver todas as fotos"
+
+msgid "Showing %1$s to %2$s of %3$s results"
+msgstr "A mostrar %1$s a %2$s de %3$s resultados"
+
+msgid ""
+"Shows a grid of random active listings (fresh on each load). Place on any "
+"page; you can use it multiple times. (Not auto-created — add it yourself.)"
+msgstr ""
+"Mostra uma grelha de alojamentos ativos aleatórios (renovados a cada "
+"carregamento). Coloca em qualquer página; podes utilizá-lo várias vezes. "
+"(Não é criado automaticamente — adiciona-o tu mesmo.)"
+
+msgid "Snippet"
+msgstr "Excerto"
+
+msgid "Something went wrong."
+msgstr "Algo correu mal."
+
+msgid "Sort by"
+msgstr "Ordenar por"
+
+msgid ""
+"Start generating all location pages? Each page calls OpenAI and can take "
+"several minutes."
+msgstr ""
+"Começar a gerar todas as páginas de localização? Cada página chama o OpenAI "
+"e pode demorar vários minutos."
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Stay must be between %1$d and %2$d nights."
+msgstr "A estadia deve ter entre %1$d e %2$d noites."
+
+msgid "Stop"
+msgstr "Parar"
+
+msgid "Stopping…"
+msgstr "A parar…"
+
+msgid "Terms and conditions"
+msgstr "Termos e condições"
+
+msgid "Thanks — your review has been posted."
+msgstr "Obrigado — a tua avaliação foi publicada."
+
+msgid ""
+"The OpenAI model to use (e.g. gpt-5.6-sol). Update this if OpenAI releases a "
+"newer or better model."
+msgstr ""
+"O modelo do OpenAI a utilizar (p. ex. gpt-5.6-sol). Atualiza isto se o "
+"OpenAI lançar um modelo mais recente ou melhor."
+
+msgid ""
+"The bar reads the URL on load, so wherever it sits it opens showing the "
+"destination, dates and party the visitor already chose."
+msgstr ""
+"A barra lê o URL ao carregar, por isso onde quer que esteja, abre a mostrar "
+"o destino, as datas e os hóspedes que o visitante já escolheu."
+
+msgid ""
+"The host reviews your request and you will hear back by email. You pay "
+"nothing until it is accepted."
+msgstr ""
+"O anfitrião analisa o teu pedido e receberás resposta por e-mail. Não pagas "
+"nada até ser aceite."
+
+msgid "This booking can no longer be reviewed."
+msgstr "Esta reserva já não pode ser avaliada."
+
+msgid "This property sleeps at most %d guests. Infants and pets do not count."
+msgstr ""
+"Este alojamento acolhe no máximo %d hóspedes. Os bebés e os animais não "
+"contam."
+
+msgid ""
+"Tick the countries to generate location pages for. All are on by default."
+msgstr ""
+"Marca os países para os quais gerar páginas de localização. Todos estão "
+"ativados por predefinição."
+
+msgid "To create"
+msgstr "Para criar"
+
+msgid "To trash (removed upstream)"
+msgstr "Para o lixo (removidas na origem)"
+
+msgid "Tools"
+msgstr "Ferramentas"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "URL"
+msgstr "URL"
+
+msgid ""
+"Unchecked: only pages that have no content yet are generated. Checked: every "
+"page is regenerated."
+msgstr ""
+"Sem assinalar: só são geradas as páginas que ainda não têm conteúdo. "
+"Assinalado: todas as páginas são regeneradas."
+
+msgid "Update"
+msgstr "Atualizar"
+
+msgid "Updating…"
+msgstr "A atualizar…"
+
+msgid "Upload avatar"
+msgstr "Enviar avatar"
+
+msgid "Uploading…"
+msgstr "A enviar…"
+
+msgid "Username"
+msgstr "Nome de utilizador"
+
+msgid "Video"
+msgstr "Vídeo"
+
+msgid "We could not calculate your total. Please try again."
+msgstr "Não conseguimos calcular o teu total. Tenta novamente."
+
+msgid "We could not complete your booking. Please try again."
+msgstr "Não conseguimos concluir a tua reserva. Tenta novamente."
+
+msgid ""
+"We could not read your dates. Please choose your arrival and departure again "
+"on the property page."
+msgstr ""
+"Não conseguimos ler as tuas datas. Escolhe novamente a tua chegada e a tua "
+"partida na página do alojamento."
+
+msgid "We only show places with room for everyone."
+msgstr "Só mostramos lugares com espaço para todos."
+
+msgid "We sent a verification link to"
+msgstr "Enviámos um link de verificação para"
+
+msgid "Weekend"
+msgstr "Fim de semana"
+
+msgid "When"
+msgstr "Quando"
+
+msgid "When?"
+msgstr "Quando?"
+
+msgid "Where"
+msgstr "Onde"
+
+msgid "Where to next?"
+msgstr "Para onde a seguir?"
+
+msgid "Where to?"
+msgstr "Para onde?"
+
+msgid "Who"
+msgstr "Quem"
+
+msgid "Will create"
+msgstr "Serão criadas"
+
+msgid "Will move to Trash"
+msgstr "Serão enviadas para o lixo"
+
+msgid "Every grid puts a compact search bar above itself, filled in from the URL so a visitor can change the destination, dates or party without going back to the home page. On a location-locked grid the bar starts on that location."
+msgstr "Cada grelha coloca uma barra de pesquisa compacta por cima, preenchida a partir do URL, para que um visitante possa mudar o destino, as datas ou os hóspedes sem voltar à página inicial. Numa grelha fixada a uma localização, a barra começa nessa localização."
+
+msgid "Write a message to the host…"
+msgstr "Escreve uma mensagem ao anfitrião…"
+
+msgid ""
+"You pay nothing now. The host reviews your request first, and you receive "
+"payment details once it is accepted."
+msgstr ""
+"Não pagas nada agora. O anfitrião analisa primeiro o teu pedido e receberás "
+"os dados de pagamento assim que for aceite."
+
+msgid "Your booking request has been sent"
+msgstr "O teu pedido de reserva foi enviado"
+
+msgid "Your details"
+msgstr "Os teus dados"
+
+msgid "adult"
+msgstr "adulto"
+
+msgid "adults"
+msgstr "adultos"
+
+msgid "bathrooms"
+msgstr "casas de banho"
+
+msgid "bedrooms"
+msgstr "quartos"
+
+msgid "child"
+msgstr "criança"
+
+msgid "children"
+msgstr "crianças"
+
+msgid "deposit (refundable)"
+msgstr "caução (acertada depois da tua estadia)"
+
+msgid "floors"
+msgstr "andares"
+
+msgid "from"
+msgstr "a partir de"
+
+msgid "guest"
+msgstr "hóspede"
+
+msgid "guests"
+msgstr "hóspedes"
+
+msgid "h"
+msgstr "h"
+
+msgid "infant"
+msgstr "bebé"
+
+msgid "infants"
+msgstr "bebés"
+
+msgid "living area"
+msgstr "área habitável"
+
+msgid "m"
+msgstr "min"
+
+msgid "night"
+msgstr "noite"
+
+msgid "nights"
+msgstr "noites"
+
+msgid "now"
+msgstr "agora"
+
+msgid "pet"
+msgstr "animal"
+
+msgid "pets"
+msgstr "animais"
+
+msgid "place"
+msgstr "lugar"
+
+msgid "places"
+msgstr "lugares"
+
+msgid "properties"
+msgstr "alojamentos"
+
+msgid "property"
+msgstr "alojamento"
+
+msgctxt "remove row"
+msgid "×"
+msgstr "×"
+
+msgid "Choose a country from the list."
+msgstr "Escolhe um país da lista."
+
+msgid "Each field can be at most 255 characters."
+msgstr "Cada campo pode ter no máximo 255 caracteres."
+
+msgid "Enter a valid email address."
+msgstr "Introduz um endereço de e-mail válido."
+
+msgid "Enter your username and password."
+msgstr "Introduz o teu nome de utilizador e a tua palavra-passe."
+
+msgid "Enter your username."
+msgstr "Introduz o teu nome de utilizador."
+
+msgid "Please accept the house rules and the terms and conditions."
+msgstr "Aceita as regras da casa e os termos e condições."
+
+msgid "Please check the number of guests."
+msgstr "Verifica o número de hóspedes."
+
+msgid "Please check your optional extras."
+msgstr "Verifica os teus extras opcionais."
+
+msgid "Please verify your email address first — check your inbox for the link."
+msgstr "Confirma primeiro o teu endereço de e-mail — encontras a ligação na tua caixa de entrada."
+
+msgid "Some filters could not be applied. Please adjust them and try again."
+msgstr "Não foi possível aplicar alguns filtros. Ajusta-os e tenta novamente."
+
+msgid "That nickname is already taken. Choose another one."
+msgstr "Essa alcunha já está a ser usada. Escolhe outra."
+
+msgid "That username is taken or not allowed. Use letters, numbers, dashes and underscores only."
+msgstr "Esse nome de utilizador já está a ser usado ou não é permitido. Usa apenas letras, números, hífenes e traços baixos."
+
+msgid "This host is not available for chat right now."
+msgstr "Este anfitrião não está disponível para conversar neste momento."
+
+msgid "This property is no longer available."
+msgstr "Este alojamento já não está disponível."
+
+msgid "This stay can no longer be booked as chosen — the dates may be taken, too close to today, too far ahead, or outside the allowed number of nights."
+msgstr "Esta estadia já não pode ser reservada assim — as datas podem estar ocupadas, demasiado próximas, demasiado distantes ou fora do número de noites permitido."
+
+msgid "Too many attempts. Please wait a minute and try again."
+msgstr "Demasiadas tentativas. Espera um minuto e tenta novamente."
+
+msgid "Upload a JPG, PNG or WebP image of at most 5 MB."
+msgstr "Carrega uma imagem JPG, PNG ou WebP com 5 MB no máximo."
+
+msgid "Use at least 8 characters including a number, avoid known leaked passwords, and type the same password twice."
+msgstr "Usa pelo menos 8 caracteres com um número, evita palavras-passe divulgadas conhecidas e escreve a mesma palavra-passe duas vezes."
+
+msgid "Wrong username or password."
+msgstr "Nome de utilizador ou palavra-passe incorretos."
+
+msgid "Your message is empty or longer than 2,000 characters."
+msgstr "A tua mensagem está vazia ou tem mais de 2000 caracteres."
+
+msgid "Your message to the host can be at most 500 characters."
+msgstr "A tua mensagem para o anfitrião pode ter no máximo 500 caracteres."
+
+msgid "Your party is larger than this property allows."
+msgstr "O teu grupo é maior do que este alojamento permite."
+
+msgid "Your session has expired. Please log in again."
+msgstr "A tua sessão expirou. Inicia sessão novamente."
+
+msgid "We could not get a price for these dates. Please try other dates."
+msgstr "Não conseguimos obter um preço para estas datas. Experimenta outras datas."
+
+msgid "Check-out only"
+msgstr "Só partida"
+
+msgid "You can check out on this day, but not arrive. Pick an earlier arrival date."
+msgstr "Neste dia podes sair, mas não chegar. Escolhe uma data de chegada anterior."
+
+msgid "Some nights in these dates are already booked. Please pick other dates."
+msgstr "Algumas noites nestas datas já estão reservadas. Escolhe outras datas."
+
+msgid "(optional) Location keys to preselect in Where when the URL has none (e.g. country=\"cw\" city=\"willemstad\"). The grid shortcode passes its own location on location pages."
+msgstr "(opcional) Chaves de localização a pré-selecionar em Onde quando o URL não tem nenhuma (p. ex. country=\"cw\" city=\"willemstad\"). O shortcode da grelha passa a sua própria localização nas páginas de localização."
+
+msgid "Could not load your bookings."
+msgstr "Não foi possível carregar as tuas reservas."
+
+msgid "Only with pets"
+msgstr "Só com animais"
+
+msgid "Metered utilities"
+msgstr "Consumos"
+
+msgid "Read at check-out and settled from your deposit."
+msgstr "Lido à saída e descontado da tua caução."
+
+#, php-format
+msgid "Above %d guest"
+msgid_plural "Above %d guests"
+msgstr[0] "Acima de %d hóspede"
+msgstr[1] "Acima de %d hóspedes"
+
+msgid "Unsupported content type."
+msgstr "Tipo de conteúdo não suportado."
+
+msgid "Updates"
+msgstr "Atualizações"
+
+msgid "Installed version"
+msgstr "Versão instalada"
+
+msgid "Latest release"
+msgstr "Versão mais recente"
+
+msgid "Update available"
+msgstr "Atualização disponível"
+
+msgid "Last check"
+msgstr "Última verificação"
+
+msgid "Never"
+msgstr "Nunca"
+
+msgid "Last error"
+msgstr "Último erro"
+
+msgid "Check now"
+msgstr "Verificar agora"
+
+msgid "Release notes"
+msgstr "Notas da versão"
+
+
+
+#, php-format
+msgid "GitHub is not reachable: %s"
+msgstr "O GitHub não está acessível: %s"
+
+msgid "GitHub refused the request (rate limit). Try again later."
+msgstr "O GitHub recusou o pedido (limite atingido). Tenta mais tarde."
+
+msgid "No release published yet."
+msgstr "Ainda não foi publicada nenhuma versão."
+
+#, php-format
+msgid "GitHub answered with HTTP %d."
+msgstr "O GitHub respondeu com HTTP %d."
+
+msgid "GitHub sent an unexpected answer."
+msgstr "O GitHub enviou uma resposta inesperada."
+
+#, php-format
+msgid "Release tag %s is not a valid version."
+msgstr "A etiqueta %s não é uma versão válida."
+
+#, php-format
+msgid "Release %1$s has no %2$s."
+msgstr "A versão %1$s não tem %2$s."
+
+msgid "You are not allowed to do this."
+msgstr "Não tens permissão para fazer isto."
+
+msgid "Enable"
+msgstr "Ativar"
+
+msgid "Switches off plugin updates from GitHub. Turn ON for a local development site that is a git checkout. Leave OFF in production."
+msgstr "Desativa as atualizações do plugin a partir do GitHub. LIGA para um site local de desenvolvimento que seja um checkout git. Deixa DESLIGADO em produção."
+
+msgid "Development mode is on, so this update is not installed."
+msgstr "O modo de desenvolvimento está ativo, por isso esta atualização não é instalada."
+
+msgid "Development mode is on (Advanced tab), so updates are switched off."
+msgstr "O modo de desenvolvimento está ativo (separador Advanced), por isso as atualizações estão desativadas."

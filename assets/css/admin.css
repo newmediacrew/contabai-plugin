@@ -1,0 +1,72 @@
+.contabai-admin .form-table input[type="text"],
+.contabai-admin .form-table input[type="url"],
+.contabai-admin .form-table input[type="password"],
+.contabai-admin .form-table input[type="number"],
+.contabai-admin .form-table textarea,
+.contabai-admin .form-table select {
+    width: 100%;
+    max-width: 640px;
+}
+
+.contabai-admin-intro {
+    max-width: 820px;
+}
+
+.contabai-admin-block {
+    margin: 0 0 24px;
+}
+
+.contabai-admin-top {
+    margin-top: 16px;
+}
+
+.contabai-admin-tight {
+    margin-top: 0;
+}
+
+#contabai_seo .contabai-seo-panel {
+    display: none;
+}
+
+#contabai_seo .contabai-seo-panel.is-active {
+    display: block;
+}
+
+#contabai_seo .contabai-col-question {
+    width: 32%;
+}
+
+#contabai_seo .contabai-col-remove {
+    width: 1%;
+}
+
+.contabai-admin-warning {
+    color: #b32d2e;
+}
+
+.contabai-admin .contabai-col-shortcode {
+    width: 25%;
+}
+
+.contabai-admin .contabai-col-desc {
+    width: 75%;
+}
+
+.contabai-admin .contabai-country-option {
+    display: inline-block;
+    margin-right: 18px;
+    margin-bottom: 6px;
+}
+
+.contabai-admin .contabai-inline-action {
+    margin-left: 12px;
+}
+
+.contabai-admin .contabai-col-w230 {
+    width: 230px;
+}
+
+.contabai-admin .contabai-col-w130 {
+    width: 130px;
+}
+.contabai-release-notes { max-width: 900px; }

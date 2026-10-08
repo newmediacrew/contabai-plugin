@@ -1,0 +1,1437 @@
+# Dutch translations for Contabai package.
+# Copyright (C) 2026 THE Contabai'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Contabai package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Contabai\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-18 17:33+0200\n"
+"PO-Revision-Date: 2026-07-11 20:30+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%1$s–%2$s nights"
+msgstr "%1$s–%2$s nachten"
+
+msgid "%d city"
+msgid_plural "%d cities"
+msgstr[0] "%d plaats"
+msgstr[1] "%d plaatsen"
+
+msgid "%d night"
+msgid_plural "%d nights"
+msgstr[0] "%d nacht"
+msgstr[1] "%d nachten"
+
+msgid "%d page queued for generation."
+msgid_plural "%d pages queued for generation."
+msgstr[0] "%d pagina in de wachtrij geplaatst om te genereren."
+msgstr[1] "%d pagina's in de wachtrij geplaatst om te genereren."
+
+msgid "%d page still needs generating."
+msgid_plural "%d pages still need generating."
+msgstr[0] "%d pagina moet nog gegenereerd worden."
+msgstr[1] "%d pagina's moeten nog gegenereerd worden."
+
+msgid "%d photo"
+msgid_plural "%d photos"
+msgstr[0] "%d foto"
+msgstr[1] "%d foto's"
+
+msgid "%d review"
+msgid_plural "%d reviews"
+msgstr[0] "%d beoordeling"
+msgstr[1] "%d beoordelingen"
+
+msgid ""
+"(optional) A tighter, narrower bar for above a results grid. Set it to 1. "
+"The grid shortcode already does this for you."
+msgstr ""
+"(optioneel) Een compactere, smallere balk voor boven een resultatenraster. "
+"Zet op 1. De rastershortcode doet dit al voor je."
+
+msgid "(optional) How many listings to show (1–50). Default: 8"
+msgstr "(optioneel) Hoeveel accommodaties tonen (1–50). Standaard: 8"
+
+msgid "(optional) Listings per page, 1–50. Default: 36"
+msgstr "(optioneel) Accommodaties per pagina, 1–50. Standaard: 36"
+
+msgid ""
+"(optional) Lock the grid to a location (codes, e.g. cw / willemstad). Used "
+"by the auto-generated location pages."
+msgstr ""
+"(optioneel) Zet het raster vast op een locatie (codes, bijv. cw / "
+"willemstad). Gebruikt door de automatisch gegenereerde locatiepagina's."
+
+msgid "(optional) Where the search submits to. Default: the %s page."
+msgstr "(optioneel) Waar het zoeken naartoe gaat. Standaard: de %s-pagina."
+
+msgid "+ Add area"
+msgstr "+ Gebied toevoegen"
+
+msgid "+ Add question"
+msgstr "+ Vraag toevoegen"
+
+msgid "/ night"
+msgstr "/ nacht"
+
+msgid "1 week"
+msgstr "1 week"
+
+msgid "2 weeks"
+msgstr "2 weken"
+
+msgid "A FQDN without a trailing slash."
+msgstr "Een FQDN zonder afsluitende schuine streep."
+
+msgid "AI SEO Settings"
+msgstr "AI SEO-instellingen"
+
+msgid "AI SEO settings saved."
+msgstr "AI SEO-instellingen opgeslagen."
+
+msgid "About host"
+msgstr "Over de host"
+
+msgid "Accommodation"
+msgstr "Accommodatie"
+
+msgid "Account (logged-in, auto-created pages)"
+msgstr "Account (ingelogd, automatisch aangemaakte pagina's)"
+
+msgid "Action"
+msgstr "Actie"
+
+msgid "Active now"
+msgstr "Nu actief"
+
+msgid "Add guests"
+msgstr "Gasten toevoegen"
+
+msgid "Additional costs"
+msgstr "Bijkomende kosten"
+
+msgid "Additional costs calculated at booking"
+msgstr "Bijkomende kosten worden bij de boeking berekend"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Adults"
+msgstr "Volwassenen"
+
+msgid "All pages generated."
+msgstr "Alle pagina's zijn gegenereerd."
+
+msgid "Already exist (kept)"
+msgstr "Bestaan al (behouden)"
+
+msgid "Already have an account?"
+msgstr "Heb je al een account?"
+
+msgid "Always included"
+msgstr "Vaste kosten"
+
+msgid "Amenities"
+msgstr "Voorzieningen"
+
+msgid "Answer"
+msgstr "Antwoord"
+
+msgid "Any dates"
+msgstr "Alle datums"
+
+msgid "Any place"
+msgstr "Overal"
+
+msgid "Article"
+msgstr "Artikel"
+
+msgid "Article HTML"
+msgstr "Artikel-HTML"
+
+msgid "Auth (auto-created pages)"
+msgstr "Authenticatie (automatisch aangemaakte pagina's)"
+
+msgid "Availability"
+msgstr "Beschikbaarheid"
+
+msgid "Available Shortcodes"
+msgstr "Beschikbare shortcodes"
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "Back to login"
+msgstr "Terug naar inloggen"
+
+msgid "Back to site"
+msgstr "Terug naar site"
+
+msgid "Back to the properties"
+msgstr "Terug naar de accommodaties"
+
+msgid ""
+"Base of the single-listing URL: /{slug}/{country}/{city}/{title}-{id}. After "
+"changing this, visit Settings → Permalinks → Save to refresh the rewrite."
+msgstr ""
+"Basis van de URL voor één accommodatie: /{slug}/{country}/{city}/{title}-"
+"{id}. Ga na het wijzigen naar Instellingen → Permalinks → Opslaan om de "
+"rewrite te vernieuwen."
+
+msgid "Bathrooms"
+msgstr "Badkamers"
+
+msgid "Bedrooms"
+msgstr "Slaapkamers"
+
+msgid "Best areas"
+msgstr "Beste gebieden"
+
+msgid "Best areas nearby"
+msgstr "Beste gebieden in de buurt"
+
+msgid "Best for"
+msgstr "Ideaal voor"
+
+msgid "Book now"
+msgstr "Boeken"
+
+msgid "Book your stay"
+msgstr "Boek je verblijf"
+
+msgid "Booking"
+msgstr "Boeking"
+
+msgid "Booking reference"
+msgstr "Boekingsreferentie"
+
+msgid "Booking requires a verified account"
+msgstr "Boeken vereist een geverifieerd account"
+
+msgid ""
+"Booking wizard (party, your details, final check). Auto-created on the %s "
+"page. Reached from the Book now button on a property, which passes the "
+"property and the chosen dates in the URL."
+msgstr ""
+"Boekingswizard (reisgezelschap, je gegevens, laatste controle). Automatisch "
+"aangemaakt op de pagina %s. Bereikbaar via de knop Nu boeken op een "
+"accommodatie, die de accommodatie en de gekozen data in de URL meegeeft."
+
+msgid "Calculating your total…"
+msgstr "Je totaal wordt berekend…"
+
+msgid "Cancellation policy"
+msgstr "Annuleringsbeleid"
+
+msgid "Catalogue"
+msgstr "Catalogus"
+
+msgid "Change password"
+msgstr "Wachtwoord wijzigen"
+
+msgid "Chat with the host"
+msgstr "Chat met de host"
+
+# # Chat rename (Messages -> Chat)
+msgid "Chats"
+msgstr "Chats"
+
+msgid "Check your email"
+msgstr "Controleer je e-mail"
+
+msgid "Check-in / Check-out"
+msgstr "Inchecken / Uitchecken"
+
+msgid "Children"
+msgstr "Kinderen"
+
+msgid "Choose different dates"
+msgstr "Kies andere datums"
+
+msgid "City"
+msgstr "Plaats"
+
+msgid "Clear all"
+msgstr "Alles wissen"
+
+msgid "Clear all filters"
+msgstr "Alle filters wissen"
+
+msgid ""
+"Click it to activate your account, then log in. Didn't get it? Resend below."
+msgstr ""
+"Klik erop om je account te activeren en log daarna in. Niet ontvangen? "
+"Verstuur hieronder opnieuw."
+
+msgid "Close"
+msgstr "Sluiten"
+
+msgid "Confirm"
+msgstr "Bevestigen"
+
+msgid "Confirm new password"
+msgstr "Bevestig nieuw wachtwoord"
+
+msgid "Confirm password"
+msgstr "Bevestig wachtwoord"
+
+msgid ""
+"Connect OpenAI and Pexels, and set the prompt used to generate SEO text for "
+"each location page."
+msgstr ""
+"Verbind OpenAI en Pexels, en stel de prompt in die wordt gebruikt om SEO-"
+"tekst voor elke locatiepagina te genereren."
+
+msgid "Connection error."
+msgstr "Verbindingsfout."
+
+msgid "Contabai SEO content"
+msgstr "Contabai SEO-inhoud"
+
+msgid "Contabai Settings"
+msgstr "Contabai-instellingen"
+
+msgid "Contact details"
+msgstr "Contactgegevens"
+
+msgid "Continue"
+msgstr "Doorgaan"
+
+msgid ""
+"Could not load locations from the API — check the connection before syncing."
+msgstr ""
+"Kon locaties niet laden van de API — controleer de verbinding voordat je "
+"synchroniseert."
+
+msgid "Could not load locations from the API — nothing was changed."
+msgstr "Kon locaties niet laden van de API — er is niets gewijzigd."
+
+msgid "Could not load the booking."
+msgstr "Kon de boeking niet laden."
+
+msgid "Could not load the chat."
+msgstr "De chat kon niet worden geladen."
+
+msgid "Could not load the reviews."
+msgstr "Kon de beoordelingen niet laden."
+
+msgid "Could not load your account."
+msgstr "Kon je account niet laden."
+
+msgid "Could not load your chats."
+msgstr "Kon je chats niet laden."
+
+msgid "Could not post your review."
+msgstr "Kon je beoordeling niet plaatsen."
+
+msgid "Could not send your message."
+msgstr "Je bericht kon niet worden verzonden."
+
+msgid "Counting…"
+msgstr "Tellen…"
+
+msgid "Countries"
+msgstr "Landen"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "Country list saved."
+msgstr "Landenlijst opgeslagen."
+
+msgid "Create account"
+msgstr "Account aanmaken"
+
+msgid "Creating account..."
+msgstr "Account aanmaken..."
+
+msgid "Dates"
+msgstr "Datums"
+
+msgid "Deposit"
+msgstr "Borg"
+
+msgid "Description"
+msgstr "Beschrijving"
+
+msgid "Displays listings in a paginated grid. Use on the page with slug %s."
+msgstr ""
+"Toont accommodaties in een raster met paginering. Gebruik op de pagina met "
+"slug %s."
+
+msgid "Distance / relation"
+msgstr "Afstand / ligging"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Enable SSL verification for API requests."
+msgstr "SSL-verificatie inschakelen voor API-verzoeken."
+
+msgid "Enter your username and we will email you a reset link."
+msgstr "Vul je gebruikersnaam in en we mailen je een resetlink."
+
+msgid "Enter your username and we will send a new verification link."
+msgstr "Vul je gebruikersnaam in en we sturen je een nieuwe verificatielink."
+
+msgid "Entities"
+msgstr "Entiteiten"
+
+msgid "Exact dates"
+msgstr "Exacte datums"
+
+msgid "Examples: minimal, low, medium, high, xhigh."
+msgstr "Voorbeelden: minimal, low, medium, high, xhigh."
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "Failed"
+msgstr "Mislukt"
+
+msgid "Failed · %s"
+msgstr "Mislukt · %s"
+
+msgid "Fewer"
+msgstr "Minder"
+
+msgid "Filters"
+msgstr "Filters"
+
+msgid "Final check"
+msgstr "Laatste controle"
+
+msgid "Find your destination"
+msgstr "Vind je bestemming"
+
+msgid "Find your place"
+msgstr "Vind jouw plek"
+
+msgid "First name"
+msgstr "Voornaam"
+
+msgid "Focus keyword"
+msgstr "Focuszoekwoord"
+
+msgid "Forgot password"
+msgstr "Wachtwoord vergeten"
+
+msgid "Forgot password?"
+msgstr "Wachtwoord vergeten?"
+
+msgid ""
+"Forgot-password request form. Auto-created on the %s page. (The reset-"
+"password step itself stays on the Laravel host.)"
+msgstr ""
+"Formulier voor wachtwoord-vergeten-aanvraag. Automatisch aangemaakt op de "
+"pagina %s. (De wachtwoord-reset-stap zelf blijft op de Laravel-host.)"
+
+msgid "Frequently asked questions"
+msgstr "Veelgestelde vragen"
+
+msgid "Generate"
+msgstr "Genereren"
+
+msgid "Generate / sync location pages"
+msgstr "Locatiepagina's genereren / synchroniseren"
+
+msgid "Generate all"
+msgstr "Alles genereren"
+
+msgid ""
+"Generate the AI SEO article + metadata for each location page. Each page "
+"calls OpenAI and takes a few minutes. Generation keeps running on the "
+"server, so you can close this page and come back later — the status column "
+"updates automatically while it is open."
+msgstr ""
+"Genereer het AI-SEO-artikel + de metadata voor elke locatiepagina. Elke "
+"pagina roept OpenAI aan en duurt een paar minuten. Het genereren loopt door "
+"op de server, dus je kunt deze pagina sluiten en later terugkomen — de "
+"statuskolom wordt automatisch bijgewerkt zolang de pagina open staat."
+
+msgid "Generate this page now?"
+msgstr "Deze pagina nu genereren?"
+
+msgid "Generated"
+msgstr "Gegenereerd"
+
+msgid "Generated · %s"
+msgstr "Gegenereerd · %s"
+
+msgid ""
+"Generates a nested page per country and city from the Laravel locations "
+"endpoint, each showing that location's listings. Only pages created by this "
+"tool are ever touched — your other pages are never modified. This view is a "
+"preview; nothing changes until you click the button."
+msgstr ""
+"Genereert een geneste pagina per land en stad vanuit het Laravel-locatie-"
+"endpoint, elk met de accommodaties van die locatie. Alleen door deze tool "
+"aangemaakte pagina's worden ooit aangeraakt — je andere pagina's worden "
+"nooit gewijzigd. Deze weergave is een voorbeeld; er verandert niets totdat "
+"je op de knop klikt."
+
+msgid "Generating…"
+msgstr "Bezig met genereren…"
+
+msgid "Go to your chats"
+msgstr "Ga naar je chats"
+
+msgid ""
+"Guest account self-service (profile, contact details, avatar, email, "
+"password). Auto-created on the %s page."
+msgstr ""
+"Selfservice voor gastaccount (profiel, contactgegevens, avatar, e-mail, "
+"wachtwoord). Automatisch aangemaakt op de pagina %s."
+
+msgid ""
+"Guest booking history — list, detail and PDF. Auto-created on the %s page."
+msgstr ""
+"Boekingsgeschiedenis van gast — lijst, detail en PDF. Automatisch aangemaakt "
+"op de pagina %s."
+
+msgid "Guest login form. Auto-created on the %s page."
+msgstr "Inlogformulier voor gasten. Automatisch aangemaakt op de pagina %s."
+
+msgid ""
+"Guest registration form (with language select). Auto-created on the %s page."
+msgstr ""
+"Registratieformulier voor gasten (met taalkeuze). Automatisch aangemaakt op "
+"de pagina %s."
+
+msgid "Guest ↔ host chat (inbox + thread). Auto-created on the %s page."
+msgstr ""
+"Chat tussen gast en host (inbox + gesprek). Automatisch aangemaakt op de "
+"pagina %s."
+
+msgid "Guests"
+msgstr "Gasten"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Host since %s"
+msgstr "Host sinds %s"
+
+msgid "House rules"
+msgstr "Huisregels"
+
+msgid "How many of you?"
+msgstr "Met hoeveel personen?"
+
+msgid "How many?"
+msgstr "Hoeveel?"
+
+msgid "Hub"
+msgstr "Hub"
+
+msgid "I have read and accept the house rules."
+msgstr "Ik heb de huisregels gelezen en ga ermee akkoord."
+
+msgid "I have read and accept the terms and conditions."
+msgstr "Ik heb de algemene voorwaarden gelezen en ga ermee akkoord."
+
+msgid "If an account exists, a reset link has been sent."
+msgstr "Als er een account bestaat, is er een resetlink verstuurd."
+
+msgid "If an unverified account exists, a verification link has been sent."
+msgstr ""
+"Als er een niet-geverifieerd account bestaat, is er een verificatielink "
+"verstuurd."
+
+msgid "In queue:"
+msgstr "In wachtrij:"
+
+msgid "Infants"
+msgstr "Baby's"
+
+msgid "Insufficient permissions."
+msgstr "Onvoldoende rechten."
+
+msgid "Language"
+msgstr "Taal"
+
+msgid "Last name"
+msgstr "Achternaam"
+
+msgid "Last seen"
+msgstr "Laatst gezien"
+
+msgid ""
+"Leave OFF for a local .test site with a self-signed certificate. Turn ON in "
+"production."
+msgstr ""
+"Laat UIT voor een lokale .test-site met een zelfondertekend certificaat. Zet "
+"AAN in productie."
+
+msgid "Leave a review"
+msgstr "Schrijf een beoordeling"
+
+msgid "Length of stay"
+msgstr "Verblijfsduur"
+
+msgid "Loading..."
+msgstr "Laden..."
+
+msgid "Loading…"
+msgstr "Bezig met laden…"
+
+msgid "Loads the default prompt into the editor — click Save to keep it."
+msgstr "Laadt de standaardprompt in de editor — klik op Opslaan om te bewaren."
+
+msgid "Location"
+msgstr "Locatie"
+
+msgid "Location pages"
+msgstr "Locatiepagina's"
+
+msgid "Location pages synced — created %1$d, kept %2$d, trashed %3$d."
+msgstr ""
+"Locatiepagina's gesynchroniseerd — %1$d aangemaakt, %2$d behouden, %3$d naar "
+"prullenbak."
+
+msgid "Log in"
+msgstr "Inloggen"
+
+msgid "Log in to book"
+msgstr "Log in om te boeken"
+
+msgid "Log in to chat"
+msgstr "Log in om te chatten"
+
+msgid "Log out"
+msgstr "Uitloggen"
+
+msgid ""
+"Logged-in account hub linking to profile and bookings. Auto-created on the "
+"%s page."
+msgstr ""
+"Ingelogde account-hub met links naar profiel en boekingen. Automatisch "
+"aangemaakt op de pagina %s."
+
+msgid "Logging in..."
+msgstr "Inloggen..."
+
+msgid "Login"
+msgstr "Inloggen"
+
+msgid "Login failed."
+msgstr "Inloggen mislukt."
+
+msgid "Mandatory"
+msgstr "Verplicht"
+
+msgid "Mention the property so the host knows which listing you mean."
+msgstr "Noem de accommodatie zodat de host weet welke je bedoelt."
+
+msgid "Message sent."
+msgstr "Bericht verzonden."
+
+msgid "Message to the host (optional)"
+msgstr "Bericht aan de host (optioneel)"
+
+msgid "Meta description"
+msgstr "Metabeschrijving"
+
+msgid "Midweek"
+msgstr "Doordeweeks"
+
+msgid "More"
+msgstr "Meer"
+
+msgid "More about %s"
+msgstr "Meer over %s"
+
+msgid "My account"
+msgstr "Mijn account"
+
+msgid "My bookings"
+msgstr "Mijn boekingen"
+
+msgid "My chats"
+msgstr "Mijn chats"
+
+msgid "My hub"
+msgstr "Mijn hub"
+
+msgid "New message"
+msgstr "Nieuw bericht"
+
+msgid "New message from %s"
+msgstr "Nieuw bericht van %s"
+
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+msgid "Newest"
+msgstr "Nieuwste"
+
+msgid "Next"
+msgstr "Volgende"
+
+msgid "Nickname"
+msgstr "Bijnaam"
+
+msgid "Nights"
+msgstr "Nachten"
+
+msgid "No bookings yet."
+msgstr "Nog geen boekingen."
+
+msgid "No chats yet."
+msgstr "Nog geen chats."
+
+msgid "No countries available from the API yet."
+msgstr "Nog geen landen beschikbaar vanuit de API."
+
+msgid "No destinations found."
+msgstr "Geen bestemmingen gevonden."
+
+msgid "No file uploaded."
+msgstr "Geen bestand geüpload."
+
+msgid "No listings found."
+msgstr "Geen accommodaties gevonden."
+
+msgid "No messages yet. Say hello."
+msgstr "Nog geen berichten. Zeg hallo."
+
+msgid "No response from OpenAI (network error or timeout)."
+msgstr "Geen reactie van OpenAI (netwerkfout of time-out)."
+
+msgid "No reviews yet."
+msgstr "Nog geen beoordelingen."
+
+msgid "No verification email?"
+msgstr "Geen verificatie-e-mail?"
+
+msgid "Not generated"
+msgstr "Niet gegenereerd"
+
+msgid ""
+"Nothing to generate — those pages already have content (tick “Regenerate” to "
+"force)."
+msgstr ""
+"Niets te genereren — die pagina's hebben al inhoud (vink “Opnieuw genereren” "
+"aan om te forceren)."
+
+msgid "Number of people"
+msgstr "Aantal personen"
+
+msgid "One per line."
+msgstr "Eén per regel."
+
+msgid "OpenAI API key"
+msgstr "OpenAI API-sleutel"
+
+msgid "OpenAI model"
+msgstr "OpenAI-model"
+
+msgid "OpenAI returned no usable JSON."
+msgstr "OpenAI gaf geen bruikbare JSON terug."
+
+msgid "Optional extras"
+msgstr "Optionele extra's"
+
+msgid ""
+"Optional filters (all fixed for this placement): country, city, area, "
+"guests, bedrooms, bathrooms, price_min, price_max (prices in cents, e.g. "
+"20000 = 200.00), and comma-separated property_type and amenities."
+msgstr ""
+"Optionele filters (allemaal vast voor deze plaatsing): country, city, area, "
+"guests, bedrooms, bathrooms, price_min, price_max (prijzen in centen, bijv. "
+"20000 = 200,00), en komma-gescheiden property_type en amenities."
+
+msgid "Party"
+msgstr "Reisgezelschap"
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid "Payment details"
+msgstr "Betaalgegevens"
+
+msgid "Pets"
+msgstr "Huisdieren"
+
+msgid "Pexels API key"
+msgstr "Pexels API-sleutel"
+
+msgid "Phone"
+msgstr "Telefoon"
+
+msgid "Pick an arrival date — departure is set automatically."
+msgstr "Kies een aankomstdatum — vertrek wordt automatisch ingesteld."
+
+msgid "Pick your dates"
+msgstr "Kies je data"
+
+msgid "Please choose a rating between 1 and 5."
+msgstr "Kies een beoordeling tussen 1 en 5."
+
+msgid "Please complete every field before you continue."
+msgstr "Vul alle velden in voordat je verdergaat."
+
+msgid "Pool"
+msgstr "Zwembad"
+
+msgid "Post review"
+msgstr "Beoordeling plaatsen"
+
+msgid ""
+"Post this review? It's public and can't be edited or removed once posted."
+msgstr ""
+"Deze beoordeling plaatsen? Beoordelingen zijn openbaar en kunnen na "
+"plaatsing niet meer worden gewijzigd of verwijderd."
+
+msgid ""
+"Post-registration \"check your email\" screen with resend-verification. Auto-"
+"created on the %s page."
+msgstr ""
+"Scherm \"controleer je e-mail\" na registratie met opnieuw verzenden van "
+"verificatie. Automatisch aangemaakt op de pagina %s."
+
+msgid "Postcode"
+msgstr "Postcode"
+
+msgid "Posting…"
+msgstr "Bezig met plaatsen…"
+
+msgid "Press Enter to send · Shift+Enter for a new line"
+msgstr "Druk op Enter om te verzenden · Shift+Enter voor een nieuwe regel"
+
+msgid "Previous"
+msgstr "Vorige"
+
+msgid "Price"
+msgstr "Prijs"
+
+msgid "Price: high to low"
+msgstr "Prijs: hoog naar laag"
+
+msgid "Price: low to high"
+msgstr "Prijs: laag naar hoog"
+
+msgid "Profile"
+msgstr "Profiel"
+
+msgid "Property type"
+msgstr "Type accommodatie"
+
+msgid "Question"
+msgstr "Vraag"
+
+msgid "Queued"
+msgstr "In wachtrij"
+
+msgid "Rated %d out of 5"
+msgstr "%d van de 5 sterren"
+
+msgid "Reasoning effort"
+msgstr "Redeneerinspanning"
+
+msgid "Reasoning guide"
+msgstr "Reasoning-handleiding"
+
+msgid "Regenerate"
+msgstr "Opnieuw genereren"
+
+msgid "Regenerate pages that already have content"
+msgstr "Pagina's die al inhoud hebben opnieuw genereren"
+
+msgid "Regenerating this page (Tools → Generate) overwrites everything here."
+msgstr ""
+"Deze pagina opnieuw genereren (Tools → Genereren) overschrijft alles hier."
+
+msgid "Register as Guest"
+msgstr "Registreren als gast"
+
+msgid "Registration failed."
+msgstr "Registratie mislukt."
+
+msgid "Related"
+msgstr "Gerelateerd"
+
+msgid "Related destinations"
+msgstr "Gerelateerde bestemmingen"
+
+msgid "Related locations"
+msgstr "Gerelateerde locaties"
+
+msgid "Remove"
+msgstr "Verwijderen"
+
+msgid "Remove avatar"
+msgstr "Avatar verwijderen"
+
+msgid ""
+"Renders a single listing detail page. Use on the page with slug %1$s. The "
+"listing is looked up by the trailing integer id in the URL /%2$s/{country}/"
+"{city}/{title}-{id}."
+msgstr ""
+"Toont de detailpagina van één accommodatie. Gebruik op de pagina met slug "
+"%1$s. De accommodatie wordt opgezocht via het afsluitende gehele id in de "
+"URL /%2$s/{country}/{city}/{title}-{id}."
+
+msgid "Resend in"
+msgstr "Opnieuw versturen over"
+
+msgid "Restore default prompt"
+msgstr "Standaardprompt herstellen"
+
+# --- Guest reviews (stage 5) ---
+msgid "Reviews"
+msgstr "Beoordelingen"
+
+msgid "Reviews are public and cannot be edited after posting."
+msgstr ""
+"Beoordelingen zijn openbaar en kunnen na plaatsing niet meer worden "
+"gewijzigd."
+
+msgid "SEO prompt"
+msgstr "SEO-prompt"
+
+msgid "SEO title"
+msgstr "SEO-titel"
+
+msgid "Save AI SEO settings"
+msgstr "AI SEO-instellingen opslaan"
+
+msgid "Save countries"
+msgstr "Landen opslaan"
+
+msgid "Saved."
+msgstr "Opgeslagen."
+
+msgid "Search"
+msgstr "Zoeken"
+
+msgid ""
+"Search bar (Where / When / Who) that navigates to the listings results grid "
+"with the chosen filters in the URL. Rendered automatically in the front-page "
+"hero; place it on any other page too, and more than once per page. Best on a "
+"template without .entry-content — theme prose styles otherwise add spacing "
+"inside the panels."
+msgstr ""
+"Zoekbalk (Waar / Wanneer / Wie) die naar het resultatenraster navigeert met "
+"de gekozen filters in de URL. Wordt automatisch in de hero van de voorpagina "
+"getoond; plaats hem ook op elke andere pagina, en meer dan eens per pagina. "
+"Het beste op een template zonder .entry-content — anders voegen de "
+"prozastijlen van het thema ruimte toe binnen de panelen."
+
+msgid "Search destinations"
+msgstr "Zoek bestemmingen"
+
+msgid "Secondary keywords"
+msgstr "Secundaire zoekwoorden"
+
+msgid "Security deposit"
+msgstr "Borgsom"
+
+msgid "Security deposit (refundable)"
+msgstr "Borgsom (wordt na je verblijf verrekend)"
+
+msgid "See all OpenAI models"
+msgstr "Bekijk alle OpenAI-modellen"
+
+msgid "Select dates"
+msgstr "Selecteer datums"
+
+msgid "Select country"
+msgstr "Kies land"
+
+msgid "Select language"
+msgstr "Kies taal"
+
+msgid "Semantic HTML (h1, h2, p, ul). Rendered as-is."
+msgstr "Semantische HTML (h1, h2, p, ul). Wordt letterlijk weergegeven."
+
+msgid "Send message"
+msgstr "Bericht versturen"
+
+msgid "Send reset link"
+msgstr "Resetlink versturen"
+
+msgid "Send verification email"
+msgstr "Verificatie-e-mail versturen"
+
+msgid "Sending..."
+msgstr "Versturen..."
+
+msgid "Sending…"
+msgstr "Versturen…"
+
+msgid ""
+"Sent to OpenAI per page. These placeholders are filled in automatically: "
+"{{site_title}}, {{site_tagline}}, {{target_location}}, {{target_type}}, "
+"{{country}}, {{city}}, {{area}}, {{nearby_locations}}."
+msgstr ""
+"Wordt per pagina naar OpenAI gestuurd. Deze plaatshouders worden automatisch "
+"ingevuld: {{site_title}}, {{site_tagline}}, {{target_location}}, "
+"{{target_type}}, {{country}}, {{city}}, {{area}}, {{nearby_locations}}."
+
+msgid "Share a few words about your stay (optional)…"
+msgstr "Deel een paar woorden over je verblijf (optioneel)…"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Shortcodes provided by the Contabai plugin."
+msgstr "Shortcodes die door de Contabai-plugin worden geleverd."
+
+msgid "Show all photos"
+msgstr "Alle foto's tonen"
+
+msgid "Showing %1$s to %2$s of %3$s results"
+msgstr "Toont %1$s tot %2$s van %3$s resultaten"
+
+msgid ""
+"Shows a grid of random active listings (fresh on each load). Place on any "
+"page; you can use it multiple times. (Not auto-created — add it yourself.)"
+msgstr ""
+"Toont een raster met willekeurige actieve accommodaties (elke keer opnieuw "
+"ververst). Plaats op elke pagina; je kunt het meerdere keren gebruiken. "
+"(Niet automatisch aangemaakt — voeg het zelf toe.)"
+
+msgid "Snippet"
+msgstr "Snippet"
+
+msgid "Something went wrong."
+msgstr "Er is iets misgegaan."
+
+msgid "Sort by"
+msgstr "Sorteren op"
+
+msgid ""
+"Start generating all location pages? Each page calls OpenAI and can take "
+"several minutes."
+msgstr ""
+"Genereren voor alle locatiepagina's starten? Elke pagina roept OpenAI aan en "
+"kan enkele minuten duren."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Stay must be between %1$d and %2$d nights."
+msgstr "Verblijf moet tussen %1$d en %2$d nachten zijn."
+
+msgid "Stop"
+msgstr "Stoppen"
+
+msgid "Stopping…"
+msgstr "Bezig met stoppen…"
+
+msgid "Terms and conditions"
+msgstr "Algemene voorwaarden"
+
+msgid "Thanks — your review has been posted."
+msgstr "Bedankt — je beoordeling is geplaatst."
+
+msgid ""
+"The OpenAI model to use (e.g. gpt-5.6-sol). Update this if OpenAI releases a "
+"newer or better model."
+msgstr ""
+"Het OpenAI-model dat wordt gebruikt (bijv. gpt-5.6-sol). Werk dit bij als "
+"OpenAI een nieuwer of beter model uitbrengt."
+
+msgid ""
+"The bar reads the URL on load, so wherever it sits it opens showing the "
+"destination, dates and party the visitor already chose."
+msgstr ""
+"De balk leest de URL bij het laden, dus waar hij ook staat, hij opent met de "
+"bestemming, datums en het reisgezelschap die de bezoeker al koos."
+
+msgid ""
+"The host reviews your request and you will hear back by email. You pay "
+"nothing until it is accepted."
+msgstr ""
+"De host beoordeelt je aanvraag en je hoort per e-mail van ons. Je betaalt "
+"niets totdat die is geaccepteerd."
+
+msgid "This booking can no longer be reviewed."
+msgstr "Deze boeking kan niet meer worden beoordeeld."
+
+msgid "This property sleeps at most %d guests. Infants and pets do not count."
+msgstr ""
+"Deze accommodatie biedt plaats aan maximaal %d gasten. Baby's en huisdieren "
+"tellen niet mee."
+
+msgid ""
+"Tick the countries to generate location pages for. All are on by default."
+msgstr ""
+"Vink de landen aan waarvoor je locatiepagina's wilt genereren. Standaard "
+"staan ze allemaal aan."
+
+msgid "To create"
+msgstr "Aan te maken"
+
+msgid "To trash (removed upstream)"
+msgstr "Naar prullenbak (niet meer in de API)"
+
+msgid "Tools"
+msgstr "Hulpmiddelen"
+
+msgid "Total"
+msgstr "Totaal"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "URL"
+msgstr "URL"
+
+msgid ""
+"Unchecked: only pages that have no content yet are generated. Checked: every "
+"page is regenerated."
+msgstr ""
+"Uitgevinkt: alleen pagina's die nog geen inhoud hebben worden gegenereerd. "
+"Aangevinkt: elke pagina wordt opnieuw gegenereerd."
+
+msgid "Update"
+msgstr "Bijwerken"
+
+msgid "Updating…"
+msgstr "Bezig met bijwerken…"
+
+msgid "Upload avatar"
+msgstr "Avatar uploaden"
+
+msgid "Uploading…"
+msgstr "Bezig met uploaden…"
+
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "We could not calculate your total. Please try again."
+msgstr "We konden je totaal niet berekenen. Probeer het opnieuw."
+
+msgid "We could not complete your booking. Please try again."
+msgstr "We konden je boeking niet afronden. Probeer het opnieuw."
+
+msgid ""
+"We could not read your dates. Please choose your arrival and departure again "
+"on the property page."
+msgstr ""
+"We konden je gekozen datums niet lezen. Kies je aankomst en vertrek opnieuw "
+"op de accommodatiepagina."
+
+msgid "We only show places with room for everyone."
+msgstr "We tonen alleen plekken met ruimte voor iedereen."
+
+msgid "We sent a verification link to"
+msgstr "We hebben een verificatielink gestuurd naar"
+
+msgid "Weekend"
+msgstr "Weekend"
+
+msgid "When"
+msgstr "Wanneer"
+
+msgid "When?"
+msgstr "Wanneer?"
+
+msgid "Where"
+msgstr "Waar"
+
+msgid "Where to next?"
+msgstr "Waar naartoe?"
+
+msgid "Where to?"
+msgstr "Waarheen?"
+
+msgid "Who"
+msgstr "Wie"
+
+msgid "Will create"
+msgstr "Wordt aangemaakt"
+
+msgid "Will move to Trash"
+msgstr "Wordt naar prullenbak verplaatst"
+
+msgid "Every grid puts a compact search bar above itself, filled in from the URL so a visitor can change the destination, dates or party without going back to the home page. On a location-locked grid the bar starts on that location."
+msgstr "Elk raster plaatst een compacte zoekbalk erboven, ingevuld vanuit de URL, zodat een bezoeker de bestemming, datums of het reisgezelschap kan wijzigen zonder terug te gaan naar de homepage. Bij een locatiegebonden raster begint de balk op die locatie."
+
+msgid "Write a message to the host…"
+msgstr "Schrijf een bericht aan de host…"
+
+msgid ""
+"You pay nothing now. The host reviews your request first, and you receive "
+"payment details once it is accepted."
+msgstr ""
+"Je betaalt nu niets. De host beoordeelt eerst je aanvraag en je ontvangt de "
+"betaalgegevens zodra die is geaccepteerd."
+
+msgid "Your booking request has been sent"
+msgstr "Je boekingsaanvraag is verzonden"
+
+msgid "Your details"
+msgstr "Je gegevens"
+
+msgid "adult"
+msgstr "volwassene"
+
+msgid "adults"
+msgstr "volwassenen"
+
+msgid "bathrooms"
+msgstr "badkamers"
+
+msgid "bedrooms"
+msgstr "slaapkamers"
+
+msgid "child"
+msgstr "kind"
+
+msgid "children"
+msgstr "kinderen"
+
+msgid "deposit (refundable)"
+msgstr "borgsom (wordt na je verblijf verrekend)"
+
+msgid "floors"
+msgstr "verdiepingen"
+
+msgid "from"
+msgstr "vanaf"
+
+msgid "guest"
+msgstr "gast"
+
+msgid "guests"
+msgstr "gasten"
+
+msgid "h"
+msgstr "u"
+
+msgid "infant"
+msgstr "baby"
+
+msgid "infants"
+msgstr "baby's"
+
+msgid "living area"
+msgstr "woonoppervlak"
+
+msgid "m"
+msgstr "min"
+
+msgid "night"
+msgstr "nacht"
+
+msgid "nights"
+msgstr "nachten"
+
+msgid "now"
+msgstr "nu"
+
+msgid "pet"
+msgstr "huisdier"
+
+msgid "pets"
+msgstr "huisdieren"
+
+msgid "place"
+msgstr "plek"
+
+msgid "places"
+msgstr "plekken"
+
+msgid "properties"
+msgstr "accommodaties"
+
+msgid "property"
+msgstr "accommodatie"
+
+msgctxt "remove row"
+msgid "×"
+msgstr "×"
+
+msgid "Choose a country from the list."
+msgstr "Kies een land uit de lijst."
+
+msgid "Each field can be at most 255 characters."
+msgstr "Elk veld mag maximaal 255 tekens bevatten."
+
+msgid "Enter a valid email address."
+msgstr "Vul een geldig e-mailadres in."
+
+msgid "Enter your username and password."
+msgstr "Vul je gebruikersnaam en wachtwoord in."
+
+msgid "Enter your username."
+msgstr "Vul je gebruikersnaam in."
+
+msgid "Please accept the house rules and the terms and conditions."
+msgstr "Ga akkoord met de huisregels en de algemene voorwaarden."
+
+msgid "Please check the number of guests."
+msgstr "Controleer het aantal gasten."
+
+msgid "Please check your optional extras."
+msgstr "Controleer je optionele extra's."
+
+msgid "Please verify your email address first — check your inbox for the link."
+msgstr "Bevestig eerst je e-mailadres — de link staat in je inbox."
+
+msgid "Some filters could not be applied. Please adjust them and try again."
+msgstr "Sommige filters konden niet worden toegepast. Pas ze aan en probeer het opnieuw."
+
+msgid "That nickname is already taken. Choose another one."
+msgstr "Die bijnaam is al in gebruik. Kies een andere."
+
+msgid "That username is taken or not allowed. Use letters, numbers, dashes and underscores only."
+msgstr "Die gebruikersnaam is al in gebruik of niet toegestaan. Gebruik alleen letters, cijfers, streepjes en underscores."
+
+msgid "This host is not available for chat right now."
+msgstr "Deze host is op dit moment niet beschikbaar voor chat."
+
+msgid "This property is no longer available."
+msgstr "Deze accommodatie is niet meer beschikbaar."
+
+msgid "This stay can no longer be booked as chosen — the dates may be taken, too close to today, too far ahead, or outside the allowed number of nights."
+msgstr "Dit verblijf kan niet meer zo worden geboekt — de datums zijn mogelijk bezet, te dichtbij, te ver vooruit of buiten het toegestane aantal nachten."
+
+msgid "Too many attempts. Please wait a minute and try again."
+msgstr "Te veel pogingen. Wacht een minuut en probeer het opnieuw."
+
+msgid "Upload a JPG, PNG or WebP image of at most 5 MB."
+msgstr "Upload een JPG-, PNG- of WebP-afbeelding van maximaal 5 MB."
+
+msgid "Use at least 8 characters including a number, avoid known leaked passwords, and type the same password twice."
+msgstr "Gebruik minstens 8 tekens met een cijfer, geen bekend gelekt wachtwoord, en typ twee keer hetzelfde wachtwoord."
+
+msgid "Wrong username or password."
+msgstr "Verkeerde gebruikersnaam of wachtwoord."
+
+msgid "Your message is empty or longer than 2,000 characters."
+msgstr "Je bericht is leeg of langer dan 2.000 tekens."
+
+msgid "Your message to the host can be at most 500 characters."
+msgstr "Je bericht aan de host mag maximaal 500 tekens bevatten."
+
+msgid "Your party is larger than this property allows."
+msgstr "Je reisgezelschap is groter dan deze accommodatie toestaat."
+
+msgid "Your session has expired. Please log in again."
+msgstr "Je sessie is verlopen. Log opnieuw in."
+
+msgid "We could not get a price for these dates. Please try other dates."
+msgstr "We konden geen prijs voor deze datums ophalen. Probeer andere datums."
+
+msgid "Check-out only"
+msgstr "Alleen vertrek"
+
+msgid "You can check out on this day, but not arrive. Pick an earlier arrival date."
+msgstr "Op deze dag kun je vertrekken, maar niet aankomen. Kies een eerdere aankomstdatum."
+
+msgid "Some nights in these dates are already booked. Please pick other dates."
+msgstr "Sommige nachten binnen deze datums zijn al geboekt. Kies andere datums."
+
+msgid "(optional) Location keys to preselect in Where when the URL has none (e.g. country=\"cw\" city=\"willemstad\"). The grid shortcode passes its own location on location pages."
+msgstr "(optioneel) Locatiesleutels om bij Waar vooraf te selecteren als de URL er geen heeft (bijv. country=\"cw\" city=\"willemstad\"). De grid-shortcode geeft op locatiepagina's zijn eigen locatie mee."
+
+msgid "Could not load your bookings."
+msgstr "Kon je boekingen niet laden."
+
+msgid "Only with pets"
+msgstr "Alleen met huisdieren"
+
+msgid "Metered utilities"
+msgstr "Verbruikskosten"
+
+msgid "Read at check-out and settled from your deposit."
+msgstr "Afgelezen bij vertrek en verrekend met je borgsom."
+
+#, php-format
+msgid "Above %d guest"
+msgid_plural "Above %d guests"
+msgstr[0] "Boven %d gast"
+msgstr[1] "Boven %d gasten"
+
+msgid "Unsupported content type."
+msgstr "Niet-ondersteund inhoudstype."
+
+msgid "Updates"
+msgstr "Updates"
+
+msgid "Installed version"
+msgstr "Geïnstalleerde versie"
+
+msgid "Latest release"
+msgstr "Nieuwste release"
+
+msgid "Update available"
+msgstr "Update beschikbaar"
+
+msgid "Last check"
+msgstr "Laatste controle"
+
+msgid "Never"
+msgstr "Nooit"
+
+msgid "Last error"
+msgstr "Laatste fout"
+
+msgid "Check now"
+msgstr "Nu controleren"
+
+msgid "Release notes"
+msgstr "Release-opmerkingen"
+
+
+
+#, php-format
+msgid "GitHub is not reachable: %s"
+msgstr "GitHub is niet bereikbaar: %s"
+
+msgid "GitHub refused the request (rate limit). Try again later."
+msgstr "GitHub weigerde het verzoek (limiet bereikt). Probeer het later opnieuw."
+
+msgid "No release published yet."
+msgstr "Nog geen release gepubliceerd."
+
+#, php-format
+msgid "GitHub answered with HTTP %d."
+msgstr "GitHub antwoordde met HTTP %d."
+
+msgid "GitHub sent an unexpected answer."
+msgstr "GitHub stuurde een onverwacht antwoord."
+
+#, php-format
+msgid "Release tag %s is not a valid version."
+msgstr "Releasetag %s is geen geldige versie."
+
+#, php-format
+msgid "Release %1$s has no %2$s."
+msgstr "Release %1$s heeft geen %2$s."
+
+msgid "You are not allowed to do this."
+msgstr "Je hebt geen toestemming om dit te doen."
+
+msgid "Enable"
+msgstr "Inschakelen"
+
+msgid "Switches off plugin updates from GitHub. Turn ON for a local development site that is a git checkout. Leave OFF in production."
+msgstr "Schakelt plugin-updates vanaf GitHub uit. Zet AAN voor een lokale ontwikkelsite die een git-checkout is. Laat UIT in productie."
+
+msgid "Development mode is on, so this update is not installed."
+msgstr "De ontwikkelmodus staat aan, dus deze update wordt niet geïnstalleerd."
+
+msgid "Development mode is on (Advanced tab), so updates are switched off."
+msgstr "De ontwikkelmodus staat aan (tabblad Advanced), dus updates zijn uitgeschakeld."
