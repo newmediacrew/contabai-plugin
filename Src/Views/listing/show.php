@@ -388,9 +388,6 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
         <h2 class="mb-3 text-lg font-semibold text-neutral-900"><?php echo esc_html__('Availability', 'contabai'); ?></h2>
         <div x-data="contabaiAvailability()">
             <div x-ref="cal"></div>
-            <?php if ($checkoutOnly): ?>
-                <p class="mt-2 flex items-center gap-2 text-xs text-neutral-500"><span class="contabai-checkout-only-swatch inline-block h-4 w-4 flex-none rounded"></span><?php echo esc_html__('Check-out only', 'contabai'); ?></p>
-            <?php endif; ?>
 
             <!-- Sticky booking bar — hidden until a valid range, then slides up (fixed, so DOM position here is fine) -->
             <div x-show="nights" x-cloak

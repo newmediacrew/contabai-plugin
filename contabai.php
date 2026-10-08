@@ -3,7 +3,7 @@
 Plugin Name: Contabai
 Plugin URI: https://www.contabai.network
 Description: Contabai — property listings platform frontend for WordPress.
-Version: 1.0.1
+Version: 1.0.2
 Requires at least: 7.1
 Requires PHP: 8.3
 Tested up to: 7.1
@@ -102,7 +102,7 @@ add_filter('script_loader_tag', function ($tag, $handle) {
 }, 10, 2);
 
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('contabai-plugin-css', plugin_dir_url(__FILE__) . 'assets/css/plugin.css', [], '32');
+    wp_enqueue_style('contabai-plugin-css', plugin_dir_url(__FILE__) . 'assets/css/plugin.css', [], '33');
     wp_enqueue_script('contabai-alpine-collapse', plugin_dir_url(__FILE__) . 'assets/js/alpine-collapse.min.js', [], '3', ['strategy' => 'defer']);
     wp_enqueue_script('contabai-alpinejs', plugin_dir_url(__FILE__) . 'assets/js/alpine.min.js', ['contabai-alpine-collapse'], '4', ['strategy' => 'defer']);
 });
