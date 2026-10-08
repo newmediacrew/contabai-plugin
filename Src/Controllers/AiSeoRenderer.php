@@ -169,12 +169,17 @@ class AiSeoRenderer
         echo '<h2 class="contabai-heading mb-6 text-3xl text-[color:var(--heading-color,#111827)]">' . esc_html__('Related destinations', 'contabai') . '</h2>';
         echo '<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">';
         foreach ($items as $url => [$name, $anchor]) {
-            echo '<li><a href="' . esc_url($url) . '" class="group flex h-full items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-white p-5 no-underline shadow-sm transition hover:shadow-lg">';
+            $image = (string) get_the_post_thumbnail_url(url_to_postid($url), 'medium_large');
+            echo '<li><a href="' . esc_url($url) . '" class="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white no-underline shadow-sm transition hover:shadow-lg">';
+            if ($image !== '') {
+                echo '<span class="block aspect-[16/10] overflow-hidden bg-neutral-100"><img src="' . esc_url($image) . '" alt="" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></span>';
+            }
+            echo '<span class="flex flex-1 items-center justify-between gap-4 p-5">';
             echo '<span class="min-w-0"><span class="contabai-heading contabai-seo-place block text-xl text-[color:var(--heading-color,#111827)]">' . esc_html($name) . '</span>';
             if (mb_strtolower($anchor) !== mb_strtolower($name)) {
                 echo '<span class="mt-1 block text-sm text-neutral-500">' . esc_html(self::ucfirst_mb($anchor)) . '</span>';
             }
-            echo '</span><span class="shrink-0 text-neutral-400 transition group-hover:text-[color:var(--theme-color)]">' . \Contabai\Heroicon::outline('arrow-right', 'w-5 h-5') . '</span></a></li>';
+            echo '</span><span class="shrink-0 text-neutral-400 transition group-hover:text-[color:var(--theme-color)]">' . \Contabai\Heroicon::outline('arrow-right', 'w-5 h-5') . '</span></span></a></li>';
         }
         echo '</ul></section>';
 
