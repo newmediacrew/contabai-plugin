@@ -48,7 +48,7 @@ $durations = [
 ?>
 <div x-data="contabaiSearch('<?php echo esc_js($resultsUrl); ?>', <?php echo esc_attr(wp_json_encode((object) array_filter($preset ?? []))); ?>)" x-on:keydown.escape="open = ''; sheet = false" x-on:click.outside="open = ''" class="relative mx-auto w-full">
 
-    <div class="contabai-search-bar overflow-hidden border border-neutral-200 bg-white sm:flex-row sm:items-stretch sm:rounded-lg">
+    <div class="contabai-search-bar overflow-hidden border border-neutral-200 bg-white sm:flex-row sm:items-stretch sm:rounded-2xl">
 
         <button type="button" x-on:click="toggle('where')"
                 class="flex min-w-0 flex-1 flex-col items-start gap-0.5 text-left transition hover:bg-neutral-50 <?php echo $compact ? 'px-4 py-2' : 'px-5 py-3'; ?>"

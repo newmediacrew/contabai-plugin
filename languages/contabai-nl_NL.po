@@ -1435,3 +1435,18 @@ msgstr "De ontwikkelmodus staat aan, dus deze update wordt niet geïnstalleerd."
 
 msgid "Development mode is on (Advanced tab), so updates are switched off."
 msgstr "De ontwikkelmodus staat aan (tabblad Advanced), dus updates zijn uitgeschakeld."
+
+msgid "Pick your dates in the calendar to see the price for your stay."
+msgstr "Kies je data in de kalender om de prijs voor je verblijf te zien."
+
+msgid "Check availability"
+msgstr "Beschikbaarheid bekijken"
+
+msgid "View listing"
+msgstr "Accommodatie bekijken"
+
+msgid "Previous photo"
+msgstr "Vorige foto"
+
+msgid "Next photo"
+msgstr "Volgende foto"

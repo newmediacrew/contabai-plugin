@@ -1,5 +1,5 @@
 <div class="mx-auto w-full max-w-md">
-    <div class="rounded-lg border border-neutral-200 bg-white p-8">
+    <div class="rounded-2xl border border-neutral-200 bg-white p-8 shadow-lg">
         <h1 class="mb-6 text-2xl font-bold text-neutral-900"><?php echo esc_html__('My hub', 'contabai'); ?></h1>
         <div class="space-y-2">
             <a href="<?php echo esc_url(home_url('/' . CONTABAI_PROFILE_PAGE_SLUG)); ?>"

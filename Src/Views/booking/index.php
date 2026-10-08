@@ -77,7 +77,7 @@ $nights = (int) round((strtotime($departure) - strtotime($arrival)) / 86400);
         <?php endforeach; ?>
     </ol>
 
-    <div class="rounded-lg border border-neutral-200 bg-white p-6">
+    <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-lg">
 
         <div class="mb-5 border-b border-neutral-200 pb-4">
             <div class="font-medium text-neutral-900"><?php echo esc_html((string) ($listing['title'] ?? '')); ?></div>

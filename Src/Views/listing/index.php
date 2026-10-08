@@ -33,7 +33,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <div class="space-y-3">
 
             <?php if (! empty($propertyTypes)): ?>
-            <section x-data="{ o: true }" class="rounded-lg border border-neutral-200 bg-white">
+            <section x-data="{ o: true }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
                     <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Property type', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
@@ -52,7 +52,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             </section>
             <?php endif; ?>
 
-            <section x-data="{ o: false }" class="rounded-lg border border-neutral-200 bg-white">
+            <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
                     <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bedrooms', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
@@ -70,7 +70,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
                 </div>
             </section>
 
-            <section x-data="{ o: false }" class="rounded-lg border border-neutral-200 bg-white">
+            <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
                     <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bathrooms', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
@@ -88,7 +88,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
                 </div>
             </section>
 
-            <section x-data="{ o: false }" class="rounded-lg border border-neutral-200 bg-white">
+            <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
                     <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Sort by', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
@@ -113,7 +113,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             </section>
 
             <?php if (! empty($amenityFlat)): ?>
-            <section x-data="{ o: false, openCat: '' }" class="rounded-lg border border-neutral-200 bg-white">
+            <section x-data="{ o: false, openCat: '' }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
                     <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
@@ -178,7 +178,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
         <div class="contabai-listings-grid" x-show="loading && listings.length === 0">
             <?php for ($skeleton = 0; $skeleton < (int) $skeletonCount; $skeleton++) : ?>
                 <div class="animate-pulse">
-                    <div class="aspect-[4/3] rounded-xl bg-neutral-100"></div>
+                    <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
                     <div class="h-28 pt-2.5">
                         <div class="h-4 w-3/4 rounded bg-neutral-100"></div>
                         <div class="mt-2.5 h-3 w-1/2 rounded bg-neutral-100"></div>

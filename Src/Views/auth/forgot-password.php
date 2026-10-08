@@ -1,5 +1,5 @@
 <div class="mx-auto w-full max-w-md" x-data="contabaiForgotPasswordForm()">
-    <div class="rounded-lg border border-neutral-200 bg-white p-8">
+    <div class="rounded-2xl border border-neutral-200 bg-white p-8 shadow-lg">
         <h1 class="mb-2 text-2xl font-bold text-neutral-900"><?php echo esc_html__('Forgot password', 'contabai'); ?></h1>
         <p class="mb-6 text-sm text-neutral-500"><?php echo esc_html__('Enter your username and we will email you a reset link.', 'contabai'); ?></p>
         <form class="space-y-4" x-on:submit.prevent="submit()">

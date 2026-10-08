@@ -38,7 +38,7 @@
                 </nav>
 
                 <!-- hero image + status -->
-                <div class="relative mb-5 aspect-[16/9] overflow-hidden rounded-lg bg-neutral-100">
+                <div class="relative mb-5 aspect-[16/9] overflow-hidden rounded-2xl bg-neutral-100">
                     <img x-bind:src="detail.listing.medium || detail.listing.card || detail.listing.thumbnail" x-show="detail.listing.thumbnail" x-bind:alt="detail.listing.image_alt || detail.listing.title" x-cloak class="h-full w-full object-cover">
                     <?php
                     $badge_extra = 'absolute left-3 top-3 capitalize';
@@ -56,7 +56,7 @@
 
                 <div class="mt-6 space-y-4">
                     <!-- Trip -->
-                    <section class="grid gap-4 rounded-lg border border-neutral-200 bg-white p-5 sm:grid-cols-3">
+                    <section class="grid gap-4 rounded-2xl border border-neutral-200 bg-white p-5 shadow-lg sm:grid-cols-3">
                         <div>
                             <div class="text-xs font-medium uppercase tracking-wide text-neutral-400"><?php echo esc_html__('Dates', 'contabai'); ?></div>
                             <div class="mt-1 text-sm text-neutral-700"><span x-text="detail.arrival"></span> → <span x-text="detail.departure"></span></div>
@@ -74,7 +74,7 @@
                     </section>
 
                     <!-- Price (single breakdown; night + cost rows folded together) -->
-                    <section class="rounded-lg border border-neutral-200 bg-white p-5">
+                    <section class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-lg">
                         <h3 class="mb-3 text-sm font-semibold text-neutral-900"><?php echo esc_html__('Price', 'contabai'); ?></h3>
                         <div class="space-y-2 text-sm">
                             <div class="flex justify-between text-neutral-600"><span><span x-text="detail.nights"></span> <?php echo esc_html__('nights', 'contabai'); ?></span><span x-text="money(detail.accommodation_cents, detail.currency)"></span></div>
@@ -90,7 +90,7 @@
 
                     <!-- Payment details -->
                     <template x-if="detail.payee && (detail.payee.account_name || detail.payee.iban || detail.payee.bic)">
-                        <section class="rounded-lg border border-neutral-200 bg-white p-5">
+                        <section class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-lg">
                             <h3 class="mb-3 text-sm font-semibold text-neutral-900"><?php echo esc_html__('Payment details', 'contabai'); ?></h3>
                             <div class="space-y-1 text-sm text-neutral-600">
                                 <div x-show="detail.payee.account_name" x-text="detail.payee.account_name"></div>
@@ -102,7 +102,7 @@
 
                     <!-- Leave a review — only for a completed stay not yet reviewed -->
                     <template x-if="detail.status === 'checked_out' && !detail.has_review && !reviewSubmitted">
-                        <section class="rounded-lg border border-neutral-200 bg-white p-5">
+                        <section class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-lg">
                             <h3 class="mb-3 text-sm font-semibold text-neutral-900"><?php echo esc_html__('Leave a review', 'contabai'); ?></h3>
                             <div class="flex items-center gap-1" x-on:mouseleave="reviewHover = 0">
                                 <template x-for="n in 5" x-bind:key="n">
@@ -129,7 +129,7 @@
 
                     <!-- Posted confirmation / already reviewed -->
                     <template x-if="detail.status === 'checked_out' && (detail.has_review || reviewSubmitted)">
-                        <section class="rounded-lg border border-neutral-200 bg-white p-5">
+                        <section class="rounded-2xl border border-neutral-200 bg-white p-5 shadow-lg">
                             <div class="flex items-center gap-2 text-sm text-neutral-700">
                                 <?php echo \Contabai\Heroicon::solid('check-circle', 'w-5 h-5 text-green-600'); ?>
                                 <span><?php echo esc_html__('Thanks — your review has been posted.', 'contabai'); ?></span>

@@ -5,7 +5,7 @@ $acc_title = $acc_title ?? '';
 $acc_body  = $acc_body ?? '';
 $acc_k     = esc_js($acc_key);
 ?>
-<section class="rounded-lg border border-neutral-200 bg-white"
+<section class="rounded-2xl border border-neutral-200 bg-white shadow-sm"
          x-bind:class="open === '<?php echo $acc_k; ?>' ? '' : 'overflow-hidden'">
     <button type="button" x-on:click="toggle('<?php echo $acc_k; ?>')" class="flex w-full items-center justify-between px-5 py-4 text-left">
         <h3 class="text-base font-semibold text-neutral-900"><?php echo esc_html($acc_title); ?></h3>

@@ -1446,3 +1446,18 @@ msgstr "El modo de desarrollo está activado, así que esta actualización no se
 
 msgid "Development mode is on (Advanced tab), so updates are switched off."
 msgstr "El modo de desarrollo está activado (pestaña Advanced), así que las actualizaciones están desactivadas."
+
+msgid "Pick your dates in the calendar to see the price for your stay."
+msgstr "Elige tus fechas en el calendario para ver el precio de tu estancia."
+
+msgid "Check availability"
+msgstr "Ver disponibilidad"
+
+msgid "View listing"
+msgstr "Ver alojamiento"
+
+msgid "Previous photo"
+msgstr "Foto anterior"
+
+msgid "Next photo"
+msgstr "Foto siguiente"

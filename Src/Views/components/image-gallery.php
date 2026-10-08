@@ -10,20 +10,45 @@ $typeBadge = '';
 if (! empty($typeLabel)) {
     ob_start();
     $badge_variant = 'bg-white/90 text-neutral-800  backdrop-blur';
-    $badge_extra   = 'pointer-events-none absolute left-3 top-3 z-10 capitalize';
+    $badge_extra   = ! empty($galleryHero) ? 'pointer-events-none capitalize' : 'pointer-events-none absolute left-3 top-3 z-10 capitalize';
     $badge_body    = esc_html($typeLabel);
     include __DIR__ . '/badge.php';
     $typeBadge = ob_get_clean();
 }
 ?>
-<div class="mb-6"
+<div class="<?php echo ! empty($galleryHero) ? '' : 'mb-6'; ?>"
      x-data='{
         images: <?php echo esc_attr(wp_json_encode($photos)); ?>,
         lbOpen: false, lbIndex: 0,
         lbShow(i) { this.lbIndex = i; this.lbOpen = true; },
+        heroIndex: 0,
         lbNext() { this.lbIndex = (this.lbIndex + 1) % this.images.length; },
         lbPrev() { this.lbIndex = (this.lbIndex - 1 + this.images.length) % this.images.length; }
      }'>
+
+    <?php if (! empty($galleryHero)): ?>
+        <section class="contabai-listing-hero relative isolate flex items-end overflow-hidden text-white"
+                 x-init="if (images.length > 1 && ! window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setInterval(() => { if (! lbOpen) { heroIndex = (heroIndex + 1) % images.length; } }, 6000); }">
+            <?php foreach ($photos as $i => $p): ?>
+                <img src="<?php echo esc_url($p['hero'] ?? $p['medium'] ?? ''); ?>" alt="<?php echo esc_attr($p['alt'] ?? ''); ?>"
+                     <?php echo $i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
+                     x-bind:class="heroIndex === <?php echo (int) $i; ?> ? 'opacity-100' : 'opacity-0'"
+                     class="contabai-listing-hero-img absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-1000<?php echo $i === 0 ? '' : ' opacity-0'; ?>">
+            <?php endforeach; ?>
+            <div class="contabai-listing-hero-shade absolute inset-0 -z-10"></div>
+            <div class="mx-auto w-full max-w-7xl px-4 pb-24 pt-32">
+                <?php echo $heroContent; ?>
+                <div class="mt-5 flex flex-wrap items-center gap-3">
+                    <?php if ($count > 1): ?>
+                        <button type="button" x-on:click="lbShow(heroIndex)" class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-100">
+                            <?php echo \Contabai\Heroicon::solid('squares-2x2', 'w-4 h-4'); ?>
+                            <?php echo esc_html(sprintf(_n('%d photo', '%d photos', $count, 'contabai'), $count)); ?>
+                        </button>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </section>
+    <?php else: ?>
 
     <!-- Desktop: photo mosaic -->
     <div class="relative hidden md:block">
@@ -75,6 +100,7 @@ if (! empty($typeLabel)) {
             </div>
         <?php endif; ?>
     </div>
+    <?php endif; ?>
 
     <!-- lightbox (teleported to body) -->
     <template x-teleport="body">
@@ -86,7 +112,7 @@ if (! empty($typeLabel)) {
              x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
              class="fixed inset-0 z-[99] flex select-none items-center justify-center bg-black/80">
             <div class="relative inline-flex" x-on:click.stop>
-                <img x-bind:src="images[lbIndex] ? (images[lbIndex].hero || images[lbIndex].medium) : ''" x-bind:alt="images[lbIndex] ? images[lbIndex].alt : ''" class="max-h-[90vh] max-w-[92vw] object-contain">
+                <img x-bind:src="images[lbIndex] ? (images[lbIndex].hero || images[lbIndex].medium) : ''" x-bind:alt="images[lbIndex] ? images[lbIndex].alt : ''" class="max-h-[90vh] max-w-[92vw] rounded-2xl object-contain">
                 <button type="button" x-show="images.length > 1" x-on:click.stop="lbPrev()" aria-label="<?php esc_attr_e('Previous', 'contabai'); ?>"
                         class="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/60"><?php echo \Contabai\Heroicon::outline('chevron-left', 'w-4 h-4'); ?></button>
                 <button type="button" x-show="images.length > 1" x-on:click.stop="lbNext()" aria-label="<?php esc_attr_e('Next', 'contabai'); ?>"

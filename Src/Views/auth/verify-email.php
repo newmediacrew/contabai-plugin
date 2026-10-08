@@ -3,7 +3,7 @@ $vEmail = sanitize_email(wp_unslash($_GET['email'] ?? ''));
 $vUsername = sanitize_text_field(wp_unslash($_GET['username'] ?? ''));
 ?>
 <div class="mx-auto w-full max-w-md" x-data="contabaiVerifyEmailForm()">
-    <div class="rounded-lg border border-neutral-200 bg-white p-8">
+    <div class="rounded-2xl border border-neutral-200 bg-white p-8 shadow-lg">
         <h1 class="mb-2 text-2xl font-bold text-neutral-900"><?php echo esc_html__('Check your email', 'contabai'); ?></h1>
         <?php if ($vEmail) : ?>
             <p class="mb-6 text-sm text-neutral-500">

@@ -6,7 +6,7 @@ $table_rows    = $table_rows ?? [];
 <div class="flex flex-col">
     <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
-            <div class="overflow-hidden rounded-lg border border-neutral-200">
+            <div class="overflow-hidden rounded-xl border border-neutral-200">
                 <table class="min-w-full divide-y divide-neutral-200">
                     <?php if (! empty($table_headers)): ?>
                         <thead class="bg-neutral-50">

@@ -88,3 +88,19 @@
 .vc [data-vc-date-today]:not([data-vc-date-disabled]):not([data-vc-date-selected]) .vc-date__btn { color: #0f172a !important; }
 .vc [data-vc-date][data-contabai-checkout-only]:not([data-vc-date-selected]):not([data-vc-date-hover]) .vc-date__btn { color: #cbd5e1 !important; }
 .vc [data-vc-date-selected] .vc-date__btn { background-color: var(--theme-color, #ff5400) !important; color: #fff !important; }
+
+.contabai-listing-hero { min-height: clamp(460px, 74vh, 780px);
+    -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 79px) no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V40C1200 75 960 70 720 40C480 10 240 15 0 45Z'/%3E%3C/svg%3E") bottom / 100% 80px no-repeat;
+            mask: linear-gradient(#000 0 0) top / 100% calc(100% - 79px) no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V40C1200 75 960 70 720 40C480 10 240 15 0 45Z'/%3E%3C/svg%3E") bottom / 100% 80px no-repeat;
+}
+.contabai-listing-hero-img { animation: cb-listing-zoom 30s ease-in-out infinite alternate; }
+@keyframes cb-listing-zoom { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1%, 0); } }
+.contabai-listing-hero-shade { background: linear-gradient(180deg, rgba(15, 23, 30, .55) 0%, rgba(15, 23, 30, 0) 30%, rgba(15, 23, 30, .15) 55%, rgba(15, 23, 30, .82) 100%); }
+.contabai-listing-hero-shade::before { content: ""; position: absolute; inset: 0; background: var(--hero-overlay-color, #0f171e); opacity: var(--hero-overlay-opacity, .5); }
+.contabai-listing-hero-title { font-family: var(--theme-heading-font, inherit); text-shadow: 0 2px 30px rgba(0, 0, 0, .3); }
+.contabai-listing-hero nav[aria-label="breadcrumb"] a,
+.contabai-listing-hero nav[aria-label="breadcrumb"] span,
+.contabai-listing-hero nav[aria-label="breadcrumb"] svg { color: rgba(255, 255, 255, .88); text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
+.contabai-listing-eyebrow { color: var(--hero-eyebrow-color, #ffd9c9); text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
+.contabai-listing-eyebrow-light { color: var(--eyebrow-color, #8f5320); }
+@media (prefers-reduced-motion: reduce) { .contabai-listing-hero-img { animation: none; } }

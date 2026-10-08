@@ -43,7 +43,7 @@
 
     <!-- THREAD — full-viewport panel on mobile; a bounded, bordered card on desktop -->
     <div x-show="view === 'thread'" x-cloak class="fixed inset-0 z-40 flex justify-center bg-neutral-50 md:static! md:z-auto md:bg-transparent!">
-        <div class="flex h-full w-full max-w-3xl flex-col bg-neutral-50 md:mx-auto md:h-[80vh]! md:overflow-hidden md:rounded-lg md:border md:border-neutral-200">
+        <div class="flex h-full w-full max-w-3xl flex-col bg-neutral-50 md:mx-auto md:h-[80vh]! md:overflow-hidden md:rounded-2xl md:border md:border-neutral-200 md:shadow-lg">
             <!-- top bar (back + host) -->
             <div class="flex flex-none items-center gap-3 border-b border-neutral-200 bg-white px-4 py-3">
                 <button type="button" x-on:click="back()" title="<?php esc_attr_e('Chats', 'contabai'); ?>" aria-label="<?php esc_attr_e('Chats', 'contabai'); ?>"

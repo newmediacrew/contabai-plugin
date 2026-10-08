@@ -1266,3 +1266,18 @@ msgstr ""
 
 msgid "Development mode is on (Advanced tab), so updates are switched off."
 msgstr ""
+
+msgid "Pick your dates in the calendar to see the price for your stay."
+msgstr ""
+
+msgid "Check availability"
+msgstr ""
+
+msgid "View listing"
+msgstr ""
+
+msgid "Previous photo"
+msgstr ""
+
+msgid "Next photo"
+msgstr ""

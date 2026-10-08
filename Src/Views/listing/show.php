@@ -63,16 +63,22 @@ if (! empty($listing['country'])) {
 }
 $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
 ?>
-<div class="mx-auto max-w-7xl px-4 py-8">
-
+<?php
+$onPhoto = ! empty($photos);
+$tone = $onPhoto
+    ? ['muted' => 'text-white/80', 'strong' => 'text-white', 'body' => 'text-white/90', 'icon' => 'text-white/70']
+    : ['muted' => 'text-neutral-500', 'strong' => 'text-neutral-900', 'body' => 'text-neutral-700', 'icon' => 'text-neutral-400'];
+ob_start();
+?>
     <?php echo \Contabai\View::render('components.breadcrumb', ['crumbs' => $crumbs]); ?>
-
-    <?php include __DIR__ . '/../components/image-gallery.php'; ?>
 
     <div class="flex flex-wrap items-start justify-between gap-4">
         <div>
-            <h1 class="text-2xl font-bold text-neutral-900"><?php echo esc_html($listing['title'] ?? ''); ?></h1>
-            <div class="mt-1 flex items-start gap-1 text-sm text-neutral-500">
+            <?php if ($typeLabel !== ''): ?>
+                <p class="mb-2 text-sm font-semibold uppercase tracking-[0.16em] <?php echo $onPhoto ? 'contabai-listing-eyebrow' : 'contabai-listing-eyebrow-light'; ?>"><?php echo esc_html($typeLabel); ?></p>
+            <?php endif; ?>
+            <h1 class="<?php echo $onPhoto ? 'contabai-listing-hero-title text-3xl font-semibold text-white sm:text-5xl' : 'text-2xl font-bold text-neutral-900'; ?>"><?php echo esc_html($listing['title'] ?? ''); ?></h1>
+            <div class="mt-1 flex items-start gap-1 text-sm <?php echo $tone['muted']; ?>">
                 <?php echo \Contabai\Heroicon::outline('map-pin', 'w-4 h-4 shrink-0 mt-0.5'); ?>
                 <span><?php echo esc_html(trim(implode(', ', array_filter([
                     $listing['address'] ?? '',
@@ -82,32 +88,41 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
                 ])))); ?></span>
             </div>
         </div>
-        <div class="text-right">
-            <span class="text-sm text-neutral-500"><?php echo esc_html__('from', 'contabai'); ?></span>
-            <span class="text-2xl font-bold text-neutral-900"><?php echo esc_html($priceLabel()); ?></span>
-            <span class="text-sm text-neutral-500">/ <?php echo esc_html__('night', 'contabai'); ?></span>
+        <div class="text-right lg:hidden">
+            <span class="text-sm <?php echo $tone['muted']; ?>"><?php echo esc_html__('from', 'contabai'); ?></span>
+            <span class="text-2xl font-bold <?php echo $tone['strong']; ?>"><?php echo esc_html($priceLabel()); ?></span>
+            <span class="text-sm <?php echo $tone['muted']; ?>">/ <?php echo esc_html__('night', 'contabai'); ?></span>
         </div>
     </div>
 
     <div class="mt-2 flex flex-wrap gap-4">
         <?php foreach ($facts as $fact): ?>
-            <div class="flex items-center gap-2 text-sm text-neutral-700">
-                <?php echo \Contabai\Heroicon::outline($fact[0], 'w-4 h-4 text-neutral-400'); ?>
+            <div class="flex items-center gap-2 text-sm <?php echo $tone['body']; ?>">
+                <?php echo \Contabai\Heroicon::outline($fact[0], 'w-4 h-4 ' . $tone['icon']); ?>
                 <span><span class="font-semibold"><?php echo esc_html((string) $fact[1]); ?></span> <?php echo esc_html($fact[2]); ?></span>
             </div>
         <?php endforeach; ?>
     </div>
 
     <?php if ($reviewCount > 0): ?>
-        <a href="#reviews" x-data x-on:click.prevent="$dispatch('open-reviews')" class="mt-2 inline-flex items-center gap-2 text-sm text-neutral-700 no-underline hover:underline">
+        <a href="#reviews" x-data x-on:click.prevent="$dispatch('open-reviews')" class="mt-2 inline-flex items-center gap-2 text-sm <?php echo $tone['body']; ?> no-underline hover:underline">
             <?php $sr_rating = $reviewAverage; $sr_size = 'w-4 h-4'; include __DIR__ . '/../components/star-rating.php'; ?>
             <span><span class="font-semibold"><?php echo esc_html(number_format((float) $reviewAverage, 1)); ?></span>
                 · <?php echo esc_html(sprintf(_n('%d review', '%d reviews', $reviewCount, 'contabai'), $reviewCount)); ?></span>
         </a>
     <?php endif; ?>
+<?php $heroContent = (string) ob_get_clean(); ?>
+<?php if ($onPhoto): ?>
+    <?php $galleryHero = true; include __DIR__ . '/../components/image-gallery.php'; ?>
+<?php endif; ?>
+<div class="mx-auto max-w-7xl px-4 py-8">
+    <?php if (! $onPhoto) { echo $heroContent; } ?>
+
+    <div x-data="contabaiAvailability()" class="lg:mt-2 lg:grid lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:gap-10">
+    <div class="min-w-0">
 
     <?php if (! empty($host)): ?>
-        <section class="mt-8 rounded-lg border border-neutral-200 bg-white p-5">
+        <section class="<?php echo $onPhoto ? '' : 'mt-8 '; ?>rounded-2xl border border-neutral-200 bg-white p-5 shadow-lg">
             <div class="flex items-center gap-5">
                 <?php if (! empty($hostAvatar)): ?>
                     <img src="<?php echo esc_url($hostAvatar); ?>" alt="<?php echo esc_attr($hostName); ?>" class="h-20 w-20 rounded-full object-cover ring-2 ring-neutral-100">
@@ -169,7 +184,7 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
                                 </div>
                                 <p class="mt-2 text-xs text-neutral-400"><?php echo esc_html__('Mention the property so the host knows which listing you mean.', 'contabai'); ?></p>
                             </div>
-                            <div x-show="sent" x-cloak class="rounded-lg border border-neutral-200 bg-neutral-50 p-3 text-sm text-neutral-700">
+                            <div x-show="sent" x-cloak class="rounded-xl border border-neutral-200 bg-neutral-50 p-3 text-sm text-neutral-700">
                                 <?php echo esc_html__('Message sent.', 'contabai'); ?>
                                 <a href="<?php echo esc_url($msgChatUrl); ?>" class="font-medium text-neutral-900 underline"><?php echo esc_html__('Go to your chats', 'contabai'); ?></a>
                             </div>
@@ -246,30 +261,21 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
         ? (string) ($cancelMap[\Contabai\Helper::currentLang()] ?? $cancelMap['en'] ?? '')
         : (string) ($cancelMap ?? '');
     ?>
-        <!-- Content accordion — Description, Amenities, House rules, Cancellation, Video, Reviews: ONE panel open at a time; Description open by default. Always rendered (Reviews is always a member). -->
-        <div class="mt-3 space-y-3" x-data="{ open: 'description', toggle(k) { this.open = this.open === k ? '' : k } }"
+        <!-- Description and Amenities always open; House rules, Cancellation, Video, Reviews: ONE panel open at a time. Always rendered (Reviews is always a member). -->
+        <div class="mt-3 space-y-3" x-data="{ open: '', toggle(k) { this.open = this.open === k ? '' : k } }"
              x-on:open-reviews.window="open = 'reviews'; $nextTick(() => document.getElementById('reviews').scrollIntoView({ behavior: 'smooth', block: 'start' }))">
             <?php if ($description !== ''): ?>
-                <section class="rounded-lg border border-neutral-200 bg-white" x-bind:class="open === 'description' ? '' : 'overflow-hidden'">
-                    <button type="button" x-on:click="toggle('description')" class="flex w-full items-center justify-between px-5 py-4 text-left">
-                        <h2 class="text-base font-semibold text-neutral-900"><?php echo esc_html__('Description', 'contabai'); ?></h2>
-                        <span class="text-neutral-400 transition" x-bind:class="open === 'description' ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
-                    </button>
-                    <div x-show="open === 'description'" x-collapse>
-                        <div class="border-t border-neutral-200 px-5 py-5">
-                            <div class="prose prose-sm max-w-none text-neutral-700"><?php echo wp_kses_post($description); ?></div>
-                        </div>
+                <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                    <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Description', 'contabai'); ?></h2>
+                    <div class="border-t border-neutral-200 px-5 py-5">
+                        <div class="prose prose-sm max-w-none text-neutral-700"><?php echo wp_kses_post($description); ?></div>
                     </div>
                 </section>
             <?php endif; ?>
             <?php if (! empty($listing['amenities'])): ?>
-                <section class="rounded-lg border border-neutral-200 bg-white" x-bind:class="open === 'amenities' ? '' : 'overflow-hidden'">
-                    <button type="button" x-on:click="toggle('amenities')" class="flex w-full items-center justify-between px-5 py-4 text-left">
-                        <h2 class="text-base font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></h2>
-                        <span class="text-neutral-400 transition" x-bind:class="open === 'amenities' ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
-                    </button>
-                    <div x-show="open === 'amenities'" x-collapse x-cloak>
-                        <div class="border-t border-neutral-200 px-5 py-5">
+                <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                    <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></h2>
+                    <div class="border-t border-neutral-200 px-5 py-5">
                             <div class="flex flex-wrap gap-x-8 gap-y-2">
                                 <?php foreach ($listing['amenities'] as $amenityKey): ?>
                                     <div class="flex items-center gap-2 text-sm text-neutral-700">
@@ -278,7 +284,6 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
                                     </div>
                                 <?php endforeach; ?>
                             </div>
-                        </div>
                     </div>
                 </section>
             <?php endif; ?>
@@ -299,7 +304,7 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
                 $acc_key   = 'video';
                 $acc_title = __('Video', 'contabai');
                 ob_start(); ?>
-                <div class="aspect-video overflow-hidden rounded-lg bg-black">
+                <div class="aspect-video overflow-hidden rounded-xl bg-black">
                     <iframe src="<?php echo esc_url($listing['video_url']); ?>" class="h-full w-full" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
@@ -314,7 +319,7 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
             $reviewsPerPage   = 5;
             $reviewsEndpoint  = rest_url('contabai/v1/sanctum/listing/reviews/' . $reviewsListingId);
             ?>
-            <section id="reviews" class="rounded-lg border border-neutral-200 bg-white" x-bind:class="open === 'reviews' ? '' : 'overflow-hidden'">
+            <section id="reviews" class="rounded-2xl border border-neutral-200 bg-white shadow-sm" x-bind:class="open === 'reviews' ? '' : 'overflow-hidden'">
                 <button type="button" x-on:click="toggle('reviews')" class="flex w-full items-center justify-between px-5 py-4 text-left">
                     <h2 class="text-base font-semibold text-neutral-900"><?php echo esc_html__('Reviews', 'contabai'); ?></h2>
                     <span class="text-neutral-400 transition" x-bind:class="open === 'reviews' ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
@@ -383,18 +388,50 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
     $loginUrl      = home_url('/' . CONTABAI_LOGIN_PAGE_SLUG);
     $bookUrl       = home_url('/' . CONTABAI_BOOK_PAGE_SLUG . '/');
     $listingCosts  = $listing['listing_costs'] ?? [];
+    $costRows = function (bool $wide) use ($listingCosts, $labels, $currency, $listing): string {
+        ob_start();
+        foreach ($listingCosts as $c):
+            $cLabel      = $c['label'] ?: ($labels['additional_cost_types'][$c['type_key']] ?? $c['type_key']);
+            $isPercent   = strpos((string) $c['billing_unit'], 'percent_') === 0;
+            $rate        = $isPercent
+                ? rtrim(rtrim(number_format(((int) $c['amount_cents']) / 100, 2), '0'), '.') . '%'
+                : $currency . ' ' . number_format(((int) $c['amount_cents']) / 100, 2);
+            $unit        = $labels['cost_billing_units'][$c['billing_unit']] ?? $c['billing_unit'];
+            $isPet       = ($c['type_key'] ?? '') === 'pet';
+            $isExtra     = ($c['type_key'] ?? '') === 'extra_person' && isset($listing['base_price_guests']);
+            $isMandatory = ! $isPet && ! $isExtra && ($c['classification'] ?? '') === 'mandatory';
+            $classLabel  = $isPet ? __('Only with pets', 'contabai')
+                : ($isExtra ? sprintf(_n('Above %d guest', 'Above %d guests', (int) $listing['base_price_guests'], 'contabai'), (int) $listing['base_price_guests'])
+                : ($labels['cost_classifications'][$c['classification']] ?? $c['classification']));
+        ?>
+            <div class="flex flex-col gap-0.5<?php echo $wide ? ' sm:flex-row sm:items-center sm:justify-between sm:gap-3' : ''; ?>">
+                <span class="flex min-w-0 items-center gap-2">
+                    <span class="min-w-0 text-neutral-700<?php echo $wide ? ' sm:truncate' : ''; ?>"><?php echo esc_html($cLabel); ?></span>
+                    <?php
+                    $badge_body    = esc_html($classLabel);
+                    $badge_variant = $isMandatory ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800';
+                    include __DIR__ . '/../components/badge.php';
+                    ?>
+                </span>
+                <span class="whitespace-nowrap text-neutral-800<?php echo $wide ? ' sm:shrink-0' : ''; ?>"><?php echo esc_html($rate); ?> <span class="text-neutral-400"><?php echo esc_html('· ' . $unit); ?></span></span>
+            </div>
+        <?php
+        endforeach;
+
+        return (string) ob_get_clean();
+    };
     ?>
     <section class="mt-8">
         <h2 class="mb-3 text-lg font-semibold text-neutral-900"><?php echo esc_html__('Availability', 'contabai'); ?></h2>
-        <div x-data="contabaiAvailability()">
+        <div>
             <div x-ref="cal"></div>
 
             <!-- Sticky booking bar — hidden until a valid range, then slides up (fixed, so DOM position here is fine) -->
             <div x-show="nights" x-cloak
-                 x-effect="document.body.style.paddingBottom = nights ? '104px' : ''"
+                 x-effect="document.body.style.paddingBottom = (nights && ! window.matchMedia('(min-width: 1024px)').matches) ? '104px' : ''"
                  x-transition:enter="transition ease-out duration-200" x-transition:enter-start="translate-y-full" x-transition:enter-end="translate-y-0"
                  x-transition:leave="transition ease-in duration-150" x-transition:leave-start="translate-y-0" x-transition:leave-end="translate-y-full"
-                 class="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white">
+                 class="fixed inset-x-0 bottom-0 z-40 border-t border-neutral-200 bg-white lg:hidden">
                 <div class="mx-auto max-w-7xl px-4">
                     <?php if (! empty($listingCosts)): ?>
                         <button type="button" x-on:click="showDetails = ! showDetails" class="flex w-full items-center justify-center gap-1 border-b border-neutral-200 py-3 text-sm font-medium text-neutral-700">
@@ -403,32 +440,7 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
                         </button>
                         <div x-show="showDetails" x-collapse x-cloak class="border-b border-neutral-200">
                             <div class="mx-auto flex max-h-[38vh] max-w-md flex-col gap-2 overflow-y-auto py-4 text-sm sm:gap-3">
-                                <?php foreach ($listingCosts as $c):
-                                    $cLabel      = $c['label'] ?: ($labels['additional_cost_types'][$c['type_key']] ?? $c['type_key']);
-                                    $isPercent   = strpos((string) $c['billing_unit'], 'percent_') === 0;
-                                    $rate        = $isPercent
-                                        ? rtrim(rtrim(number_format(((int) $c['amount_cents']) / 100, 2), '0'), '.') . '%'
-                                        : $currency . ' ' . number_format(((int) $c['amount_cents']) / 100, 2);
-                                    $unit        = $labels['cost_billing_units'][$c['billing_unit']] ?? $c['billing_unit'];
-                                    $isPet       = ($c['type_key'] ?? '') === 'pet';
-                                    $isExtra     = ($c['type_key'] ?? '') === 'extra_person' && isset($listing['base_price_guests']);
-                                    $isMandatory = ! $isPet && ! $isExtra && ($c['classification'] ?? '') === 'mandatory';
-                                    $classLabel  = $isPet ? __('Only with pets', 'contabai')
-                                        : ($isExtra ? sprintf(_n('Above %d guest', 'Above %d guests', (int) $listing['base_price_guests'], 'contabai'), (int) $listing['base_price_guests'])
-                                        : ($labels['cost_classifications'][$c['classification']] ?? $c['classification']));
-                                ?>
-                                    <div class="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-                                        <span class="flex min-w-0 items-center gap-2">
-                                            <span class="min-w-0 text-neutral-700 sm:truncate"><?php echo esc_html($cLabel); ?></span>
-                                            <?php
-                                            $badge_body    = esc_html($classLabel);
-                                            $badge_variant = $isMandatory ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800';
-                                            include __DIR__ . '/../components/badge.php';
-                                            ?>
-                                        </span>
-                                        <span class="whitespace-nowrap text-neutral-800 sm:shrink-0"><?php echo esc_html($rate); ?> <span class="text-neutral-400"><?php echo esc_html('· ' . $unit); ?></span></span>
-                                    </div>
-                                <?php endforeach; ?>
+                                <?php echo $costRows(true); ?>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -691,17 +703,17 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
 
     <div class="mt-8 grid gap-4 text-sm text-neutral-600 sm:grid-cols-2 lg:grid-cols-3">
         <?php if (! empty($listing['min_nights']) || ! empty($listing['max_nights'])): ?>
-            <div class="rounded-lg border border-neutral-200 bg-white p-4">
+            <div class="rounded-2xl border border-neutral-200 bg-white p-4 shadow-lg lg:hidden">
                 <div class="font-medium text-neutral-900"><?php echo esc_html__('Length of stay', 'contabai'); ?></div>
                 <div class="mt-1"><?php echo esc_html(sprintf(__('%1$s–%2$s nights', 'contabai'), (int) ($listing['min_nights'] ?? 0), (int) ($listing['max_nights'] ?? 0))); ?></div>
             </div>
         <?php endif; ?>
-        <div class="rounded-lg border border-neutral-200 bg-white p-4">
+        <div class="rounded-2xl border border-neutral-200 bg-white p-4 shadow-lg lg:hidden">
             <div class="font-medium text-neutral-900"><?php echo esc_html__('Check-in / Check-out', 'contabai'); ?></div>
             <div class="mt-1"><?php echo esc_html($formatHour($listing['checkin_from_hour'] ?? 0) . ' — ' . $formatHour($listing['checkout_by_hour'] ?? 0)); ?></div>
         </div>
         <?php if (! empty($listing['utility_rates'])): ?>
-            <div class="rounded-lg border border-neutral-200 bg-white p-4">
+            <div class="rounded-2xl border border-neutral-200 bg-white p-4 shadow-lg lg:col-span-3">
                 <div class="font-medium text-neutral-900"><?php echo esc_html__('Metered utilities', 'contabai'); ?></div>
                 <?php foreach ($listing['utility_rates'] as $u): ?>
                     <div class="mt-1"><?php echo esc_html(($labels['utilities'][$u['utility']] ?? ucfirst((string) $u['utility'])) . ' · ' . $currency . ' ' . number_format(((int) $u['rate_cents']) / 100, 2) . ' / ' . $u['unit']); ?></div>
@@ -709,6 +721,52 @@ $crumbs[] = ['label' => $listing['title'] ?? '', 'url' => null];
                 <div class="mt-1 text-xs text-neutral-400"><?php echo esc_html__('Read at check-out and settled from your deposit.', 'contabai'); ?></div>
             </div>
         <?php endif; ?>
+    </div>
+
+    </div>
+    <aside class="hidden lg:sticky lg:top-24 lg:block">
+        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-lg">
+            <div>
+                <span class="text-sm text-neutral-500"><?php echo esc_html__('from', 'contabai'); ?></span>
+                <span class="text-2xl font-bold text-neutral-900"><?php echo esc_html($priceLabel()); ?></span>
+                <span class="text-sm text-neutral-500">/ <?php echo esc_html__('night', 'contabai'); ?></span>
+            </div>
+            <p x-show="! nights" class="mt-4 text-sm text-neutral-600"><?php echo esc_html__('Pick your dates in the calendar to see the price for your stay.', 'contabai'); ?></p>
+            <div x-show="nights" x-cloak class="mt-4 rounded-xl bg-neutral-50 p-4">
+                <div class="text-sm font-medium text-neutral-800" x-text="rangeLabel()"></div>
+                <div class="mt-1 text-xl font-bold text-neutral-900" x-text="quote ? money(quote.accommodation_cents) : '…'"></div>
+                <div class="text-xs text-neutral-500" x-show="quote && quote.deposit_cents">+ <span x-text="money(quote?.deposit_cents)"></span> <?php echo esc_html__('deposit (refundable)', 'contabai'); ?></div>
+                <?php if (! empty($listingCosts)): ?>
+                    <div class="mt-0.5 text-xs text-neutral-500"><?php echo esc_html__('Additional costs calculated at booking', 'contabai'); ?></div>
+                <?php endif; ?>
+            </div>
+            <button type="button" x-show="! nights" x-on:click="$refs.cal.scrollIntoView({ behavior: 'smooth', block: 'center' })" class="contabai-accent-bg mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white"><?php echo \Contabai\Heroicon::outline('calendar-days', 'w-4 h-4'); ?><?php echo esc_html__('Check availability', 'contabai'); ?></button>
+            <button type="button" x-show="nights" x-cloak x-on:click="startBooking()" class="contabai-accent-bg mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white">
+                <span x-show="isLoggedIn" class="inline-flex items-center gap-2"><?php echo \Contabai\Heroicon::outline('calendar-days', 'w-4 h-4'); ?><?php echo esc_html__('Book now', 'contabai'); ?></span>
+                <span x-show="! isLoggedIn" class="inline-flex items-center gap-2"><?php echo \Contabai\Heroicon::outline('arrow-right-on-rectangle', 'w-4 h-4'); ?><?php echo esc_html__('Log in to book', 'contabai'); ?></span>
+            </button>
+            <template x-if="! isLoggedIn">
+                <p class="mt-3 flex items-start gap-1 text-xs text-neutral-500"><?php echo \Contabai\Heroicon::outline('lock-closed', 'w-4 h-4 shrink-0'); ?> <?php echo esc_html__('Booking requires a verified account', 'contabai'); ?></p>
+            </template>
+            <?php if (! empty($listingCosts)): ?>
+                <div class="mt-4 border-t border-neutral-200 pt-3">
+                    <button type="button" x-on:click="showDetails = ! showDetails" class="flex w-full items-center justify-between py-1 text-sm font-medium text-neutral-700">
+                        <?php echo esc_html__('Additional costs', 'contabai'); ?>
+                        <span class="text-neutral-400 transition" x-bind:class="showDetails ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
+                    </button>
+                    <div x-show="showDetails" x-collapse x-cloak>
+                        <div class="flex flex-col gap-3 pt-3 text-sm"><?php echo $costRows(false); ?></div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="mt-4 flex flex-col gap-1 border-t border-neutral-200 pt-4 text-center text-xs text-neutral-500">
+                <?php if (! empty($listing['min_nights']) || ! empty($listing['max_nights'])): ?>
+                    <p><?php echo esc_html(__('Length of stay', 'contabai') . ': ' . sprintf(__('%1$s–%2$s nights', 'contabai'), (int) ($listing['min_nights'] ?? 0), (int) ($listing['max_nights'] ?? 0))); ?></p>
+                <?php endif; ?>
+                <p><?php echo esc_html(__('Check-in / Check-out', 'contabai') . ': ' . $formatHour($listing['checkin_from_hour'] ?? 0) . ' — ' . $formatHour($listing['checkout_by_hour'] ?? 0)); ?></p>
+            </div>
+        </div>
+    </aside>
     </div>
 
 </div>
