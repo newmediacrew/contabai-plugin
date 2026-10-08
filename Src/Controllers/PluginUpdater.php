@@ -36,7 +36,7 @@ class PluginUpdater
             'version'      => $release['version'],
             'url'          => 'https://github.com/' . self::REPOSITORY,
             'package'      => $release['package'],
-            'tested'       => $release['tested'],
+            'tested'       => self::tested($release['tested']),
             'requires_php' => $release['requires_php'],
             'icons'        => ['svg' => CONTABAI_PLUGIN_URL . 'assets/icon.svg'],
         ];
@@ -58,7 +58,7 @@ class PluginUpdater
             'author'        => 'Contabai',
             'homepage'      => 'https://github.com/' . self::REPOSITORY,
             'requires'      => $plugin['RequiresWP'],
-            'tested'        => $release['tested'],
+            'tested'        => self::tested($release['tested']),
             'requires_php'  => $release['requires_php'] !== '' ? $release['requires_php'] : $plugin['RequiresPHP'],
             'last_updated'  => $release['published'],
             'download_link' => $release['package'],
@@ -246,6 +246,16 @@ class PluginUpdater
     private static function valid_version(string $version): bool
     {
         return preg_match('/^\d+(\.\d+){0,3}$/', $version) === 1;
+    }
+
+    private static function tested(string $tested): string
+    {
+        $wp = get_bloginfo('version');
+        if (preg_match('/^\d+\.\d+$/', $tested) === 1 && str_starts_with($wp . '.', $tested . '.')) {
+            return $wp;
+        }
+
+        return $tested;
     }
 
     private static function dev_mode(): bool
