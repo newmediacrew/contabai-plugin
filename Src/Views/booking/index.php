@@ -229,7 +229,7 @@ $nights = (int) round((strtotime($departure) - strtotime($arrival)) / 86400);
                             <span><?php echo esc_html__('Accommodation', 'contabai'); ?></span>
                             <span class="whitespace-nowrap" x-text="money(quote.accommodation_cents)"></span>
                         </div>
-                        <template x-for="row in quote.cost_breakdown" x-bind:key="row.type_key">
+                        <template x-for="(row, index) in quote.cost_breakdown" x-bind:key="index">
                             <div class="flex justify-between gap-4 text-neutral-600">
                                 <span class="min-w-0" x-text="costLabel(row)"></span>
                                 <span class="shrink-0 whitespace-nowrap" x-text="money(row.computed_cents)"></span>

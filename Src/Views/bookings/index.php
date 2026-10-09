@@ -78,7 +78,7 @@
                         <h3 class="mb-3 text-sm font-semibold text-neutral-900"><?php echo esc_html__('Price', 'contabai'); ?></h3>
                         <div class="space-y-2 text-sm">
                             <div class="flex justify-between text-neutral-600"><span><span x-text="detail.nights"></span> <?php echo esc_html__('nights', 'contabai'); ?></span><span x-text="money(detail.accommodation_cents, detail.currency)"></span></div>
-                            <template x-for="c in (detail.cost_breakdown || [])" x-bind:key="c.type_key">
+                            <template x-for="(c, index) in (detail.cost_breakdown || [])" x-bind:key="index">
                                 <div class="flex justify-between text-neutral-600"><span x-text="costLabel(c)"></span><span x-text="money(c.computed_cents, detail.currency)"></span></div>
                             </template>
                             <template x-if="detail.deposit_cents">
