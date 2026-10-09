@@ -35,7 +35,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <?php if (! empty($propertyTypes)): ?>
             <section x-data="{ o: true }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Property type', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Property type', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -54,7 +54,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bedrooms', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bedrooms', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -72,7 +72,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bathrooms', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bathrooms', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -90,7 +90,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Sort by', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Sort by', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -115,7 +115,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <?php if (! empty($amenityFlat)): ?>
             <section x-data="{ o: false, openCat: '' }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>

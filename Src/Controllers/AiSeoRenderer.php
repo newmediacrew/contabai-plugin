@@ -46,7 +46,7 @@ class AiSeoRenderer
             if ($hasArticle) {
                 echo '<div class="min-w-0">';
                 echo '<p class="' . $eyebrow . '">' . esc_html__('Good to know', 'contabai') . '</p>';
-                echo '<h2 class="contabai-heading text-4xl text-white">' . esc_html(sprintf(__('More about %s', 'contabai'), $location)) . '</h2>';
+                echo '<p class="contabai-heading contabai-seo-place text-4xl text-white">' . esc_html(sprintf(__('More about %s', 'contabai'), $location)) . '</p>';
                 echo '<div class="entry-content mt-6">' . wp_kses_post($rest) . '</div>';
                 echo '</div>';
             }
