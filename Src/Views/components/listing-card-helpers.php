@@ -11,17 +11,9 @@ window.contabaiCardHelpers = window.contabaiCardHelpers || function (config) {
         slides: function (listing) {
             return (listing.photos || []).slice(0, 4);
         },
-        nextSlide: function (listing, active) {
-            let count = this.slides(listing).length;
-            return count ? (active + 1) % count : 0;
-        },
-        prevSlide: function (listing, active) {
-            let count = this.slides(listing).length;
-            return count ? (active - 1 + count) % count : 0;
-        },
-        swipe: function (listing, active, deltaX) {
-            if (Math.abs(deltaX) < 40) return active;
-            return deltaX < 0 ? this.nextSlide(listing, active) : this.prevSlide(listing, active);
+        loopSlides: function (listing) {
+            let slides = this.slides(listing);
+            return slides.length > 1 ? slides.concat([slides[0]]) : slides;
         },
         typeLabel: function (listing) {
             return this.propertyTypes[listing.property_type] || listing.property_type;
