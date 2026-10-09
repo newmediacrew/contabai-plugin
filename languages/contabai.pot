@@ -1287,3 +1287,6 @@ msgstr ""
 
 msgid "Good to know"
 msgstr ""
+
+msgid "Pagination"
+msgstr ""

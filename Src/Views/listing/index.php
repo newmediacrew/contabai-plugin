@@ -11,7 +11,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 <div class="mx-auto w-full max-w-7xl px-4 pt-8"><?php echo $searchBar; ?></div>
 <?php endif; ?>
 
-<div x-data="contabaiListings()" x-init="readFilters(); setupResponsive(); load(1)" class="mx-auto w-full max-w-7xl px-4 py-8 lg:flex lg:gap-8">
+<div x-data="contabaiListings()" x-init="readFilters(); setupResponsive(); load(<?php echo (int) $initialPage; ?>)" class="mx-auto w-full max-w-7xl px-4 py-8 lg:flex lg:gap-8">
 
     <aside class="mb-6 lg:mb-0 lg:w-64 lg:shrink-0">
         <button type="button" x-on:click="railOpen = true"
@@ -35,7 +35,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <?php if (! empty($propertyTypes)): ?>
             <section x-data="{ o: true }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Property type', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Property type', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -54,7 +54,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bedrooms', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bedrooms', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -72,7 +72,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bathrooms', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bathrooms', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -90,7 +90,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Sort by', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Sort by', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -115,7 +115,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <?php if (! empty($amenityFlat)): ?>
             <section x-data="{ o: false, openCat: '' }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></h3>
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -176,18 +176,83 @@ $bedBathOptions = ['1', '2', '3', '4'];
         </template>
 
         <div class="contabai-listings-grid" x-show="loading && listings.length === 0">
-            <?php for ($skeleton = 0; $skeleton < (int) $skeletonCount; $skeleton++) : ?>
-                <div class="animate-pulse">
-                    <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
-                    <div class="h-28 pt-2.5">
-                        <div class="h-4 w-3/4 rounded bg-neutral-100"></div>
-                        <div class="mt-2.5 h-3 w-1/2 rounded bg-neutral-100"></div>
-                        <div class="mt-3 h-3 w-2/3 rounded bg-neutral-100"></div>
-                        <div class="mt-3 h-4 w-1/3 rounded bg-neutral-100"></div>
+            <?php if (! empty($initialListings)) : ?>
+                <?php foreach ($initialListings as $item) :
+                    $itemPhoto = $item['photos'][0] ?? [];
+                    $itemPlace = implode(' · ', array_filter([(string) ($item['country_name'] ?? ''), (string) ($item['city_name'] ?? ''), (string) ($item['area_name'] ?? '')]));
+                    ?>
+                    <a href="<?php echo esc_url(\Contabai\Controllers\ListingRewriteController::listing_url($item)); ?>" class="group block no-underline">
+                        <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
+                            <?php if (! empty($itemPhoto['card'])) : ?>
+                                <img src="<?php echo esc_url($itemPhoto['card']); ?>" alt="<?php echo esc_attr($itemPhoto['alt'] ?? ''); ?>" loading="lazy" class="h-full w-full object-cover">
+                            <?php endif; ?>
+                            <?php
+                            $badge_variant = 'bg-white/90 text-neutral-800  backdrop-blur';
+                            $badge_extra   = 'pointer-events-none absolute left-2.5 top-2.5 z-20 capitalize';
+                            $badge_body    = esc_html($propertyTypes[$item['property_type'] ?? ''] ?? ($item['property_type'] ?? ''));
+                            include __DIR__ . '/../components/badge.php';
+                            ?>
+                        </div>
+                        <div class="pt-2.5">
+                            <p class="contabai-seo-place truncate font-semibold text-neutral-900"><?php echo esc_html($item['title'] ?? ''); ?></p>
+                            <p class="truncate text-sm text-neutral-500"><?php echo esc_html($itemPlace); ?></p>
+                            <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-sm text-neutral-500">
+                                <span class="inline-flex items-center gap-1"><?php echo \Contabai\Heroicon::outline('users', 'w-4 h-4'); ?><?php echo (int) ($item['max_guests'] ?? 0); ?></span>
+                                <span class="inline-flex items-center gap-1"><?php echo \Contabai\Heroicon::outline('bed', 'w-4 h-4'); ?><?php echo (int) ($item['bedrooms'] ?? 0); ?></span>
+                                <span class="inline-flex items-center gap-1"><?php echo \Contabai\Heroicon::outline('bath', 'w-4 h-4'); ?><?php echo (int) ($item['bathrooms'] ?? 0); ?></span>
+                            </div>
+                            <div class="mt-2 flex items-baseline gap-1">
+                                <span class="text-sm text-neutral-500"><?php echo esc_html__('from', 'contabai'); ?></span>
+                                <span class="font-bold text-neutral-900"><?php echo esc_html(($item['currency'] ?? 'EUR') . ' ' . number_format(((int) ($item['from_price_cents'] ?? 0)) / 100, 2)); ?></span>
+                                <span class="text-sm text-neutral-500"><?php echo esc_html__('/ night', 'contabai'); ?></span>
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <?php for ($skeleton = 0; $skeleton < (int) $skeletonCount; $skeleton++) : ?>
+                    <div class="animate-pulse">
+                        <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
+                        <div class="h-28 pt-2.5">
+                            <div class="h-4 w-3/4 rounded bg-neutral-100"></div>
+                            <div class="mt-2.5 h-3 w-1/2 rounded bg-neutral-100"></div>
+                            <div class="mt-3 h-3 w-2/3 rounded bg-neutral-100"></div>
+                            <div class="mt-3 h-4 w-1/3 rounded bg-neutral-100"></div>
+                        </div>
                     </div>
-                </div>
-            <?php endfor; ?>
+                <?php endfor; ?>
+            <?php endif; ?>
         </div>
+        <?php if (! empty($initialListings)) : ?>
+            <script type="application/ld+json"><?php echo wp_json_encode([
+                '@context'        => 'https://schema.org',
+                '@type'           => 'ItemList',
+                'numberOfItems'   => count($initialListings),
+                'itemListElement' => array_map(fn ($item, $i) => [
+                    '@type'    => 'ListItem',
+                    'position' => ($initialPage - 1) * $initialPerPage + $i + 1,
+                    'url'      => \Contabai\Controllers\ListingRewriteController::listing_url($item),
+                    'name'     => (string) ($item['title'] ?? ''),
+                ], array_values($initialListings), array_keys(array_values($initialListings))),
+            ], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG); ?></script>
+        <?php endif; ?>
+        <?php if ($initialLastPage > 1) :
+            $pgUrl = fn (int $n) => $n > 1 ? add_query_arg('pg', $n, get_permalink()) : get_permalink();
+            ?>
+            <nav x-show="false" class="mt-10 flex justify-center border-t border-neutral-200 pt-4" aria-label="<?php echo esc_attr__('Pagination', 'contabai'); ?>">
+                <ul class="flex h-11 items-center divide-x divide-neutral-200 overflow-hidden rounded-lg border border-neutral-200 bg-white text-sm font-medium tabular-nums text-neutral-600 !m-0 !list-none !p-0">
+                    <?php if ($initialPage > 1) : ?>
+                        <li class="h-full"><a href="<?php echo esc_url($pgUrl($initialPage - 1)); ?>" class="inline-flex h-full items-center px-4 no-underline"><?php echo esc_html__('Previous', 'contabai'); ?></a></li>
+                    <?php endif; ?>
+                    <?php for ($n = 1; $n <= $initialLastPage; $n++) : ?>
+                        <li class="h-full"><a href="<?php echo esc_url($pgUrl($n)); ?>" class="inline-flex h-full min-w-11 items-center justify-center px-3 no-underline<?php echo $n === $initialPage ? ' bg-[var(--theme-color,#ff5400)] text-white' : ''; ?>"<?php echo $n === $initialPage ? ' aria-current="page"' : ''; ?>><?php echo (int) $n; ?></a></li>
+                    <?php endfor; ?>
+                    <?php if ($initialPage < $initialLastPage) : ?>
+                        <li class="h-full"><a href="<?php echo esc_url($pgUrl($initialPage + 1)); ?>" class="inline-flex h-full items-center px-4 no-underline"><?php echo esc_html__('Next', 'contabai'); ?></a></li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+        <?php endif; ?>
 
         <div class="contabai-listings-grid" x-show="listings.length > 0" x-cloak>
             <template x-for="listing in listings" x-bind:key="listing.id">
@@ -201,7 +266,9 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <p class="py-16 text-center text-neutral-500"><?php echo esc_html__('No listings found.', 'contabai'); ?></p>
         </template>
 
-        <div x-show="loading && listings.length > 0" x-cloak class="py-16 text-center text-sm text-neutral-500"><?php echo esc_html__('Loading...', 'contabai'); ?></div>
+        <template x-if="loading && listings.length > 0">
+            <div class="py-16 text-center text-sm text-neutral-500"><?php echo esc_html__('Loading...', 'contabai'); ?></div>
+        </template>
 
         <?php include __DIR__ . '/../components/pagination.php'; ?>
     </div>
@@ -354,6 +421,9 @@ document.addEventListener('alpine:init', function () {
                         self.lastPage = data.last_page || 1;
                         self.total = data.total || 0;
                         self.loading = false;
+                        let url = new URL(window.location.href);
+                        if (self.currentPage > 1) { url.searchParams.set('pg', self.currentPage); } else { url.searchParams.delete('pg'); }
+                        window.history.replaceState(null, '', url.pathname + url.search);
                     })
                     .catch(function () { self.loading = false; });
             },

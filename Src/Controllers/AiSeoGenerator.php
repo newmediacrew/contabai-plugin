@@ -76,7 +76,7 @@ class AiSeoGenerator
             return;
         }
 
-        $alt = (string) get_post_meta($page->ID, '_contabai_seo_title', true) ?: $location;
+        $alt = SeoController::strip_brand((string) get_post_meta($page->ID, '_contabai_seo_title', true)) ?: $location;
         update_post_meta($attachId, '_wp_attachment_image_alt', $alt);
         wp_update_post(['ID' => $attachId, 'post_title' => $location]);
 

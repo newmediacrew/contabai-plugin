@@ -36,7 +36,7 @@ $chevronRight = \Contabai\Heroicon::solid('chevron-right', 'w-4 h-4');
     </div>
 
     <a x-bind:href="detailUrl(listing)" class="block pt-2.5 no-underline">
-        <h6 class="truncate font-semibold text-neutral-900" x-text="listing.title"></h6>
+        <p class="contabai-seo-place truncate font-semibold text-neutral-900" x-text="listing.title"></p>
         <p class="truncate text-sm text-neutral-500" x-text="locationLabel(listing)"></p>
 
         <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-sm text-neutral-500">

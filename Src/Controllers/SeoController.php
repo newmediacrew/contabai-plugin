@@ -10,6 +10,18 @@ class SeoController
     public function __construct()
     {
         add_action('wp', [$this, 'init']);
+        add_filter('wpseo_canonical', [$this, 'paged_canonical']);
+        add_filter('get_canonical_url', [$this, 'paged_canonical']);
+    }
+
+    public function paged_canonical($url)
+    {
+        $pg = absint($_GET['pg'] ?? 0);
+        if ($pg < 2 || ! is_string($url) || $url === '' || ! is_page() || ! has_shortcode((string) get_post_field('post_content', get_queried_object_id()), 'contabai_listings')) {
+            return $url;
+        }
+
+        return add_query_arg('pg', $pg, $url);
     }
 
     public function init(): void
@@ -78,9 +90,9 @@ class SeoController
 
     public function render_location_meta(): void
     {
-        $title = esc_attr(get_post_meta($this->locationId, '_contabai_seo_title', true) . ' - ' . get_bloginfo('name'));
+        $title = esc_attr($this->build_title() . ' - ' . get_bloginfo('name'));
         $description = esc_attr(get_post_meta($this->locationId, '_contabai_seo_metadesc', true));
-        $url = esc_url(get_permalink($this->locationId));
+        $url = esc_url($this->paged_canonical(get_permalink($this->locationId)));
 
         $img = [];
         $attachId = (int) get_post_meta($this->locationId, '_contabai_seo_image', true);
@@ -137,10 +149,20 @@ class SeoController
             ) . "\n";
     }
 
+    public static function strip_brand(string $title): string
+    {
+        $brand = trim((string) get_bloginfo('name'));
+        if ($brand === '') {
+            return $title;
+        }
+
+        return (string) preg_replace('/\s+[|\-–—]\s+[^|\-–—]*' . preg_quote($brand, '/') . '[^|\-–—]*$/iu', '', $title);
+    }
+
     private function build_title(): string
     {
         if ($this->locationId !== null) {
-            return (string) get_post_meta($this->locationId, '_contabai_seo_title', true);
+            return self::strip_brand((string) get_post_meta($this->locationId, '_contabai_seo_title', true));
         }
 
         $title = $this->listing['title'] ?? '';
