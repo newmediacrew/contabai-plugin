@@ -170,7 +170,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
         </div>
     </aside>
 
-    <div class="min-w-0 flex-1">
+    <div class="min-w-0 flex-1 scroll-mt-28" x-ref="results">
         <template x-if="error">
             <p class="mb-6 rounded-md bg-red-50 p-4 text-sm text-red-700" x-text="error"></p>
         </template>
@@ -361,6 +361,7 @@ document.addEventListener('alpine:init', function () {
             goTo: function (page) {
                 if (page < 1 || page > this.lastPage || this.loading) return;
                 this.load(page);
+                this.$refs.results.scrollIntoView({ behavior: 'smooth', block: 'start' });
             },
 
             pages: function () {
