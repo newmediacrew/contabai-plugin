@@ -240,7 +240,6 @@ class ShortCodes
         }
 
         $scope = ListingController::hostScope();
-        $initialPage = max(1, absint($_GET['pg'] ?? 1));
         if ($scope['mode'] === 'empty') {
             $skeletonCount = 0;
         } else {
@@ -266,7 +265,6 @@ class ShortCodes
             'endpoint' => rest_url('contabai/v1/sanctum/listings'),
             'initialPerPage' => $perPage,
             'skeletonCount' => $skeletonCount,
-            'initialPage' => $initialPage,
             'propertyTypes' => $propertyTypes,
             'countries' => $countries,
             'amenitiesCatalogue' => $amenitiesCatalogue,

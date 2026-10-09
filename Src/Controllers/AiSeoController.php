@@ -175,7 +175,7 @@ OUTPUT — return ONE JSON object, nothing else:
 
 {
   "article_html": "",        // the article above; starts with the H1; excludes FAQ + best_areas
-  "title": "",               // SEO <title>, ideally <= 60 chars; WITHOUT the site name — it is appended automatically
+  "title": "",               // SEO <title>, ideally <= 60 chars
   "meta_description": "",     // <= 155 chars, specific, includes {{target_location}}
   "focus_keyword": "",
   "secondary_keywords": [],   // natural variants, not stuffing

@@ -4,8 +4,7 @@ $pg_neutral = $pg_neutral ?? false;
 $pg_active  = $pg_neutral ? 'bg-neutral-900 text-white' : 'bg-[var(--theme-color,#ff5400)] text-white';
 $pg_hover   = $pg_neutral ? 'hover:bg-neutral-100 hover:text-neutral-900' : 'hover:bg-[var(--theme-color,#ff5400)] hover:text-white';
 ?>
-<template x-if="lastPage > 1">
-<div class="mt-10 flex w-full flex-col items-center gap-3 border-t border-neutral-200 px-3 pt-4 text-sm sm:flex-row sm:justify-between">
+<div x-show="lastPage > 1" x-cloak class="mt-10 flex w-full flex-col items-center gap-3 border-t border-neutral-200 px-3 pt-4 text-sm sm:flex-row sm:justify-between">
     <p class="pl-2 text-neutral-600"><?php
         printf(
             esc_html__('Showing %1$s to %2$s of %3$s results', 'contabai'),
@@ -44,4 +43,3 @@ $pg_hover   = $pg_neutral ? 'hover:bg-neutral-100 hover:text-neutral-900' : 'hov
         </ul>
     </nav>
 </div>
-</template>

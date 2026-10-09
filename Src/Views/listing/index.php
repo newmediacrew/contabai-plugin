@@ -11,7 +11,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 <div class="mx-auto w-full max-w-7xl px-4 pt-8"><?php echo $searchBar; ?></div>
 <?php endif; ?>
 
-<div x-data="contabaiListings()" x-init="readFilters(); setupResponsive(); load(<?php echo (int) $initialPage; ?>)" class="mx-auto w-full max-w-7xl px-4 py-8 lg:flex lg:gap-8">
+<div x-data="contabaiListings()" x-init="readFilters(); setupResponsive(); load(1)" class="mx-auto w-full max-w-7xl px-4 py-8 lg:flex lg:gap-8">
 
     <aside class="mb-6 lg:mb-0 lg:w-64 lg:shrink-0">
         <button type="button" x-on:click="railOpen = true"
@@ -35,7 +35,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <?php if (! empty($propertyTypes)): ?>
             <section x-data="{ o: true }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Property type', 'contabai'); ?></span>
+                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Property type', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -54,7 +54,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bedrooms', 'contabai'); ?></span>
+                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bedrooms', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -72,7 +72,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bathrooms', 'contabai'); ?></span>
+                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Bathrooms', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -90,7 +90,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Sort by', 'contabai'); ?></span>
+                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Sort by', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -115,7 +115,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <?php if (! empty($amenityFlat)): ?>
             <section x-data="{ o: false, openCat: '' }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
-                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></span>
+                    <h3 class="text-sm font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></h3>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
                 <div x-show="o" x-collapse>
@@ -201,9 +201,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <p class="py-16 text-center text-neutral-500"><?php echo esc_html__('No listings found.', 'contabai'); ?></p>
         </template>
 
-        <template x-if="loading && listings.length > 0">
-            <div class="py-16 text-center text-sm text-neutral-500"><?php echo esc_html__('Loading...', 'contabai'); ?></div>
-        </template>
+        <div x-show="loading && listings.length > 0" x-cloak class="py-16 text-center text-sm text-neutral-500"><?php echo esc_html__('Loading...', 'contabai'); ?></div>
 
         <?php include __DIR__ . '/../components/pagination.php'; ?>
     </div>
@@ -356,9 +354,6 @@ document.addEventListener('alpine:init', function () {
                         self.lastPage = data.last_page || 1;
                         self.total = data.total || 0;
                         self.loading = false;
-                        let url = new URL(window.location.href);
-                        if (self.currentPage > 1) { url.searchParams.set('pg', self.currentPage); } else { url.searchParams.delete('pg'); }
-                        window.history.replaceState(null, '', url.pathname + url.search);
                     })
                     .catch(function () { self.loading = false; });
             },

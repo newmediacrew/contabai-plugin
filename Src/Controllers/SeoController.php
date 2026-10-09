@@ -78,7 +78,7 @@ class SeoController
 
     public function render_location_meta(): void
     {
-        $title = esc_attr($this->build_title() . ' - ' . get_bloginfo('name'));
+        $title = esc_attr(get_post_meta($this->locationId, '_contabai_seo_title', true) . ' - ' . get_bloginfo('name'));
         $description = esc_attr(get_post_meta($this->locationId, '_contabai_seo_metadesc', true));
         $url = esc_url(get_permalink($this->locationId));
 
@@ -137,20 +137,10 @@ class SeoController
             ) . "\n";
     }
 
-    public static function strip_brand(string $title): string
-    {
-        $brand = trim((string) get_bloginfo('name'));
-        if ($brand === '') {
-            return $title;
-        }
-
-        return (string) preg_replace('/\s+[|\-–—]\s+[^|\-–—]*' . preg_quote($brand, '/') . '[^|\-–—]*$/iu', '', $title);
-    }
-
     private function build_title(): string
     {
         if ($this->locationId !== null) {
-            return self::strip_brand((string) get_post_meta($this->locationId, '_contabai_seo_title', true));
+            return (string) get_post_meta($this->locationId, '_contabai_seo_title', true);
         }
 
         $title = $this->listing['title'] ?? '';
