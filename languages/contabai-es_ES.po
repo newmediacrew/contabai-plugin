@@ -1467,6 +1467,3 @@ msgstr "Otros"
 
 msgid "Good to know"
 msgstr "Bueno saber"
-
-msgid "Pagination"
-msgstr "Paginación"

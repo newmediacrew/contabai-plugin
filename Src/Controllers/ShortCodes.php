@@ -240,9 +240,7 @@ class ShortCodes
         }
 
         $scope = ListingController::hostScope();
-        $initialListings = [];
         $initialPage = max(1, absint($_GET['pg'] ?? 1));
-        $initialLastPage = 1;
         if ($scope['mode'] === 'empty') {
             $skeletonCount = 0;
         } else {
@@ -250,11 +248,8 @@ class ShortCodes
             if ($scope['mode'] === 'host') {
                 $countQuery['host'] = $scope['host'];
             }
-            $countQuery['per_page'] = $perPage;
-            $countQuery['page'] = $initialPage;
+            $countQuery['per_page'] = 1;
             [$countBody] = Helper::api('GET', '/sanctum/listings?' . http_build_query($countQuery));
-            $initialListings = (array) ($countBody['data']['listings'] ?? []);
-            $initialLastPage = max(1, (int) ($countBody['data']['last_page'] ?? 1));
             $total = (int) ($countBody['data']['total'] ?? 0);
             $skeletonCount = max(0, min($total, $perPage));
         }
@@ -271,9 +266,7 @@ class ShortCodes
             'endpoint' => rest_url('contabai/v1/sanctum/listings'),
             'initialPerPage' => $perPage,
             'skeletonCount' => $skeletonCount,
-            'initialListings' => $initialListings,
             'initialPage' => $initialPage,
-            'initialLastPage' => $initialLastPage,
             'propertyTypes' => $propertyTypes,
             'countries' => $countries,
             'amenitiesCatalogue' => $amenitiesCatalogue,

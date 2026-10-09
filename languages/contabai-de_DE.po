@@ -1470,6 +1470,3 @@ msgstr "Sonstiges"
 
 msgid "Good to know"
 msgstr "Gut zu wissen"
-
-msgid "Pagination"
-msgstr "Seitennavigation"

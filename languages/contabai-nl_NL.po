@@ -1456,6 +1456,3 @@ msgstr "Overig"
 
 msgid "Good to know"
 msgstr "Goed om te weten"
-
-msgid "Pagination"
-msgstr "Paginering"
