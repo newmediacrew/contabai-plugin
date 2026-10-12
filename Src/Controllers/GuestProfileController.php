@@ -21,6 +21,12 @@ class GuestProfileController
             'permission_callback' => '__return_true',
         ]);
 
+        register_rest_route('contabai/v1', '/sanctum/guest/profile', [
+            'methods' => 'DELETE',
+            'callback' => [$this, 'destroy'],
+            'permission_callback' => '__return_true',
+        ]);
+
         register_rest_route('contabai/v1', '/sanctum/guest/profile/contact-details', [
             'methods' => 'PATCH',
             'callback' => [$this, 'update_contact_details'],
@@ -58,6 +64,22 @@ class GuestProfileController
             'nickname' => sanitize_text_field($request->get_param('nickname') ?? ''),
             'language' => sanitize_text_field($request->get_param('language') ?? ''),
         ], true);
+
+        return new WP_REST_Response($body, $status ?: 500);
+    }
+
+    public function destroy(WP_REST_Request $request): WP_REST_Response
+    {
+        [$body, $status] = Helper::api('DELETE', '/sanctum/guest/profile', [], true);
+
+        if ($status === 200) {
+            setcookie('contabai_sanctum_session_token', '', [
+                'path' => '/',
+                'secure' => is_ssl(),
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ]);
+        }
 
         return new WP_REST_Response($body, $status ?: 500);
     }

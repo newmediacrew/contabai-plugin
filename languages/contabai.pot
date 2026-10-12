@@ -1287,3 +1287,12 @@ msgstr ""
 
 msgid "Good to know"
 msgstr ""
+
+msgid "Delete account"
+msgstr ""
+
+msgid "Deleting…"
+msgstr ""
+
+msgid "Delete your account? Your account and chats will be deleted and cannot be restored."
+msgstr ""

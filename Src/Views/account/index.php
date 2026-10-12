@@ -144,6 +144,15 @@
                         </button>
                     </form>
         <?php $acc_body = ob_get_clean(); include __DIR__ . '/../components/accordion-section.php'; ?>
+
+        <!-- Delete account -->
+        <?php $acc_key = 'delete'; $acc_title = __('Delete account', 'contabai'); ob_start(); ?>
+                    <button type="button" x-on:click="deleteAccount()" x-bind:disabled="saving === 'delete'" class="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-neutral-300 bg-white px-5 text-sm font-medium text-neutral-800 transition hover:bg-neutral-50 disabled:opacity-60">
+                        <?php echo \Contabai\Heroicon::outline('trash', 'w-4 h-4'); ?>
+                        <span x-show="saving !== 'delete'"><?php echo esc_html__('Delete account', 'contabai'); ?></span>
+                        <span x-show="saving === 'delete'"><?php echo esc_html__('Deleting…', 'contabai'); ?></span>
+                    </button>
+        <?php $acc_body = ob_get_clean(); include __DIR__ . '/../components/accordion-section.php'; ?>
     </div>
 </div>
 <script>
@@ -295,6 +304,21 @@ document.addEventListener('alpine:init', function () {
                     } else {
                         contabaiToast(contabaiStatusText(result.status), 'danger');
                     }
+                })
+                .catch(function () {
+                    self.saving = '';
+                    contabaiToast('<?php echo esc_js(__('Connection error.', 'contabai')); ?>', 'danger');
+                });
+            },
+            deleteAccount: function () {
+                let self = this;
+                if (! window.confirm('<?php echo esc_js(__('Delete your account? Your account and chats will be deleted and cannot be restored.', 'contabai')); ?>')) { return; }
+                self.saving = 'delete';
+                fetch(self.endpoints.profile, { method: 'DELETE', credentials: 'same-origin', headers: { 'Accept': 'application/json' } })
+                .then(function (r) {
+                    if (r.ok) { window.location.href = '<?php echo esc_url(home_url()); ?>'; return; }
+                    self.saving = '';
+                    contabaiToast(contabaiStatusText(r.status), 'danger');
                 })
                 .catch(function () {
                     self.saving = '';

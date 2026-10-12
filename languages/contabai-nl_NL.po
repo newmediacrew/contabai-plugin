@@ -1456,3 +1456,12 @@ msgstr "Overig"
 
 msgid "Good to know"
 msgstr "Goed om te weten"
+
+msgid "Delete account"
+msgstr "Account verwijderen"
+
+msgid "Deleting…"
+msgstr "Bezig met verwijderen…"
+
+msgid "Delete your account? Your account and chats will be deleted and cannot be restored."
+msgstr "Je account verwijderen? Je account en chats worden verwijderd en kunnen niet worden hersteld."

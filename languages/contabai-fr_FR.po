@@ -1464,3 +1464,12 @@ msgstr "Autres"
 
 msgid "Good to know"
 msgstr "Bon à savoir"
+
+msgid "Delete account"
+msgstr "Supprimer le compte"
+
+msgid "Deleting…"
+msgstr "Suppression…"
+
+msgid "Delete your account? Your account and chats will be deleted and cannot be restored."
+msgstr "Supprimer ton compte ? Ton compte et tes discussions seront supprimés et ne pourront pas être restaurés."

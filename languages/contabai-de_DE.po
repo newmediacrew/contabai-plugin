@@ -1470,3 +1470,12 @@ msgstr "Sonstiges"
 
 msgid "Good to know"
 msgstr "Gut zu wissen"
+
+msgid "Delete account"
+msgstr "Konto löschen"
+
+msgid "Deleting…"
+msgstr "Wird gelöscht…"
+
+msgid "Delete your account? Your account and chats will be deleted and cannot be restored."
+msgstr "Dein Konto löschen? Dein Konto und deine Chats werden gelöscht und können nicht wiederhergestellt werden."
