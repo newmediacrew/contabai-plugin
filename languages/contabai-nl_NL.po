@@ -941,7 +941,7 @@ msgstr "Secundaire zoekwoorden"
 msgid "Security deposit"
 msgstr "Borgsom"
 
-msgid "Security deposit (refundable)"
+msgid "Security deposit (settled after your stay)"
 msgstr "Borgsom (wordt na je verblijf verrekend)"
 
 msgid "See all OpenAI models"
@@ -1201,7 +1201,7 @@ msgstr "kind"
 msgid "children"
 msgstr "kinderen"
 
-msgid "deposit (refundable)"
+msgid "deposit (settled after your stay)"
 msgstr "borgsom (wordt na je verblijf verrekend)"
 
 msgid "floors"

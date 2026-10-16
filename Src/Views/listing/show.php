@@ -468,7 +468,7 @@ ob_start();
                         <div>
                             <div class="text-sm font-medium text-neutral-800" x-text="rangeLabel()"></div>
                             <div class="text-xl font-bold text-neutral-900" x-text="quote ? money(quote.accommodation_cents) : '…'"></div>
-                            <div class="text-xs text-neutral-400" x-show="quote && quote.deposit_cents">+ <span x-text="money(quote?.deposit_cents)"></span> <?php echo esc_html__('deposit (refundable)', 'contabai'); ?></div>
+                            <div class="text-xs text-neutral-400" x-show="quote && quote.deposit_cents">+ <span x-text="money(quote?.deposit_cents)"></span> <?php echo esc_html__('deposit (settled after your stay)', 'contabai'); ?></div>
                             <?php if (! empty($listingCosts)): ?>
                                 <div class="mt-0.5 text-xs text-neutral-400"><?php echo esc_html__('Additional costs calculated at booking', 'contabai'); ?></div>
                             <?php endif; ?>
@@ -755,7 +755,7 @@ ob_start();
             <div x-show="nights" x-cloak class="mt-4 rounded-xl bg-neutral-50 p-4">
                 <div class="text-sm font-medium text-neutral-800" x-text="rangeLabel()"></div>
                 <div class="mt-1 text-xl font-bold text-neutral-900" x-text="quote ? money(quote.accommodation_cents) : '…'"></div>
-                <div class="text-xs text-neutral-500" x-show="quote && quote.deposit_cents">+ <span x-text="money(quote?.deposit_cents)"></span> <?php echo esc_html__('deposit (refundable)', 'contabai'); ?></div>
+                <div class="text-xs text-neutral-500" x-show="quote && quote.deposit_cents">+ <span x-text="money(quote?.deposit_cents)"></span> <?php echo esc_html__('deposit (settled after your stay)', 'contabai'); ?></div>
                 <?php if (! empty($listingCosts)): ?>
                     <div class="mt-0.5 text-xs text-neutral-500"><?php echo esc_html__('Additional costs calculated at booking', 'contabai'); ?></div>
                 <?php endif; ?>

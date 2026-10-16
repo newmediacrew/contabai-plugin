@@ -237,7 +237,7 @@ $nights = (int) round((strtotime($departure) - strtotime($arrival)) / 86400);
                         </template>
                         <template x-if="quote.deposit_cents">
                             <div class="flex justify-between gap-4 text-neutral-600">
-                                <span><?php echo esc_html__('Security deposit (refundable)', 'contabai'); ?></span>
+                                <span><?php echo esc_html__('Security deposit (settled after your stay)', 'contabai'); ?></span>
                                 <span class="shrink-0 whitespace-nowrap" x-text="money(quote.deposit_cents)"></span>
                             </div>
                         </template>

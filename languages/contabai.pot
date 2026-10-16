@@ -816,7 +816,7 @@ msgstr ""
 msgid "Security deposit"
 msgstr ""
 
-msgid "Security deposit (refundable)"
+msgid "Security deposit (settled after your stay)"
 msgstr ""
 
 msgid "See all OpenAI models"
@@ -1032,7 +1032,7 @@ msgstr ""
 msgid "children"
 msgstr ""
 
-msgid "deposit (refundable)"
+msgid "deposit (settled after your stay)"
 msgstr ""
 
 msgid "floors"

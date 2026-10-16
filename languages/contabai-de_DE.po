@@ -953,7 +953,7 @@ msgstr "Sekundäre Keywords"
 msgid "Security deposit"
 msgstr "Kaution"
 
-msgid "Security deposit (refundable)"
+msgid "Security deposit (settled after your stay)"
 msgstr "Kaution (wird nach deinem Aufenthalt verrechnet)"
 
 msgid "See all OpenAI models"
@@ -1215,7 +1215,7 @@ msgstr "Kind"
 msgid "children"
 msgstr "Kinder"
 
-msgid "deposit (refundable)"
+msgid "deposit (settled after your stay)"
 msgstr "Kaution (wird nach deinem Aufenthalt verrechnet)"
 
 msgid "floors"

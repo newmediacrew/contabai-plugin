@@ -947,7 +947,7 @@ msgstr "Palavras-chave secundárias"
 msgid "Security deposit"
 msgstr "Caução"
 
-msgid "Security deposit (refundable)"
+msgid "Security deposit (settled after your stay)"
 msgstr "Caução (acertada depois da tua estadia)"
 
 msgid "See all OpenAI models"
@@ -1207,7 +1207,7 @@ msgstr "criança"
 msgid "children"
 msgstr "crianças"
 
-msgid "deposit (refundable)"
+msgid "deposit (settled after your stay)"
 msgstr "caução (acertada depois da tua estadia)"
 
 msgid "floors"
