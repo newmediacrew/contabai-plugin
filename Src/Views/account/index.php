@@ -239,7 +239,6 @@ document.addEventListener('alpine:init', function () {
                     if (result.ok) {
                         contabaiToast('<?php echo esc_js(__('Saved.', 'contabai')); ?>', 'success');
                         if (section === 'password') { self.password = ''; self.passwordConfirmation = ''; }
-                        if (section === 'profile') { self.nickname = self.nickname.toLowerCase(); }
                     } else if (result.status === 422 && result.data && result.data.errors) {
                         contabaiFieldErrors(result.data.errors, self.contactFieldText).forEach(function (msg) { contabaiToast(msg, 'danger'); });
                     } else {
