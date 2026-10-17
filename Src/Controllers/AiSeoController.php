@@ -154,7 +154,7 @@ Don't state listing numbers, that "only one X is available", or lock in current 
 constantly). Describe the kinds of stays travellers look for and who they suit. A live listing grid on
 the page shows current availability — refer readers to it instead of stating counts.
 
-ARTICLE (article_html) — clean semantic HTML (h1, h2, p, ul), no <html>/<body> wrapper, starting with
+ARTICLE (article_html) — clean semantic HTML (h1, h2, h3, p, ul), no <html>/<body> wrapper, starting with
 the H1. Cover, in this order, matching depth to what the location actually offers (don't pad a thin topic):
   H1 — includes {{target_location}} and its parent.
   Intro — answer "holiday rentals in {{target_location}}"; name it; why travellers choose it.
@@ -164,6 +164,7 @@ the H1. Cover, in this order, matching depth to what the location actually offer
   ## Holiday rentals in {{target_location}}   kinds of stays + who they suit — general/evergreen, NO counts
   ## Who should stay in {{target_location}}?   only the traveller types that actually fit (couples, families, groups, remote workers, luxury, budget)
 Where genuinely useful, work in practical intent: getting there, best time to visit, climate, safety, accessibility.
+Split longer sections (such as About and Things to do) into H3 subsections, one per topic, under their H2. Don't add H3s to short sections or put an H3 before the first H2.
 
 Do NOT put in article_html: citations, URLs, links, footnotes, "according to …"; the FAQ; the best-areas
 table. Those are separate fields below.

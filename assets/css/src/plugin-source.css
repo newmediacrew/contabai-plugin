@@ -110,6 +110,6 @@
 }
 .contabai-seo-band-img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .contabai-seo-band::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(15, 23, 30, .9) 0%, rgba(15, 23, 30, .8) 55%, rgba(15, 23, 30, .65) 100%); }
-.contabai-seo-band-eyebrow { color: var(--hero-eyebrow-color, #ffd9c9); }
+.contabai-seo-band-eyebrow { color: var(--hero-eyebrow-color, #ffd9c9); font-family: var(--theme-font), system-ui, sans-serif; }
 .contabai-seo-place { font-family: var(--theme-heading-font, inherit); }
 .contabai-seo-glass { background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .2); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }

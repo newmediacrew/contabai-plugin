@@ -52,14 +52,14 @@ class AiSeoRenderer
             }
             if ($faq !== '') {
                 echo '<div class="lg:sticky lg:top-28 lg:self-start">';
-                echo '<p class="' . $eyebrow . '">' . esc_html__('Frequently asked questions', 'contabai') . '</p>';
+                echo '<h2 class="' . $eyebrow . '">' . esc_html__('Frequently asked questions', 'contabai') . '</h2>';
                 echo $faq;
                 echo '</div>';
             }
             echo '</div>';
             if ($areas !== '') {
                 echo '<div class="mx-auto w-full max-w-7xl px-4 pb-16">';
-                echo '<p class="' . $eyebrow . '">' . esc_html__('Best areas nearby', 'contabai') . '</p>';
+                echo '<h2 class="' . $eyebrow . '">' . esc_html__('Best areas nearby', 'contabai') . '</h2>';
                 echo $areas;
                 echo '</div>';
             }
