@@ -61,6 +61,23 @@ window.contabaiCardHelpers = window.contabaiCardHelpers || function (config) {
             } catch (error) {
                 return code + ' ' + amount.toFixed(2);
             }
+        },
+        reviewCount: function (listing) {
+            return (listing.reviews && listing.reviews.count) || 0;
+        },
+        ratingLabel: function (listing) {
+            let average = Number((listing.reviews && listing.reviews.average) || 0);
+            return new Intl.NumberFormat(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(average);
+        },
+        reviewsLabel: function (listing) {
+            let count = this.reviewCount(listing);
+            if (count === 0) {
+                return '<?php echo esc_js(__('No reviews yet', 'contabai')); ?>';
+            }
+            let label = count === 1
+                ? '<?php echo esc_js(_n('%d review', '%d reviews', 1, 'contabai')); ?>'
+                : '<?php echo esc_js(_n('%d review', '%d reviews', 2, 'contabai')); ?>';
+            return '· ' + label.replace('%d', count);
         }
     };
 };

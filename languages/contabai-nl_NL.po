@@ -712,6 +712,9 @@ msgstr "Nog geen berichten. Zeg hallo."
 msgid "No response from OpenAI (network error or timeout)."
 msgstr "Geen reactie van OpenAI (netwerkfout of time-out)."
 
+msgid "No reviews yet"
+msgstr "Nog geen beoordelingen"
+
 msgid "No reviews yet."
 msgstr "Nog geen beoordelingen."
 
@@ -894,6 +897,15 @@ msgstr "Opnieuw versturen over"
 
 msgid "Restore default prompt"
 msgstr "Standaardprompt herstellen"
+
+msgid "Review score"
+msgstr "Beoordeling"
+
+msgid "Review score: high to low"
+msgstr "Beoordeling: hoog naar laag"
+
+msgid "Review score: low to high"
+msgstr "Beoordeling: laag naar hoog"
 
 # --- Guest reviews (stage 5) ---
 msgid "Reviews"

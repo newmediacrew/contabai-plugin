@@ -720,6 +720,9 @@ msgstr "Ainda não há mensagens. Diz olá."
 msgid "No response from OpenAI (network error or timeout)."
 msgstr "Sem resposta do OpenAI (erro de rede ou tempo esgotado)."
 
+msgid "No reviews yet"
+msgstr "Ainda sem avaliações"
+
 msgid "No reviews yet."
 msgstr "Ainda sem avaliações."
 
@@ -902,6 +905,15 @@ msgstr "Reenviar em"
 
 msgid "Restore default prompt"
 msgstr "Restaurar o prompt predefinido"
+
+msgid "Review score"
+msgstr "Avaliação"
+
+msgid "Review score: high to low"
+msgstr "Avaliação: da mais alta à mais baixa"
+
+msgid "Review score: low to high"
+msgstr "Avaliação: da mais baixa à mais alta"
 
 # --- Guest reviews (stage 5) ---
 msgid "Reviews"

@@ -55,6 +55,11 @@ $chevronRight = \Contabai\Heroicon::solid('chevron-right', 'w-4 h-4');
     <a x-bind:href="detailUrl(listing)" class="block pt-2.5 no-underline">
         <p class="contabai-seo-place truncate font-semibold text-neutral-900" x-text="listing.title"></p>
         <p class="truncate text-sm text-neutral-500" x-text="locationLabel(listing)"></p>
+        <p class="mt-1 flex items-center gap-1 text-sm text-neutral-500">
+            <span x-show="reviewCount(listing) > 0" class="text-amber-400"><?php echo \Contabai\Heroicon::solid('star', 'w-4 h-4'); ?></span>
+            <span x-show="reviewCount(listing) > 0" class="font-medium text-neutral-900" x-text="ratingLabel(listing)"></span>
+            <span class="truncate" x-text="reviewsLabel(listing)"></span>
+        </p>
 
         <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-sm text-neutral-500">
             <?php

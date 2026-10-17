@@ -102,8 +102,13 @@ class ListingController
         }
 
         $sort = sanitize_text_field((string) $request->get_param('sort'));
-        if (in_array($sort, ['price_asc', 'price_desc', 'newest'], true)) {
+        if (in_array($sort, ['price_asc', 'price_desc', 'rating_asc', 'rating_desc', 'newest'], true)) {
             $query['sort'] = $sort;
+        }
+
+        $rating = (string) $request->get_param('min_rating');
+        if (in_array($rating, ['1', '2', '3', '4', '5'], true)) {
+            $query['min_rating'] = (int) $rating;
         }
 
         foreach (['property_type', 'amenities'] as $key) {
@@ -183,6 +188,11 @@ class ListingController
             if ($value !== null && $value !== '') {
                 $query[$key] = absint($value);
             }
+        }
+
+        $rating = (string) $request->get_param('min_rating');
+        if (in_array($rating, ['1', '2', '3', '4', '5'], true)) {
+            $query['min_rating'] = (int) $rating;
         }
 
         foreach (['property_type', 'amenities'] as $key) {

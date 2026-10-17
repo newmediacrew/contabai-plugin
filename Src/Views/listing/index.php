@@ -90,6 +90,24 @@ $bedBathOptions = ['1', '2', '3', '4'];
 
             <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                 <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
+                    <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Review score', 'contabai'); ?></span>
+                    <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
+                </button>
+                <div x-show="o" x-collapse>
+                    <div class="space-y-1.5 border-t border-neutral-200 px-4 py-4">
+                        <?php foreach (['1', '2', '3', '4', '5'] as $n): ?>
+                            <label class="flex items-center gap-2 text-sm text-neutral-700">
+                                <input type="checkbox" x-bind:checked="rail.min_rating === '<?php echo esc_js($n); ?>'" x-on:change="setVal('min_rating', '<?php echo esc_js($n); ?>')"
+                                       class="h-4 w-4 rounded border-neutral-300 text-[color:var(--theme-color,#ff5400)] focus:ring-neutral-400">
+                                <span><?php echo esc_html($n === '5' ? $n : $n . '+'); ?></span>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </section>
+
+            <section x-data="{ o: false }" class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                <button type="button" x-on:click="o = ! o" class="flex w-full items-center justify-between px-4 py-3 text-left">
                     <span class="contabai-seo-place text-sm font-semibold text-neutral-900"><?php echo esc_html__('Sort by', 'contabai'); ?></span>
                     <span class="text-neutral-400 transition" x-bind:class="o ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
                 </button>
@@ -100,6 +118,8 @@ $bedBathOptions = ['1', '2', '3', '4'];
                             '' => __('Newest', 'contabai'),
                             'price_asc' => __('Price: low to high', 'contabai'),
                             'price_desc' => __('Price: high to low', 'contabai'),
+                            'rating_asc' => __('Review score: low to high', 'contabai'),
+                            'rating_desc' => __('Review score: high to low', 'contabai'),
                         ];
                         foreach ($sortOptions as $val => $label): ?>
                             <label class="flex items-center gap-2 text-sm text-neutral-700">
@@ -179,9 +199,10 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <?php for ($skeleton = 0; $skeleton < (int) $skeletonCount; $skeleton++) : ?>
                 <div class="animate-pulse">
                     <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
-                    <div class="h-28 pt-2.5">
+                    <div class="h-34 pt-2.5">
                         <div class="h-4 w-3/4 rounded bg-neutral-100"></div>
                         <div class="mt-2.5 h-3 w-1/2 rounded bg-neutral-100"></div>
+                        <div class="mt-3 h-3 w-1/3 rounded bg-neutral-100"></div>
                         <div class="mt-3 h-3 w-2/3 rounded bg-neutral-100"></div>
                         <div class="mt-3 h-4 w-1/3 rounded bg-neutral-100"></div>
                     </div>
@@ -227,7 +248,7 @@ document.addEventListener('alpine:init', function () {
             error: '',
             filters: {},
             baseFilters: {},
-            rail: { property_type: [], amenities: [], bedrooms: '', bathrooms: '', sort: '' },
+            rail: { property_type: [], amenities: [], bedrooms: '', bathrooms: '', min_rating: '', sort: '' },
             railOpen: false,
             isLg: window.matchMedia('(min-width: 1024px)').matches,
             lockedFilters: <?php echo wp_json_encode((object) ($lockedFilters ?? [])); ?>,
@@ -254,6 +275,8 @@ document.addEventListener('alpine:init', function () {
                 this.rail.amenities = queryParams.getAll('amenities[]').filter(Boolean);
                 this.rail.bedrooms = get('bedrooms');
                 this.rail.bathrooms = get('bathrooms');
+                let rating = get('min_rating');
+                this.rail.min_rating = ['1', '2', '3', '4', '5'].indexOf(rating) !== -1 ? rating : '';
                 this.rail.sort = get('sort');
                 this.buildFilters();
             },
@@ -262,6 +285,7 @@ document.addEventListener('alpine:init', function () {
                 let filters = Object.assign({}, this.baseFilters);
                 if (this.rail.bedrooms) { filters.bedrooms = this.rail.bedrooms; }
                 if (this.rail.bathrooms) { filters.bathrooms = this.rail.bathrooms; }
+                if (this.rail.min_rating) { filters.min_rating = this.rail.min_rating; }
                 if (this.rail.sort) { filters.sort = this.rail.sort; }
                 this.filters = filters;
             },
@@ -274,6 +298,7 @@ document.addEventListener('alpine:init', function () {
                 });
                 if (self.rail.bedrooms) { params.set('bedrooms', self.rail.bedrooms); }
                 if (self.rail.bathrooms) { params.set('bathrooms', self.rail.bathrooms); }
+                if (self.rail.min_rating) { params.set('min_rating', self.rail.min_rating); }
                 if (self.rail.sort) { params.set('sort', self.rail.sort); }
                 self.rail.property_type.forEach(function (v) { params.append('property_type[]', v); });
                 self.rail.amenities.forEach(function (v) { params.append('amenities[]', v); });
@@ -313,13 +338,14 @@ document.addEventListener('alpine:init', function () {
                 this.rail.amenities = [];
                 this.rail.bedrooms = '';
                 this.rail.bathrooms = '';
+                this.rail.min_rating = '';
                 this.rail.sort = '';
                 this.applyRail();
             },
 
             railActive: function () {
                 let rail = this.rail;
-                return !! (rail.property_type.length || rail.amenities.length || rail.bedrooms || rail.bathrooms || rail.sort);
+                return !! (rail.property_type.length || rail.amenities.length || rail.bedrooms || rail.bathrooms || rail.min_rating || rail.sort);
             },
 
             resultLabel: function () {

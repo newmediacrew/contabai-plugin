@@ -624,6 +624,9 @@ msgstr ""
 msgid "No response from OpenAI (network error or timeout)."
 msgstr ""
 
+msgid "No reviews yet"
+msgstr ""
+
 msgid "No reviews yet."
 msgstr ""
 
@@ -781,6 +784,15 @@ msgid "Resend in"
 msgstr ""
 
 msgid "Restore default prompt"
+msgstr ""
+
+msgid "Review score"
+msgstr ""
+
+msgid "Review score: high to low"
+msgstr ""
+
+msgid "Review score: low to high"
 msgstr ""
 
 msgid "Reviews"
