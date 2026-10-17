@@ -29,6 +29,11 @@ class AiSeoGenerator
             return;
         }
 
+        $thumbId = (int) get_post_thumbnail_id($page->ID);
+        if ($thumbId && $thumbId !== (int) get_post_meta($page->ID, '_contabai_seo_image', true)) {
+            return;
+        }
+
         require_once ABSPATH . 'wp-admin/includes/file.php';
         require_once ABSPATH . 'wp-admin/includes/media.php';
         require_once ABSPATH . 'wp-admin/includes/image.php';
@@ -41,10 +46,12 @@ class AiSeoGenerator
 
         [$body, $status] = Helper::pexels_search($key, $query, 15);
         $photos = ($status === 200) ? ($body['photos'] ?? []) : [];
+        $photos = self::photos_about($photos, $location) ?: self::photos_about($photos, $parentTitle);
 
         if (empty($photos) && $parentTitle !== '') {
             [$body, $status] = Helper::pexels_search($key, $parentTitle, 15);
             $photos = ($status === 200) ? ($body['photos'] ?? []) : [];
+            $photos = self::photos_about($photos, $parentTitle);
         }
         if (empty($photos)) {
             return;
@@ -82,6 +89,16 @@ class AiSeoGenerator
 
         set_post_thumbnail($page->ID, $attachId);
         update_post_meta($page->ID, '_contabai_seo_image', $attachId);
+    }
+
+    private static function photos_about(array $photos, string $name): array
+    {
+        $name = mb_strtolower(remove_accents($name));
+        if ($name === '') {
+            return [];
+        }
+
+        return array_values(array_filter($photos, fn ($photo) => str_contains(mb_strtolower(remove_accents((string) ($photo['alt'] ?? ''))), $name)));
     }
 
     public static function generate_for_page(\WP_Post $page): ?array

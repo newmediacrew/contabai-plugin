@@ -209,7 +209,7 @@ class AiSeoRenderer
     {
         $graph = [self::breadcrumb_ld($pageId)];
 
-        $attachId = (int) get_post_meta($pageId, '_contabai_seo_image', true);
+        $attachId = (int) get_post_thumbnail_id($pageId);
         if ($attachId) {
             $src = wp_get_attachment_image_src($attachId, 'contabai_og');
             if ($src) {

@@ -83,7 +83,8 @@ class SeoController
         $url = esc_url(get_permalink($this->locationId));
 
         $img = [];
-        $attachId = (int) get_post_meta($this->locationId, '_contabai_seo_image', true);
+        $image = '';
+        $attachId = (int) get_post_thumbnail_id($this->locationId);
         if ($attachId) {
             $src = wp_get_attachment_image_src($attachId, 'contabai_og');
             if ($src) {
@@ -95,9 +96,6 @@ class SeoController
                 ];
                 $image = esc_url($src[0]);
             }
-        }
-        if (empty($image)) {
-            $image = esc_url((string) get_the_post_thumbnail_url($this->locationId, 'large'));
         }
 
         $this->emit($title, $description, $image, $url, $img);

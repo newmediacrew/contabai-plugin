@@ -3,7 +3,7 @@
 Plugin Name: Contabai
 Plugin URI: https://www.contabai.network
 Description: Contabai — property listings platform frontend for WordPress.
-Version: 1.2.14
+Version: 1.2.15
 Requires at least: 7.1
 Requires PHP: 8.3
 Tested up to: 7.1
