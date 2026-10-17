@@ -261,9 +261,9 @@ ob_start();
         ? (string) ($cancelMap[\Contabai\Helper::currentLang()] ?? $cancelMap['en'] ?? '')
         : (string) ($cancelMap ?? '');
     ?>
-        <!-- Description and Amenities always open; House rules, Cancellation, Video, Reviews: ONE panel open at a time. Always rendered (Reviews is always a member). -->
+        <!-- Description, Amenities and Reviews always open; House rules, Cancellation, Video: ONE panel open at a time. -->
         <div class="mt-3 space-y-3" x-data="{ open: '', toggle(k) { this.open = this.open === k ? '' : k } }"
-             x-on:open-reviews.window="open = 'reviews'; $nextTick(() => document.getElementById('reviews').scrollIntoView({ behavior: 'smooth', block: 'start' }))">
+             x-on:open-reviews.window="document.getElementById('reviews').scrollIntoView({ behavior: 'smooth', block: 'start' })">
             <?php if ($description !== ''): ?>
                 <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
                     <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Description', 'contabai'); ?></h2>
@@ -308,6 +308,47 @@ ob_start();
                 </section>
             <?php endif; ?>
             <?php
+
+            $reviewsListingId = (int) ($listing['id'] ?? 0);
+            $reviewsPerPage   = 5;
+            $reviewsEndpoint  = rest_url('contabai/v1/sanctum/listing/reviews/' . $reviewsListingId);
+            ?>
+            <section id="reviews" class="scroll-mt-28 rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Reviews', 'contabai'); ?></h2>
+                <div class="border-t border-neutral-200 px-5 py-5">
+                    <?php if ($reviewCount === 0): ?>
+                        <p class="text-sm text-neutral-500"><?php echo esc_html__('No reviews yet.', 'contabai'); ?></p>
+                    <?php else: ?>
+                        <?php ?>
+                        <div x-data="contabaiReviews()">
+                            <div x-show="loading && reviews.length === 0" class="py-6 text-center text-sm text-neutral-400"><?php echo esc_html__('Loading…', 'contabai'); ?></div>
+                            <ul x-show="reviews.length > 0" class="flex flex-col gap-5 !m-0 !list-none !p-0">
+                                <template x-for="r in reviews" x-bind:key="r.id">
+                                    <li>
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <span class="font-semibold text-neutral-900" x-text="r.reviewer.nickname"></span>
+                                            <span class="inline-flex items-center gap-0.5" role="img">
+                                                <template x-for="s in 5" x-bind:key="s">
+                                                    <span x-bind:class="s <= r.rating ? 'text-amber-400' : 'text-neutral-300'"><?php echo \Contabai\Heroicon::solid('star', 'w-4 h-4'); ?></span>
+                                                </template>
+                                            </span>
+                                        </div>
+                                        <div class="text-xs text-neutral-400" x-text="fmtDate(r.created_at)"></div>
+                                        <p class="mt-1 text-sm text-neutral-700" x-show="r.body" x-text="r.body"></p>
+                                        <div class="mt-3 ml-4 rounded-xl border-l-2 border-neutral-200 bg-neutral-50 px-4 py-3" x-show="r.reply">
+                                            <div class="font-semibold text-neutral-900"><?php echo esc_html__('Reply from the host', 'contabai'); ?></div>
+                                            <div class="text-xs text-neutral-400" x-text="fmtDate(r.replied_at)"></div>
+                                            <p class="mt-1 text-sm text-neutral-700 whitespace-pre-line" x-text="r.reply"></p>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                            <?php $pg_neutral = true; include __DIR__ . '/../components/pagination.php'; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </section>
+            <?php
             if ($houseRules !== '') {
                 $acc_key   = 'house_rules';
                 $acc_title = __('House rules', 'contabai');
@@ -333,54 +374,6 @@ ob_start();
                 include __DIR__ . '/../components/accordion-section.php';
             }
             ?>
-            <?php
-
-            $reviewsListingId = (int) ($listing['id'] ?? 0);
-            $reviewsPerPage   = 5;
-            $reviewsEndpoint  = rest_url('contabai/v1/sanctum/listing/reviews/' . $reviewsListingId);
-            ?>
-            <section id="reviews" class="rounded-2xl border border-neutral-200 bg-white shadow-sm" x-bind:class="open === 'reviews' ? '' : 'overflow-hidden'">
-                <button type="button" x-on:click="toggle('reviews')" class="flex w-full items-center justify-between px-5 py-4 text-left">
-                    <h2 class="text-base font-semibold text-neutral-900"><?php echo esc_html__('Reviews', 'contabai'); ?></h2>
-                    <span class="text-neutral-400 transition" x-bind:class="open === 'reviews' ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
-                </button>
-                <div x-show="open === 'reviews'" x-collapse x-cloak>
-                    <div class="border-t border-neutral-200 px-5 py-5">
-                        <?php if ($reviewCount === 0): ?>
-                            <p class="text-sm text-neutral-500"><?php echo esc_html__('No reviews yet.', 'contabai'); ?></p>
-                        <?php else: ?>
-                            <?php ?>
-                            <div x-data="contabaiReviews()" x-effect="open === 'reviews' && loadOnce()">
-                                <div x-show="loading" class="py-6 text-center text-sm text-neutral-400"><?php echo esc_html__('Loading…', 'contabai'); ?></div>
-                                <ul x-show="! loading" class="flex flex-col gap-5 !m-0 !list-none !p-0">
-                                    <template x-for="r in reviews" x-bind:key="r.id">
-                                        <li>
-                                            <div class="flex flex-wrap items-center gap-2">
-                                                <span class="font-semibold text-neutral-900" x-text="r.reviewer.nickname"></span>
-                                                <span class="inline-flex items-center gap-0.5" role="img">
-                                                    <template x-for="s in 5" x-bind:key="s">
-                                                        <span x-bind:class="s <= r.rating ? 'text-amber-400' : 'text-neutral-300'"><?php echo \Contabai\Heroicon::solid('star', 'w-4 h-4'); ?></span>
-                                                    </template>
-                                                </span>
-                                            </div>
-                                            <div class="text-xs text-neutral-400" x-text="fmtDate(r.created_at)"></div>
-                                            <p class="mt-1 text-sm text-neutral-700" x-show="r.body" x-text="r.body"></p>
-                                            <div class="mt-3 ml-4 rounded-xl border-l-2 border-neutral-200 bg-neutral-50 px-4 py-3" x-show="r.reply">
-                                                <div class="flex flex-wrap items-center gap-2">
-                                                    <span class="text-xs font-semibold text-neutral-900"><?php echo esc_html__('Reply from the host', 'contabai'); ?></span>
-                                                    <span class="text-xs text-neutral-400" x-text="fmtDate(r.replied_at)"></span>
-                                                </div>
-                                                <p class="mt-1 text-sm text-neutral-700 whitespace-pre-line" x-text="r.reply"></p>
-                                            </div>
-                                        </li>
-                                    </template>
-                                </ul>
-                                <?php $pg_neutral = true; include __DIR__ . '/../components/pagination.php'; ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </section>
         </div>
 
     <?php
@@ -499,7 +492,6 @@ ob_start();
     document.addEventListener('alpine:init', function () {
         Alpine.data('contabaiReviews', function () {
             return {
-                loaded: false,
                 loading: false,
                 reviews: [],
                 currentPage: 1,
@@ -509,9 +501,7 @@ ob_start();
                 endpoint: '<?php echo esc_js($reviewsEndpoint); ?>',
                 locale: '<?php echo esc_js(\Contabai\Helper::currentLang()); ?>',
                 labels: { loadError: '<?php echo esc_js(__('Could not load the reviews.', 'contabai')); ?>' },
-                loadOnce: function () {
-                    if (! this.loaded) { this.loaded = true; this.load(1); }
-                },
+                init: function () { this.load(1); },
                 load: function (page) {
                     let self = this;
                     self.loading = true;
@@ -529,9 +519,9 @@ ob_start();
                         .catch(function (e) { self.loading = false; if (window.contabaiToast) { contabaiToast(contabaiStatusText(e.status, self.labels.loadError), 'danger'); } });
                 },
                 goTo: function (page) {
-                    if (page < 1 || page > this.lastPage) { return; }
-                    let self = this;
-                    this.load(page).then(function () { self.$el.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+                    if (page < 1 || page > this.lastPage || this.loading) { return; }
+                    this.load(page);
+                    document.getElementById('reviews').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 },
                 pages: function () {
                     let last = this.lastPage, cur = this.currentPage, delta = 1, range = [];
