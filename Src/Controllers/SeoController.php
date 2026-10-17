@@ -52,7 +52,7 @@ class SeoController
 
     public function set_title(): string
     {
-        return esc_html($this->build_title() . ' - ' . get_bloginfo('name'));
+            return esc_html($this->with_site_name($this->build_title()));
     }
 
     public function set_title_parts(array $parts): array
@@ -64,7 +64,7 @@ class SeoController
 
     public function render_meta_tags(): void
     {
-        $title = esc_attr($this->build_title() . ' - ' . get_bloginfo('name'));
+        $title = esc_attr($this->with_site_name($this->build_title()));
         $descMap  = $this->listing['description'] ?? null;
         $descText = is_array($descMap)
             ? (string) ($descMap[\Contabai\Helper::currentLang()] ?? $descMap['en'] ?? '')
@@ -78,7 +78,7 @@ class SeoController
 
     public function render_location_meta(): void
     {
-        $title = esc_attr(get_post_meta($this->locationId, '_contabai_seo_title', true) . ' - ' . get_bloginfo('name'));
+        $title = esc_attr($this->with_site_name((string) get_post_meta($this->locationId, '_contabai_seo_title', true)));
         $description = esc_attr(get_post_meta($this->locationId, '_contabai_seo_metadesc', true));
         $url = esc_url(get_permalink($this->locationId));
 
@@ -147,6 +147,13 @@ class SeoController
         $city = $this->listing['city_name'] ?? $this->listing['city'] ?? '';
 
         return $city ? $title . ' - ' . $city : $title;
+    }
+
+    private function with_site_name(string $title): string
+    {
+        $site = get_bloginfo('name');
+
+        return str_ends_with($title, $site) ? $title : $title . ' - ' . $site;
     }
 
     private function build_url(): string
