@@ -894,6 +894,9 @@ msgstr ""
 "%1$s. O alojamento é identificado pelo id inteiro final no URL /%2$s/"
 "{country}/{city}/{title}-{id}."
 
+msgid "Reply from the host"
+msgstr "Resposta do anfitrião"
+
 msgid "Resend in"
 msgstr "Reenviar em"
 

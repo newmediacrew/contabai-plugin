@@ -774,6 +774,9 @@ msgstr ""
 msgid "Renders a single listing detail page. Use on the page with slug %1$s. The listing is looked up by the trailing integer id in the URL /%2$s/{country}/{city}/{title}-{id}."
 msgstr ""
 
+msgid "Reply from the host"
+msgstr ""
+
 msgid "Resend in"
 msgstr ""
 

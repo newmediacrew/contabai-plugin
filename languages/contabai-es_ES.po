@@ -898,6 +898,9 @@ msgstr ""
 "slug %1$s. El alojamiento se localiza por el id entero final de la URL /%2$s/"
 "{country}/{city}/{title}-{id}."
 
+msgid "Reply from the host"
+msgstr "Respuesta del anfitrión"
+
 msgid "Resend in"
 msgstr "Reenviar en"
 

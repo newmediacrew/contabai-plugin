@@ -365,6 +365,13 @@ ob_start();
                                             </div>
                                             <div class="text-xs text-neutral-400" x-text="fmtDate(r.created_at)"></div>
                                             <p class="mt-1 text-sm text-neutral-700" x-show="r.body" x-text="r.body"></p>
+                                            <div class="mt-3 ml-4 rounded-xl border-l-2 border-neutral-200 bg-neutral-50 px-4 py-3" x-show="r.reply">
+                                                <div class="flex flex-wrap items-center gap-2">
+                                                    <span class="text-xs font-semibold text-neutral-900"><?php echo esc_html__('Reply from the host', 'contabai'); ?></span>
+                                                    <span class="text-xs text-neutral-400" x-text="fmtDate(r.replied_at)"></span>
+                                                </div>
+                                                <p class="mt-1 text-sm text-neutral-700 whitespace-pre-line" x-text="r.reply"></p>
+                                            </div>
                                         </li>
                                     </template>
                                 </ul>
