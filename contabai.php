@@ -3,7 +3,7 @@
 Plugin Name: Contabai
 Plugin URI: https://www.contabai.network
 Description: Contabai — property listings platform frontend for WordPress.
-Version: 1.2.15
+Version: 1.2.16
 Requires at least: 7.1
 Requires PHP: 8.3
 Tested up to: 7.1
@@ -34,6 +34,7 @@ use Contabai\Controllers\AiSeoController;
 use Contabai\Controllers\AiSeoQueueController;
 use Contabai\Controllers\AiSeoMetaBoxController;
 use Contabai\Controllers\PluginUpdater;
+use Contabai\Controllers\SitemapController;
 
 defined('ABSPATH') || exit();
 
@@ -151,6 +152,7 @@ add_action('plugins_loaded', function () {
         AiSeoQueueController::class,
         AiSeoMetaBoxController::class,
         PluginUpdater::class,
+        SitemapController::class,
     ];
 
     foreach ($controllers as $controller) {
@@ -339,7 +341,7 @@ function contabai_render_settings_page(): void
 {
     if (! current_user_can('manage_options')) return;
 
-    $tabs = ['basic' => 'Basic', 'updates' => __('Updates', 'contabai'), 'advanced' => 'Advanced'];
+    $tabs = ['basic' => 'Basic', 'seo' => __('SEO', 'contabai'), 'updates' => __('Updates', 'contabai'), 'advanced' => 'Advanced'];
     $tab = isset($_GET['tab']) ? sanitize_key(wp_unslash($_GET['tab'])) : 'basic';
     if (! isset($tabs[$tab])) {
         $tab = 'basic';
@@ -355,6 +357,8 @@ function contabai_render_settings_page(): void
         </nav>
         <?php if ($tab === 'updates') : ?>
             <?php PluginUpdater::render_status(); ?>
+        <?php elseif ($tab === 'seo') : ?>
+            <?php SitemapController::render_tab(); ?>
         <?php else : ?>
         <form method="post" action="options.php">
             <?php

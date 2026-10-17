@@ -591,6 +591,9 @@ msgstr "Escribe una valoración"
 msgid "Length of stay"
 msgstr "Duración de la estancia"
 
+msgid "Lists your pages, posts and every listing for search engines. Submit this URL in Google Search Console."
+msgstr "Incluye tus páginas, entradas y cada alojamiento para los buscadores. Envía esta URL en Google Search Console."
+
 msgid "Loading..."
 msgstr "Cargando..."
 
@@ -926,6 +929,13 @@ msgstr "Valoraciones"
 msgid "Reviews are public and cannot be edited after posting."
 msgstr "Las valoraciones son públicas y no se pueden editar una vez publicadas."
 
+#, php-format
+msgid "Search engines are discouraged on this site, so the sitemap is switched off and every page is hidden from search. Change this under %s."
+msgstr "En este sitio se disuade a los motores de búsqueda, así que el mapa del sitio está desactivado y todas las páginas están ocultas en las búsquedas. Cámbialo en %s."
+
+msgid "SEO"
+msgstr "SEO"
+
 msgid "SEO prompt"
 msgstr "Prompt de SEO"
 
@@ -1009,6 +1019,9 @@ msgstr ""
 "automáticamente: {{site_title}}, {{site_tagline}}, {{target_location}}, "
 "{{target_type}}, {{country}}, {{city}}, {{area}}, {{nearby_locations}}."
 
+msgid "Settings → Reading"
+msgstr "Ajustes → Lectura"
+
 msgid "Share a few words about your stay (optional)…"
 msgstr "Comparte unas palabras sobre tu estancia (opcional)…"
 
@@ -1031,6 +1044,12 @@ msgstr ""
 "Muestra una cuadrícula de alojamientos activos al azar (distintos en cada "
 "carga). Colócalo en cualquier página; puedes usarlo varias veces. (No se "
 "crea automáticamente — añádelo tú mismo.)"
+
+msgid "Sitemap"
+msgstr "Mapa del sitio"
+
+msgid "Sitemap URL"
+msgstr "URL del mapa del sitio"
 
 msgid "Snippet"
 msgstr "Fragmento"

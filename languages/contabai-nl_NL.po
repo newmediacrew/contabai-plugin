@@ -583,6 +583,9 @@ msgstr "Schrijf een beoordeling"
 msgid "Length of stay"
 msgstr "Verblijfsduur"
 
+msgid "Lists your pages, posts and every listing for search engines. Submit this URL in Google Search Console."
+msgstr "Bevat je pagina's, berichten en elke accommodatie voor zoekmachines. Dien deze URL in bij Google Search Console."
+
 msgid "Loading..."
 msgstr "Laden..."
 
@@ -916,6 +919,13 @@ msgstr ""
 "Beoordelingen zijn openbaar en kunnen na plaatsing niet meer worden "
 "gewijzigd."
 
+#, php-format
+msgid "Search engines are discouraged on this site, so the sitemap is switched off and every page is hidden from search. Change this under %s."
+msgstr "Zoekmachines worden op deze site ontmoedigd, dus de sitemap staat uit en elke pagina is verborgen voor zoekmachines. Pas dit aan onder %s."
+
+msgid "SEO"
+msgstr "SEO"
+
 msgid "SEO prompt"
 msgstr "SEO-prompt"
 
@@ -998,6 +1008,9 @@ msgstr ""
 "ingevuld: {{site_title}}, {{site_tagline}}, {{target_location}}, "
 "{{target_type}}, {{country}}, {{city}}, {{area}}, {{nearby_locations}}."
 
+msgid "Settings → Reading"
+msgstr "Instellingen → Lezen"
+
 msgid "Share a few words about your stay (optional)…"
 msgstr "Deel een paar woorden over je verblijf (optioneel)…"
 
@@ -1020,6 +1033,12 @@ msgstr ""
 "Toont een raster met willekeurige actieve accommodaties (elke keer opnieuw "
 "ververst). Plaats op elke pagina; je kunt het meerdere keren gebruiken. "
 "(Niet automatisch aangemaakt — voeg het zelf toe.)"
+
+msgid "Sitemap"
+msgstr "Sitemap"
+
+msgid "Sitemap URL"
+msgstr "Sitemap-URL"
 
 msgid "Snippet"
 msgstr "Snippet"

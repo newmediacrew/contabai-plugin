@@ -501,6 +501,9 @@ msgstr ""
 msgid "Length of stay"
 msgstr ""
 
+msgid "Lists your pages, posts and every listing for search engines. Submit this URL in Google Search Console."
+msgstr ""
+
 msgid "Loading..."
 msgstr ""
 
@@ -801,6 +804,13 @@ msgstr ""
 msgid "Reviews are public and cannot be edited after posting."
 msgstr ""
 
+#, php-format
+msgid "Search engines are discouraged on this site, so the sitemap is switched off and every page is hidden from search. Change this under %s."
+msgstr ""
+
+msgid "SEO"
+msgstr ""
+
 msgid "SEO prompt"
 msgstr ""
 
@@ -867,6 +877,9 @@ msgstr ""
 msgid "Sent to OpenAI per page. These placeholders are filled in automatically: {{site_title}}, {{site_tagline}}, {{target_location}}, {{target_type}}, {{country}}, {{city}}, {{area}}, {{nearby_locations}}."
 msgstr ""
 
+msgid "Settings → Reading"
+msgstr ""
+
 msgid "Share a few words about your stay (optional)…"
 msgstr ""
 
@@ -883,6 +896,12 @@ msgid "Showing %1$s to %2$s of %3$s results"
 msgstr ""
 
 msgid "Shows a grid of random active listings (fresh on each load). Place on any page; you can use it multiple times. (Not auto-created — add it yourself.)"
+msgstr ""
+
+msgid "Sitemap"
+msgstr ""
+
+msgid "Sitemap URL"
 msgstr ""
 
 msgid "Snippet"
