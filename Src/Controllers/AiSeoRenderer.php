@@ -169,10 +169,12 @@ class AiSeoRenderer
         echo '<h2 class="contabai-heading mb-6 text-3xl text-[color:var(--heading-color,#111827)]">' . esc_html__('Related destinations', 'contabai') . '</h2>';
         echo '<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">';
         foreach ($items as $url => [$name, $anchor]) {
-            $image = (string) get_the_post_thumbnail_url(url_to_postid($url), 'medium_large');
+            $targetId = url_to_postid($url);
+            $image = (string) get_the_post_thumbnail_url($targetId, 'medium_large');
+            $alt   = (string) get_post_meta((int) get_post_thumbnail_id($targetId), '_wp_attachment_image_alt', true);
             echo '<li><a href="' . esc_url($url) . '" class="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white no-underline shadow-sm transition hover:shadow-lg">';
             if ($image !== '') {
-                echo '<span class="block aspect-[16/10] overflow-hidden bg-neutral-100"><img src="' . esc_url($image) . '" alt="" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></span>';
+                echo '<span class="block aspect-[16/10] overflow-hidden bg-neutral-100"><img src="' . esc_url($image) . '" alt="' . esc_attr($alt) . '" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></span>';
             }
             echo '<span class="flex flex-1 items-center justify-between gap-4 p-5">';
             echo '<span class="min-w-0"><span class="contabai-heading contabai-seo-place block text-xl text-[color:var(--heading-color,#111827)]">' . esc_html($name) . '</span>';
