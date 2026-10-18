@@ -16,16 +16,16 @@ class ListingsSitemapProvider extends \WP_Sitemaps_Provider
     {
         return array_map(
             fn ($listing) => ['loc' => ListingRewriteController::listing_url($listing)],
-            $this->page((int) $page_num)['listings'] ?? []
+            self::page((int) $page_num)['listings'] ?? []
         );
     }
 
     public function get_max_num_pages($object_subtype = ''): int
     {
-        return (int) ($this->page(1)['last_page'] ?? 0);
+        return (int) (self::page(1)['last_page'] ?? 0);
     }
 
-    private function page(int $page): array
+    public static function page(int $page): array
     {
         $scope = ListingController::hostScope();
         if ($scope['mode'] === 'empty') {
