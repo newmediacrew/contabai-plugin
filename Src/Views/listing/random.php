@@ -1,7 +1,13 @@
-<div x-data="contabaiRandomListings('<?php echo esc_js($endpoint); ?>')" x-init="load()" class="mx-auto w-full max-w-7xl px-4 py-8">
+<div x-data="contabaiRandomListings('<?php echo esc_js($endpoint); ?>', <?php echo esc_attr(wp_json_encode($initial)); ?>)" x-init="initial.length ? hydrate() : load()" class="mx-auto w-full max-w-7xl px-4 py-8">
     <template x-if="error">
         <p class="mb-6 rounded-md bg-red-50 p-4 text-sm text-red-700" x-text="error"></p>
     </template>
+
+    <?php if ($initial): ?>
+        <div class="contabai-listings-grid" x-show="! listings.length">
+            <?php foreach ($initial as $item) { include __DIR__ . '/../components/listing-card-static.php'; } ?>
+        </div>
+    <?php endif; ?>
 
     <div class="contabai-listings-grid">
         <template x-for="listing in listings" x-bind:key="listing.id">
@@ -11,7 +17,7 @@
         </template>
     </div>
 
-    <div x-show="loading" class="py-16 text-center text-sm text-neutral-500"><?php echo esc_html__('Loading...', 'contabai'); ?></div>
+    <div x-show="loading" x-cloak class="py-16 text-center text-sm text-neutral-500"><?php echo esc_html__('Loading...', 'contabai'); ?></div>
 </div>
 
 <?php if (! empty($printScript)): ?>
@@ -20,7 +26,7 @@
 document.addEventListener('alpine:init', function () {
     // Registered once per page; each [contabai_random_listings] instance passes its own
     // endpoint (?count=N) as the argument, so multiple strips fetch independently.
-    Alpine.data('contabaiRandomListings', function (endpoint) {
+    Alpine.data('contabaiRandomListings', function (endpoint, initial) {
         return {
             // Card rendering (photos carousel, labels, url, price) — shared with the listings grid.
             ...window.contabaiCardHelpers({
@@ -30,9 +36,20 @@ document.addEventListener('alpine:init', function () {
             }),
 
             listings: [],
+            initial: initial || [],
             loading: false,
             error: '',
             endpoint: endpoint,
+
+            hydrate: function () {
+                let self = this;
+                let show = function () {
+                    if (! self.initial.length) { return; }
+                    self.listings = self.initial;
+                    self.initial = [];
+                };
+                if (document.readyState === 'complete') { show(); } else { window.addEventListener('load', show, { once: true }); setTimeout(show, 5000); }
+            },
 
             load: function () {
                 let self = this;

@@ -239,6 +239,10 @@ class ShortCodes
             $lockedFilters['city'] = $city;
         }
 
+        $filterKeys = ['country', 'city', 'area', 'from_date', 'till_date', 'guests', 'price_min', 'price_max', 'bedrooms', 'bathrooms', 'min_rating', 'sort', 'property_type', 'amenities'];
+        $cleanUrl = array_intersect(array_keys($_GET), $filterKeys) === [];
+        $initial = ['listings' => [], 'total' => 0, 'last_page' => 1];
+
         $scope = ListingController::hostScope();
         if ($scope['mode'] === 'empty') {
             $skeletonCount = 0;
@@ -247,10 +251,17 @@ class ShortCodes
             if ($scope['mode'] === 'host') {
                 $countQuery['host'] = $scope['host'];
             }
-            $countQuery['per_page'] = 1;
+            $countQuery['per_page'] = $cleanUrl ? $perPage : 1;
             [$countBody] = Helper::api('GET', '/sanctum/listings?' . http_build_query($countQuery));
             $total = (int) ($countBody['data']['total'] ?? 0);
             $skeletonCount = max(0, min($total, $perPage));
+            if ($cleanUrl) {
+                $initial = [
+                    'listings' => (array) ($countBody['data']['listings'] ?? []),
+                    'total' => $total,
+                    'last_page' => (int) ($countBody['data']['last_page'] ?? 1),
+                ];
+            }
         }
 
         [$body] = Helper::api('GET', '/sanctum/translation');
@@ -265,6 +276,7 @@ class ShortCodes
             'endpoint' => rest_url('contabai/v1/sanctum/listings'),
             'initialPerPage' => $perPage,
             'skeletonCount' => $skeletonCount,
+            'initial' => $initial,
             'propertyTypes' => $propertyTypes,
             'countries' => $countries,
             'amenitiesCatalogue' => $amenitiesCatalogue,
@@ -306,17 +318,32 @@ class ShortCodes
             }
         }
 
-        $propertyTypes = [];
-        $countries = [];
-        if (! $printed) {
+        static $labels = null;
+        if ($labels === null) {
             [$body] = Helper::api('GET', '/sanctum/translation');
             $translation = $body['data']['translations'] ?? [];
             $currentLang = Helper::currentLang();
-            $propertyTypes = $translation[$currentLang]['property_types'] ?? $translation['en']['property_types'] ?? [];
-            $countries = $translation[$currentLang]['countries'] ?? $translation['en']['countries'] ?? [];
+            $labels = [
+                'propertyTypes' => $translation[$currentLang]['property_types'] ?? $translation['en']['property_types'] ?? [],
+                'countries' => $translation[$currentLang]['countries'] ?? $translation['en']['countries'] ?? [],
+            ];
+        }
+        $propertyTypes = $labels['propertyTypes'];
+        $countries = $labels['countries'];
+
+        $initial = [];
+        $scope = ListingController::hostScope();
+        if ($scope['mode'] !== 'empty') {
+            $serverQuery = $query;
+            if ($scope['mode'] === 'host') {
+                $serverQuery['host'] = $scope['host'];
+            }
+            [$randomBody] = Helper::api('GET', '/sanctum/listings/random?' . http_build_query($serverQuery));
+            $initial = (array) ($randomBody['data']['listings'] ?? []);
         }
 
         $out = View::render('listing.random', [
+            'initial' => $initial,
             'endpoint' => rest_url('contabai/v1/sanctum/listings/random') . '?' . http_build_query($query),
             'propertyTypes' => $propertyTypes,
             'countries' => $countries,

@@ -321,7 +321,35 @@ ob_start();
                     <?php else: ?>
                         <?php ?>
                         <div x-data="contabaiReviews()">
+                            <?php if ($reviewRecent): ?>
+                            <ul x-show="! reviews.length" class="flex flex-col gap-5 !m-0 !list-none !p-0">
+                                <?php foreach ($reviewRecent as $review): ?>
+                                    <li>
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <span class="font-semibold text-neutral-900"><?php echo esc_html((string) ($review['reviewer']['nickname'] ?? '')); ?></span>
+                                            <span class="inline-flex items-center gap-0.5" role="img">
+                                                <?php for ($star = 1; $star <= 5; $star++): ?>
+                                                    <span class="<?php echo $star <= (int) ($review['rating'] ?? 0) ? 'text-amber-400' : 'text-neutral-300'; ?>"><?php echo \Contabai\Heroicon::solid('star', 'w-4 h-4'); ?></span>
+                                                <?php endfor; ?>
+                                            </span>
+                                        </div>
+                                        <div class="text-xs text-neutral-400" x-text="fmtDate('<?php echo esc_attr((string) $review['created_at']); ?>')"><?php echo esc_html(wp_date(get_option('date_format'), strtotime((string) $review['created_at']))); ?></div>
+                                        <?php if (! empty($review['body'])): ?>
+                                            <p class="mt-1 text-sm text-neutral-700"><?php echo esc_html((string) $review['body']); ?></p>
+                                        <?php endif; ?>
+                                        <?php if (! empty($review['reply'])): ?>
+                                            <div class="mt-3 ml-4 rounded-xl border-l-2 border-neutral-200 bg-neutral-50 px-4 py-3">
+                                                <div class="font-semibold text-neutral-900"><?php echo esc_html__('Reply from the host', 'contabai'); ?></div>
+                                                <div class="text-xs text-neutral-400" x-text="fmtDate('<?php echo esc_attr((string) $review['replied_at']); ?>')"><?php echo esc_html(wp_date(get_option('date_format'), strtotime((string) $review['replied_at']))); ?></div>
+                                                <p class="mt-1 text-sm text-neutral-700 whitespace-pre-line"><?php echo esc_html((string) $review['reply']); ?></p>
+                                            </div>
+                                        <?php endif; ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php else: ?>
                             <div x-show="loading && reviews.length === 0" class="py-6 text-center text-sm text-neutral-400"><?php echo esc_html__('Loading…', 'contabai'); ?></div>
+                            <?php endif; ?>
                             <ul x-show="reviews.length > 0" class="flex flex-col gap-5 !m-0 !list-none !p-0">
                                 <template x-for="r in reviews" x-bind:key="r.id">
                                     <li>
@@ -495,13 +523,13 @@ ob_start();
                 loading: false,
                 reviews: [],
                 currentPage: 1,
-                lastPage: 1,
-                total: 0,
+                lastPage: <?php echo $reviewRecent ? (int) ceil($reviewCount / $reviewsPerPage) : 1; ?>,
+                total: <?php echo $reviewRecent ? $reviewCount : 0; ?>,
                 perPage: <?php echo (int) $reviewsPerPage; ?>,
                 endpoint: '<?php echo esc_js($reviewsEndpoint); ?>',
                 locale: '<?php echo esc_js(\Contabai\Helper::currentLang()); ?>',
                 labels: { loadError: '<?php echo esc_js(__('Could not load the reviews.', 'contabai')); ?>' },
-                init: function () { this.load(1); },
+                init: function () { if (! this.total) { this.load(1); } },
                 load: function (page) {
                     let self = this;
                     self.loading = true;

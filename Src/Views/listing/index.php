@@ -11,7 +11,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
 <div class="mx-auto w-full max-w-7xl px-4 pt-8"><?php echo $searchBar; ?></div>
 <?php endif; ?>
 
-<div x-data="contabaiListings()" x-init="readFilters(); setupResponsive(); load(1)" class="mx-auto w-full max-w-7xl px-4 py-8 lg:flex lg:gap-8">
+<div x-data="contabaiListings()" x-init="readFilters(); setupResponsive(); initialListings.length ? hydrate() : load(1)" class="mx-auto w-full max-w-7xl px-4 py-8 lg:flex lg:gap-8">
 
     <aside class="mb-6 lg:mb-0 lg:w-64 lg:shrink-0">
         <button type="button" x-on:click="railOpen = true"
@@ -195,7 +195,10 @@ $bedBathOptions = ['1', '2', '3', '4'];
             <p class="mb-6 rounded-md bg-red-50 p-4 text-sm text-red-700" x-text="error"></p>
         </template>
 
-        <div class="contabai-listings-grid" x-show="loading && listings.length === 0">
+        <div class="contabai-listings-grid" x-show="<?php echo $initial['listings'] ? 'initialListings.length > 0' : 'loading && listings.length === 0'; ?>">
+            <?php if ($initial['listings']): ?>
+                <?php foreach ($initial['listings'] as $item) { include __DIR__ . '/../components/listing-card-static.php'; } ?>
+            <?php else: ?>
             <?php for ($skeleton = 0; $skeleton < (int) $skeletonCount; $skeleton++) : ?>
                 <div class="animate-pulse">
                     <div class="aspect-[4/3] rounded-2xl bg-neutral-100"></div>
@@ -208,6 +211,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
                     </div>
                 </div>
             <?php endfor; ?>
+            <?php endif; ?>
         </div>
 
         <div class="contabai-listings-grid" x-show="listings.length > 0" x-cloak>
@@ -218,7 +222,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
             </template>
         </div>
 
-        <template x-if="listings.length === 0 && !loading && !error">
+        <template x-if="listings.length === 0 && !loading && !error && !initialListings.length">
             <p class="py-16 text-center text-neutral-500"><?php echo esc_html__('No listings found.', 'contabai'); ?></p>
         </template>
 
@@ -240,9 +244,10 @@ document.addEventListener('alpine:init', function () {
             }),
 
             listings: [],
+            initialListings: <?php echo wp_json_encode($initial['listings'], JSON_HEX_TAG); ?>,
             currentPage: 1,
-            lastPage: 1,
-            total: 0,
+            lastPage: <?php echo (int) $initial['last_page']; ?>,
+            total: <?php echo (int) $initial['total']; ?>,
             perPage: <?php echo (int) $initialPerPage; ?>,
             loading: false,
             error: '',
@@ -353,8 +358,21 @@ document.addEventListener('alpine:init', function () {
                 return total + ' ' + (total === 1 ? '<?php echo esc_js(__('place', 'contabai')); ?>' : '<?php echo esc_js(__('places', 'contabai')); ?>');
             },
 
+            // Server-rendered first page: show it once the page (header photo included) has loaded,
+            // so the card photos don't compete with the LCP image for bandwidth.
+            hydrate: function () {
+                let self = this;
+                let show = function () {
+                    if (! self.initialListings.length) { return; }
+                    self.listings = self.initialListings;
+                    self.initialListings = [];
+                };
+                if (document.readyState === 'complete') { show(); } else { window.addEventListener('load', show, { once: true }); setTimeout(show, 5000); }
+            },
+
             load: function (page) {
                 let self = this;
+                self.initialListings = [];
                 self.loading = true;
                 self.error = '';
                 let params = new URLSearchParams();
