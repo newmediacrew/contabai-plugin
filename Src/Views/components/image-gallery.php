@@ -22,17 +22,25 @@ if (! empty($typeLabel)) {
         lbOpen: false, lbIndex: 0,
         lbShow(i) { this.lbIndex = i; this.lbOpen = true; },
         heroIndex: 0,
+        heroReady: false,
         lbNext() { this.lbIndex = (this.lbIndex + 1) % this.images.length; },
         lbPrev() { this.lbIndex = (this.lbIndex - 1 + this.images.length) % this.images.length; }
      }'>
 
     <?php if (! empty($galleryHero)): ?>
         <section class="contabai-listing-hero relative isolate flex items-end overflow-hidden text-white"
-                 x-init="if (images.length > 1 && ! window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setInterval(() => { if (! lbOpen) { heroIndex = (heroIndex + 1) % images.length; } }, 6000); }">
-            <?php foreach ($photos as $i => $p): ?>
-                <img src="<?php echo esc_url($p['hero_large'] ?? $p['hero'] ?? $p['medium'] ?? ''); ?>" alt="<?php echo esc_attr($p['alt'] ?? ''); ?>"
-                     <?php if (! empty($p['hero']) && ! empty($p['hero_large'])): ?>srcset="<?php echo esc_url($p['hero']); ?> 1920w, <?php echo esc_url($p['hero_large']); ?> 2560w" sizes="100vw"<?php endif; ?>
-                     <?php echo $i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'; ?>
+                 x-init="let start = () => { if (images.length > 1 && ! window.matchMedia('(prefers-reduced-motion: reduce)').matches) { heroReady = true; setInterval(() => { if (! lbOpen) { heroIndex = (heroIndex + 1) % images.length; } }, 6000); } }; document.readyState === 'complete' ? start() : window.addEventListener('load', start, { once: true });">
+            <?php foreach ($photos as $i => $p):
+                $heroSrc    = esc_url($p['hero_large'] ?? $p['hero'] ?? $p['medium'] ?? '');
+                $heroSrcset = (! empty($p['hero']) && ! empty($p['hero_large'])) ? esc_url($p['hero']) . ' 1920w, ' . esc_url($p['hero_large']) . ' 2560w' : '';
+            ?>
+                <?php if ($i === 0): ?>
+                <img src="<?php echo $heroSrc; ?>"<?php if ($heroSrcset): ?> srcset="<?php echo $heroSrcset; ?>"<?php endif; ?> fetchpriority="high"
+                <?php else: ?>
+                <img data-src="<?php echo $heroSrc; ?>"<?php if ($heroSrcset): ?> data-srcset="<?php echo $heroSrcset; ?>"<?php endif; ?>
+                     x-bind:srcset="heroReady ? ($el.dataset.srcset || null) : null" x-bind:src="heroReady ? $el.dataset.src : null"
+                <?php endif; ?>
+                     <?php if ($heroSrcset): ?>sizes="100vw"<?php endif; ?> alt="<?php echo esc_attr($p['alt'] ?? ''); ?>"
                      x-bind:class="heroIndex === <?php echo (int) $i; ?> ? 'opacity-100' : 'opacity-0'"
                      class="contabai-listing-hero-img absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-1000<?php echo $i === 0 ? '' : ' opacity-0'; ?>">
             <?php endforeach; ?>
@@ -113,7 +121,7 @@ if (! empty($typeLabel)) {
              x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
              class="fixed inset-0 z-[99] flex select-none items-center justify-center bg-black/80">
             <div class="relative inline-flex" x-on:click.stop>
-                <img x-bind:src="images[lbIndex] ? (images[lbIndex].hero_large || images[lbIndex].hero || images[lbIndex].medium) : ''" x-bind:alt="images[lbIndex] ? images[lbIndex].alt : ''" class="max-h-[90vh] max-w-[92vw] rounded-2xl object-contain">
+                <img x-bind:src="lbOpen && images[lbIndex] ? (images[lbIndex].hero_large || images[lbIndex].hero || images[lbIndex].medium) : ''" x-bind:alt="images[lbIndex] ? images[lbIndex].alt : ''" class="max-h-[90vh] max-w-[92vw] rounded-2xl object-contain">
                 <button type="button" x-show="images.length > 1" x-on:click.stop="lbPrev()" aria-label="<?php esc_attr_e('Previous', 'contabai'); ?>"
                         class="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/60"><?php echo \Contabai\Heroicon::outline('chevron-left', 'w-4 h-4'); ?></button>
                 <button type="button" x-show="images.length > 1" x-on:click.stop="lbNext()" aria-label="<?php esc_attr_e('Next', 'contabai'); ?>"
