@@ -54,20 +54,13 @@ window.contabaiCardHelpers = window.contabaiCardHelpers || function (config) {
                 .replace(/(^-+|-+$)/g, '');
         },
         priceLabel: function (listing) {
-            let amount = (listing.from_price_cents || 0) / 100;
-            let code = listing.currency || 'EUR';
-            try {
-                return new Intl.NumberFormat(undefined, { style: 'currency', currency: code, currencyDisplay: 'code' }).format(amount);
-            } catch (error) {
-                return code + ' ' + amount.toFixed(2);
-            }
+            return (listing.currency || 'EUR') + ' ' + ((listing.from_price_cents || 0) / 100).toFixed(2);
         },
         reviewCount: function (listing) {
             return (listing.reviews && listing.reviews.count) || 0;
         },
         ratingLabel: function (listing) {
-            let average = Number((listing.reviews && listing.reviews.average) || 0);
-            return new Intl.NumberFormat(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(average);
+            return Number((listing.reviews && listing.reviews.average) || 0).toFixed(1);
         },
         reviewsLabel: function (listing) {
             let count = this.reviewCount(listing);

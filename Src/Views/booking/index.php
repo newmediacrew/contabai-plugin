@@ -46,10 +46,10 @@ $rateLabel = function (array $cost) use ($listing): string {
     $amount = (int) ($cost['amount_cents'] ?? 0);
 
     if (strpos($unit, 'percent_') === 0) {
-        return rtrim(rtrim(number_format($amount / 100, 2, '.', ''), '0'), '.') . '%';
+        return number_format($amount / 100, 2, '.', '') . '%';
     }
 
-    return (string) ($listing['currency'] ?? '') . ' ' . number_format($amount / 100, 2);
+    return (string) ($listing['currency'] ?? '') . ' ' . number_format($amount / 100, 2, '.', '');
 };
 
 $maxGuests = (int) ($listing['max_guests'] ?? 0);
@@ -344,7 +344,6 @@ document.addEventListener('alpine:init', function () {
             maxGuests: <?php echo (int) $maxGuests; ?>,
             basePriceGuests: <?php echo (int) ($listing['base_price_guests'] ?? 0); ?>,
             currency: '<?php echo esc_js((string) ($listing['currency'] ?? 'EUR')); ?>',
-            locale: '<?php echo esc_js(\Contabai\Helper::currentLang()); ?>',
             arrival: '<?php echo esc_js($arrival); ?>',
             departure: '<?php echo esc_js($departure); ?>',
             sessionEndpoint: '<?php echo esc_js($sessionEndpoint); ?>',
@@ -597,9 +596,7 @@ document.addEventListener('alpine:init', function () {
 
             money: function (cents) {
                 if (cents === null || cents === undefined) { return ''; }
-                let code = this.currency || 'EUR';
-                try { return new Intl.NumberFormat(this.locale, { style: 'currency', currency: code, currencyDisplay: 'code' }).format(cents / 100); }
-                catch (e) { return code + ' ' + (cents / 100).toFixed(2); }
+                return (this.currency || 'EUR') + ' ' + (cents / 100).toFixed(2);
             }
         };
     });

@@ -311,12 +311,7 @@ document.addEventListener('alpine:init', function () {
             },
             money: function (cents, currency) {
                 if (cents === null || cents === undefined) return '';
-                let code = currency || 'EUR';
-                try {
-                    return new Intl.NumberFormat(undefined, { style: 'currency', currency: code, currencyDisplay: 'code' }).format(cents / 100);
-                } catch (e) {
-                    return code + ' ' + (cents / 100).toFixed(2);
-                }
+                return (currency || 'EUR') + ' ' + (cents / 100).toFixed(2);
             }
         };
     });

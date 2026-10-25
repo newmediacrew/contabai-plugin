@@ -18,7 +18,7 @@ $itemReviews = (int) ($item['reviews']['count'] ?? 0);
         <p class="mt-1 flex items-center gap-1 text-sm text-neutral-500">
             <?php if ($itemReviews > 0): ?>
                 <span class="text-amber-400"><?php echo \Contabai\Heroicon::solid('star', 'w-4 h-4'); ?></span>
-                <span class="font-medium text-neutral-900"><?php echo esc_html(number_format_i18n((float) $item['reviews']['average'], 1)); ?></span>
+                <span class="font-medium text-neutral-900"><?php echo esc_html(number_format((float) $item['reviews']['average'], 1, '.', '')); ?></span>
                 <span class="truncate">· <?php echo esc_html(sprintf(_n('%d review', '%d reviews', $itemReviews, 'contabai'), $itemReviews)); ?></span>
             <?php else: ?>
                 <span class="truncate"><?php echo esc_html__('No reviews yet', 'contabai'); ?></span>
@@ -34,7 +34,7 @@ $itemReviews = (int) ($item['reviews']['count'] ?? 0);
         </div>
         <div class="mt-2 flex items-baseline gap-1">
             <span class="text-sm text-neutral-500"><?php echo esc_html__('from', 'contabai'); ?></span>
-            <span class="font-bold text-neutral-900"><?php echo esc_html(($item['currency'] ?? 'EUR') . ' ' . number_format_i18n(((int) ($item['from_price_cents'] ?? 0)) / 100, 2)); ?></span>
+            <span class="font-bold text-neutral-900"><?php echo esc_html(($item['currency'] ?? 'EUR') . ' ' . number_format(((int) ($item['from_price_cents'] ?? 0)) / 100, 2, '.', '')); ?></span>
             <span class="text-sm text-neutral-500"><?php echo esc_html__('/ night', 'contabai'); ?></span>
         </div>
     </a>

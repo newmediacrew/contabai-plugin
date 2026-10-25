@@ -29,7 +29,7 @@ $reviewRecent  = $reviews['recent'] ?? [];
 
 $currency = $listing['currency'] ?? '';
 $priceLabel = function () use ($listing, $currency) {
-    $amount = number_format(((int) ($listing['from_price_cents'] ?? 0)) / 100, 2);
+    $amount = number_format(((int) ($listing['from_price_cents'] ?? 0)) / 100, 2, '.', '');
     return ($currency ? $currency . ' ' : '') . $amount;
 };
 
@@ -442,8 +442,8 @@ ob_start();
             $cLabel      = $c['label'] ?: ($labels['additional_cost_types'][$c['type_key']] ?? $c['type_key']);
             $isPercent   = strpos((string) $c['billing_unit'], 'percent_') === 0;
             $rate        = $isPercent
-                ? rtrim(rtrim(number_format(((int) $c['amount_cents']) / 100, 2), '0'), '.') . '%'
-                : $currency . ' ' . number_format(((int) $c['amount_cents']) / 100, 2);
+                ? number_format(((int) $c['amount_cents']) / 100, 2, '.', '') . '%'
+                : $currency . ' ' . number_format(((int) $c['amount_cents']) / 100, 2, '.', '');
             $unit        = $labels['cost_billing_units'][$c['billing_unit']] ?? $c['billing_unit'];
             $isPet       = ($c['type_key'] ?? '') === 'pet';
             $isExtra     = ($c['type_key'] ?? '') === 'extra_person' && isset($listing['base_price_guests']);
@@ -690,9 +690,7 @@ ob_start();
                 },
                 money: function (cents) {
                     if (cents === null || cents === undefined) return '';
-                    let code = this.currency || 'EUR';
-                    try { return new Intl.NumberFormat(this.locale, { style: 'currency', currency: code, currencyDisplay: 'code' }).format(cents / 100); }
-                    catch (e) { return code + ' ' + (cents / 100).toFixed(2); }
+                    return (this.currency || 'EUR') + ' ' + (cents / 100).toFixed(2);
                 },
                 fetchQuote: function () {   // public base-only quote — accommodation + deposit, no party
                     let self = this;
@@ -761,7 +759,7 @@ ob_start();
             <div class="rounded-2xl border border-neutral-200 bg-white p-4 shadow-lg lg:col-span-3">
                 <div class="font-medium text-neutral-900"><?php echo esc_html__('Metered utilities', 'contabai'); ?></div>
                 <?php foreach ($listing['utility_rates'] as $u): ?>
-                    <div class="mt-1"><?php echo esc_html(($labels['utilities'][$u['utility']] ?? ucfirst((string) $u['utility'])) . ' · ' . $currency . ' ' . number_format(((int) $u['rate_cents']) / 100, 2) . ' / ' . $u['unit']); ?></div>
+                    <div class="mt-1"><?php echo esc_html(($labels['utilities'][$u['utility']] ?? ucfirst((string) $u['utility'])) . ' · ' . $currency . ' ' . number_format(((int) $u['rate_cents']) / 100, 2, '.', '') . ' / ' . $u['unit']); ?></div>
                 <?php endforeach; ?>
                 <div class="mt-1 text-xs text-neutral-400"><?php echo esc_html__('Read at check-out and settled from your deposit.', 'contabai'); ?></div>
             </div>
