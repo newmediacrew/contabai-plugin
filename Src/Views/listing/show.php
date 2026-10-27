@@ -469,9 +469,9 @@ ob_start();
         return (string) ob_get_clean();
     };
     ?>
-    <section class="mt-8">
-        <h2 class="mb-3 text-lg font-semibold text-neutral-900"><?php echo esc_html__('Availability', 'contabai'); ?></h2>
-        <div>
+    <section class="mt-3 rounded-2xl border border-neutral-200 bg-white shadow-sm">
+        <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Availability', 'contabai'); ?></h2>
+        <div class="border-t border-neutral-200 px-5 py-5">
             <div x-ref="cal"></div>
 
             <!-- Sticky booking bar — hidden until a valid range, then slides up (fixed, so DOM position here is fine) -->
