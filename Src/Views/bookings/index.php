@@ -50,7 +50,7 @@
                 <h2 x-text="detail.listing.title" class="text-2xl font-bold text-neutral-900"></h2>
                 <div class="mt-1 flex items-center gap-1 text-sm text-neutral-500">
                     <?php echo \Contabai\Heroicon::outline('map-pin', 'w-4 h-4'); ?>
-                    <span x-text="detail.listing.country_name || detail.listing.country"></span> · <span x-text="detail.listing.city_name || detail.listing.city"></span>
+                    <span x-text="detail.listing.country_name || detail.listing.country"></span> · <span x-text="detail.listing.region_name || detail.listing.region"></span>
                 </div>
                 <p class="mt-1 text-sm text-neutral-400"><?php echo esc_html__('Booking', 'contabai'); ?> #<span x-text="detail.id"></span></p>
 

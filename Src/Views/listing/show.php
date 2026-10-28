@@ -53,9 +53,9 @@ $crumbs = [
 if (! empty($listing['country'])) {
     $countryUrl = \Contabai\Controllers\LocationPagesController::permalink_for_key($listing['country']);
     $crumbs[] = ['label' => $listing['country_name'] ?? $listing['country'], 'url' => $countryUrl ?: null];
-    if (! empty($listing['city'])) {
-        $cityUrl = \Contabai\Controllers\LocationPagesController::permalink_for_key($listing['country'] . '/' . $listing['city']);
-        $crumbs[] = ['label' => $listing['city_name'] ?? $listing['city'], 'url' => $cityUrl ?: null];
+    if (! empty($listing['region'])) {
+        $regionUrl = \Contabai\Controllers\LocationPagesController::permalink_for_key($listing['country'] . '/' . $listing['region']);
+        $crumbs[] = ['label' => $listing['region_name'] ?? $listing['region'], 'url' => $regionUrl ?: null];
         if (! empty($listing['area'])) {
             $crumbs[] = ['label' => $listing['area_name'] ?? $listing['area'], 'url' => null];
         }
@@ -83,7 +83,7 @@ ob_start();
                 <span><?php echo esc_html(trim(implode(', ', array_filter([
                     $listing['address'] ?? '',
                     $listing['postcode'] ?? '',
-                    $listing['city_name'] ?? $listing['city'] ?? '',
+                    $listing['region_name'] ?? $listing['region'] ?? '',
                     $listing['country_name'] ?? $listing['country'] ?? '',
                 ])))); ?></span>
             </div>

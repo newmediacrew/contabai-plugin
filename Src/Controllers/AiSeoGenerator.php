@@ -155,8 +155,8 @@ class AiSeoGenerator
     {
 
         $key = (string) get_post_meta($page->ID, LocationPagesController::KEY_META, true);
-        [$country, $city] = array_pad(explode('/', $key), 2, '');
-        $grid = '[contabai_listings country="' . esc_attr($country) . '"' . ($city !== '' ? ' city="' . esc_attr($city) . '"' : '') . ']';
+        [$country, $region] = array_pad(explode('/', $key), 2, '');
+        $grid = '[contabai_listings country="' . esc_attr($country) . '"' . ($region !== '' ? ' region="' . esc_attr($region) . '"' : '') . ']';
         $article = wp_kses_post(self::strip_citations($obj['article_html'] ?? ''));
 
         wp_update_post([
@@ -181,29 +181,29 @@ class AiSeoGenerator
     private static function page_context(\WP_Post $page): array
     {
         $key = get_post_meta($page->ID, LocationPagesController::KEY_META, true);
-        [$countryCode, $cityCode] = array_pad(explode('/', (string) $key), 2, '');
-        $isCity = $cityCode !== '';
+        [$countryCode, $regionCode] = array_pad(explode('/', (string) $key), 2, '');
+        $isRegion = $regionCode !== '';
 
         [$locBody] = Helper::api('GET', '/sanctum/listings/locations');
         $tree        = $locBody['data']['locations'] ?? [];
         $country     = $tree[$countryCode] ?? [];
         $countryName = $country['name'] ?? $countryCode;
-        $cityName    = $isCity ? ($country['cities'][$cityCode]['name'] ?? $cityCode) : '';
+        $regionName  = $isRegion ? ($country['regions'][$regionCode]['name'] ?? $regionCode) : '';
 
         $nearby = [];
-        foreach (($country['cities'] ?? []) as $code => $c) {
-            if ($code !== $cityCode) {
-                $nearby[] = is_array($c) ? ($c['name'] ?? $code) : $c;
+        foreach (($country['regions'] ?? []) as $code => $r) {
+            if ($code !== $regionCode) {
+                $nearby[] = is_array($r) ? ($r['name'] ?? $code) : $r;
             }
         }
 
         return [
             '{{site_title}}'       => get_bloginfo('name'),
             '{{site_tagline}}'     => get_bloginfo('description'),
-            '{{target_location}}'  => $isCity ? $cityName : $countryName,
-            '{{target_type}}'      => $isCity ? 'city' : 'country',
+            '{{target_location}}'  => $isRegion ? $regionName : $countryName,
+            '{{target_type}}'      => $isRegion ? 'region' : 'country',
             '{{country}}'          => $countryName,
-            '{{city}}'             => $cityName,
+            '{{region}}'           => $regionName,
             '{{area}}'             => '',
             '{{nearby_locations}}' => implode(', ', $nearby),
         ];

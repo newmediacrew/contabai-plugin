@@ -194,11 +194,11 @@ class AiSeoRenderer
         if ($key === '') {
             return '';
         }
-        [$country, $city] = array_pad(explode('/', $key), 2, '');
+        [$country, $region] = array_pad(explode('/', $key), 2, '');
 
         $shortcode = '[contabai_listings country="' . esc_attr($country) . '"';
-        if ($city !== '') {
-            $shortcode .= ' city="' . esc_attr($city) . '"';
+        if ($region !== '') {
+            $shortcode .= ' region="' . esc_attr($region) . '"';
         }
         $shortcode .= ']';
 

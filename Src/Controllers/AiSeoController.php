@@ -106,17 +106,17 @@ Write like a knowledgeable local editor. The page must be easy for readers AND A
 
 PAGE CONTEXT — read first. This is the page you are writing.
 
-You are writing ONE page about: {{target_location}}  (a {{target_type}} — "country" or "city")
+You are writing ONE page about: {{target_location}}  (a {{target_type}} — "country" or "region")
 
 Hierarchy (never confuse; never drop the middle):
 - Country: {{country}}
-- City:    {{city}}      (empty if this page is a country)
+- Region:  {{region}}    (empty if this page is a country)
 - Area:    {{area}}      (currently always empty — no area pages)
-Correct: Palm Beach (area) → Noord (city) → Aruba (country); Willemstad (city) → Curaçao (country).
+Correct: Palm Beach (area) → Noord (region) → Aruba (country); Willemstad (region) → Curaçao (country).
 Nearby locations in {{country}}: {{nearby_locations}}
 
-- country page → overview of the country; link down to its cities; don't treat one city/area as the subject.
-- city page → guide to the city; compare/link to nearby cities and up to the country; don't invent an area.
+- country page → overview of the country; link down to its regions; don't treat one region/area as the subject.
+- region page → guide to the region; compare/link to nearby regions and up to the country; don't invent an area.
 
 WRITING BEHAVIOUR (concrete, not vague "optimize for E-E-A-T")
 - Open every section with a direct, factual answer to its implied question, then supporting detail.
@@ -170,7 +170,7 @@ Do NOT put in article_html: citations, URLs, links, footnotes, "according to …
 table. Those are separate fields below.
 
 INTERNAL LINKS — don't write URLs (you don't know the routes). Return link INTENT: anchor text,
-target_type (country | parent_city | nearby_city | listings), target_location, and a short reason.
+target_type (country | parent_region | nearby_region | listings), target_location, and a short reason.
 
 OUTPUT — return ONE JSON object, nothing else:
 
@@ -182,7 +182,7 @@ OUTPUT — return ONE JSON object, nothing else:
   "secondary_keywords": [],   // natural variants, not stuffing
   "entities": [],            // only entities that actually appear in article_html; never inferred; don't include {{target_location}} itself unless it appears naturally
   "schema_types": [],         // subset of: BreadcrumbList, FAQPage, Article, Place, TouristDestination, LodgingBusiness
-  "internal_links": [ { "anchor": "", "target_type": "country|parent_city|nearby_city|listings", "target_location": "", "reason": "" } ],
+  "internal_links": [ { "anchor": "", "target_type": "country|parent_region|nearby_region|listings", "target_location": "", "reason": "" } ],
   "related_locations": [],
   "best_areas": [ { "location": "", "relation": "", "best_for": "" } ],   // the "best areas near" comparison AS DATA
   "faq": [ { "question": "", "answer": "" } ]   // exactly 10; direct answers; must include:
@@ -271,7 +271,7 @@ PROMPT);
                 <tr>
                     <th scope="row"><label for="contabai_ai_seo_prompt"><?php esc_html_e('SEO prompt', 'contabai'); ?></label></th>
                     <td>
-                        <p class="description contabai-admin-tight"><?php esc_html_e('Sent to OpenAI per page. These placeholders are filled in automatically: {{site_title}}, {{site_tagline}}, {{target_location}}, {{target_type}}, {{country}}, {{city}}, {{area}}, {{nearby_locations}}.', 'contabai'); ?></p>
+                        <p class="description contabai-admin-tight"><?php esc_html_e('Sent to OpenAI per page. These placeholders are filled in automatically: {{site_title}}, {{site_tagline}}, {{target_location}}, {{target_type}}, {{country}}, {{region}}, {{area}}, {{nearby_locations}}.', 'contabai'); ?></p>
                         <textarea name="ai_seo_prompt" id="contabai_ai_seo_prompt" rows="26" class="large-text code"><?php echo esc_textarea($prompt); ?></textarea>
                     </td>
                 </tr>

@@ -391,7 +391,7 @@ class AiSeoQueueController
                     <tr>
                         <td>
                             <a href="<?php echo esc_url((string) get_edit_post_link($post->ID)); ?>"><?php echo esc_html(get_the_title($post)); ?></a>
-                            <span class="description"> · <?php echo $post->post_parent ? esc_html__('City', 'contabai') : esc_html__('Country', 'contabai'); ?></span>
+                            <span class="description"> · <?php echo $post->post_parent ? esc_html__('Region', 'contabai') : esc_html__('Country', 'contabai'); ?></span>
                         </td>
                         <td><code><?php echo esc_html(wp_make_link_relative(get_permalink($post->ID))); ?></code></td>
                         <td class="contabai-status" data-page="<?php echo (int) $post->ID; ?>"><?php echo esc_html(self::status_label($post->ID)); ?></td>

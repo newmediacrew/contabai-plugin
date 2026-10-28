@@ -1,6 +1,6 @@
 <?php
 $itemUrl     = \Contabai\Controllers\ListingRewriteController::listing_url($item);
-$itemPlace   = implode(' · ', array_filter([(string) ($item['country_name'] ?? ''), (string) ($item['city_name'] ?? ''), (string) ($item['area_name'] ?? '')]));
+$itemPlace   = implode(' · ', array_filter([(string) ($item['country_name'] ?? ''), (string) ($item['region_name'] ?? ''), (string) ($item['area_name'] ?? '')]));
 $itemReviews = (int) ($item['reviews']['count'] ?? 0);
 ?>
 <div class="group block">

@@ -9,10 +9,10 @@ class ListingRewriteController
     {
         $id = (int) ($listing['id'] ?? 0);
         $country = str_replace('_', '-', sanitize_title((string) ($listing['country_name'] ?? $listing['country'] ?? '')));
-        $city = str_replace('_', '-', sanitize_title((string) ($listing['city_name'] ?? $listing['city'] ?? '')));
+        $region = str_replace('_', '-', sanitize_title((string) ($listing['region_name'] ?? $listing['region'] ?? '')));
         $titleSlug = sanitize_title((string) ($listing['title'] ?? ''));
 
-        return home_url('/' . CONTABAI_LISTING_PAGE_SLUG . '/' . $country . '/' . $city . '/' . $titleSlug . '-' . $id);
+        return home_url('/' . CONTABAI_LISTING_PAGE_SLUG . '/' . $country . '/' . $region . '/' . $titleSlug . '-' . $id);
     }
 
     public function __construct()

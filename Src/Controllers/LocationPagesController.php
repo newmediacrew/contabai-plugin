@@ -86,21 +86,21 @@ class LocationPagesController
                 'path'       => $countrySlug,
                 'parent_key' => null,
                 'country'    => $countryCode,
-                'city'       => null,
+                'region'     => null,
             ];
 
-            foreach (($country['cities'] ?? []) as $cityCode => $city) {
-                $cityName = is_array($city) ? ($city['name'] ?? $cityCode) : $city;
-                $citySlug = sanitize_title($cityName);
-                $key = $countryCode . '/' . $cityCode;
+            foreach (($country['regions'] ?? []) as $regionCode => $region) {
+                $regionName = is_array($region) ? ($region['name'] ?? $regionCode) : $region;
+                $regionSlug = sanitize_title($regionName);
+                $key = $countryCode . '/' . $regionCode;
                 $nodes[$key] = [
                     'key'        => $key,
-                    'title'      => $cityName,
-                    'slug'       => $citySlug,
-                    'path'       => $countrySlug . '/' . $citySlug,
+                    'title'      => $regionName,
+                    'slug'       => $regionSlug,
+                    'path'       => $countrySlug . '/' . $regionSlug,
                     'parent_key' => $countryCode,
                     'country'    => $countryCode,
-                    'city'       => $cityCode,
+                    'region'     => $regionCode,
                 ];
             }
         }
@@ -253,8 +253,8 @@ class LocationPagesController
     private function create_page(array $node, int $parentId): int
     {
         $content = '[contabai_listings country="' . esc_attr($node['country']) . '"';
-        if (! empty($node['city'])) {
-            $content .= ' city="' . esc_attr($node['city']) . '"';
+        if (! empty($node['region'])) {
+            $content .= ' region="' . esc_attr($node['region']) . '"';
         }
         $content .= ']';
 
@@ -367,7 +367,7 @@ class LocationPagesController
             <?php endif; ?>
 
             <h2><?php esc_html_e('Location pages', 'contabai'); ?></h2>
-            <p class="contabai-admin-intro"><?php esc_html_e('Generates a nested page per country and city from the Laravel locations endpoint, each showing that location\'s listings. Only pages created by this tool are ever touched — your other pages are never modified. This view is a preview; nothing changes until you click the button.', 'contabai'); ?></p>
+            <p class="contabai-admin-intro"><?php esc_html_e('Generates a nested page per country and region from the Laravel locations endpoint, each showing that location\'s listings. Only pages created by this tool are ever touched — your other pages are never modified. This view is a preview; nothing changes until you click the button.', 'contabai'); ?></p>
 
             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                 <input type="hidden" name="action" value="contabai_save_location_countries">
@@ -425,7 +425,7 @@ class LocationPagesController
                             <?php foreach ($plan['create'] as $node): ?>
                                 <tr>
                                     <td><?php echo esc_html($node['title']); ?></td>
-                                    <td><?php echo $node['parent_key'] === null ? esc_html__('Country', 'contabai') : esc_html__('City', 'contabai'); ?></td>
+                                    <td><?php echo $node['parent_key'] === null ? esc_html__('Country', 'contabai') : esc_html__('Region', 'contabai'); ?></td>
                                     <td><code><?php echo esc_html(wp_make_link_relative(home_url('/' . $node['path'] . '/'))); ?></code></td>
                                 </tr>
                             <?php endforeach; ?>
@@ -447,7 +447,7 @@ class LocationPagesController
                             <?php foreach ($plan['trash'] as $post): ?>
                                 <tr>
                                     <td><a href="<?php echo esc_url((string) get_edit_post_link($post->ID)); ?>"><?php echo esc_html(get_the_title($post)); ?></a></td>
-                                    <td><?php echo $post->post_parent ? esc_html__('City', 'contabai') : esc_html__('Country', 'contabai'); ?></td>
+                                    <td><?php echo $post->post_parent ? esc_html__('Region', 'contabai') : esc_html__('Country', 'contabai'); ?></td>
                                     <td><code><?php echo esc_html(wp_make_link_relative(get_permalink($post->ID))); ?></code></td>
                                 </tr>
                             <?php endforeach; ?>

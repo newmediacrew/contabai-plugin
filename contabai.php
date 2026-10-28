@@ -3,7 +3,7 @@
 Plugin Name: Contabai
 Plugin URI: https://www.contabai.network
 Description: Contabai — property listings platform frontend for WordPress.
-Version: 1.2.21
+Version: 1.2.22
 Requires at least: 7.1
 Requires PHP: 8.3
 Tested up to: 7.1
@@ -306,7 +306,7 @@ add_action('admin_init', function () {
         function () {
             $value = get_option('contabai_listing_page_slug', 'contabai-listing');
             echo '<input type="text" name="contabai_listing_page_slug" value="' . esc_attr($value) . '" />';
-            echo '<p class="description">' . esc_html__('Base of the single-listing URL: /{slug}/{country}/{city}/{title}-{id}. After changing this, visit Settings → Permalinks → Save to refresh the rewrite.', 'contabai') . '</p>';
+            echo '<p class="description">' . esc_html__('Base of the single-listing URL: /{slug}/{country}/{region}/{title}-{id}. After changing this, visit Settings → Permalinks → Save to refresh the rewrite.', 'contabai') . '</p>';
         },
         'contabai-settings-basic',
         'contabai_basic_section'
@@ -399,8 +399,8 @@ function contabai_render_shortcodes_page(): void
                     <?php echo sprintf(esc_html__('Displays listings in a paginated grid. Use on the page with slug %s.', 'contabai'), '<b>' . esc_html(CONTABAI_LISTINGS_PAGE_SLUG) . '</b>'); ?>
                     <br><br>
                     <code>per_page</code> — <?php esc_html_e('(optional) Listings per page, 1–50. Default: 36', 'contabai'); ?><br>
-                    <code>country</code>, <code>city</code> — <?php esc_html_e('(optional) Lock the grid to a location (codes, e.g. cw / willemstad). Used by the auto-generated location pages.', 'contabai'); ?><br>
-                    <code>[contabai_listings country="cw" city="willemstad"]</code>
+                    <code>country</code>, <code>region</code> — <?php esc_html_e('(optional) Lock the grid to a location (codes, e.g. cw / willemstad). Used by the auto-generated location pages.', 'contabai'); ?><br>
+                    <code>[contabai_listings country="cw" region="willemstad"]</code>
                     <br><br>
                     <?php esc_html_e('Every grid puts a compact search bar above itself, filled in from the URL so a visitor can change the destination, dates or party without going back to the home page. On a location-locked grid the bar starts on that location.', 'contabai'); ?>
                 </td>
@@ -411,13 +411,13 @@ function contabai_render_shortcodes_page(): void
                     <?php esc_html_e('Shows a grid of random active listings (fresh on each load). Place on any page; you can use it multiple times. (Not auto-created — add it yourself.)', 'contabai'); ?>
                     <br><br>
                     <code>count</code> — <?php esc_html_e('(optional) How many listings to show (1–50). Default: 8', 'contabai'); ?><br><br>
-                    <?php esc_html_e('Optional filters (all fixed for this placement): country, city, area, guests, bedrooms, bathrooms, price_min, price_max (prices in cents, e.g. 20000 = 200.00), and comma-separated property_type and amenities.', 'contabai'); ?><br>
+                    <?php esc_html_e('Optional filters (all fixed for this placement): country, region, area, guests, bedrooms, bathrooms, price_min, price_max (prices in cents, e.g. 20000 = 200.00), and comma-separated property_type and amenities.', 'contabai'); ?><br>
                     <code>[contabai_random_listings count="6" country="cw" property_type="apartment,villa" price_max="20000"]</code>
                 </td>
             </tr>
             <tr>
                 <td><code>[contabai_listing]</code></td>
-                <td><?php echo sprintf(esc_html__('Renders a single listing detail page. Use on the page with slug %1$s. The listing is looked up by the trailing integer id in the URL /%2$s/{country}/{city}/{title}-{id}.', 'contabai'), '<b>' . esc_html(CONTABAI_LISTING_PAGE_SLUG) . '</b>', esc_html(CONTABAI_LISTING_PAGE_SLUG)); ?></td>
+                <td><?php echo sprintf(esc_html__('Renders a single listing detail page. Use on the page with slug %1$s. The listing is looked up by the trailing integer id in the URL /%2$s/{country}/{region}/{title}-{id}.', 'contabai'), '<b>' . esc_html(CONTABAI_LISTING_PAGE_SLUG) . '</b>', esc_html(CONTABAI_LISTING_PAGE_SLUG)); ?></td>
             </tr>
             <tr>
                 <td><code>[contabai_search]</code></td>
@@ -425,7 +425,7 @@ function contabai_render_shortcodes_page(): void
                     <br><br>
                     <code>results</code> — <?php echo sprintf(esc_html__('(optional) Where the search submits to. Default: the %s page.', 'contabai'), '<b>' . esc_html(CONTABAI_LISTINGS_PAGE_SLUG) . '</b>'); ?><br>
                     <code>compact</code> — <?php esc_html_e('(optional) A tighter, narrower bar for above a results grid. Set it to 1. The grid shortcode already does this for you.', 'contabai'); ?><br>
-                    <code>country</code>, <code>city</code> — <?php esc_html_e('(optional) Location keys to preselect in Where when the URL has none (e.g. country="cw" city="willemstad"). The grid shortcode passes its own location on location pages.', 'contabai'); ?><br>
+                    <code>country</code>, <code>region</code> — <?php esc_html_e('(optional) Location keys to preselect in Where when the URL has none (e.g. country="cw" region="willemstad"). The grid shortcode passes its own location on location pages.', 'contabai'); ?><br>
                     <code>[contabai_search results="https://example.com/holiday-homes"]</code>
                     <br><br>
                     <?php esc_html_e('The bar reads the URL on load, so wherever it sits it opens showing the destination, dates and party the visitor already chose.', 'contabai'); ?></td>

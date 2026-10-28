@@ -3,33 +3,33 @@
 $searchIndex = [];
 foreach (($locations ?? []) as $countryKey => $country) {
     $countryName = (string) ($country['name'] ?? $countryKey);
-    $cities = $country['cities'] ?? [];
+    $regions = $country['regions'] ?? [];
     $searchIndex[] = [
         'kind' => 'country',
         'label' => $countryName,
-        'sub' => sprintf(_n('%d city', '%d cities', count($cities), 'contabai'), count($cities)),
+        'sub' => sprintf(_n('%d region', '%d regions', count($regions), 'contabai'), count($regions)),
         'country' => $countryKey,
-        'city' => '',
+        'region' => '',
         'area' => '',
     ];
-    foreach ($cities as $cityKey => $city) {
-        $cityName = (string) ($city['name'] ?? $cityKey);
-        $areas = $city['areas'] ?? [];
+    foreach ($regions as $regionKey => $region) {
+        $regionName = (string) ($region['name'] ?? $regionKey);
+        $areas = $region['areas'] ?? [];
         $searchIndex[] = [
-            'kind' => 'city',
-            'label' => $cityName,
+            'kind' => 'region',
+            'label' => $regionName,
             'sub' => $countryName,
             'country' => $countryKey,
-            'city' => $cityKey,
+            'region' => $regionKey,
             'area' => '',
         ];
         foreach ($areas as $areaKey => $areaName) {
             $searchIndex[] = [
                 'kind' => 'area',
                 'label' => (string) $areaName,
-                'sub' => $cityName . ', ' . $countryName,
+                'sub' => $regionName . ', ' . $countryName,
                 'country' => $countryKey,
-                'city' => $cityKey,
+                'region' => $regionKey,
                 'area' => $areaKey,
             ];
         }
@@ -130,7 +130,7 @@ $durations = [
                    placeholder="<?php echo esc_attr__('Search destinations', 'contabai'); ?>"
                    class="mb-3 h-10 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2">
             <div class="max-h-72 overflow-y-auto">
-                <template x-for="item in matches()" x-bind:key="item.country + '/' + item.city + '/' + item.area">
+                <template x-for="item in matches()" x-bind:key="item.country + '/' + item.region + '/' + item.area">
                     <button type="button" x-on:click="pickWhere(item)"
                             class="flex w-full items-center gap-3 rounded-md px-2 py-2 text-left transition hover:bg-neutral-50">
                         <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 text-neutral-500">
@@ -256,7 +256,7 @@ document.addEventListener('alpine:init', function () {
 
             q: '',
             country: '',
-            city: '',
+            region: '',
             area: '',
             whereLabel: '',
 
@@ -296,7 +296,7 @@ document.addEventListener('alpine:init', function () {
 
             pickWhere: function (item) {
                 this.country = item.country;
-                this.city = item.city;
+                this.region = item.region;
                 this.area = item.area;
                 this.whereLabel = item.label;
                 this.q = '';
@@ -305,7 +305,7 @@ document.addEventListener('alpine:init', function () {
             },
 
             clearWhere: function () {
-                this.country = ''; this.city = ''; this.area = ''; this.whereLabel = ''; this.q = '';
+                this.country = ''; this.region = ''; this.area = ''; this.whereLabel = ''; this.q = '';
             },
 
             clearAll: function () {
@@ -451,7 +451,7 @@ document.addEventListener('alpine:init', function () {
             params: function (withState) {
                 let searchParams = new URLSearchParams();
                 if (this.country) { searchParams.set('country', this.country); }
-                if (this.city) { searchParams.set('city', this.city); }
+                if (this.region) { searchParams.set('region', this.region); }
                 if (this.area) { searchParams.set('area', this.area); }
                 if (this.fromDate && this.tillDate) {
                     searchParams.set('from_date', this.fromDate);
@@ -473,11 +473,11 @@ document.addEventListener('alpine:init', function () {
                     return isNaN(value) ? fallback : value;
                 };
 
-                let fromUrl = queryParams.get('country') || queryParams.get('city') || queryParams.get('area');
+                let fromUrl = queryParams.get('country') || queryParams.get('region') || queryParams.get('area');
                 this.country = (fromUrl ? queryParams.get('country') : this.preset.country) || '';
-                this.city = (fromUrl ? queryParams.get('city') : this.preset.city) || '';
+                this.region = (fromUrl ? queryParams.get('region') : this.preset.region) || '';
                 this.area = (fromUrl ? queryParams.get('area') : '') || '';
-                if (this.country || this.city || this.area) { this.whereLabel = this.labelForKeys(); }
+                if (this.country || this.region || this.area) { this.whereLabel = this.labelForKeys(); }
 
                 let from = queryParams.get('from_date') || '';
                 let till = queryParams.get('till_date') || '';
@@ -495,7 +495,7 @@ document.addEventListener('alpine:init', function () {
             labelForKeys: function () {
                 let self = this;
                 let hit = this.index.find(function (entry) {
-                    return entry.country === self.country && entry.city === self.city && entry.area === self.area;
+                    return entry.country === self.country && entry.region === self.region && entry.area === self.area;
                 });
                 return hit ? hit.label : '';
             },

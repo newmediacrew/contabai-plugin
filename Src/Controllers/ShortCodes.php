@@ -171,7 +171,7 @@ class ShortCodes
             'results' => home_url('/' . CONTABAI_LISTINGS_PAGE_SLUG),
             'compact' => '',
             'country' => '',
-            'city' => '',
+            'region' => '',
         ], $atts, 'contabai_search');
 
         $this->enqueue_calendar();
@@ -190,7 +190,7 @@ class ShortCodes
             'compact' => (string) $atts['compact'] !== '' && $atts['compact'] !== '0',
             'preset' => [
                 'country' => sanitize_text_field((string) $atts['country']),
-                'city' => sanitize_text_field((string) $atts['city']),
+                'region' => sanitize_text_field((string) $atts['region']),
             ],
         ]);
 
@@ -226,20 +226,20 @@ class ShortCodes
 
     public function render_listings($atts = []): string
     {
-        $atts = shortcode_atts(['per_page' => 36, 'country' => '', 'city' => ''], $atts, 'contabai_listings');
+        $atts = shortcode_atts(['per_page' => 36, 'country' => '', 'region' => ''], $atts, 'contabai_listings');
         $perPage = min(max(absint($atts['per_page']), 1), 50);
 
         $lockedFilters = [];
         $country = sanitize_text_field($atts['country']);
-        $city = sanitize_text_field($atts['city']);
+        $region = sanitize_text_field($atts['region']);
         if ($country !== '') {
             $lockedFilters['country'] = $country;
         }
-        if ($city !== '') {
-            $lockedFilters['city'] = $city;
+        if ($region !== '') {
+            $lockedFilters['region'] = $region;
         }
 
-        $filterKeys = ['country', 'city', 'area', 'from_date', 'till_date', 'guests', 'price_min', 'price_max', 'bedrooms', 'bathrooms', 'min_rating', 'sort', 'property_type', 'amenities'];
+        $filterKeys = ['country', 'region', 'area', 'from_date', 'till_date', 'guests', 'price_min', 'price_max', 'bedrooms', 'bathrooms', 'min_rating', 'sort', 'property_type', 'amenities'];
         $cleanUrl = array_intersect(array_keys($_GET), $filterKeys) === [];
         $initial = ['listings' => [], 'total' => 0, 'last_page' => 1];
 
@@ -284,7 +284,7 @@ class ShortCodes
             'popularAmenities' => ['wifi', 'air_conditioning', 'pool', 'pets_allowed', 'free_parking_on_premises', 'beach_access', 'waterfront', 'washer', 'hot_tub', 'bbq_grill'],
             'detailBase' => home_url('/' . CONTABAI_LISTING_PAGE_SLUG . '/'),
             'lockedFilters' => $lockedFilters,
-            'searchBar' => $this->render_search(['compact' => '1', 'country' => $country, 'city' => $city]),
+            'searchBar' => $this->render_search(['compact' => '1', 'country' => $country, 'region' => $region]),
         ]);
     }
 
@@ -294,13 +294,13 @@ class ShortCodes
 
         $atts = shortcode_atts([
             'count' => 8,
-            'country' => '', 'city' => '', 'area' => '',
+            'country' => '', 'region' => '', 'area' => '',
             'property_type' => '', 'amenities' => '',
             'guests' => '', 'bedrooms' => '', 'bathrooms' => '', 'price_min' => '', 'price_max' => '',
         ], $atts, 'contabai_random_listings');
 
         $query = ['count' => min(max(absint($atts['count']), 1), 50)];
-        foreach (['country', 'city', 'area'] as $key) {
+        foreach (['country', 'region', 'area'] as $key) {
             $value = sanitize_text_field((string) $atts[$key]);
             if ($value !== '') {
                 $query[$key] = $value;

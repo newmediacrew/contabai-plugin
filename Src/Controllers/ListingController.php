@@ -87,7 +87,7 @@ class ListingController
     {
         $query = [];
 
-        foreach (['country', 'city', 'area', 'from_date', 'till_date'] as $key) {
+        foreach (['country', 'region', 'area', 'from_date', 'till_date'] as $key) {
             $value = sanitize_text_field((string) $request->get_param($key));
             if ($value !== '') {
                 $query[$key] = $value;
@@ -176,7 +176,7 @@ class ListingController
 
         $query = ['count' => min(max(absint($request->get_param('count') ?: 12), 1), 50)];
 
-        foreach (['country', 'city', 'area'] as $key) {
+        foreach (['country', 'region', 'area'] as $key) {
             $value = sanitize_text_field((string) $request->get_param($key));
             if ($value !== '') {
                 $query[$key] = $value;

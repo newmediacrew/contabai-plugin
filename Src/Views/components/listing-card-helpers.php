@@ -23,25 +23,25 @@ window.contabaiCardHelpers = window.contabaiCardHelpers || function (config) {
             let countryData = this.countries[listing.country];
             return (countryData && countryData.name) || listing.country;
         },
-        cityName: function (listing) {
-            if (listing.city_name) return listing.city_name;
+        regionName: function (listing) {
+            if (listing.region_name) return listing.region_name;
             let countryData = this.countries[listing.country];
-            let city = countryData && countryData.cities && countryData.cities[listing.city];
-            return (city && city.name) || listing.city;
+            let region = countryData && countryData.regions && countryData.regions[listing.region];
+            return (region && region.name) || listing.region;
         },
         areaName: function (listing) {
             if (listing.area_name) return listing.area_name;
             let countryData = this.countries[listing.country];
-            let city = countryData && countryData.cities && countryData.cities[listing.city];
-            let areas = city && city.areas;
+            let region = countryData && countryData.regions && countryData.regions[listing.region];
+            let areas = region && region.areas;
             return (areas && areas[listing.area]) || listing.area || '';
         },
         locationLabel: function (listing) {
-            return [this.countryName(listing), this.cityName(listing), this.areaName(listing)]
+            return [this.countryName(listing), this.regionName(listing), this.areaName(listing)]
                 .filter(Boolean).join(' · ');
         },
         detailUrl: function (listing) {
-            return this.detailBase + this.slugify(listing.country_name || listing.country).replace(/_/g, '-') + '/' + this.slugify(listing.city_name || listing.city).replace(/_/g, '-') + '/' + this.slugify(listing.title) + '-' + listing.id;
+            return this.detailBase + this.slugify(listing.country_name || listing.country).replace(/_/g, '-') + '/' + this.slugify(listing.region_name || listing.region).replace(/_/g, '-') + '/' + this.slugify(listing.title) + '-' + listing.id;
         },
         slugify: function (text) {
             return (text || '').toString().toLowerCase()

@@ -272,7 +272,7 @@ document.addEventListener('alpine:init', function () {
                 let queryParams = new URLSearchParams(window.location.search);
                 let get = function (key) { let value = queryParams.get(key); return (value !== null && value !== '') ? value : ''; };
                 let base = {};
-                ['country', 'city', 'area', 'from_date', 'till_date', 'guests', 'price_min', 'price_max'].forEach(function (key) {
+                ['country', 'region', 'area', 'from_date', 'till_date', 'guests', 'price_min', 'price_max'].forEach(function (key) {
                     let value = get(key); if (value) { base[key] = value; }
                 });
                 this.baseFilters = Object.assign(base, this.lockedFilters);

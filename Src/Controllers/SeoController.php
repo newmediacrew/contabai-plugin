@@ -142,9 +142,9 @@ class SeoController
         }
 
         $title = $this->listing['title'] ?? '';
-        $city = $this->listing['city_name'] ?? $this->listing['city'] ?? '';
+        $region = $this->listing['region_name'] ?? $this->listing['region'] ?? '';
 
-        return $city ? $title . ' - ' . $city : $title;
+        return $region ? $title . ' - ' . $region : $title;
     }
 
     private function with_site_name(string $title): string

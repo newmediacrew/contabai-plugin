@@ -14,7 +14,7 @@
     </div>
     <div class="p-4">
         <h3 class="truncate font-semibold text-neutral-900" x-text="b.listing.title"></h3>
-        <p class="truncate text-sm text-neutral-500"><span x-text="b.listing.country_name || b.listing.country"></span> · <span x-text="b.listing.city_name || b.listing.city"></span></p>
+        <p class="truncate text-sm text-neutral-500"><span x-text="b.listing.country_name || b.listing.country"></span> · <span x-text="b.listing.region_name || b.listing.region"></span></p>
         <div class="mt-2 flex items-center gap-1 text-sm text-neutral-500">
             <?php echo \Contabai\Heroicon::outline('calendar-days', 'w-4 h-4'); ?>
             <span x-text="b.arrival"></span> → <span x-text="b.departure"></span> · <span x-text="b.nights"></span> <?php echo esc_html__('nights', 'contabai'); ?>
