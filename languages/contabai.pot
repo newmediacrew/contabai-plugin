@@ -237,9 +237,6 @@ msgstr ""
 msgid "Clear all"
 msgstr ""
 
-msgid "Clear all filters"
-msgstr ""
-
 msgid "Click it to activate your account, then log in. Didn't get it? Resend below."
 msgstr ""
 
@@ -439,9 +436,6 @@ msgid "Guest registration form (with language select). Auto-created on the %s pa
 msgstr ""
 
 msgid "Guest ↔ host chat (inbox + thread). Auto-created on the %s page."
-msgstr ""
-
-msgid "Guests"
 msgstr ""
 
 msgid "Home"
@@ -696,9 +690,6 @@ msgstr ""
 msgid "Please complete every field before you continue."
 msgstr ""
 
-msgid "Pool"
-msgstr ""
-
 msgid "Post review"
 msgstr ""
 
@@ -911,9 +902,6 @@ msgid "Snippet"
 msgstr ""
 
 msgid "Something went wrong."
-msgstr ""
-
-msgid "Sort by"
 msgstr ""
 
 msgid "Start generating all location pages? Each page calls OpenAI and can take several minutes."
@@ -1346,20 +1334,58 @@ msgstr ""
 msgid "%1$s, from %2$s a night"
 msgstr ""
 
-msgid "Show on map"
+msgid "The map on the search results and location pages, loaded only when a visitor opens it. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
 msgstr ""
 
-msgid "The map on the search results and location pages. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
-msgstr ""
-
-msgid "An https:// tile address with {z}, {x} and {y}."
-msgstr ""
-
-msgid "The credit your tile provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back. Links are allowed."
+msgid "The credit this provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back."
 msgstr ""
 
 msgid "Map credits"
 msgstr ""
 
-msgid "Show the map on the search results and location pages."
+msgid "Show the map button on the search results and location pages."
+msgstr ""
+
+msgid "Any"
+msgstr ""
+
+msgid "Show map"
+msgstr ""
+
+msgid "Hide map"
+msgstr ""
+
+msgid "Map"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Back to the list"
+msgstr ""
+
+msgid "Show %d place"
+msgid_plural "Show %d places"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d guest"
+msgid_plural "%d guests"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d bedroom"
+msgid_plural "%d bedrooms"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%d bathroom"
+msgid_plural "%d bathrooms"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "OpenStreetMap needs no key. The other providers need an API key from their website."
+msgstr ""
+
+msgid "Visitors can see this key in the page source, like every map key. Lock it to your own domain in the provider's dashboard. Without a key the map uses OpenStreetMap."
 msgstr ""

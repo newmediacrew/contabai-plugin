@@ -268,9 +268,6 @@ msgstr "Regio"
 msgid "Clear all"
 msgstr "Alles wissen"
 
-msgid "Clear all filters"
-msgstr "Alle filters wissen"
-
 msgid ""
 "Click it to activate your account, then log in. Didn't get it? Resend below."
 msgstr ""
@@ -516,9 +513,6 @@ msgid "Guest ↔ host chat (inbox + thread). Auto-created on the %s page."
 msgstr ""
 "Chat tussen gast en host (inbox + gesprek). Automatisch aangemaakt op de "
 "pagina %s."
-
-msgid "Guests"
-msgstr "Gasten"
 
 msgid "Home"
 msgstr "Home"
@@ -794,9 +788,6 @@ msgstr "Kies een beoordeling tussen 1 en 5."
 msgid "Please complete every field before you continue."
 msgstr "Vul alle velden in voordat je verdergaat."
 
-msgid "Pool"
-msgstr "Zwembad"
-
 msgid "Post review"
 msgstr "Beoordeling plaatsen"
 
@@ -1048,9 +1039,6 @@ msgstr "Snippet"
 
 msgid "Something went wrong."
 msgstr "Er is iets misgegaan."
-
-msgid "Sort by"
-msgstr "Sorteren op"
 
 msgid ""
 "Start generating all location pages? Each page calls OpenAI and can take "
@@ -1515,20 +1503,58 @@ msgstr "Uitzoomen"
 msgid "%1$s, from %2$s a night"
 msgstr "%1$s, vanaf %2$s per nacht"
 
-msgid "Show on map"
-msgstr "Toon op kaart"
+msgid "The map on the search results and location pages, loaded only when a visitor opens it. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgstr "De kaart op de zoekresultaten en de locatiepagina's, die pas laadt als een bezoeker hem opent. OpenStreetMap-tegels zijn gratis bij licht gebruik; een drukke productiesite stapt beter over op een betaalde tegelaanbieder."
 
-msgid "The map on the search results and location pages. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
-msgstr "De kaart op de zoekresultaten en de locatiepagina's. OpenStreetMap-tegels zijn gratis bij licht gebruik; een drukke productiesite stapt beter over op een betaalde tegelaanbieder."
-
-msgid "An https:// tile address with {z}, {x} and {y}."
-msgstr "Een https://-tegeladres met {z}, {x} en {y}."
-
-msgid "The credit your tile provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back. Links are allowed."
-msgstr "De bronvermelding die je tegelaanbieder vereist. Die staat eerst op de kaart, klapt in na vijf seconden of de eerste aanraking, en de oogknop haalt hem terug. Links zijn toegestaan."
+msgid "The credit this provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back."
+msgstr "De bronvermelding die deze aanbieder vereist. Die staat eerst op de kaart, klapt in na vijf seconden of de eerste aanraking, en de oogknop haalt hem terug."
 
 msgid "Map credits"
 msgstr "Kaartbronnen"
 
-msgid "Show the map on the search results and location pages."
-msgstr "Toon de kaart op de zoekresultaten en de locatiepagina's."
+msgid "Show the map button on the search results and location pages."
+msgstr "Toon de kaartknop op de zoekresultaten en de locatiepagina's."
+
+msgid "Any"
+msgstr "Alle"
+
+msgid "Show map"
+msgstr "Toon kaart"
+
+msgid "Hide map"
+msgstr "Verberg kaart"
+
+msgid "Map"
+msgstr "Kaart"
+
+msgid "List"
+msgstr "Lijst"
+
+msgid "Back to the list"
+msgstr "Terug naar de lijst"
+
+msgid "Show %d place"
+msgid_plural "Show %d places"
+msgstr[0] "Toon %d plek"
+msgstr[1] "Toon %d plekken"
+
+msgid "%d guest"
+msgid_plural "%d guests"
+msgstr[0] "%d gast"
+msgstr[1] "%d gasten"
+
+msgid "%d bedroom"
+msgid_plural "%d bedrooms"
+msgstr[0] "%d slaapkamer"
+msgstr[1] "%d slaapkamers"
+
+msgid "%d bathroom"
+msgid_plural "%d bathrooms"
+msgstr[0] "%d badkamer"
+msgstr[1] "%d badkamers"
+
+msgid "OpenStreetMap needs no key. The other providers need an API key from their website."
+msgstr "OpenStreetMap heeft geen sleutel nodig. De andere aanbieders hebben een API-sleutel van hun website nodig."
+
+msgid "Visitors can see this key in the page source, like every map key. Lock it to your own domain in the provider's dashboard. Without a key the map uses OpenStreetMap."
+msgstr "Bezoekers kunnen deze sleutel in de paginabron zien, zoals elke kaartsleutel. Koppel hem in het dashboard van de aanbieder aan je eigen domein. Zonder sleutel gebruikt de kaart OpenStreetMap."

@@ -1,5 +1,5 @@
 <div class="mx-auto w-full max-w-md" x-data="contabaiRegisterForm()">
-    <div class="rounded-2xl border border-neutral-200 bg-white p-8 shadow-lg">
+    <div class="rounded-2xl border border-neutral-200 bg-white p-8">
         <h1 class="mb-6 text-2xl font-bold text-neutral-900"><?php echo esc_html__('Create account', 'contabai'); ?></h1>
         <form class="space-y-4" x-on:submit.prevent="submit()">
             <div>

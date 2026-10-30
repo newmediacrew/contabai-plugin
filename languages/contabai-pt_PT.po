@@ -270,9 +270,6 @@ msgstr "Região"
 msgid "Clear all"
 msgstr "Limpar tudo"
 
-msgid "Clear all filters"
-msgstr "Limpar todos os filtros"
-
 msgid ""
 "Click it to activate your account, then log in. Didn't get it? Resend below."
 msgstr ""
@@ -523,9 +520,6 @@ msgid "Guest ↔ host chat (inbox + thread). Auto-created on the %s page."
 msgstr ""
 "Conversa entre hóspede e anfitrião (caixa de entrada + conversa). Criada "
 "automaticamente na página %s."
-
-msgid "Guests"
-msgstr "Hóspedes"
 
 msgid "Home"
 msgstr "Início"
@@ -802,9 +796,6 @@ msgstr "Escolhe uma classificação entre 1 e 5."
 msgid "Please complete every field before you continue."
 msgstr "Preenche todos os campos antes de continuares."
 
-msgid "Pool"
-msgstr "Piscina"
-
 msgid "Post review"
 msgstr "Publicar avaliação"
 
@@ -1054,9 +1045,6 @@ msgstr "Excerto"
 
 msgid "Something went wrong."
 msgstr "Algo correu mal."
-
-msgid "Sort by"
-msgstr "Ordenar por"
 
 msgid ""
 "Start generating all location pages? Each page calls OpenAI and can take "
@@ -1521,20 +1509,58 @@ msgstr "Afastar"
 msgid "%1$s, from %2$s a night"
 msgstr "%1$s, a partir de %2$s por noite"
 
-msgid "Show on map"
-msgstr "Ver no mapa"
+msgid "The map on the search results and location pages, loaded only when a visitor opens it. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgstr "O mapa nos resultados da pesquisa e nas páginas de localização, carregado só quando um visitante o abre. Os mosaicos do OpenStreetMap são gratuitos para uso ligeiro; um site de produção com muito tráfego deve mudar para um fornecedor de mosaicos pago."
 
-msgid "The map on the search results and location pages. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
-msgstr "O mapa nos resultados da pesquisa e nas páginas de localização. Os mosaicos do OpenStreetMap são gratuitos para uso ligeiro; um site de produção com muito tráfego deve mudar para um fornecedor de mosaicos pago."
-
-msgid "An https:// tile address with {z}, {x} and {y}."
-msgstr "Um endereço de mosaicos https:// com {z}, {x} e {y}."
-
-msgid "The credit your tile provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back. Links are allowed."
-msgstr "O crédito exigido pelo teu fornecedor de mosaicos. Aparece primeiro no mapa, recolhe-se após cinco segundos ou ao primeiro toque, e o botão do olho volta a mostrá-lo. São permitidas ligações."
+msgid "The credit this provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back."
+msgstr "O crédito exigido por este fornecedor. Aparece primeiro no mapa, recolhe-se após cinco segundos ou ao primeiro toque, e o botão do olho volta a mostrá-lo."
 
 msgid "Map credits"
 msgstr "Créditos do mapa"
 
-msgid "Show the map on the search results and location pages."
-msgstr "Mostrar o mapa nos resultados da pesquisa e nas páginas de localização."
+msgid "Show the map button on the search results and location pages."
+msgstr "Mostrar o botão do mapa nos resultados da pesquisa e nas páginas de localização."
+
+msgid "Any"
+msgstr "Todos"
+
+msgid "Show map"
+msgstr "Mostrar mapa"
+
+msgid "Hide map"
+msgstr "Ocultar mapa"
+
+msgid "Map"
+msgstr "Mapa"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Back to the list"
+msgstr "Voltar à lista"
+
+msgid "Show %d place"
+msgid_plural "Show %d places"
+msgstr[0] "Mostrar %d lugar"
+msgstr[1] "Mostrar %d lugares"
+
+msgid "%d guest"
+msgid_plural "%d guests"
+msgstr[0] "%d hóspede"
+msgstr[1] "%d hóspedes"
+
+msgid "%d bedroom"
+msgid_plural "%d bedrooms"
+msgstr[0] "%d quarto"
+msgstr[1] "%d quartos"
+
+msgid "%d bathroom"
+msgid_plural "%d bathrooms"
+msgstr[0] "%d casa de banho"
+msgstr[1] "%d casas de banho"
+
+msgid "OpenStreetMap needs no key. The other providers need an API key from their website."
+msgstr "O OpenStreetMap não precisa de chave. Os outros fornecedores precisam de uma chave de API do site deles."
+
+msgid "Visitors can see this key in the page source, like every map key. Lock it to your own domain in the provider's dashboard. Without a key the map uses OpenStreetMap."
+msgstr "Os visitantes podem ver esta chave no código-fonte da página, como qualquer chave de mapas. Restringe-a ao teu próprio domínio no painel do fornecedor. Sem chave, o mapa usa o OpenStreetMap."

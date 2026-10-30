@@ -122,7 +122,7 @@ ob_start();
     <div class="min-w-0">
 
     <?php if (! empty($host)): ?>
-        <section class="<?php echo $onPhoto ? '' : 'mt-8 '; ?>rounded-2xl border border-neutral-200 bg-white p-5 shadow-lg">
+        <section class="<?php echo $onPhoto ? '' : 'mt-8 '; ?>rounded-2xl border border-neutral-200 bg-white p-5">
             <div class="flex items-center gap-5">
                 <?php if (! empty($hostAvatar)): ?>
                     <img src="<?php echo esc_url($hostAvatar); ?>" alt="<?php echo esc_attr($hostName); ?>" class="h-20 w-20 rounded-full object-cover ring-2 ring-neutral-100">
@@ -265,7 +265,7 @@ ob_start();
         <div class="mt-3 space-y-3" x-data="{ open: '', toggle(k) { this.open = this.open === k ? '' : k } }"
              x-on:open-reviews.window="document.getElementById('reviews').scrollIntoView({ behavior: 'smooth', block: 'start' })">
             <?php if ($description !== ''): ?>
-                <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                <section class="rounded-2xl border border-neutral-200 bg-white">
                     <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Description', 'contabai'); ?></h2>
                     <div class="border-t border-neutral-200 px-5 py-5">
                         <div class="prose prose-sm max-w-none text-neutral-700"><?php echo wp_kses_post($description); ?></div>
@@ -286,7 +286,7 @@ ob_start();
                     $amenityGroups[] = [__('Other', 'contabai'), $amenityOther];
                 }
                 ?>
-                <section class="rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                <section class="rounded-2xl border border-neutral-200 bg-white">
                     <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Amenities', 'contabai'); ?></h2>
                     <div class="border-t border-neutral-200 px-5 py-5">
                         <div class="gap-8 sm:columns-2 xl:columns-3">
@@ -313,7 +313,7 @@ ob_start();
             $reviewsPerPage   = 5;
             $reviewsEndpoint  = rest_url('contabai/v1/sanctum/listing/reviews/' . $reviewsListingId);
             ?>
-            <section id="reviews" class="scroll-mt-28 rounded-2xl border border-neutral-200 bg-white shadow-sm">
+            <section id="reviews" class="scroll-mt-28 rounded-2xl border border-neutral-200 bg-white">
                 <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Reviews', 'contabai'); ?></h2>
                 <div class="border-t border-neutral-200 px-5 py-5">
                     <?php if ($reviewCount === 0): ?>
@@ -469,7 +469,7 @@ ob_start();
         return (string) ob_get_clean();
     };
     ?>
-    <section class="mt-3 rounded-2xl border border-neutral-200 bg-white shadow-sm">
+    <section class="mt-3 rounded-2xl border border-neutral-200 bg-white">
         <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Availability', 'contabai'); ?></h2>
         <div class="border-t border-neutral-200 px-5 py-5">
             <div x-ref="cal"></div>
@@ -746,17 +746,17 @@ ob_start();
 
     <div class="mt-8 grid gap-4 text-sm text-neutral-600 sm:grid-cols-2 lg:grid-cols-3">
         <?php if (! empty($listing['min_nights']) || ! empty($listing['max_nights'])): ?>
-            <div class="rounded-2xl border border-neutral-200 bg-white p-4 shadow-lg lg:hidden">
+            <div class="rounded-2xl border border-neutral-200 bg-white p-4 lg:hidden">
                 <div class="font-medium text-neutral-900"><?php echo esc_html__('Length of stay', 'contabai'); ?></div>
                 <div class="mt-1"><?php echo esc_html(sprintf(__('%1$s–%2$s nights', 'contabai'), (int) ($listing['min_nights'] ?? 0), (int) ($listing['max_nights'] ?? 0))); ?></div>
             </div>
         <?php endif; ?>
-        <div class="rounded-2xl border border-neutral-200 bg-white p-4 shadow-lg lg:hidden">
+        <div class="rounded-2xl border border-neutral-200 bg-white p-4 lg:hidden">
             <div class="font-medium text-neutral-900"><?php echo esc_html__('Check-in / Check-out', 'contabai'); ?></div>
             <div class="mt-1"><?php echo esc_html($formatHour($listing['checkin_from_hour'] ?? 0) . ' — ' . $formatHour($listing['checkout_by_hour'] ?? 0)); ?></div>
         </div>
         <?php if (! empty($listing['utility_rates'])): ?>
-            <div class="rounded-2xl border border-neutral-200 bg-white p-4 shadow-lg lg:col-span-3">
+            <div class="rounded-2xl border border-neutral-200 bg-white p-4 lg:col-span-3">
                 <div class="font-medium text-neutral-900"><?php echo esc_html__('Metered utilities', 'contabai'); ?></div>
                 <?php foreach ($listing['utility_rates'] as $u): ?>
                     <div class="mt-1"><?php echo esc_html(($labels['utilities'][$u['utility']] ?? ucfirst((string) $u['utility'])) . ' · ' . $currency . ' ' . number_format(((int) $u['rate_cents']) / 100, 2, '.', '') . ' / ' . $u['unit']); ?></div>
@@ -768,7 +768,7 @@ ob_start();
 
     </div>
     <aside class="hidden lg:sticky lg:top-24 lg:block">
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-lg">
+        <div class="rounded-2xl border border-neutral-200 bg-white p-6">
             <div>
                 <span class="text-sm text-neutral-500"><?php echo esc_html__('from', 'contabai'); ?></span>
                 <span class="text-2xl font-bold text-neutral-900"><?php echo esc_html($priceLabel()); ?></span>

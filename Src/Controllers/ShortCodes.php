@@ -273,8 +273,11 @@ class ShortCodes
         $amenityCategories = $translation[$currentLang]['amenity_categories'] ?? $translation['en']['amenity_categories'] ?? [];
 
         $mapEnabled = (int) get_option('contabai_map_enabled', 1) === 1 && $skeletonCount > 0;
-        if ($mapEnabled) {
-            $this->enqueue_map();
+        $mapProviders = contabai_map_providers();
+        $mapProvider = $mapProviders[(string) get_option('contabai_map_provider', 'osm')] ?? $mapProviders['osm'];
+        $mapKey = trim((string) get_option('contabai_map_api_key', ''));
+        if ($mapProvider['key'] && $mapKey === '') {
+            $mapProvider = $mapProviders['osm'];
         }
 
         return View::render('listing.index', [
@@ -291,15 +294,39 @@ class ShortCodes
             'lockedFilters' => $lockedFilters,
             'searchBar' => $this->render_search(['compact' => '1', 'country' => $country, 'region' => $region]),
             'mapEnabled' => $mapEnabled,
-            'mapTilesUrl' => (string) get_option('contabai_map_tiles_url', CONTABAI_MAP_TILES_URL),
-            'mapAttribution' => (string) get_option('contabai_map_attribution', CONTABAI_MAP_ATTRIBUTION),
+            'mapTilesUrl' => str_replace('{key}', rawurlencode($mapKey), $mapProvider['url']),
+            'mapTileOptions' => $mapProvider['options'],
+            'mapAttribution' => $mapProvider['attribution'],
+            'leafletJs' => CONTABAI_PLUGIN_URL . 'assets/js/leaflet/leaflet.js?ver=1.9.4',
+            'leafletCss' => CONTABAI_PLUGIN_URL . 'assets/css/leaflet.css?ver=1.9.4',
         ]);
     }
 
-    private function enqueue_map(): void
+    public static function place_title(): ?string
     {
-        wp_enqueue_style('contabai-leaflet', CONTABAI_PLUGIN_URL . 'assets/css/leaflet.css', [], '1.9.4');
-        wp_enqueue_script('contabai-leaflet', CONTABAI_PLUGIN_URL . 'assets/js/leaflet/leaflet.js', [], '1.9.4', true);
+        $countryKey = sanitize_text_field(wp_unslash((string) ($_GET['country'] ?? '')));
+        if ($countryKey === '') {
+            return null;
+        }
+        $regionKey = sanitize_text_field(wp_unslash((string) ($_GET['region'] ?? '')));
+        $areaKey = sanitize_text_field(wp_unslash((string) ($_GET['area'] ?? '')));
+
+        [$body] = Helper::api('GET', '/sanctum/translation');
+        $translation = $body['data']['translations'] ?? [];
+        $countries = $translation[Helper::currentLang()]['countries'] ?? $translation['en']['countries'] ?? [];
+        $countryData = $countries[$countryKey] ?? null;
+        $regionData = $countryData['regions'][$regionKey] ?? null;
+        if ($areaKey !== '' && isset($regionData['areas'][$areaKey])) {
+            return (string) $regionData['areas'][$areaKey];
+        }
+        if ($regionData !== null) {
+            return (string) ($regionData['name'] ?? $regionKey);
+        }
+        if ($countryData !== null) {
+            return (string) ($countryData['name'] ?? $countryKey);
+        }
+
+        return null;
     }
 
     public function render_random_listings($atts = []): string

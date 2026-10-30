@@ -71,6 +71,24 @@ window.contabaiCardHelpers = window.contabaiCardHelpers || function (config) {
                 ? '<?php echo esc_js(_n('%d review', '%d reviews', 1, 'contabai')); ?>'
                 : '<?php echo esc_js(_n('%d review', '%d reviews', 2, 'contabai')); ?>';
             return '· ' + label.replace('%d', count);
+        },
+        guestsLabel: function (count) {
+            return (count === 1
+                ? '<?php echo esc_js(_n('%d guest', '%d guests', 1, 'contabai')); ?>'
+                : '<?php echo esc_js(_n('%d guest', '%d guests', 2, 'contabai')); ?>').replace('%d', count);
+        },
+        detailsLabel: function (listing) {
+            let bedrooms = listing.bedrooms || 0;
+            let bathrooms = listing.bathrooms || 0;
+            return [
+                this.guestsLabel(listing.max_guests || 0),
+                (bedrooms === 1
+                    ? '<?php echo esc_js(_n('%d bedroom', '%d bedrooms', 1, 'contabai')); ?>'
+                    : '<?php echo esc_js(_n('%d bedroom', '%d bedrooms', 2, 'contabai')); ?>').replace('%d', bedrooms),
+                (bathrooms === 1
+                    ? '<?php echo esc_js(_n('%d bathroom', '%d bathrooms', 1, 'contabai')); ?>'
+                    : '<?php echo esc_js(_n('%d bathroom', '%d bathrooms', 2, 'contabai')); ?>').replace('%d', bathrooms)
+            ].join(' · ');
         }
     };
 };

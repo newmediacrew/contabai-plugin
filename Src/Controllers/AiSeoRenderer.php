@@ -172,7 +172,7 @@ class AiSeoRenderer
             $targetId = url_to_postid($url);
             $image = (string) get_the_post_thumbnail_url($targetId, 'medium_large');
             $alt   = (string) get_post_meta((int) get_post_thumbnail_id($targetId), '_wp_attachment_image_alt', true);
-            echo '<li><a href="' . esc_url($url) . '" class="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white no-underline shadow-sm transition hover:shadow-lg">';
+            echo '<li><a href="' . esc_url($url) . '" class="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white no-underline transition">';
             if ($image !== '') {
                 echo '<span class="block aspect-[16/10] overflow-hidden bg-neutral-100"><img src="' . esc_url($image) . '" alt="' . esc_attr($alt) . '" loading="lazy" decoding="async" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"></span>';
             }

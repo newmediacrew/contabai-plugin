@@ -46,7 +46,7 @@ $durations = [
 ];
 
 ?>
-<div x-data="contabaiSearch('<?php echo esc_js($resultsUrl); ?>', <?php echo esc_attr(wp_json_encode((object) array_filter($preset ?? []))); ?>)" x-on:keydown.escape="open = ''; sheet = false" x-on:click.outside="open = ''" class="relative mx-auto w-full">
+<div x-data="contabaiSearch('<?php echo esc_js($resultsUrl); ?>', <?php echo esc_attr(wp_json_encode((object) array_filter($preset ?? []))); ?>)" x-on:keydown.escape="open = ''; sheet = false" x-on:click.outside="open = ''" x-on:contabai-search-open.window="if (window.matchMedia('(min-width: 640px)').matches) { if (open !== 'where') { toggle('where'); } } else { sheet = true; }" class="relative mx-auto w-full">
 
     <div class="contabai-search-bar overflow-hidden border border-neutral-200 bg-white sm:flex-row sm:items-stretch sm:rounded-2xl">
 
@@ -81,8 +81,8 @@ $durations = [
         </button>
 
         <div class="contabai-search-orb flex shrink-0 items-center justify-end">
-            <button type="button" x-on:click="submit()" aria-label="<?php echo esc_attr__('Search', 'contabai'); ?>"
-                    class="contabai-search-submit contabai-accent-bg text-sm font-semibold text-white transition hover:opacity-90">
+            <button type="button" x-on:click="submit()" x-bind:disabled="! hasWhere()" aria-label="<?php echo esc_attr__('Search', 'contabai'); ?>"
+                    class="contabai-search-submit contabai-accent-bg text-sm font-semibold text-white transition hover:opacity-90 disabled:pointer-events-none disabled:opacity-40">
                 <?php echo \Contabai\Heroicon::outline('magnifying-glass', 'w-5 h-5'); ?>
                 <span class="sm:hidden"><?php echo esc_html__('Search', 'contabai'); ?></span>
             </button>
@@ -228,8 +228,8 @@ $durations = [
         </div>
 
         <div class="contabai-search-sheet-foot sticky bottom-0 -mx-4 mt-2 flex-col items-stretch gap-2 border-t border-neutral-200 bg-white px-4 pb-2 pt-3">
-            <button type="button" x-on:click="submit()"
-                    class="contabai-search-submit contabai-accent-bg text-sm font-semibold text-white transition hover:opacity-90">
+            <button type="button" x-on:click="submit()" x-bind:disabled="! hasWhere()"
+                    class="contabai-search-submit contabai-accent-bg text-sm font-semibold text-white transition hover:opacity-90 disabled:pointer-events-none disabled:opacity-40">
                 <?php echo \Contabai\Heroicon::outline('magnifying-glass', 'w-5 h-5'); ?>
                 <?php echo esc_html__('Search', 'contabai'); ?>
             </button>
@@ -318,6 +318,10 @@ document.addEventListener('alpine:init', function () {
 
             guests: function () {
                 return this.adults + this.children;
+            },
+
+            hasWhere: function () {
+                return !! (this.country || this.region || this.area);
             },
 
             whoLabel: function () {
@@ -526,6 +530,7 @@ document.addEventListener('alpine:init', function () {
             },
 
             submit: function () {
+                if (! this.hasWhere()) { return; }
                 let queryString = this.params(true).toString();
                 let sep = this.resultsUrl.indexOf('?') >= 0 ? '&' : '?';
                 window.location = this.resultsUrl + (queryString ? sep + queryString : '');

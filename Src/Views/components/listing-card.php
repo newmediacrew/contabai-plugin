@@ -4,7 +4,7 @@ $chevronLeft  = \Contabai\Heroicon::solid('chevron-left', 'w-4 h-4');
 $chevronRight = \Contabai\Heroicon::solid('chevron-right', 'w-4 h-4');
 ?>
 <div class="group block"<?php if (! empty($cardMap)): ?> x-on:mouseenter="hoveredId = listing.id" x-on:mouseleave="hoveredId = null"<?php endif; ?>>
-    <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100"<?php if (! empty($cardMap)): ?> x-bind:class="(hoveredId === listing.id || selectedId === listing.id) ? 'contabai-card-active' : ''"<?php endif; ?>
+    <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100"
          x-data="{
             active: 0, startX: 0, animate: true,
             step(dir) {
@@ -42,11 +42,6 @@ $chevronRight = \Contabai\Heroicon::solid('chevron-right', 'w-4 h-4');
         include __DIR__ . '/badge.php';
         ?>
 
-        <?php if (! empty($cardMap)): ?>
-        <button type="button" x-show="hasPin(listing)" x-on:click="showOnMap(listing)"
-                class="absolute bottom-2.5 right-2.5 z-20 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-neutral-800 transition hover:bg-white"><?php echo \Contabai\Heroicon::outline('map-pin', 'w-4 h-4'); ?><?php echo esc_html__('Show on map', 'contabai'); ?></button>
-        <?php endif; ?>
-
         <template x-if="slides(listing).length > 1">
             <div>
                 <button type="button" x-on:click="step(-1)" aria-label="<?php echo esc_attr__('Previous photo', 'contabai'); ?>"
@@ -66,26 +61,7 @@ $chevronRight = \Contabai\Heroicon::solid('chevron-right', 'w-4 h-4');
             <span class="truncate" x-text="reviewsLabel(listing)"></span>
         </p>
 
-        <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-sm text-neutral-500">
-            <?php
-            $tt_text = __('Guests', 'contabai');
-            $tt_trigger = \Contabai\Heroicon::outline('users', 'w-4 h-4') . '<span x-text="listing.max_guests"></span>';
-            include __DIR__ . '/tooltip.php';
-
-            $tt_text = __('Bedrooms', 'contabai');
-            $tt_trigger = \Contabai\Heroicon::outline('bed', 'w-4 h-4') . '<span x-text="listing.bedrooms"></span>';
-            include __DIR__ . '/tooltip.php';
-
-            $tt_text = __('Bathrooms', 'contabai');
-            $tt_trigger = \Contabai\Heroicon::outline('bath', 'w-4 h-4') . '<span x-text="listing.bathrooms"></span>';
-            include __DIR__ . '/tooltip.php';
-
-            $tt_text = __('Pool', 'contabai');
-            $tt_trigger = \Contabai\Heroicon::outline('pool', 'w-4 h-4') . '<span>1</span>';
-            $tt_wrap = 'x-show="(listing.amenities || []).includes(\'pool\')" x-cloak';
-            include __DIR__ . '/tooltip.php';
-            ?>
-        </div>
+        <p class="mt-1 truncate text-sm text-neutral-500" x-text="detailsLabel(listing)"></p>
 
         <div class="mt-2 flex items-baseline gap-1">
             <span class="text-sm text-neutral-500"><?php echo esc_html__('from', 'contabai'); ?></span>

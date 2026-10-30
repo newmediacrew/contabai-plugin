@@ -24,14 +24,16 @@ $itemReviews = (int) ($item['reviews']['count'] ?? 0);
                 <span class="truncate"><?php echo esc_html__('No reviews yet', 'contabai'); ?></span>
             <?php endif; ?>
         </p>
-        <div class="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-sm text-neutral-500">
-            <span class="inline-flex items-center gap-1"><?php echo \Contabai\Heroicon::outline('users', 'w-4 h-4'); ?><?php echo (int) ($item['max_guests'] ?? 0); ?></span>
-            <span class="inline-flex items-center gap-1"><?php echo \Contabai\Heroicon::outline('bed', 'w-4 h-4'); ?><?php echo (int) ($item['bedrooms'] ?? 0); ?></span>
-            <span class="inline-flex items-center gap-1"><?php echo \Contabai\Heroicon::outline('bath', 'w-4 h-4'); ?><?php echo (int) ($item['bathrooms'] ?? 0); ?></span>
-            <?php if (in_array('pool', $item['amenities'] ?? [], true)): ?>
-                <span class="inline-flex items-center gap-1"><?php echo \Contabai\Heroicon::outline('pool', 'w-4 h-4'); ?>1</span>
-            <?php endif; ?>
-        </div>
+        <p class="mt-1 truncate text-sm text-neutral-500"><?php
+            $itemGuests = (int) ($item['max_guests'] ?? 0);
+            $itemBedrooms = (int) ($item['bedrooms'] ?? 0);
+            $itemBathrooms = (int) ($item['bathrooms'] ?? 0);
+            echo esc_html(implode(' · ', [
+                sprintf(_n('%d guest', '%d guests', $itemGuests, 'contabai'), $itemGuests),
+                sprintf(_n('%d bedroom', '%d bedrooms', $itemBedrooms, 'contabai'), $itemBedrooms),
+                sprintf(_n('%d bathroom', '%d bathrooms', $itemBathrooms, 'contabai'), $itemBathrooms),
+            ]));
+        ?></p>
         <div class="mt-2 flex items-baseline gap-1">
             <span class="text-sm text-neutral-500"><?php echo esc_html__('from', 'contabai'); ?></span>
             <span class="font-bold text-neutral-900"><?php echo esc_html(($item['currency'] ?? 'EUR') . ' ' . number_format(((int) ($item['from_price_cents'] ?? 0)) / 100, 2, '.', '')); ?></span>
