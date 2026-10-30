@@ -756,13 +756,28 @@ ob_start();
             <div class="mt-1"><?php echo esc_html($formatHour($listing['checkin_from_hour'] ?? 0) . ' — ' . $formatHour($listing['checkout_by_hour'] ?? 0)); ?></div>
         </div>
         <?php if (! empty($listing['utility_rates'])): ?>
-            <div class="rounded-2xl border border-neutral-200 bg-white p-4 lg:col-span-3">
-                <div class="font-medium text-neutral-900"><?php echo esc_html__('Metered utilities', 'contabai'); ?></div>
-                <?php foreach ($listing['utility_rates'] as $u): ?>
-                    <div class="mt-1"><?php echo esc_html(($labels['utilities'][$u['utility']] ?? ucfirst((string) $u['utility'])) . ' · ' . $currency . ' ' . number_format(((int) $u['rate_cents']) / 100, 2, '.', '') . ' / ' . $u['unit']); ?></div>
-                <?php endforeach; ?>
-                <div class="mt-1 text-xs text-neutral-400"><?php echo esc_html__('Read at check-out and settled from your deposit.', 'contabai'); ?></div>
-            </div>
+            <?php $utilityIcons = ['electricity' => 'bolt', 'water' => 'beaker', 'gas' => 'fire']; ?>
+            <section class="overflow-hidden rounded-2xl border border-neutral-200 bg-white sm:col-span-2 lg:col-span-3">
+                <h2 class="border-b border-neutral-200 px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Metered utilities', 'contabai'); ?></h2>
+                <ul class="px-5 py-1">
+                    <?php foreach ($listing['utility_rates'] as $u): ?>
+                        <li class="flex items-center justify-between gap-4 border-b border-neutral-100 py-3.5 last:border-b-0">
+                            <span class="flex items-center gap-3 text-[15px] text-neutral-800">
+                                <?php if (isset($utilityIcons[$u['utility']])): ?><span class="text-[color:var(--theme-color,#ff5400)]"><?php echo \Contabai\Heroicon::outline($utilityIcons[$u['utility']], 'w-5 h-5'); ?></span><?php endif; ?>
+                                <?php echo esc_html($labels['utilities'][$u['utility']] ?? ucfirst((string) $u['utility'])); ?>
+                            </span>
+                            <span class="flex items-baseline gap-1 whitespace-nowrap">
+                                <span class="text-[15px] font-semibold text-neutral-900 tabular-nums"><?php echo esc_html($currency . ' ' . number_format(((int) $u['rate_cents']) / 100, 2, '.', '')); ?></span>
+                                <span class="text-neutral-500"><?php echo esc_html('/ ' . $u['unit']); ?></span>
+                            </span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <p class="flex items-start gap-2 border-t border-neutral-200 bg-neutral-50 px-5 py-3.5 text-[13px] text-neutral-500">
+                    <span class="mt-0.5 shrink-0 text-neutral-400"><?php echo \Contabai\Heroicon::outline('receipt-refund', 'w-4 h-4'); ?></span>
+                    <?php echo esc_html__('Read at check-out and settled from your deposit.', 'contabai'); ?>
+                </p>
+            </section>
         <?php endif; ?>
     </div>
 

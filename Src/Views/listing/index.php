@@ -401,7 +401,6 @@ document.addEventListener('alpine:init', function () {
             endpoint: '<?php echo esc_url($endpoint); ?>',
             mapEnabled: <?php echo ! empty($mapEnabled) ? 'true' : 'false'; ?>,
             mapOpen: false,
-            isSm: window.matchMedia('(min-width: 640px)').matches,
             hoveredId: null,
             selectedId: null,
             creditsOpen: true,
@@ -414,9 +413,6 @@ document.addEventListener('alpine:init', function () {
                 let mediaQuery = window.matchMedia('(min-width: 1024px)');
                 let handler = function (e) { self.isLg = e.matches; self.menu = ''; };
                 if (mediaQuery.addEventListener) { mediaQuery.addEventListener('change', handler); } else { mediaQuery.addListener(handler); }
-                let smQuery = window.matchMedia('(min-width: 640px)');
-                let smHandler = function (e) { self.isSm = e.matches; };
-                if (smQuery.addEventListener) { smQuery.addEventListener('change', smHandler); } else { smQuery.addListener(smHandler); }
 
                 // The filter bar and the map stick below the theme's header, whose height changes as it shrinks on scroll.
                 let header = document.querySelector('.contabai-header');
@@ -579,7 +575,6 @@ document.addEventListener('alpine:init', function () {
                 self.$watch('listings', function () { self.drawPins(); });
                 self.$watch('hoveredId', function () { self.paintPins(); });
                 self.$watch('selectedId', function () { self.paintPins(); self.revealSelected(); });
-                self.$watch('isSm', function () { self.paintPins(); });
                 self.$watch('isLg', function () {
                     self.popupVisible = false;
                     self.$nextTick(function () { map.invalidateSize(); self.fitPins(lastPoints); self.placePopup(); });
@@ -641,7 +636,6 @@ document.addEventListener('alpine:init', function () {
                     let hovered = ! selected && String(self.hoveredId) === id;
                     pin.el.classList.toggle('is-selected', selected);
                     pin.el.classList.toggle('is-hovered', hovered);
-                    pin.el.classList.toggle('is-dot', ! self.isSm && ! selected);
                     pin.marker.setZIndexOffset(selected ? 1000 : (hovered ? 500 : 0));
                 });
             },
@@ -651,7 +645,7 @@ document.addEventListener('alpine:init', function () {
                 // Pins hang above their point and are up to ~110px wide, so the edges need more room than the points alone.
                 map.fitBounds(points, this.isLg
                     ? { paddingTopLeft: [60, 50], paddingBottomRight: [60, 20], maxZoom: 15 }
-                    : { paddingTopLeft: [50, 170], paddingBottomRight: [50, 200], maxZoom: 15 });
+                    : { paddingTopLeft: [60, 170], paddingBottomRight: [60, 200], maxZoom: 15 });
             },
 
             revealSelected: function () {
