@@ -3,7 +3,7 @@
 Plugin Name: Contabai
 Plugin URI: https://www.contabai.network
 Description: Contabai — property listings platform frontend for WordPress.
-Version: 1.2.22
+Version: 1.2.23
 Requires at least: 7.1
 Requires PHP: 8.3
 Tested up to: 7.1
@@ -91,6 +91,8 @@ define('CONTABAI_PROFILE_PAGE_SLUG', esc_attr(get_option('contabai_profile_page_
 define('CONTABAI_BOOKINGS_PAGE_SLUG', esc_attr(get_option('contabai_bookings_page_slug', 'contabai-bookings')));
 define('CONTABAI_CHAT_PAGE_SLUG', esc_attr(get_option('contabai_chat_page_slug', 'contabai-chat')));
 define('CONTABAI_BOOK_PAGE_SLUG', esc_attr(get_option('contabai_book_page_slug', 'contabai-book')));
+define('CONTABAI_MAP_TILES_URL', 'https://tile.openstreetmap.org/{z}/{x}/{y}.png');
+define('CONTABAI_MAP_ATTRIBUTION', '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>');
 define('CONTABAI_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CONTABAI_PLUGIN_DIR', plugin_dir_path(__FILE__));
 
@@ -103,7 +105,7 @@ add_filter('script_loader_tag', function ($tag, $handle) {
 }, 10, 2);
 
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('contabai-plugin-css', plugin_dir_url(__FILE__) . 'assets/css/plugin.css', [], '55');
+    wp_enqueue_style('contabai-plugin-css', plugin_dir_url(__FILE__) . 'assets/css/plugin.css', [], '56');
     wp_enqueue_script('contabai-alpine-collapse', plugin_dir_url(__FILE__) . 'assets/js/alpine-collapse.min.js', [], '3', ['strategy' => 'defer']);
     wp_enqueue_script('contabai-alpinejs', plugin_dir_url(__FILE__) . 'assets/js/alpine.min.js', ['contabai-alpine-collapse'], '4', ['strategy' => 'defer']);
 });
@@ -186,6 +188,17 @@ add_action('admin_init', function () {
     ] as $option) {
         register_setting('contabai_basic_group', $option);
     }
+    register_setting('contabai_basic_group', 'contabai_map_enabled', ['sanitize_callback' => 'intval']);
+    register_setting('contabai_basic_group', 'contabai_map_tiles_url', ['sanitize_callback' => function ($value) {
+        $value = trim(sanitize_text_field((string) $value));
+
+        return str_starts_with($value, 'https://') ? $value : CONTABAI_MAP_TILES_URL;
+    }]);
+    register_setting('contabai_basic_group', 'contabai_map_attribution', ['sanitize_callback' => function ($value) {
+        $value = trim(wp_kses((string) $value, ['a' => ['href' => []]]));
+
+        return $value !== '' ? $value : CONTABAI_MAP_ATTRIBUTION;
+    }]);
 
     add_settings_section(
         'contabai_advanced_section',
@@ -334,6 +347,52 @@ add_action('admin_init', function () {
             'contabai_basic_section'
         );
     }
+
+    add_settings_section(
+        'contabai_map_section',
+        'Map',
+        function () {
+            echo '<p>' . esc_html__('The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider.', 'contabai') . '</p>';
+        },
+        'contabai-settings-basic'
+    );
+
+    add_settings_field(
+        'contabai_map_enabled',
+        'Results map',
+        function () {
+            $checked = checked(1, (int) get_option('contabai_map_enabled', 1), false);
+            echo '<input type="hidden" name="contabai_map_enabled" value="0" />';
+            echo '<label><input type="checkbox" name="contabai_map_enabled" value="1" ' . $checked . '> ' . esc_html__('Show the map above the search results.', 'contabai') . '</label>';
+            echo '<p class="description">' . esc_html__('Off: the results page shows the photo header instead.', 'contabai') . '</p>';
+        },
+        'contabai-settings-basic',
+        'contabai_map_section'
+    );
+
+    add_settings_field(
+        'contabai_map_tiles_url',
+        'Map tiles URL',
+        function () {
+            $value = (string) get_option('contabai_map_tiles_url', CONTABAI_MAP_TILES_URL);
+            echo '<input type="text" class="large-text code" name="contabai_map_tiles_url" value="' . esc_attr($value) . '" />';
+            echo '<p class="description">' . esc_html__('An https:// tile address with {z}, {x} and {y}.', 'contabai') . '</p>';
+        },
+        'contabai-settings-basic',
+        'contabai_map_section'
+    );
+
+    add_settings_field(
+        'contabai_map_attribution',
+        'Map attribution',
+        function () {
+            $value = (string) get_option('contabai_map_attribution', CONTABAI_MAP_ATTRIBUTION);
+            echo '<input type="text" class="large-text code" name="contabai_map_attribution" value="' . esc_attr($value) . '" />';
+            echo '<p class="description">' . esc_html__('The credit your tile provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back. Links are allowed.', 'contabai') . '</p>';
+        },
+        'contabai-settings-basic',
+        'contabai_map_section'
+    );
 
 });
 

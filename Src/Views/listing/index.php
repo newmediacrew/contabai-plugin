@@ -7,18 +7,100 @@ foreach (($amenitiesCatalogue ?? []) as $group) {
 }
 $bedBathOptions = ['1', '2', '3', '4'];
 ?>
-<?php if (! empty($searchBar)): ?>
+<div x-data="contabaiListings()" x-init="readFilters(); setupResponsive(); initMap(); initialListings.length ? hydrate() : load(1)" x-on:keydown.escape.window="selectedId = null">
+<?php if (! empty($mapEnabled)): ?>
+<div class="contabai-results-top">
+    <section class="contabai-map-band scroll-mt-28" x-ref="mapBand" aria-label="<?php echo esc_attr__('Map of the search results', 'contabai'); ?>">
+        <div class="contabai-map" x-ref="map"></div>
+
+        <div class="pointer-events-none absolute inset-x-0 top-5 z-10">
+            <div class="mx-auto flex w-full max-w-7xl items-start justify-between gap-4 px-4">
+                <div class="contabai-map-panel pointer-events-auto rounded-2xl bg-white/95 px-[18px] py-[14px] max-sm:sr-only">
+                    <?php
+                    $crumbs = [['label' => __('Home', 'contabai'), 'url' => home_url('/')], ['label' => $placeTitle, 'url' => null]];
+                    include __DIR__ . '/../components/breadcrumb.php';
+                    ?>
+                    <h1 class="contabai-heading contabai-seo-place mt-1 text-[30px] leading-[1.1] text-neutral-900"><?php echo esc_html($placeTitle); ?></h1>
+                    <p class="mt-1 text-sm text-neutral-600" x-text="mapSummary()"></p>
+                </div>
+                <div class="contabai-map-zoom pointer-events-auto overflow-hidden rounded-xl bg-white">
+                    <button type="button" x-on:click="zoomBy(1)" aria-label="<?php echo esc_attr__('Zoom in', 'contabai'); ?>"
+                            class="flex h-11 w-11 items-center justify-center border-b border-neutral-200 text-neutral-800 transition hover:bg-neutral-100"><?php echo \Contabai\Heroicon::outline('plus', 'w-5 h-5'); ?></button>
+                    <button type="button" x-on:click="zoomBy(-1)" aria-label="<?php echo esc_attr__('Zoom out', 'contabai'); ?>"
+                            class="flex h-11 w-11 items-center justify-center text-neutral-800 transition hover:bg-neutral-100"><?php echo \Contabai\Heroicon::outline('minus', 'w-5 h-5'); ?></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="contabai-map-credits flex items-center gap-1.5 rounded-md bg-white/90 px-1.5 py-1 text-xs text-neutral-700" x-ref="credits">
+            <span x-show="creditsOpen" class="[&_a]:underline"><?php echo wp_kses((string) ($mapAttribution ?? ''), ['a' => ['href' => []]]); ?></span>
+            <button type="button" x-on:click="creditsOpen = ! creditsOpen" x-bind:aria-expanded="creditsOpen" aria-label="<?php echo esc_attr__('Map credits', 'contabai'); ?>" title="<?php echo esc_attr__('Map credits', 'contabai'); ?>"
+                    class="flex h-5 w-5 items-center justify-center text-neutral-700 hover:text-neutral-900"><?php echo \Contabai\Heroicon::outline('eye', 'w-4 h-4'); ?></button>
+        </div>
+
+        <template x-if="isSm && popupVisible && selectedListing()">
+            <div class="contabai-map-popup" x-bind:style="'left: ' + popupX + 'px; top: ' + popupY + 'px'">
+                <div class="relative w-[272px] overflow-hidden rounded-2xl bg-white">
+                    <img x-show="slides(selectedListing()).length" x-bind:src="(slides(selectedListing())[0] || {}).card" x-bind:alt="(slides(selectedListing())[0] || {}).alt" class="block h-40 w-[272px] object-cover">
+                    <button type="button" x-on:click="selectedId = null" aria-label="<?php echo esc_attr__('Close', 'contabai'); ?>"
+                            class="absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-neutral-700 transition hover:bg-white"><?php echo \Contabai\Heroicon::outline('x-mark', 'w-4 h-4'); ?></button>
+                    <a x-bind:href="detailUrl(selectedListing())" class="block px-3.5 pb-3.5 pt-3 no-underline">
+                        <p class="truncate text-[15px] font-semibold text-neutral-900" x-text="selectedListing().title"></p>
+                        <p class="truncate text-[13px] text-neutral-600" x-text="locationLabel(selectedListing())"></p>
+                        <p class="mt-1.5 flex items-center gap-1 text-[13px] text-neutral-600">
+                            <span x-show="reviewCount(selectedListing()) > 0" class="text-amber-400"><?php echo \Contabai\Heroicon::solid('star', 'w-4 h-4'); ?></span>
+                            <span x-show="reviewCount(selectedListing()) > 0" class="font-medium text-neutral-900" x-text="ratingLabel(selectedListing())"></span>
+                            <span class="truncate" x-text="reviewsLabel(selectedListing())"></span>
+                        </p>
+                        <p class="mt-2 flex items-baseline gap-1 text-sm text-neutral-600">
+                            <span><?php echo esc_html__('from', 'contabai'); ?></span>
+                            <span class="font-bold text-neutral-900" x-text="priceLabel(selectedListing())"></span>
+                            <span><?php echo esc_html__('/ night', 'contabai'); ?></span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </template>
+    </section>
+
+    <?php if (! empty($searchBar)): ?>
+    <div class="contabai-map-search mx-auto w-full max-w-7xl"><?php echo $searchBar; ?></div>
+    <?php endif; ?>
+
+    <template x-if="! isSm && selectedListing()">
+        <a x-bind:href="detailUrl(selectedListing())" class="contabai-map-preview relative z-[3] mx-3 -mt-16 flex gap-3 rounded-2xl bg-white p-2.5 no-underline">
+            <img x-show="slides(selectedListing()).length" x-bind:src="(slides(selectedListing())[0] || {}).card" x-bind:alt="(slides(selectedListing())[0] || {}).alt" class="h-24 w-24 flex-none rounded-xl object-cover">
+            <span class="flex min-w-0 flex-col justify-center">
+                <span class="truncate text-[15px] font-semibold text-neutral-900" x-text="selectedListing().title"></span>
+                <span class="truncate text-[13px] text-neutral-600" x-text="locationLabel(selectedListing())"></span>
+                <span class="mt-1 flex items-center gap-1 text-[13px] text-neutral-600">
+                    <span x-show="reviewCount(selectedListing()) > 0" class="text-amber-400"><?php echo \Contabai\Heroicon::solid('star', 'w-4 h-4'); ?></span>
+                    <span x-show="reviewCount(selectedListing()) > 0" class="font-medium text-neutral-900" x-text="ratingLabel(selectedListing())"></span>
+                    <span class="truncate" x-text="reviewsLabel(selectedListing())"></span>
+                </span>
+                <span class="mt-1 flex items-baseline gap-1 text-sm text-neutral-600">
+                    <span><?php echo esc_html__('from', 'contabai'); ?></span>
+                    <span class="font-bold text-neutral-900" x-text="priceLabel(selectedListing())"></span>
+                    <span><?php echo esc_html__('/ night', 'contabai'); ?></span>
+                </span>
+            </span>
+        </a>
+    </template>
+</div>
+<?php elseif (! empty($searchBar)): ?>
 <div class="mx-auto w-full max-w-7xl px-4 pt-8"><?php echo $searchBar; ?></div>
 <?php endif; ?>
 
-<div x-data="contabaiListings()" x-init="readFilters(); setupResponsive(); initialListings.length ? hydrate() : load(1)" class="mx-auto w-full max-w-7xl px-4 py-8 lg:flex lg:gap-8">
+<div class="mx-auto w-full max-w-7xl px-4 py-8 lg:flex lg:gap-8">
 
     <aside class="mb-6 lg:mb-0 lg:w-64 lg:shrink-0">
+        <?php if (! empty($mapEnabled)): ?><div class="mb-4 flex items-center justify-between gap-3 lg:!hidden"><p class="text-lg font-bold text-neutral-900" x-text="resultLabel()"></p><?php endif; ?>
         <button type="button" x-on:click="railOpen = true"
-                class="mb-4 inline-flex w-full items-center justify-between rounded-lg border border-neutral-300 px-4 py-2.5 text-sm font-medium text-neutral-800 transition hover:bg-neutral-50 lg:!hidden">
+                class="<?php echo ! empty($mapEnabled) ? 'inline-flex min-h-11 items-center gap-2' : 'mb-4 inline-flex w-full items-center justify-between'; ?> rounded-lg border border-neutral-300 px-4 py-2.5 text-sm font-medium text-neutral-800 transition hover:bg-neutral-50 lg:!hidden">
             <span class="inline-flex items-center gap-2"><?php echo \Contabai\Heroicon::outline('adjustments-horizontal', 'w-4 h-4'); ?><?php echo esc_html__('Filters', 'contabai'); ?></span>
             <span x-show="railActive()" x-cloak class="contabai-accent-bg inline-flex h-2 w-2 rounded-full"></span>
         </button>
+        <?php if (! empty($mapEnabled)): ?></div><?php endif; ?>
 
         <div x-show="railOpen" x-cloak x-transition.opacity x-on:click="railOpen = false" class="contabai-filter-backdrop lg:hidden"></div>
 
@@ -217,7 +299,7 @@ $bedBathOptions = ['1', '2', '3', '4'];
         <div class="contabai-listings-grid" x-show="listings.length > 0" x-cloak>
             <template x-for="listing in listings" x-bind:key="listing.id">
                 <div>
-                    <?php include __DIR__ . '/../components/listing-card.php'; ?>
+                    <?php $cardMap = ! empty($mapEnabled); include __DIR__ . '/../components/listing-card.php'; ?>
                 </div>
             </template>
         </div>
@@ -231,11 +313,17 @@ $bedBathOptions = ['1', '2', '3', '4'];
         <?php include __DIR__ . '/../components/pagination.php'; ?>
     </div>
 </div>
+</div>
 
 <?php include __DIR__ . '/../components/listing-card-helpers.php'; ?>
 <script>
 document.addEventListener('alpine:init', function () {
     Alpine.data('contabaiListings', function () {
+        // Leaflet objects stay out of Alpine's reactive proxy, which breaks them.
+        let map = null;
+        let pinLayer = null;
+        let pins = {};
+
         return {
             ...window.contabaiCardHelpers({
                 propertyTypes: <?php echo wp_json_encode($propertyTypes); ?>,
@@ -258,12 +346,171 @@ document.addEventListener('alpine:init', function () {
             isLg: window.matchMedia('(min-width: 1024px)').matches,
             lockedFilters: <?php echo wp_json_encode((object) ($lockedFilters ?? [])); ?>,
             endpoint: '<?php echo esc_url($endpoint); ?>',
+            mapEnabled: <?php echo ! empty($mapEnabled) ? 'true' : 'false'; ?>,
+            isSm: window.matchMedia('(min-width: 640px)').matches,
+            hoveredId: null,
+            selectedId: null,
+            creditsOpen: true,
+            popupVisible: false,
+            popupX: 0,
+            popupY: 0,
 
             setupResponsive: function () {
                 let self = this;
                 let mediaQuery = window.matchMedia('(min-width: 1024px)');
                 let handler = function (e) { self.isLg = e.matches; };
                 if (mediaQuery.addEventListener) { mediaQuery.addEventListener('change', handler); } else { mediaQuery.addListener(handler); }
+                let smQuery = window.matchMedia('(min-width: 640px)');
+                let smHandler = function (e) { self.isSm = e.matches; };
+                if (smQuery.addEventListener) { smQuery.addEventListener('change', smHandler); } else { smQuery.addListener(smHandler); }
+            },
+
+            initMap: function () {
+                let self = this;
+                if (! self.mapEnabled || ! window.L || ! self.$refs.map) { return; }
+                map = L.map(self.$refs.map, { zoomControl: false, attributionControl: false, scrollWheelZoom: false });
+                L.tileLayer(<?php echo wp_json_encode($mapTilesUrl ?? ''); ?>, { maxZoom: 19 }).addTo(map);
+                pinLayer = L.layerGroup().addTo(map);
+                // OSMF attribution guidelines: the credit may fold after five seconds or on the first map interaction.
+                // Only a visitor's pointer counts here; the map also moves by itself when the pins are re-fitted.
+                let band = self.$refs.mapBand;
+                let creditsTimer = null;
+                let foldCredits = function (event) {
+                    if (event && self.$refs.credits.contains(event.target)) { return; }
+                    clearTimeout(creditsTimer);
+                    band.removeEventListener('pointerdown', foldCredits);
+                    self.creditsOpen = false;
+                };
+                band.addEventListener('pointerdown', foldCredits);
+                creditsTimer = setTimeout(foldCredits, 5000);
+                map.on('move zoomend resize', function () { self.placePopup(); });
+                map.on('zoomstart', function () { self.popupVisible = false; });
+                map.on('click', function () { self.selectedId = null; });
+                self.$watch('listings', function () { self.drawPins(); });
+                self.$watch('hoveredId', function () { self.paintPins(); });
+                self.$watch('selectedId', function () { self.paintPins(); self.revealSelected(); });
+                self.$watch('isSm', function () {
+                    self.paintPins();
+                    self.placePopup();
+                });
+                self.drawPins();
+            },
+
+            pinSource: function () {
+                return this.listings.length ? this.listings : this.initialListings;
+            },
+
+            hasPin: function (listing) {
+                return typeof listing.latitude === 'number' && typeof listing.longitude === 'number';
+            },
+
+            pinLabel: function (listing) {
+                let title = listing.title || '';
+                let price = this.priceLabel(listing);
+                return '<?php echo esc_js(__('%1$s, from %2$s a night', 'contabai')); ?>'
+                    .replace('%1$s', function () { return title; })
+                    .replace('%2$s', function () { return price; });
+            },
+
+            drawPins: function () {
+                let self = this;
+                if (! map) { return; }
+                pinLayer.clearLayers();
+                pins = {};
+                let points = [];
+                self.pinSource().forEach(function (listing) {
+                    if (! self.hasPin(listing)) { return; }
+                    let button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'contabai-pin';
+                    button.setAttribute('aria-label', self.pinLabel(listing));
+                    button.textContent = (listing.currency || 'EUR') + ' ' + Math.round((listing.from_price_cents || 0) / 100);
+                    let latLng = [listing.latitude, listing.longitude];
+                    let marker = L.marker(latLng, { icon: L.divIcon({ className: 'contabai-pin-icon', html: button, iconSize: null }), keyboard: false });
+                    marker.on('click', function () { self.selectedId = listing.id; });
+                    marker.addTo(pinLayer);
+                    pins[listing.id] = { marker: marker, el: button };
+                    points.push(latLng);
+                });
+                if (self.selectedId !== null && ! pins[self.selectedId]) { self.selectedId = null; }
+                self.paintPins();
+                self.fitPins(points);
+            },
+
+            paintPins: function () {
+                let self = this;
+                Object.keys(pins).forEach(function (id) {
+                    let pin = pins[id];
+                    let selected = String(self.selectedId) === id;
+                    let hovered = ! selected && String(self.hoveredId) === id;
+                    pin.el.classList.toggle('is-selected', selected);
+                    pin.el.classList.toggle('is-hovered', hovered);
+                    pin.el.classList.toggle('is-dot', ! self.isSm && ! selected);
+                    pin.marker.setZIndexOffset(selected ? 1000 : (hovered ? 500 : 0));
+                });
+            },
+
+            fitPins: function (points) {
+                let options = this.isSm
+                    ? { paddingTopLeft: [48, 150], paddingBottomRight: [48, 70], maxZoom: 15 }
+                    : { paddingTopLeft: [32, 32], paddingBottomRight: [32, 80], maxZoom: 15 };
+                if (! points.length) {
+                    map.fitBounds([[12.02, -70.07], [12.64, -68.19]], options);
+                    return;
+                }
+                map.fitBounds(points, options);
+            },
+
+            revealSelected: function () {
+                let pin = map && this.selectedId !== null ? pins[this.selectedId] : null;
+                if (pin && this.isSm) {
+                    map.panInside(pin.marker.getLatLng(), { paddingTopLeft: [150, 350], paddingBottomRight: [150, 70] });
+                } else if (pin) {
+                    map.panInside(pin.marker.getLatLng(), { padding: [40, 40] });
+                }
+                this.placePopup();
+            },
+
+            placePopup: function () {
+                let pin = map && this.selectedId !== null ? pins[this.selectedId] : null;
+                if (! pin || ! this.isSm) { this.popupVisible = false; return; }
+                let point = map.latLngToContainerPoint(pin.marker.getLatLng());
+                this.popupX = Math.round(point.x);
+                this.popupY = Math.round(point.y);
+                this.popupVisible = true;
+            },
+
+            selectedListing: function () {
+                let id = this.selectedId;
+                if (id === null) { return null; }
+                return this.pinSource().find(function (listing) { return listing.id === id; }) || null;
+            },
+
+            showOnMap: function (listing) {
+                this.selectedId = listing.id;
+                this.$refs.mapBand.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            },
+
+            zoomBy: function (step) {
+                if (! map) { return; }
+                if (step > 0) { map.zoomIn(); } else { map.zoomOut(); }
+            },
+
+            fmtDate: function (iso) {
+                try { return new Date(iso + 'T00:00:00').toLocaleDateString('<?php echo esc_js(\Contabai\Helper::currentLang()); ?>', { day: 'numeric', month: 'short' }); }
+                catch (e) { return iso; }
+            },
+
+            mapSummary: function () {
+                let parts = [this.resultLabel()];
+                let from = this.baseFilters.from_date;
+                let till = this.baseFilters.till_date;
+                if (from) { parts.push(till ? this.fmtDate(from) + ' → ' + this.fmtDate(till) : this.fmtDate(from)); }
+                let guests = parseInt(this.baseFilters.guests, 10);
+                if (guests > 0) {
+                    parts.push(guests + ' ' + (guests === 1 ? '<?php echo esc_js(__('guest', 'contabai')); ?>' : '<?php echo esc_js(__('guests', 'contabai')); ?>'));
+                }
+                return parts.join(' · ');
             },
 
             // Location/date/guest filters come from the search bar's URL and stay fixed here;

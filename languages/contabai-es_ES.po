@@ -1513,3 +1513,36 @@ msgstr "Eliminando…"
 
 msgid "Delete your account? Your account and chats will be deleted and cannot be restored."
 msgstr "¿Eliminar tu cuenta? Tu cuenta y tus chats se eliminarán y no se podrán recuperar."
+
+msgid "Map of the search results"
+msgstr "Mapa de los resultados de búsqueda"
+
+msgid "Zoom in"
+msgstr "Acercar"
+
+msgid "Zoom out"
+msgstr "Alejar"
+
+msgid "%1$s, from %2$s a night"
+msgstr "%1$s, desde %2$s por noche"
+
+msgid "Show on map"
+msgstr "Ver en el mapa"
+
+msgid "The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgstr "El mapa encima de los resultados de búsqueda. Las teselas de OpenStreetMap son gratuitas para un uso ligero; un sitio de producción con mucho tráfico debería pasarse a un proveedor de teselas de pago."
+
+msgid "An https:// tile address with {z}, {x} and {y}."
+msgstr "Una dirección de teselas https:// con {z}, {x} e {y}."
+
+msgid "The credit your tile provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back. Links are allowed."
+msgstr "El crédito que exige tu proveedor de teselas. Aparece primero en el mapa, se pliega tras cinco segundos o el primer toque, y el botón del ojo lo vuelve a mostrar. Se permiten enlaces."
+
+msgid "Map credits"
+msgstr "Créditos del mapa"
+
+msgid "Show the map above the search results."
+msgstr "Mostrar el mapa encima de los resultados de búsqueda."
+
+msgid "Off: the results page shows the photo header instead."
+msgstr "Desactivado: la página de resultados muestra la cabecera con foto."

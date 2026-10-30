@@ -272,6 +272,25 @@ class ShortCodes
         $amenitiesCatalogue = $translation[$currentLang]['amenities_catalogue'] ?? $translation['en']['amenities_catalogue'] ?? [];
         $amenityCategories = $translation[$currentLang]['amenity_categories'] ?? $translation['en']['amenity_categories'] ?? [];
 
+        $mapEnabled = $lockedFilters === [] && (int) get_option('contabai_map_enabled', 1) === 1;
+        $placeTitle = get_the_title();
+        if ($mapEnabled) {
+            $this->enqueue_map();
+
+            $countryKey = sanitize_text_field(wp_unslash((string) ($_GET['country'] ?? '')));
+            $regionKey = sanitize_text_field(wp_unslash((string) ($_GET['region'] ?? '')));
+            $areaKey = sanitize_text_field(wp_unslash((string) ($_GET['area'] ?? '')));
+            $countryData = $countries[$countryKey] ?? null;
+            $regionData = $countryData['regions'][$regionKey] ?? null;
+            if ($areaKey !== '' && isset($regionData['areas'][$areaKey])) {
+                $placeTitle = (string) $regionData['areas'][$areaKey];
+            } elseif ($regionData !== null) {
+                $placeTitle = (string) ($regionData['name'] ?? $regionKey);
+            } elseif ($countryData !== null) {
+                $placeTitle = (string) ($countryData['name'] ?? $countryKey);
+            }
+        }
+
         return View::render('listing.index', [
             'endpoint' => rest_url('contabai/v1/sanctum/listings'),
             'initialPerPage' => $perPage,
@@ -285,7 +304,17 @@ class ShortCodes
             'detailBase' => home_url('/' . CONTABAI_LISTING_PAGE_SLUG . '/'),
             'lockedFilters' => $lockedFilters,
             'searchBar' => $this->render_search(['compact' => '1', 'country' => $country, 'region' => $region]),
+            'mapEnabled' => $mapEnabled,
+            'placeTitle' => $placeTitle,
+            'mapTilesUrl' => (string) get_option('contabai_map_tiles_url', CONTABAI_MAP_TILES_URL),
+            'mapAttribution' => (string) get_option('contabai_map_attribution', CONTABAI_MAP_ATTRIBUTION),
         ]);
+    }
+
+    private function enqueue_map(): void
+    {
+        wp_enqueue_style('contabai-leaflet', CONTABAI_PLUGIN_URL . 'assets/css/leaflet.css', [], '1.9.4');
+        wp_enqueue_script('contabai-leaflet', CONTABAI_PLUGIN_URL . 'assets/js/leaflet/leaflet.js', [], '1.9.4', true);
     }
 
     public function render_random_listings($atts = []): string

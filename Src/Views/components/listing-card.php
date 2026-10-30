@@ -3,8 +3,8 @@
 $chevronLeft  = \Contabai\Heroicon::solid('chevron-left', 'w-4 h-4');
 $chevronRight = \Contabai\Heroicon::solid('chevron-right', 'w-4 h-4');
 ?>
-<div class="group block">
-    <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100"
+<div class="group block"<?php if (! empty($cardMap)): ?> x-on:mouseenter="hoveredId = listing.id" x-on:mouseleave="hoveredId = null"<?php endif; ?>>
+    <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100"<?php if (! empty($cardMap)): ?> x-bind:class="(hoveredId === listing.id || selectedId === listing.id) ? 'contabai-card-active' : ''"<?php endif; ?>
          x-data="{
             active: 0, startX: 0, animate: true,
             step(dir) {
@@ -41,6 +41,11 @@ $chevronRight = \Contabai\Heroicon::solid('chevron-right', 'w-4 h-4');
         $badge_attrs = 'x-text="typeLabel(listing)"';
         include __DIR__ . '/badge.php';
         ?>
+
+        <?php if (! empty($cardMap)): ?>
+        <button type="button" x-show="hasPin(listing)" x-on:click="showOnMap(listing)"
+                class="absolute bottom-2.5 right-2.5 z-20 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-neutral-800 transition hover:bg-white"><?php echo \Contabai\Heroicon::outline('map-pin', 'w-4 h-4'); ?><?php echo esc_html__('Show on map', 'contabai'); ?></button>
+        <?php endif; ?>
 
         <template x-if="slides(listing).length > 1">
             <div>

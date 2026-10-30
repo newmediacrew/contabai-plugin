@@ -1510,3 +1510,36 @@ msgstr "Suppression…"
 
 msgid "Delete your account? Your account and chats will be deleted and cannot be restored."
 msgstr "Supprimer ton compte ? Ton compte et tes discussions seront supprimés et ne pourront pas être restaurés."
+
+msgid "Map of the search results"
+msgstr "Carte des résultats de recherche"
+
+msgid "Zoom in"
+msgstr "Zoom avant"
+
+msgid "Zoom out"
+msgstr "Zoom arrière"
+
+msgid "%1$s, from %2$s a night"
+msgstr "%1$s, à partir de %2$s la nuit"
+
+msgid "Show on map"
+msgstr "Voir sur la carte"
+
+msgid "The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgstr "La carte au-dessus des résultats de recherche. Les tuiles OpenStreetMap sont gratuites pour un usage léger ; un site de production très fréquenté devrait passer à un fournisseur de tuiles payant."
+
+msgid "An https:// tile address with {z}, {x} and {y}."
+msgstr "Une adresse de tuiles https:// avec {z}, {x} et {y}."
+
+msgid "The credit your tile provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back. Links are allowed."
+msgstr "Le crédit exigé par ton fournisseur de tuiles. Il s'affiche d'abord sur la carte, se replie après cinq secondes ou au premier contact, et le bouton œil le fait réapparaître. Les liens sont autorisés."
+
+msgid "Map credits"
+msgstr "Crédits de la carte"
+
+msgid "Show the map above the search results."
+msgstr "Afficher la carte au-dessus des résultats de recherche."
+
+msgid "Off: the results page shows the photo header instead."
+msgstr "Désactivé : la page de résultats affiche l'en-tête photo à la place."

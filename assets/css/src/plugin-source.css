@@ -79,6 +79,36 @@
     .contabai-search-bar { display: flex; }
 }
 
+.contabai-results-top { display: flex; flex-direction: column; }
+.contabai-map-band { position: relative; height: 340px; overflow: hidden; background: #aad3df; }
+.contabai-map { position: absolute; inset: 0; z-index: 0; isolation: isolate; }
+.contabai-map.leaflet-container { background: #aad3df; font-family: inherit; }
+.contabai-map-panel nav[aria-label="breadcrumb"] { margin-bottom: 0; font-size: 13px; }
+.contabai-map-panel, .contabai-map-zoom { box-shadow: 0 10px 30px -14px rgba(15, 23, 42, .45); }
+.contabai-map-search { order: -1; background: #fff; padding: .75rem 1rem; }
+.contabai-map-popup { position: absolute; z-index: 10; transform: translate(-50%, calc(-100% - 44px)); }
+.contabai-map-popup > div { box-shadow: 0 18px 50px -12px rgba(15, 23, 42, .45); }
+.contabai-map-preview { box-shadow: 0 14px 40px -14px rgba(15, 23, 42, .5); }
+.contabai-map-zoom { display: none; flex-direction: column; }
+.contabai-map-credits { position: absolute; top: .5rem; right: .5rem; z-index: 10; box-shadow: 0 1px 3px rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, .1); }
+.contabai-pin-icon { background: none; border: 0; }
+.contabai-pin { position: absolute; left: 0; top: 0; transform: translate(-50%, -100%); min-height: 30px; padding: 6px 11px; border: 1px solid rgba(0, 0, 0, .14); border-radius: 9999px; background: #fff; color: #171717; font-family: inherit; font-size: 13px; font-weight: 700; line-height: 1; white-space: nowrap; cursor: pointer; box-shadow: 0 6px 16px -6px rgba(15, 23, 42, .55); transition: transform .12s ease, background-color .12s ease; }
+.contabai-pin.is-hovered { padding: 5px 10px; border: 2px solid var(--theme-color, #ff5400); transform: translate(-50%, -100%) scale(1.1); }
+.contabai-pin.is-selected { border-color: #171717; background: #171717; color: #fff; }
+.contabai-pin.is-dot { width: 18px; height: 18px; min-height: 0; padding: 0; border: 3px solid #fff; background: var(--theme-color, #ff5400); color: transparent; font-size: 0; transform: translate(-50%, -50%); box-shadow: 0 2px 8px rgba(15, 23, 42, .5); }
+.contabai-pin.is-dot::before { content: ""; position: absolute; inset: -12px; }
+.contabai-card-active { outline: 3px solid var(--theme-color, #ff5400); outline-offset: 2px; }
+@media (min-width: 640px) {
+    .contabai-map-band { height: 560px; }
+    .contabai-map-search { order: 0; position: relative; z-index: 5; margin-top: -36px; background: transparent; padding: 0 1rem; }
+    .contabai-map-search .contabai-search-bar { border-radius: 9999px; border-color: transparent; box-shadow: 0 24px 60px rgba(60, 40, 20, .16); }
+    .contabai-map-search .contabai-search-bar > button { border-radius: 9999px; }
+    .contabai-map-search .contabai-search-bar > button:first-child { padding-left: 1.75rem; }
+    .contabai-map-search .contabai-search-submit { border-radius: 9999px; }
+    .contabai-map-zoom { display: flex; }
+    .contabai-map-credits { top: auto; bottom: calc(36px + .5rem); }
+}
+
 .vc { font-family: inherit; }
 .vc .vc-week__day[data-vc-week-day-off] { color: #64748b !important; }
 .vc [data-vc-date-weekend]:not([data-vc-date-disabled]):not([data-vc-date-selected]) .vc-date__btn,

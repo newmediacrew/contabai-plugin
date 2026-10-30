@@ -1333,3 +1333,36 @@ msgstr ""
 
 msgid "Delete your account? Your account and chats will be deleted and cannot be restored."
 msgstr ""
+
+msgid "Map of the search results"
+msgstr ""
+
+msgid "Zoom in"
+msgstr ""
+
+msgid "Zoom out"
+msgstr ""
+
+msgid "%1$s, from %2$s a night"
+msgstr ""
+
+msgid "Show on map"
+msgstr ""
+
+msgid "The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgstr ""
+
+msgid "An https:// tile address with {z}, {x} and {y}."
+msgstr ""
+
+msgid "The credit your tile provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back. Links are allowed."
+msgstr ""
+
+msgid "Map credits"
+msgstr ""
+
+msgid "Show the map above the search results."
+msgstr ""
+
+msgid "Off: the results page shows the photo header instead."
+msgstr ""

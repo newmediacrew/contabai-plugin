@@ -1502,3 +1502,36 @@ msgstr "Bezig met verwijderen…"
 
 msgid "Delete your account? Your account and chats will be deleted and cannot be restored."
 msgstr "Je account verwijderen? Je account en chats worden verwijderd en kunnen niet worden hersteld."
+
+msgid "Map of the search results"
+msgstr "Kaart van de zoekresultaten"
+
+msgid "Zoom in"
+msgstr "Inzoomen"
+
+msgid "Zoom out"
+msgstr "Uitzoomen"
+
+msgid "%1$s, from %2$s a night"
+msgstr "%1$s, vanaf %2$s per nacht"
+
+msgid "Show on map"
+msgstr "Toon op kaart"
+
+msgid "The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgstr "De kaart boven de zoekresultaten. OpenStreetMap-tegels zijn gratis bij licht gebruik; een drukke productiesite stapt beter over op een betaalde tegelaanbieder."
+
+msgid "An https:// tile address with {z}, {x} and {y}."
+msgstr "Een https://-tegeladres met {z}, {x} en {y}."
+
+msgid "The credit your tile provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back. Links are allowed."
+msgstr "De bronvermelding die je tegelaanbieder vereist. Die staat eerst op de kaart, klapt in na vijf seconden of de eerste aanraking, en de oogknop haalt hem terug. Links zijn toegestaan."
+
+msgid "Map credits"
+msgstr "Kaartbronnen"
+
+msgid "Show the map above the search results."
+msgstr "Toon de kaart boven de zoekresultaten."
+
+msgid "Off: the results page shows the photo header instead."
+msgstr "Uit: de resultatenpagina toont dan de fotokop."
