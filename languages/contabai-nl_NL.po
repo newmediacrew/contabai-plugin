@@ -1518,8 +1518,8 @@ msgstr "%1$s, vanaf %2$s per nacht"
 msgid "Show on map"
 msgstr "Toon op kaart"
 
-msgid "The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
-msgstr "De kaart boven de zoekresultaten. OpenStreetMap-tegels zijn gratis bij licht gebruik; een drukke productiesite stapt beter over op een betaalde tegelaanbieder."
+msgid "The map on the search results and location pages. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgstr "De kaart op de zoekresultaten en de locatiepagina's. OpenStreetMap-tegels zijn gratis bij licht gebruik; een drukke productiesite stapt beter over op een betaalde tegelaanbieder."
 
 msgid "An https:// tile address with {z}, {x} and {y}."
 msgstr "Een https://-tegeladres met {z}, {x} en {y}."
@@ -1530,8 +1530,5 @@ msgstr "De bronvermelding die je tegelaanbieder vereist. Die staat eerst op de k
 msgid "Map credits"
 msgstr "Kaartbronnen"
 
-msgid "Show the map above the search results."
-msgstr "Toon de kaart boven de zoekresultaten."
-
-msgid "Off: the results page shows the photo header instead."
-msgstr "Uit: de resultatenpagina toont dan de fotokop."
+msgid "Show the map on the search results and location pages."
+msgstr "Toon de kaart op de zoekresultaten en de locatiepagina's."

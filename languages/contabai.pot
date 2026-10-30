@@ -1349,7 +1349,7 @@ msgstr ""
 msgid "Show on map"
 msgstr ""
 
-msgid "The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgid "The map on the search results and location pages. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
 msgstr ""
 
 msgid "An https:// tile address with {z}, {x} and {y}."
@@ -1361,8 +1361,5 @@ msgstr ""
 msgid "Map credits"
 msgstr ""
 
-msgid "Show the map above the search results."
-msgstr ""
-
-msgid "Off: the results page shows the photo header instead."
+msgid "Show the map on the search results and location pages."
 msgstr ""

@@ -8,28 +8,19 @@ foreach (($amenitiesCatalogue ?? []) as $group) {
 $bedBathOptions = ['1', '2', '3', '4'];
 ?>
 <div x-data="contabaiListings()" x-init="readFilters(); setupResponsive(); initMap(); initialListings.length ? hydrate() : load(1)" x-on:keydown.escape.window="selectedId = null">
+<?php if (! empty($searchBar)): ?>
+<div class="mx-auto w-full max-w-7xl px-4 pt-8"><?php echo $searchBar; ?></div>
+<?php endif; ?>
 <?php if (! empty($mapEnabled)): ?>
-<div class="contabai-results-top">
+<div class="mx-auto w-full max-w-7xl px-4 pt-6" x-show="hasPins" x-cloak>
     <section class="contabai-map-band scroll-mt-28" x-ref="mapBand" aria-label="<?php echo esc_attr__('Map of the search results', 'contabai'); ?>">
         <div class="contabai-map" x-ref="map"></div>
 
-        <div class="pointer-events-none absolute inset-x-0 top-5 z-10">
-            <div class="mx-auto flex w-full max-w-7xl items-start justify-between gap-4 px-4">
-                <div class="contabai-map-panel pointer-events-auto rounded-2xl bg-white/95 px-[18px] py-[14px] max-sm:sr-only">
-                    <?php
-                    $crumbs = [['label' => __('Home', 'contabai'), 'url' => home_url('/')], ['label' => $placeTitle, 'url' => null]];
-                    include __DIR__ . '/../components/breadcrumb.php';
-                    ?>
-                    <h1 class="contabai-heading contabai-seo-place mt-1 text-[30px] leading-[1.1] text-neutral-900"><?php echo esc_html($placeTitle); ?></h1>
-                    <p class="mt-1 text-sm text-neutral-600" x-text="mapSummary()"></p>
-                </div>
-                <div class="contabai-map-zoom pointer-events-auto overflow-hidden rounded-xl bg-white">
-                    <button type="button" x-on:click="zoomBy(1)" aria-label="<?php echo esc_attr__('Zoom in', 'contabai'); ?>"
-                            class="flex h-11 w-11 items-center justify-center border-b border-neutral-200 text-neutral-800 transition hover:bg-neutral-100"><?php echo \Contabai\Heroicon::outline('plus', 'w-5 h-5'); ?></button>
-                    <button type="button" x-on:click="zoomBy(-1)" aria-label="<?php echo esc_attr__('Zoom out', 'contabai'); ?>"
-                            class="flex h-11 w-11 items-center justify-center text-neutral-800 transition hover:bg-neutral-100"><?php echo \Contabai\Heroicon::outline('minus', 'w-5 h-5'); ?></button>
-                </div>
-            </div>
+        <div class="contabai-map-zoom pointer-events-auto absolute right-4 top-5 z-10 overflow-hidden rounded-xl bg-white">
+            <button type="button" x-on:click="zoomBy(1)" aria-label="<?php echo esc_attr__('Zoom in', 'contabai'); ?>"
+                    class="flex h-11 w-11 items-center justify-center border-b border-neutral-200 text-neutral-800 transition hover:bg-neutral-100"><?php echo \Contabai\Heroicon::outline('plus', 'w-5 h-5'); ?></button>
+            <button type="button" x-on:click="zoomBy(-1)" aria-label="<?php echo esc_attr__('Zoom out', 'contabai'); ?>"
+                    class="flex h-11 w-11 items-center justify-center text-neutral-800 transition hover:bg-neutral-100"><?php echo \Contabai\Heroicon::outline('minus', 'w-5 h-5'); ?></button>
         </div>
 
         <div class="contabai-map-credits flex items-center gap-1.5 rounded-md bg-white/90 px-1.5 py-1 text-xs text-neutral-700" x-ref="credits">
@@ -63,12 +54,8 @@ $bedBathOptions = ['1', '2', '3', '4'];
         </template>
     </section>
 
-    <?php if (! empty($searchBar)): ?>
-    <div class="contabai-map-search mx-auto w-full max-w-7xl"><?php echo $searchBar; ?></div>
-    <?php endif; ?>
-
     <template x-if="! isSm && selectedListing()">
-        <a x-bind:href="detailUrl(selectedListing())" class="contabai-map-preview relative z-[3] mx-3 -mt-16 flex gap-3 rounded-2xl bg-white p-2.5 no-underline">
+        <a x-bind:href="detailUrl(selectedListing())" class="contabai-map-preview relative z-[3] mt-3 flex gap-3 rounded-2xl bg-white p-2.5 no-underline">
             <img x-show="slides(selectedListing()).length" x-bind:src="(slides(selectedListing())[0] || {}).card" x-bind:alt="(slides(selectedListing())[0] || {}).alt" class="h-24 w-24 flex-none rounded-xl object-cover">
             <span class="flex min-w-0 flex-col justify-center">
                 <span class="truncate text-[15px] font-semibold text-neutral-900" x-text="selectedListing().title"></span>
@@ -87,20 +74,16 @@ $bedBathOptions = ['1', '2', '3', '4'];
         </a>
     </template>
 </div>
-<?php elseif (! empty($searchBar)): ?>
-<div class="mx-auto w-full max-w-7xl px-4 pt-8"><?php echo $searchBar; ?></div>
 <?php endif; ?>
 
 <div class="mx-auto w-full max-w-7xl px-4 py-8 lg:flex lg:gap-8">
 
     <aside class="mb-6 lg:mb-0 lg:w-64 lg:shrink-0">
-        <?php if (! empty($mapEnabled)): ?><div class="mb-4 flex items-center justify-between gap-3 lg:!hidden"><p class="text-lg font-bold text-neutral-900" x-text="resultLabel()"></p><?php endif; ?>
         <button type="button" x-on:click="railOpen = true"
-                class="<?php echo ! empty($mapEnabled) ? 'inline-flex min-h-11 items-center gap-2' : 'mb-4 inline-flex w-full items-center justify-between'; ?> rounded-lg border border-neutral-300 px-4 py-2.5 text-sm font-medium text-neutral-800 transition hover:bg-neutral-50 lg:!hidden">
+                class="mb-4 inline-flex w-full items-center justify-between rounded-lg border border-neutral-300 px-4 py-2.5 text-sm font-medium text-neutral-800 transition hover:bg-neutral-50 lg:!hidden">
             <span class="inline-flex items-center gap-2"><?php echo \Contabai\Heroicon::outline('adjustments-horizontal', 'w-4 h-4'); ?><?php echo esc_html__('Filters', 'contabai'); ?></span>
             <span x-show="railActive()" x-cloak class="contabai-accent-bg inline-flex h-2 w-2 rounded-full"></span>
         </button>
-        <?php if (! empty($mapEnabled)): ?></div><?php endif; ?>
 
         <div x-show="railOpen" x-cloak x-transition.opacity x-on:click="railOpen = false" class="contabai-filter-backdrop lg:hidden"></div>
 
@@ -347,6 +330,7 @@ document.addEventListener('alpine:init', function () {
             lockedFilters: <?php echo wp_json_encode((object) ($lockedFilters ?? [])); ?>,
             endpoint: '<?php echo esc_url($endpoint); ?>',
             mapEnabled: <?php echo ! empty($mapEnabled) ? 'true' : 'false'; ?>,
+            hasPins: false,
             isSm: window.matchMedia('(min-width: 640px)').matches,
             hoveredId: null,
             selectedId: null,
@@ -382,7 +366,13 @@ document.addEventListener('alpine:init', function () {
                     self.creditsOpen = false;
                 };
                 band.addEventListener('pointerdown', foldCredits);
-                creditsTimer = setTimeout(foldCredits, 5000);
+                // The five seconds count from when the map is on screen; on a location page it starts below the fold.
+                let creditsSeen = new IntersectionObserver(function (entries) {
+                    if (! entries[0].isIntersecting) { return; }
+                    creditsSeen.disconnect();
+                    creditsTimer = setTimeout(foldCredits, 5000);
+                });
+                creditsSeen.observe(band);
                 map.on('move zoomend resize', function () { self.placePopup(); });
                 map.on('zoomstart', function () { self.popupVisible = false; });
                 map.on('click', function () { self.selectedId = null; });
@@ -434,7 +424,9 @@ document.addEventListener('alpine:init', function () {
                 });
                 if (self.selectedId !== null && ! pins[self.selectedId]) { self.selectedId = null; }
                 self.paintPins();
-                self.fitPins(points);
+                // The map stays hidden while nothing here has a pin; Leaflet can only measure it once it shows.
+                self.hasPins = points.length > 0;
+                if (points.length) { self.$nextTick(function () { map.invalidateSize(); self.fitPins(points); }); }
             },
 
             paintPins: function () {
@@ -451,20 +443,13 @@ document.addEventListener('alpine:init', function () {
             },
 
             fitPins: function (points) {
-                let options = this.isSm
-                    ? { paddingTopLeft: [48, 150], paddingBottomRight: [48, 70], maxZoom: 15 }
-                    : { paddingTopLeft: [32, 32], paddingBottomRight: [32, 80], maxZoom: 15 };
-                if (! points.length) {
-                    map.fitBounds([[12.02, -70.07], [12.64, -68.19]], options);
-                    return;
-                }
-                map.fitBounds(points, options);
+                map.fitBounds(points, { padding: [40, 40], maxZoom: 15 });
             },
 
             revealSelected: function () {
                 let pin = map && this.selectedId !== null ? pins[this.selectedId] : null;
                 if (pin && this.isSm) {
-                    map.panInside(pin.marker.getLatLng(), { paddingTopLeft: [150, 350], paddingBottomRight: [150, 70] });
+                    map.panInside(pin.marker.getLatLng(), { paddingTopLeft: [150, 350], paddingBottomRight: [150, 40] });
                 } else if (pin) {
                     map.panInside(pin.marker.getLatLng(), { padding: [40, 40] });
                 }
@@ -494,23 +479,6 @@ document.addEventListener('alpine:init', function () {
             zoomBy: function (step) {
                 if (! map) { return; }
                 if (step > 0) { map.zoomIn(); } else { map.zoomOut(); }
-            },
-
-            fmtDate: function (iso) {
-                try { return new Date(iso + 'T00:00:00').toLocaleDateString('<?php echo esc_js(\Contabai\Helper::currentLang()); ?>', { day: 'numeric', month: 'short' }); }
-                catch (e) { return iso; }
-            },
-
-            mapSummary: function () {
-                let parts = [this.resultLabel()];
-                let from = this.baseFilters.from_date;
-                let till = this.baseFilters.till_date;
-                if (from) { parts.push(till ? this.fmtDate(from) + ' → ' + this.fmtDate(till) : this.fmtDate(from)); }
-                let guests = parseInt(this.baseFilters.guests, 10);
-                if (guests > 0) {
-                    parts.push(guests + ' ' + (guests === 1 ? '<?php echo esc_js(__('guest', 'contabai')); ?>' : '<?php echo esc_js(__('guests', 'contabai')); ?>'));
-                }
-                return parts.join(' · ');
             },
 
             // Location/date/guest filters come from the search bar's URL and stay fixed here;

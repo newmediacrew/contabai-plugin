@@ -1532,8 +1532,8 @@ msgstr "%1$s, ab %2$s pro Nacht"
 msgid "Show on map"
 msgstr "Auf der Karte zeigen"
 
-msgid "The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
-msgstr "Die Karte über den Suchergebnissen. OpenStreetMap-Kacheln sind bei geringer Nutzung kostenlos; eine stark besuchte Produktivseite sollte zu einem kostenpflichtigen Kachelanbieter wechseln."
+msgid "The map on the search results and location pages. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgstr "Die Karte auf den Suchergebnissen und den Ortsseiten. OpenStreetMap-Kacheln sind bei geringer Nutzung kostenlos; eine stark besuchte Produktivseite sollte zu einem kostenpflichtigen Kachelanbieter wechseln."
 
 msgid "An https:// tile address with {z}, {x} and {y}."
 msgstr "Eine https://-Kacheladresse mit {z}, {x} und {y}."
@@ -1544,8 +1544,5 @@ msgstr "Die Quellenangabe, die dein Kachelanbieter verlangt. Sie erscheint zuers
 msgid "Map credits"
 msgstr "Kartenquellen"
 
-msgid "Show the map above the search results."
-msgstr "Die Karte über den Suchergebnissen anzeigen."
-
-msgid "Off: the results page shows the photo header instead."
-msgstr "Aus: Die Ergebnisseite zeigt stattdessen den Fotokopf."
+msgid "Show the map on the search results and location pages."
+msgstr "Die Karte auf den Suchergebnissen und den Ortsseiten anzeigen."

@@ -3,7 +3,7 @@
 Plugin Name: Contabai
 Plugin URI: https://www.contabai.network
 Description: Contabai — property listings platform frontend for WordPress.
-Version: 1.2.23
+Version: 1.2.24
 Requires at least: 7.1
 Requires PHP: 8.3
 Tested up to: 7.1
@@ -105,7 +105,7 @@ add_filter('script_loader_tag', function ($tag, $handle) {
 }, 10, 2);
 
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('contabai-plugin-css', plugin_dir_url(__FILE__) . 'assets/css/plugin.css', [], '56');
+    wp_enqueue_style('contabai-plugin-css', plugin_dir_url(__FILE__) . 'assets/css/plugin.css', [], '58');
     wp_enqueue_script('contabai-alpine-collapse', plugin_dir_url(__FILE__) . 'assets/js/alpine-collapse.min.js', [], '3', ['strategy' => 'defer']);
     wp_enqueue_script('contabai-alpinejs', plugin_dir_url(__FILE__) . 'assets/js/alpine.min.js', ['contabai-alpine-collapse'], '4', ['strategy' => 'defer']);
 });
@@ -352,19 +352,18 @@ add_action('admin_init', function () {
         'contabai_map_section',
         'Map',
         function () {
-            echo '<p>' . esc_html__('The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider.', 'contabai') . '</p>';
+            echo '<p>' . esc_html__('The map on the search results and location pages. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider.', 'contabai') . '</p>';
         },
         'contabai-settings-basic'
     );
 
     add_settings_field(
         'contabai_map_enabled',
-        'Results map',
+        'Map',
         function () {
             $checked = checked(1, (int) get_option('contabai_map_enabled', 1), false);
             echo '<input type="hidden" name="contabai_map_enabled" value="0" />';
-            echo '<label><input type="checkbox" name="contabai_map_enabled" value="1" ' . $checked . '> ' . esc_html__('Show the map above the search results.', 'contabai') . '</label>';
-            echo '<p class="description">' . esc_html__('Off: the results page shows the photo header instead.', 'contabai') . '</p>';
+            echo '<label><input type="checkbox" name="contabai_map_enabled" value="1" ' . $checked . '> ' . esc_html__('Show the map on the search results and location pages.', 'contabai') . '</label>';
         },
         'contabai-settings-basic',
         'contabai_map_section'

@@ -1529,8 +1529,8 @@ msgstr "%1$s, desde %2$s por noche"
 msgid "Show on map"
 msgstr "Ver en el mapa"
 
-msgid "The map above the search results. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
-msgstr "El mapa encima de los resultados de búsqueda. Las teselas de OpenStreetMap son gratuitas para un uso ligero; un sitio de producción con mucho tráfico debería pasarse a un proveedor de teselas de pago."
+msgid "The map on the search results and location pages. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
+msgstr "El mapa en los resultados de búsqueda y en las páginas de ubicación. Las teselas de OpenStreetMap son gratuitas para un uso ligero; un sitio de producción con mucho tráfico debería pasarse a un proveedor de teselas de pago."
 
 msgid "An https:// tile address with {z}, {x} and {y}."
 msgstr "Una dirección de teselas https:// con {z}, {x} e {y}."
@@ -1541,8 +1541,5 @@ msgstr "El crédito que exige tu proveedor de teselas. Aparece primero en el map
 msgid "Map credits"
 msgstr "Créditos del mapa"
 
-msgid "Show the map above the search results."
-msgstr "Mostrar el mapa encima de los resultados de búsqueda."
-
-msgid "Off: the results page shows the photo header instead."
-msgstr "Desactivado: la página de resultados muestra la cabecera con foto."
+msgid "Show the map on the search results and location pages."
+msgstr "Mostrar el mapa en los resultados de búsqueda y en las páginas de ubicación."
