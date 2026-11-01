@@ -394,7 +394,7 @@ ob_start();
                 $acc_title = __('Video', 'contabai');
                 ob_start(); ?>
                 <div class="aspect-video overflow-hidden rounded-xl bg-black">
-                    <iframe src="<?php echo esc_url($listing['video_url']); ?>" class="h-full w-full" frameborder="0"
+                    <iframe data-src="<?php echo esc_url($listing['video_url']); ?>" x-bind:src="open === 'video' ? $el.dataset.src : null" class="h-full w-full" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <?php
