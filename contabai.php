@@ -3,7 +3,7 @@
 Plugin Name: Contabai
 Plugin URI: https://www.contabai.network
 Description: Contabai — property listings platform frontend for WordPress.
-Version: 1.2.29
+Version: 1.2.30
 Requires at least: 7.1
 Requires PHP: 8.3
 Tested up to: 7.1
@@ -81,17 +81,17 @@ add_filter('rest_pre_serve_request', function ($value) {
 
 define('CONTABAI_API_BASE_URL', esc_url_raw(get_option('contabai_base_url', 'https://app.contabai.network')));
 define('CONTABAI_VERIFY_SSL', (int) get_option('contabai_verify_ssl', 1));
-define('CONTABAI_LISTINGS_PAGE_SLUG', esc_attr(get_option('contabai_listings_page_slug', 'contabai-listings')));
-define('CONTABAI_LISTING_PAGE_SLUG', esc_attr(get_option('contabai_listing_page_slug', 'contabai-listing')));
-define('CONTABAI_LOGIN_PAGE_SLUG', esc_attr(get_option('contabai_login_page_slug', 'contabai-login')));
-define('CONTABAI_REGISTER_PAGE_SLUG', esc_attr(get_option('contabai_register_page_slug', 'contabai-register')));
-define('CONTABAI_FORGOT_PASSWORD_PAGE_SLUG', esc_attr(get_option('contabai_forgot_password_page_slug', 'contabai-forgot-password')));
-define('CONTABAI_VERIFY_EMAIL_PAGE_SLUG', esc_attr(get_option('contabai_verify_email_page_slug', 'contabai-verify-email')));
-define('CONTABAI_ACCOUNT_PAGE_SLUG', esc_attr(get_option('contabai_account_page_slug', 'contabai-account')));
-define('CONTABAI_PROFILE_PAGE_SLUG', esc_attr(get_option('contabai_profile_page_slug', 'contabai-profile')));
-define('CONTABAI_BOOKINGS_PAGE_SLUG', esc_attr(get_option('contabai_bookings_page_slug', 'contabai-bookings')));
-define('CONTABAI_CHAT_PAGE_SLUG', esc_attr(get_option('contabai_chat_page_slug', 'contabai-chat')));
-define('CONTABAI_BOOK_PAGE_SLUG', esc_attr(get_option('contabai_book_page_slug', 'contabai-book')));
+define('CONTABAI_LISTINGS_PAGE_SLUG', sanitize_title(get_option('contabai_listings_page_slug', 'contabai-listings')));
+define('CONTABAI_LISTING_PAGE_SLUG', sanitize_title(get_option('contabai_listing_page_slug', 'contabai-listing')));
+define('CONTABAI_LOGIN_PAGE_SLUG', sanitize_title(get_option('contabai_login_page_slug', 'contabai-login')));
+define('CONTABAI_REGISTER_PAGE_SLUG', sanitize_title(get_option('contabai_register_page_slug', 'contabai-register')));
+define('CONTABAI_FORGOT_PASSWORD_PAGE_SLUG', sanitize_title(get_option('contabai_forgot_password_page_slug', 'contabai-forgot-password')));
+define('CONTABAI_VERIFY_EMAIL_PAGE_SLUG', sanitize_title(get_option('contabai_verify_email_page_slug', 'contabai-verify-email')));
+define('CONTABAI_ACCOUNT_PAGE_SLUG', sanitize_title(get_option('contabai_account_page_slug', 'contabai-account')));
+define('CONTABAI_PROFILE_PAGE_SLUG', sanitize_title(get_option('contabai_profile_page_slug', 'contabai-profile')));
+define('CONTABAI_BOOKINGS_PAGE_SLUG', sanitize_title(get_option('contabai_bookings_page_slug', 'contabai-bookings')));
+define('CONTABAI_CHAT_PAGE_SLUG', sanitize_title(get_option('contabai_chat_page_slug', 'contabai-chat')));
+define('CONTABAI_BOOK_PAGE_SLUG', sanitize_title(get_option('contabai_book_page_slug', 'contabai-book')));
 define('CONTABAI_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CONTABAI_PLUGIN_DIR', plugin_dir_path(__FILE__));
 
@@ -171,7 +171,7 @@ add_action('admin_menu', function () {
 
 add_action('admin_init', function () {
     // Advanced tab — API connection (its own group so saving it never touches the Basic options).
-    register_setting('contabai_advanced_group', 'contabai_base_url');
+    register_setting('contabai_advanced_group', 'contabai_base_url', ['sanitize_callback' => 'esc_url_raw']);
     register_setting('contabai_advanced_group', 'contabai_verify_ssl', ['sanitize_callback' => 'intval']);
     register_setting('contabai_advanced_group', 'contabai_dev_mode', ['sanitize_callback' => 'intval']);
     register_setting('contabai_advanced_group', 'contabai_show_ai_tools', ['sanitize_callback' => 'intval']);
@@ -186,7 +186,7 @@ add_action('admin_init', function () {
         'contabai_account_page_slug', 'contabai_profile_page_slug',
         'contabai_bookings_page_slug', 'contabai_chat_page_slug', 'contabai_book_page_slug',
     ] as $option) {
-        register_setting('contabai_basic_group', $option);
+        register_setting('contabai_basic_group', $option, ['sanitize_callback' => 'sanitize_title']);
     }
     register_setting('contabai_basic_group', 'contabai_map_enabled', ['sanitize_callback' => 'intval']);
     register_setting('contabai_basic_group', 'contabai_map_provider', ['sanitize_callback' => function ($value) {
@@ -589,69 +589,69 @@ function contabai_render_shortcodes_page(): void
 add_action('admin_init', function () {
     $pages = [
         [
-            'slug' => get_option('contabai_listings_page_slug', 'contabai-listings'),
+            'slug' => sanitize_title(get_option('contabai_listings_page_slug', 'contabai-listings')),
             'title' => 'Listings',
             'shortcode' => '[contabai_listings]',
 
             'template' => 'template-listing.php',
         ],
         [
-            'slug' => get_option('contabai_listing_page_slug', 'contabai-listing'),
+            'slug' => sanitize_title(get_option('contabai_listing_page_slug', 'contabai-listing')),
             'title' => 'Listing',
             'shortcode' => '[contabai_listing]',
             'template' => 'template-listing.php',
         ],
         [
-            'slug' => get_option('contabai_login_page_slug', 'contabai-login'),
+            'slug' => sanitize_title(get_option('contabai_login_page_slug', 'contabai-login')),
             'title' => 'Login',
             'shortcode' => '[contabai_login_form]',
             'template' => 'template-contabai-session-and-hub.php',
         ],
         [
-            'slug' => get_option('contabai_register_page_slug', 'contabai-register'),
+            'slug' => sanitize_title(get_option('contabai_register_page_slug', 'contabai-register')),
             'title' => 'Register',
             'shortcode' => '[contabai_register_form]',
             'template' => 'template-contabai-session-and-hub.php',
         ],
         [
-            'slug' => get_option('contabai_forgot_password_page_slug', 'contabai-forgot-password'),
+            'slug' => sanitize_title(get_option('contabai_forgot_password_page_slug', 'contabai-forgot-password')),
             'title' => 'Forgot Password',
             'shortcode' => '[contabai_forgot_password_form]',
             'template' => 'template-contabai-session-and-hub.php',
         ],
         [
-            'slug' => get_option('contabai_verify_email_page_slug', 'contabai-verify-email'),
+            'slug' => sanitize_title(get_option('contabai_verify_email_page_slug', 'contabai-verify-email')),
             'title' => 'Verify Email',
             'shortcode' => '[contabai_verify_email]',
             'template' => 'template-contabai-session-and-hub.php',
         ],
 
         [
-            'slug' => get_option('contabai_account_page_slug', 'contabai-account'),
+            'slug' => sanitize_title(get_option('contabai_account_page_slug', 'contabai-account')),
             'title' => 'Account',
             'shortcode' => '[contabai_account]',
             'template' => 'template-contabai-session-and-hub.php',
         ],
         [
-            'slug' => get_option('contabai_profile_page_slug', 'contabai-profile'),
+            'slug' => sanitize_title(get_option('contabai_profile_page_slug', 'contabai-profile')),
             'title' => 'Profile',
             'shortcode' => '[contabai_profile]',
             'template' => 'template-contabai-session-and-hub.php',
         ],
         [
-            'slug' => get_option('contabai_bookings_page_slug', 'contabai-bookings'),
+            'slug' => sanitize_title(get_option('contabai_bookings_page_slug', 'contabai-bookings')),
             'title' => 'Bookings',
             'shortcode' => '[contabai_bookings]',
             'template' => 'template-contabai-session-and-hub.php',
         ],
         [
-            'slug' => get_option('contabai_chat_page_slug', 'contabai-chat'),
+            'slug' => sanitize_title(get_option('contabai_chat_page_slug', 'contabai-chat')),
             'title' => 'Chat',
             'shortcode' => '[contabai_chat]',
             'template' => 'template-contabai-session-and-hub.php',
         ],
         [
-            'slug' => get_option('contabai_book_page_slug', 'contabai-book'),
+            'slug' => sanitize_title(get_option('contabai_book_page_slug', 'contabai-book')),
             'title' => 'Book',
             'shortcode' => '[contabai_book]',
             'template' => 'template-contabai-session-and-hub.php',
