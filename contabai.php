@@ -3,7 +3,7 @@
 Plugin Name: Contabai
 Plugin URI: https://www.contabai.network
 Description: Contabai — property listings platform frontend for WordPress.
-Version: 1.2.26
+Version: 1.2.27
 Requires at least: 7.1
 Requires PHP: 8.3
 Tested up to: 7.1
@@ -35,6 +35,7 @@ use Contabai\Controllers\AiSeoQueueController;
 use Contabai\Controllers\AiSeoMetaBoxController;
 use Contabai\Controllers\PluginUpdater;
 use Contabai\Controllers\SitemapController;
+use Contabai\Controllers\HreflangController;
 
 defined('ABSPATH') || exit();
 
@@ -153,6 +154,7 @@ add_action('plugins_loaded', function () {
         AiSeoMetaBoxController::class,
         PluginUpdater::class,
         SitemapController::class,
+        HreflangController::class,
     ];
 
     foreach ($controllers as $controller) {
