@@ -32,7 +32,7 @@ if (! empty($typeLabel)) {
                  x-init="let start = () => { if (images.length > 1 && ! window.matchMedia('(prefers-reduced-motion: reduce)').matches) { heroReady = true; setInterval(() => { if (! lbOpen) { heroIndex = (heroIndex + 1) % images.length; } }, 6000); } }; document.readyState === 'complete' ? start() : window.addEventListener('load', start, { once: true });">
             <?php foreach ($photos as $i => $p):
                 $heroSrc    = esc_url($p['hero_large'] ?? $p['hero'] ?? $p['medium'] ?? '');
-                $heroSrcset = (! empty($p['hero']) && ! empty($p['hero_large'])) ? esc_url($p['hero']) . ' 1920w, ' . esc_url($p['hero_large']) . ' 2560w' : '';
+                $heroSrcset = (! empty($p['hero']) && ! empty($p['hero_large'])) ? (! empty($p['medium']) ? esc_url($p['medium']) . ' 1280w, ' : '') . esc_url($p['hero']) . ' 1920w, ' . esc_url($p['hero_large']) . ' 2560w' : '';
             ?>
                 <?php if ($i === 0): ?>
                 <img src="<?php echo $heroSrc; ?>"<?php if ($heroSrcset): ?> srcset="<?php echo $heroSrcset; ?>"<?php endif; ?> fetchpriority="high"
