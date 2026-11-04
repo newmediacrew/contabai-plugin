@@ -108,7 +108,7 @@ class AiSeoGenerator
 
         $input = [
             ['role' => 'system', 'content' => $prompt],
-            ['role' => 'system', 'content' => "Write ALL output — the article, title, meta_description, focus_keyword, secondary_keywords, faq, best_areas, every field — in {$language}. Do not use any other language."],
+            ['role' => 'system', 'content' => "Write ALL output in {$language}, except internal_links target_location and any related_locations entry meant to become a link: keep those exactly as given in the page context. Do not use any other language."],
             ['role' => 'user',   'content' => 'Write the SEO landing page now.'],
         ];
 
@@ -206,6 +206,7 @@ class AiSeoGenerator
             '{{region}}'           => $regionName,
             '{{area}}'             => '',
             '{{nearby_locations}}' => implode(', ', $nearby),
+            '{{language}}'         => self::language(),
         ];
     }
 

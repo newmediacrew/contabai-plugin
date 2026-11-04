@@ -348,7 +348,7 @@ msgstr ""
 msgid "Exact dates"
 msgstr ""
 
-msgid "Examples: minimal, low, medium, high, xhigh."
+msgid "Examples: low, medium, high, xhigh, max."
 msgstr ""
 
 msgid "FAQ"
@@ -868,7 +868,7 @@ msgstr ""
 msgid "Sending…"
 msgstr ""
 
-msgid "Sent to OpenAI per page. These placeholders are filled in automatically: {{site_title}}, {{site_tagline}}, {{target_location}}, {{target_type}}, {{country}}, {{region}}, {{area}}, {{nearby_locations}}."
+msgid "Sent to OpenAI per page. These placeholders are filled in automatically: {{site_title}}, {{site_tagline}}, {{target_location}}, {{target_type}}, {{country}}, {{region}}, {{area}}, {{nearby_locations}}, {{language}}."
 msgstr ""
 
 msgid "Settings → Reading"
@@ -925,7 +925,7 @@ msgstr ""
 msgid "Thanks — your review has been posted."
 msgstr ""
 
-msgid "The OpenAI model to use (e.g. gpt-5.6-sol). Update this if OpenAI releases a newer or better model."
+msgid "The OpenAI model to use (e.g. gpt-6.1-sol). Update this if OpenAI releases a newer or better model."
 msgstr ""
 
 msgid "The bar reads the URL on load, so wherever it sits it opens showing the destination, dates and party the visitor already chose."
