@@ -366,9 +366,11 @@ Follow this structure in the specified order.
 
 ## H1 — Destination heading
 
-For a country page, name the country. A country has no geographical parent.
+Start the H1 with the natural phrase for holiday rentals in {{language}}.
 
-For a region page, name the region and its parent country.
+For a country page, follow it with the country, as in "Holiday rentals in [country]". A country has no geographical parent.
+
+For a region page, follow it with the region and its parent country, as in "Holiday rentals in [region], [country]".
 
 Use natural language rather than keyword-stuffed headings.
 
@@ -718,7 +720,7 @@ Before returning the JSON, silently check every requirement:
 
 1. The correct geographical hierarchy is maintained.
 2. The article is specifically about the target location.
-3. The H1 names the country on country pages, and names both the region and its parent country on region pages.
+3. The H1 starts with the natural phrase for holiday rentals in {{language}}, then names the country on country pages, or the region and its parent country on region pages.
 4. Every section begins with a direct factual answer.
 5. Every factual claim is verified or omitted.
 6. Named entities are real and geographically relevant.
