@@ -5,14 +5,14 @@
 
     <?php if ($initial): ?>
         <div class="contabai-listings-grid" x-show="! listings.length">
-            <?php foreach ($initial as $item) { include __DIR__ . '/../components/listing-card-static.php'; } ?>
+            <?php foreach ($initial as $item) { include \Contabai\View::path('components.listing-card-static'); } ?>
         </div>
     <?php endif; ?>
 
     <div class="contabai-listings-grid">
         <template x-for="listing in listings" x-bind:key="listing.id">
             <div>
-                <?php include __DIR__ . '/../components/listing-card.php'; ?>
+                <?php include \Contabai\View::path('components.listing-card'); ?>
             </div>
         </template>
     </div>
@@ -21,7 +21,7 @@
 </div>
 
 <?php if (! empty($printScript)): ?>
-<?php include __DIR__ . '/../components/listing-card-helpers.php'; ?>
+<?php include \Contabai\View::path('components.listing-card-helpers'); ?>
 <script>
 document.addEventListener('alpine:init', function () {
     // Registered once per page; each [contabai_random_listings] instance passes its own

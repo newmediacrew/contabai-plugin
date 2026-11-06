@@ -106,14 +106,14 @@ ob_start();
 
     <?php if ($reviewCount > 0): ?>
         <a href="#reviews" x-data x-on:click.prevent="$dispatch('open-reviews')" class="mt-2 inline-flex items-center gap-2 text-sm <?php echo $tone['body']; ?> no-underline hover:underline">
-            <?php $sr_rating = $reviewAverage; $sr_size = 'w-4 h-4'; include __DIR__ . '/../components/star-rating.php'; ?>
+            <?php $sr_rating = $reviewAverage; $sr_size = 'w-4 h-4'; include \Contabai\View::path('components.star-rating'); ?>
             <span><span class="font-semibold"><?php echo esc_html(number_format((float) $reviewAverage, 1)); ?></span>
                 · <?php echo esc_html(sprintf(_n('%d review', '%d reviews', $reviewCount, 'contabai'), $reviewCount)); ?></span>
         </a>
     <?php endif; ?>
 <?php $heroContent = (string) ob_get_clean(); ?>
 <?php if ($onPhoto): ?>
-    <?php $galleryHero = true; include __DIR__ . '/../components/image-gallery.php'; ?>
+    <?php $galleryHero = true; include \Contabai\View::path('components.image-gallery'); ?>
 <?php endif; ?>
 <div class="mx-auto max-w-7xl px-4 py-8">
     <?php if (! $onPhoto) { echo $heroContent; } ?>
@@ -371,7 +371,7 @@ ob_start();
                                     </li>
                                 </template>
                             </ul>
-                            <?php $pg_neutral = true; include __DIR__ . '/../components/pagination.php'; ?>
+                            <?php $pg_neutral = true; include \Contabai\View::path('components.pagination'); ?>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -381,13 +381,13 @@ ob_start();
                 $acc_key   = 'house_rules';
                 $acc_title = __('House rules', 'contabai');
                 $acc_body  = '<div class="prose prose-sm max-w-none text-neutral-700">' . wp_kses_post($houseRules) . '</div>';
-                include __DIR__ . '/../components/accordion-section.php';
+                include \Contabai\View::path('components.accordion-section');
             }
             if ($cancellationPolicy !== '') {
                 $acc_key   = 'cancellation_policy';
                 $acc_title = __('Cancellation policy', 'contabai');
                 $acc_body  = '<div class="prose prose-sm max-w-none text-neutral-700">' . wp_kses_post($cancellationPolicy) . '</div>';
-                include __DIR__ . '/../components/accordion-section.php';
+                include \Contabai\View::path('components.accordion-section');
             }
             if (! empty($listing['video_url'])) {
                 $acc_key   = 'video';
@@ -399,7 +399,7 @@ ob_start();
                 </div>
                 <?php
                 $acc_body = ob_get_clean();
-                include __DIR__ . '/../components/accordion-section.php';
+                include \Contabai\View::path('components.accordion-section');
             }
             ?>
         </div>
@@ -458,7 +458,7 @@ ob_start();
                     <?php
                     $badge_body    = esc_html($classLabel);
                     $badge_variant = $isMandatory ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800';
-                    include __DIR__ . '/../components/badge.php';
+                    include \Contabai\View::path('components.badge');
                     ?>
                 </span>
                 <span class="whitespace-nowrap text-neutral-800<?php echo $wide ? ' sm:shrink-0' : ''; ?>"><?php echo esc_html($rate); ?> <span class="text-neutral-400"><?php echo esc_html('· ' . $unit); ?></span></span>

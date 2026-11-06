@@ -154,7 +154,7 @@ $initialTotal = (int) $initial['total'];
 
         <div class="contabai-results-grid" x-show="<?php echo $initial['listings'] ? 'initialListings.length > 0' : 'loading && listings.length === 0'; ?>">
             <?php if ($initial['listings']): ?>
-                <?php foreach ($initial['listings'] as $item) { include __DIR__ . '/../components/listing-card-static.php'; } ?>
+                <?php foreach ($initial['listings'] as $item) { include \Contabai\View::path('components.listing-card-static'); } ?>
             <?php else: ?>
             <?php for ($skeleton = 0; $skeleton < (int) $skeletonCount; $skeleton++) : ?>
                 <div class="animate-pulse">
@@ -174,7 +174,7 @@ $initialTotal = (int) $initial['total'];
         <div class="contabai-results-grid" x-show="listings.length > 0" x-cloak>
             <template x-for="listing in listings" x-bind:key="listing.id">
                 <div>
-                    <?php $cardMap = ! empty($mapEnabled); include __DIR__ . '/../components/listing-card.php'; ?>
+                    <?php $cardMap = ! empty($mapEnabled); include \Contabai\View::path('components.listing-card'); ?>
                 </div>
             </template>
         </div>
@@ -185,7 +185,7 @@ $initialTotal = (int) $initial['total'];
 
         <div x-show="loading && listings.length > 0" x-cloak class="py-16 text-center text-sm text-neutral-500"><?php echo esc_html__('Loading...', 'contabai'); ?></div>
 
-        <?php include __DIR__ . '/../components/pagination.php'; ?>
+        <?php include \Contabai\View::path('components.pagination'); ?>
     </div>
 
     <?php if (! empty($mapEnabled)): ?>
@@ -362,7 +362,7 @@ $initialTotal = (int) $initial['total'];
 </section>
 </div>
 
-<?php include __DIR__ . '/../components/listing-card-helpers.php'; ?>
+<?php include \Contabai\View::path('components.listing-card-helpers'); ?>
 <script>
 document.addEventListener('alpine:init', function () {
     Alpine.data('contabaiListings', function () {

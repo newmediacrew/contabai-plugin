@@ -39,7 +39,7 @@ $chevronRight = \Contabai\Heroicon::solid('chevron-right', 'w-4 h-4');
         $badge_variant = 'bg-white/90 text-neutral-800  backdrop-blur';
         $badge_extra = 'pointer-events-none absolute left-2.5 top-2.5 z-20 capitalize';
         $badge_attrs = 'x-text="typeLabel(listing)"';
-        include __DIR__ . '/badge.php';
+        include \Contabai\View::path('components.badge');
         ?>
 
         <template x-if="slides(listing).length > 1">

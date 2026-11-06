@@ -292,7 +292,7 @@ class ShortCodes
             'popularAmenities' => ['wifi', 'air_conditioning', 'pool', 'pets_allowed', 'free_parking_on_premises', 'beach_access', 'waterfront', 'washer', 'hot_tub', 'bbq_grill'],
             'detailBase' => home_url('/' . CONTABAI_LISTING_PAGE_SLUG . '/'),
             'lockedFilters' => $lockedFilters,
-            'searchBar' => $this->render_search(['compact' => '1', 'country' => $country, 'region' => $region]),
+            'searchBar' => do_shortcode('[contabai_search compact="1" country="' . esc_attr($country) . '" region="' . esc_attr($region) . '"]'),
             'mapEnabled' => $mapEnabled,
             'mapTilesUrl' => str_replace('{key}', rawurlencode($mapKey), $mapProvider['url']),
             'mapTileOptions' => $mapProvider['options'],

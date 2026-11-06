@@ -9,7 +9,7 @@ $itemReviews = (int) ($item['reviews']['count'] ?? 0);
         $badge_variant = 'bg-white/90 text-neutral-800  backdrop-blur';
         $badge_extra = 'pointer-events-none absolute left-2.5 top-2.5 z-20 capitalize';
         $badge_body = esc_html($propertyTypes[$item['property_type'] ?? ''] ?? ($item['property_type'] ?? ''));
-        include __DIR__ . '/badge.php';
+        include \Contabai\View::path('components.badge');
         ?>
     </div>
     <a href="<?php echo esc_url($itemUrl); ?>" class="block pt-2.5 no-underline">

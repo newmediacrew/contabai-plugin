@@ -12,7 +12,7 @@ if (! empty($typeLabel)) {
     $badge_variant = 'bg-white/90 text-neutral-800  backdrop-blur';
     $badge_extra   = ! empty($galleryHero) ? 'pointer-events-none capitalize' : 'pointer-events-none absolute left-3 top-3 z-10 capitalize';
     $badge_body    = esc_html($typeLabel);
-    include __DIR__ . '/badge.php';
+    include \Contabai\View::path('components.badge');
     $typeBadge = ob_get_clean();
 }
 ?>
