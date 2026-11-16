@@ -1,0 +1,53 @@
+name: Question
+description: Something that needs an answer or a decision before work can go on
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: input
+    id: asked-by
+    attributes:
+      label: Asked by
+      description: Who asks
+    validations:
+      required: true
+  - type: dropdown
+    id: question-type
+    attributes:
+      label: Type of question
+      options:
+        - How something works
+        - Whether something is possible
+        - A decision that is needed
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: Where
+      description: Which screen, page or part of the project
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What is already known or tried
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Answer needed
+      options:
+        - Before work can continue
+        - Soon
+        - No rush
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or extra info

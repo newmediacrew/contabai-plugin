@@ -1,0 +1,117 @@
+name: Bug
+description: Something that does not work the way it should
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: severity
+    attributes:
+      label: How bad is it
+      options:
+        - Blocks work, nobody can continue
+        - Wrong result, data or money is off
+        - Looks wrong, layout or text
+    validations:
+      required: true
+  - type: input
+    id: reported-by
+    attributes:
+      label: Reported by
+      description: Who saw it
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Where it happened
+      multiple: true
+      options:
+        - Production
+        - Demo
+        - Local
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Part of the platform
+      multiple: true
+      options:
+        - Host portal
+        - Admin portal
+        - Host app (iOS)
+        - Host app (Android)
+        - Website
+        - API
+        - Email or PDF
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Logged in as
+      options:
+        - Guest
+        - Host
+        - Admin
+        - Not logged in
+  - type: textarea
+    id: where
+    attributes:
+      label: Where
+      description: Which screen, page or URL
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happens
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should happen
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1.
+        2.
+        3.
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often
+      options:
+        - Every time
+        - Sometimes
+        - Once
+  - type: textarea
+    id: records
+    attributes:
+      label: Records involved
+      description: Booking, listing, host or guest IDs
+  - type: textarea
+    id: error
+    attributes:
+      label: Error message or log
+      render: shell
+  - type: textarea
+    id: done-when
+    attributes:
+      label: Done when
+      description: One line per check that has to pass
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or extra info

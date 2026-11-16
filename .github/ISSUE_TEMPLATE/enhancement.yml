@@ -1,0 +1,58 @@
+name: Enhancement
+description: A new feature, or a change or improvement to an existing feature
+title: "[Enhancement]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Type of request
+      options:
+        - New feature
+        - Change to an existing feature
+        - Improvement to an existing feature
+    validations:
+      required: true
+  - type: input
+    id: requested-by
+    attributes:
+      label: Requested by
+      description: Who asked for this
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: Where
+      description: Which screen, page or part of the project
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: How it works now
+      description: Leave empty for a new feature
+  - type: textarea
+    id: wanted
+    attributes:
+      label: What it should do
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: The reason or the gain for the user
+  - type: textarea
+    id: done-when
+    attributes:
+      label: Done when
+      description: One line per check that has to pass
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or extra info

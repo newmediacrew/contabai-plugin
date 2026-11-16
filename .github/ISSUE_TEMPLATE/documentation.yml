@@ -1,0 +1,71 @@
+name: Documentation
+description: Documentation that is missing, wrong, outdated or unclear
+title: "[Documentation]: "
+labels: ["documentation"]
+body:
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Type of change
+      options:
+        - Missing
+        - Wrong
+        - Outdated
+        - Unclear
+    validations:
+      required: true
+  - type: input
+    id: requested-by
+    attributes:
+      label: Requested by
+      description: Who asked for this
+    validations:
+      required: true
+  - type: dropdown
+    id: doc-kind
+    attributes:
+      label: Which documentation
+      options:
+        - Project documents
+        - Coding conventions
+        - README
+        - Help text in the product
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: Document and section
+      description: File name and heading
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What it says now
+      description: Leave empty when it is missing
+  - type: textarea
+    id: wanted
+    attributes:
+      label: What it should say
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: What goes wrong while it stays like this
+  - type: textarea
+    id: done-when
+    attributes:
+      label: Done when
+      description: One line per check that has to pass
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or extra info
