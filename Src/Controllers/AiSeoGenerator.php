@@ -98,7 +98,9 @@ class AiSeoGenerator
             return [];
         }
 
-        return array_values(array_filter($photos, fn ($photo) => str_contains(mb_strtolower(remove_accents((string) ($photo['alt'] ?? ''))), $name)));
+        return array_values(array_filter($photos, function ($photo) use ($name) {
+            return str_contains(mb_strtolower(remove_accents((string) ($photo['alt'] ?? ''))), $name);
+        }));
     }
 
     public static function generate_for_page(\WP_Post $page): ?array
