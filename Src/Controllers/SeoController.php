@@ -65,15 +65,12 @@ class SeoController
     public function render_meta_tags(): void
     {
         $title = esc_attr($this->with_site_name($this->build_title()));
-        $descMap  = $this->listing['description'] ?? null;
-        $descText = is_array($descMap)
-            ? (string) ($descMap[\Contabai\Helper::currentLang()] ?? $descMap['en'] ?? '')
-            : (string) ($descMap ?? '');
-        $description = esc_attr(wp_trim_words(wp_strip_all_tags($descText), 30));
+        $description = esc_attr($this->build_meta_description($this->build_description()));
         $image = esc_url($this->listing['photos'][0]['hero'] ?? ($this->listing['photos'][0]['card'] ?? ''));
         $url = $this->build_url();
 
-        $this->emit($title, $description, $image, $url);
+        $this->render_head_tags($title, $description, $image, $url);
+        $this->render_structured_data();
     }
 
     public function render_location_meta(): void
@@ -98,10 +95,10 @@ class SeoController
             }
         }
 
-        $this->emit($title, $description, $image, $url, $img);
+        $this->render_head_tags($title, $description, $image, $url, $img);
     }
 
-    private function emit(string $title, string $description, string $image, string $url, array $img = []): void
+    private function render_head_tags(string $title, string $description, string $image, string $url, array $img = []): void
     {
         $siteName = esc_attr(get_bloginfo('name'));
 
@@ -157,5 +154,165 @@ class SeoController
     private function build_url(): string
     {
         return esc_url(ListingRewriteController::listing_url($this->listing));
+    }
+
+    private function build_description(): string
+    {
+        $descMap = $this->listing['description'] ?? null;
+
+        return is_array($descMap)
+            ? (string) ($descMap[\Contabai\Helper::currentLang()] ?? $descMap['en'] ?? '')
+            : (string) ($descMap ?? '');
+    }
+
+    private function build_meta_description(string $html, int $max = 155): string
+    {
+        $text  = (string) preg_replace('#</(p|div|h[1-6]|li|blockquote)>|<br\s*/?>#i', "\n", $html);
+        $text  = html_entity_decode(wp_strip_all_tags($text), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $lines = array_values(array_filter(array_map('trim', explode("\n", $text)), 'strlen'));
+
+        if (count($lines) > 1 && ! preg_match('/[.!?…]$/u', $lines[0])) {
+            array_shift($lines);
+        }
+        foreach ($lines as $i => $line) {
+            if (! preg_match('/[.!?…:]$/u', $line)) {
+                $lines[$i] = $line . '.';
+            }
+        }
+        $desc = (string) preg_replace('/\s+/u', ' ', implode(' ', $lines));
+
+        if (mb_strlen($desc) > $max) {
+            $desc = preg_replace('/\s+\S*$/u', '', mb_substr($desc, 0, $max)) . '…';
+        }
+
+        return $desc;
+    }
+
+    private function render_structured_data(): void
+    {
+        $listing = $this->listing;
+        $url = ListingRewriteController::listing_url($listing);
+
+        $description = html_entity_decode(wp_strip_all_tags(str_replace('<', ' <', $this->build_description())), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $description = trim((string) preg_replace('/\s+/u', ' ', $description));
+
+        $images = [];
+        foreach ((array) ($listing['photos'] ?? []) as $photo) {
+            $images[] = (string) ($photo['hero'] ?? $photo['card'] ?? '');
+        }
+
+        $amenities = [];
+        foreach ((array) ($listing['amenities'] ?? []) as $key) {
+            $amenities[] = ['@type' => 'LocationFeatureSpecification', 'name' => ucfirst(str_replace('_', ' ', (string) $key)), 'value' => true];
+        }
+
+        $price = '';
+        if (! empty($listing['from_price_cents'])) {
+            $price = __('from', 'contabai') . ' ' . trim(($listing['currency'] ?? '') . ' ' . number_format(((int) $listing['from_price_cents']) / 100, 2, '.', '')) . ' / ' . __('night', 'contabai');
+        }
+
+        $hour = function ($value) {
+            return $value === null ? '' : sprintf('%02d:00', (int) $value);
+        };
+
+        $rental = [
+            '@type' => 'VacationRental',
+            '@id' => $url,
+            'url' => $url,
+            'identifier' => (string) ($listing['id'] ?? ''),
+            'name' => $listing['title'] ?? '',
+            'description' => $description,
+            'image' => $images,
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => $listing['address'] ?? '',
+                'postalCode' => $listing['postcode'] ?? '',
+                'addressRegion' => $listing['region_name'] ?? '',
+                'addressCountry' => strtoupper(explode('-', (string) ($listing['country'] ?? ''))[0]),
+            ],
+            'containsPlace' => [
+                '@type' => 'Accommodation',
+                'occupancy' => isset($listing['max_guests']) ? ['@type' => 'QuantitativeValue', 'value' => (int) $listing['max_guests']] : null,
+                'numberOfBedrooms' => $listing['bedrooms'] ?? null,
+                'numberOfBathroomsTotal' => $listing['bathrooms'] ?? null,
+                'floorSize' => ! empty($listing['living_area_sqm']) ? ['@type' => 'QuantitativeValue', 'value' => $listing['living_area_sqm'], 'unitCode' => 'MTK'] : null,
+                'amenityFeature' => $amenities,
+            ],
+            'checkinTime' => $hour($listing['checkin_from_hour'] ?? null),
+            'checkoutTime' => $hour($listing['checkout_by_hour'] ?? null),
+            'priceRange' => $price,
+        ];
+
+        if (isset($listing['latitude'], $listing['longitude'])) {
+            $rental['geo'] = ['@type' => 'GeoCoordinates', 'latitude' => (float) $listing['latitude'], 'longitude' => (float) $listing['longitude']];
+        }
+
+        $reviews = $listing['reviews'] ?? [];
+        if ((int) ($reviews['count'] ?? 0) > 0 && isset($reviews['average'])) {
+            $rental['aggregateRating'] = [
+                '@type' => 'AggregateRating',
+                'ratingValue' => (float) $reviews['average'],
+                'ratingCount' => (int) $reviews['count'],
+                'bestRating' => 5,
+                'worstRating' => 1,
+            ];
+            $rental['review'] = [];
+            foreach ((array) ($reviews['recent'] ?? []) as $review) {
+                $rental['review'][] = [
+                    '@type' => 'Review',
+                    'author' => ['@type' => 'Person', 'name' => (string) ($review['reviewer']['nickname'] ?? '')],
+                    'datePublished' => substr((string) ($review['created_at'] ?? ''), 0, 10),
+                    'reviewRating' => ['@type' => 'Rating', 'ratingValue' => (int) ($review['rating'] ?? 0), 'bestRating' => 5],
+                    'reviewBody' => (string) ($review['body'] ?? ''),
+                ];
+            }
+        }
+
+        $ld = ['@context' => 'https://schema.org', '@graph' => [self::without_empty($rental), self::without_empty($this->build_breadcrumb($url))]];
+
+        echo '<script type="application/ld+json">' . wp_json_encode($ld, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) . '</script>' . "\n";
+    }
+
+    private function build_breadcrumb(string $url): array
+    {
+        $listing = $this->listing;
+        $crumbs = [[__('Home', 'contabai'), home_url('/')]];
+
+        if (! empty($listing['country'])) {
+            $countryUrl = LocationPagesController::permalink_for_key($listing['country']);
+            if ($countryUrl !== '') {
+                $crumbs[] = [$listing['country_name'] ?? $listing['country'], $countryUrl];
+            }
+            if (! empty($listing['region'])) {
+                $regionUrl = LocationPagesController::permalink_for_key($listing['country'] . '/' . $listing['region']);
+                if ($regionUrl !== '') {
+                    $crumbs[] = [$listing['region_name'] ?? $listing['region'], $regionUrl];
+                }
+            }
+        }
+        $crumbs[] = [$listing['title'] ?? '', $url];
+
+        $items = [];
+        foreach ($crumbs as $position => [$name, $item]) {
+            $items[] = ['@type' => 'ListItem', 'position' => $position + 1, 'name' => (string) $name, 'item' => $item];
+        }
+
+        return ['@type' => 'BreadcrumbList', 'itemListElement' => $items];
+    }
+
+    private static function without_empty(array $data): array
+    {
+        $isList = array_is_list($data);
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $value = self::without_empty($value);
+                $data[$key] = $value;
+            }
+            if ($value === null || $value === '' || $value === [] || (is_array($value) && array_keys($value) === ['@type'])) {
+                unset($data[$key]);
+            }
+        }
+
+        return $isList ? array_values($data) : $data;
     }
 }
