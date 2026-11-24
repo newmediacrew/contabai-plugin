@@ -32,6 +32,9 @@
                 include __DIR__ . '/../components/select.php';
                 ?>
             </div>
+            <?php if ($turnstileSiteKey !== '') : ?>
+                <div id="contabai-turnstile"></div>
+            <?php endif; ?>
             <button type="submit" x-bind:disabled="loading"
                     class="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border border-neutral-300 bg-white px-4 py-2 text-sm font-medium text-neutral-800 transition hover:bg-neutral-50 disabled:opacity-50">
                 <?php echo \Contabai\Heroicon::outline('user-plus', 'w-4 h-4'); ?>
@@ -49,6 +52,11 @@
     </div>
 </div>
 <script>
+<?php if ($turnstileSiteKey !== '') : ?>
+window.contabaiTurnstileLoad = function () {
+    window.contabaiTurnstileId = turnstile.render('#contabai-turnstile', { sitekey: <?php echo wp_json_encode($turnstileSiteKey); ?>, theme: 'light', size: 'flexible' });
+};
+<?php endif; ?>
 document.addEventListener('alpine:init', function () {
     Alpine.data('contabaiRegisterForm', function () {
         return {
@@ -63,6 +71,9 @@ document.addEventListener('alpine:init', function () {
                 let keys = Object.keys(this.languageOptions);
                 if (! this.language && keys.length) { this.language = keys[0]; }
             },
+            resetTurnstile: function () {
+                if (window.turnstile && window.contabaiTurnstileId !== undefined) { turnstile.reset(window.contabaiTurnstileId); }
+            },
             submit: function () {
                 let self = this;
                 if (!self.username || !self.email || !self.password) return;
@@ -76,7 +87,8 @@ document.addEventListener('alpine:init', function () {
                         email: self.email,
                         password: self.password,
                         password_confirmation: self.passwordConfirmation,
-                        language: self.language
+                        language: self.language,
+                        'cf-turnstile-response': window.contabaiTurnstileId !== undefined ? (turnstile.getResponse(window.contabaiTurnstileId) || '') : ''
                     })
                 })
                 .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, status: r.status, data: data }; }); })
@@ -85,13 +97,16 @@ document.addEventListener('alpine:init', function () {
                     if (result.ok) {
                         window.location.href = '<?php echo esc_url(home_url('/' . CONTABAI_VERIFY_EMAIL_PAGE_SLUG)); ?>?email=' + encodeURIComponent(self.email) + '&username=' + encodeURIComponent(self.username);
                     } else if (result.status === 422 && result.data && result.data.errors) {
-                        contabaiFieldErrors(result.data.errors, null, '<?php echo esc_js(__('Registration failed.', 'contabai')); ?>').forEach(function (msg) { contabaiToast(msg, 'danger'); });
+                        self.resetTurnstile();
+                        contabaiFieldErrors(result.data.errors, { 'cf-turnstile-response': '<?php echo esc_js(__('We could not confirm that you are not a robot. Please try again.', 'contabai')); ?>' }, '<?php echo esc_js(__('Registration failed.', 'contabai')); ?>').forEach(function (msg) { contabaiToast(msg, 'danger'); });
                     } else {
+                        self.resetTurnstile();
                         contabaiToast(contabaiStatusText(result.status, '<?php echo esc_js(__('Registration failed.', 'contabai')); ?>'), 'danger');
                     }
                 })
                 .catch(function () {
                     self.loading = false;
+                    self.resetTurnstile();
                     contabaiToast('<?php echo esc_js(__('Connection error.', 'contabai')); ?>', 'danger');
                 });
             }

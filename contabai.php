@@ -3,7 +3,7 @@
 Plugin Name: Contabai
 Plugin URI: https://www.contabai.network
 Description: Contabai — property listings platform frontend for WordPress.
-Version: 1.2.33
+Version: 1.2.34
 Requires at least: 7.1
 Requires PHP: 8.3
 Tested up to: 7.1
@@ -197,6 +197,15 @@ add_action('admin_init', function () {
     register_setting('contabai_basic_group', 'contabai_map_api_key', ['sanitize_callback' => function ($value) {
         return trim(sanitize_text_field((string) $value));
     }]);
+    register_setting('contabai_basic_group', 'contabai_turnstile_enabled', ['sanitize_callback' => 'intval']);
+    register_setting('contabai_basic_group', 'contabai_turnstile_site_key', ['sanitize_callback' => function ($value) {
+        return trim(sanitize_text_field((string) $value));
+    }]);
+    register_setting('contabai_basic_group', 'contabai_turnstile_secret_key', ['sanitize_callback' => function ($value) {
+        $value = trim(sanitize_text_field((string) $value));
+
+        return $value === '' ? (string) get_option('contabai_turnstile_secret_key', '') : $value;
+    }]);
 
     add_settings_section(
         'contabai_advanced_section',
@@ -349,9 +358,7 @@ add_action('admin_init', function () {
     add_settings_section(
         'contabai_map_section',
         'Map',
-        function () {
-            echo '<p>' . esc_html__('The map on the search results and location pages, loaded only when a visitor opens it. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider.', 'contabai') . '</p>';
-        },
+        null,
         'contabai-settings-basic'
     );
 
@@ -378,12 +385,10 @@ add_action('admin_init', function () {
             }
             echo '<select id="contabai_map_provider" name="contabai_map_provider">';
             foreach ($providers as $key => $provider) {
-                echo '<option value="' . esc_attr($key) . '" data-key="' . ($provider['key'] ? '1' : '0') . '" data-credit="' . esc_attr($provider['attribution']) . '"' . selected($value, $key, false) . '>' . esc_html($provider['label']) . '</option>';
+                echo '<option value="' . esc_attr($key) . '" data-key="' . ($provider['key'] ? '1' : '0') . '"' . selected($value, $key, false) . '>' . esc_html($provider['label']) . '</option>';
             }
             echo '</select>';
             echo '<p class="description">' . esc_html__('OpenStreetMap needs no key. The other providers need an API key from their website.', 'contabai') . '</p>';
-            echo '<p id="contabai-map-credit">' . wp_kses($providers[$value]['attribution'], ['a' => ['href' => []]]) . '</p>';
-            echo '<p class="description">' . esc_html__('The credit this provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back.', 'contabai') . '</p>';
         },
         'contabai-settings-basic',
         'contabai_map_section'
@@ -400,11 +405,9 @@ add_action('admin_init', function () {
             <script>
                 (function () {
                     var select = document.getElementById('contabai_map_provider');
-                    var credit = document.getElementById('contabai-map-credit');
                     var row = document.querySelector('tr.contabai-map-key-row');
                     function sync() {
                         var option = select.options[select.selectedIndex];
-                        credit.innerHTML = option.dataset.credit;
                         row.style.display = option.dataset.key === '1' ? '' : 'none';
                     }
                     select.addEventListener('change', sync);
@@ -418,7 +421,58 @@ add_action('admin_init', function () {
         ['class' => 'contabai-map-key-row']
     );
 
+    add_settings_section(
+        'contabai_turnstile_section',
+        'Cloudflare Turnstile',
+        function () {
+            echo '<p>Bot check on the guest registration form. Create a widget in your Cloudflare account, add this site\'s hostname and paste both keys here.</p>';
+        },
+        'contabai-settings-basic'
+    );
+
+    add_settings_field(
+        'contabai_turnstile_enabled',
+        'Turnstile',
+        function () {
+            $checked = checked(1, (int) get_option('contabai_turnstile_enabled', 0), false);
+            echo '<input type="hidden" name="contabai_turnstile_enabled" value="0" />';
+            echo '<label><input type="checkbox" name="contabai_turnstile_enabled" value="1" ' . $checked . '> Check guests on the registration form.</label>';
+        },
+        'contabai-settings-basic',
+        'contabai_turnstile_section'
+    );
+
+    add_settings_field(
+        'contabai_turnstile_site_key',
+        'Site key',
+        function () {
+            $value = (string) get_option('contabai_turnstile_site_key', '');
+            echo '<input type="text" class="regular-text code" name="contabai_turnstile_site_key" value="' . esc_attr($value) . '" autocomplete="off" />';
+        },
+        'contabai-settings-basic',
+        'contabai_turnstile_section'
+    );
+
+    add_settings_field(
+        'contabai_turnstile_secret_key',
+        'Secret key',
+        function () {
+            $saved = (string) get_option('contabai_turnstile_secret_key', '') !== '';
+            echo '<input type="password" class="regular-text code" name="contabai_turnstile_secret_key" value="" autocomplete="new-password" placeholder="' . esc_attr($saved ? 'Saved. Type a new key to replace it.' : '') . '" />';
+            echo '<p class="description">The saved key is never shown.</p>';
+        },
+        'contabai-settings-basic',
+        'contabai_turnstile_section'
+    );
+
 });
+
+function contabai_turnstile_enabled(): bool
+{
+    return (int) get_option('contabai_turnstile_enabled', 0) === 1
+        && trim((string) get_option('contabai_turnstile_site_key', '')) !== ''
+        && trim((string) get_option('contabai_turnstile_secret_key', '')) !== '';
+}
 
 function contabai_map_providers(): array
 {

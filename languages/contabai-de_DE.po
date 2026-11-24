@@ -1371,6 +1371,9 @@ msgstr "Deine Reisegruppe ist größer, als diese Unterkunft erlaubt."
 msgid "Your session has expired. Please log in again."
 msgstr "Deine Sitzung ist abgelaufen. Bitte melde dich erneut an."
 
+msgid "We could not confirm that you are not a robot. Please try again."
+msgstr "Wir konnten nicht bestätigen, dass du kein Roboter bist. Versuche es erneut."
+
 msgid "We could not get a price for these dates. Please try other dates."
 msgstr "Für diese Daten konnten wir keinen Preis ermitteln. Bitte versuche andere Daten."
 
@@ -1517,12 +1520,6 @@ msgstr "Verkleinern"
 
 msgid "%1$s, from %2$s a night"
 msgstr "%1$s, ab %2$s pro Nacht"
-
-msgid "The map on the search results and location pages, loaded only when a visitor opens it. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
-msgstr "Die Karte auf den Suchergebnissen und den Ortsseiten, die erst lädt, wenn ein Besucher sie öffnet. OpenStreetMap-Kacheln sind bei geringer Nutzung kostenlos; eine stark besuchte Produktivseite sollte zu einem kostenpflichtigen Kachelanbieter wechseln."
-
-msgid "The credit this provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back."
-msgstr "Die Quellenangabe, die dieser Anbieter verlangt. Sie erscheint zuerst auf der Karte, klappt nach fünf Sekunden oder der ersten Berührung ein, und der Augen-Button holt sie zurück."
 
 msgid "Map credits"
 msgstr "Kartenquellen"

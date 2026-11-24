@@ -22,7 +22,7 @@ On activation the plugin creates its pages (listings, listing, login, register, 
 
 | Tab | What |
 |---|---|
-| Basic | Host ID and the page slugs |
+| Basic | Host ID, the page slugs, the map and Cloudflare Turnstile on guest registration |
 | Updates | Installed version, latest release, Check now |
 | Advanced | API base URL, Verify SSL Certificate, Development mode, AI & SEO tools |
 

@@ -1357,6 +1357,9 @@ msgstr "Je reisgezelschap is groter dan deze accommodatie toestaat."
 msgid "Your session has expired. Please log in again."
 msgstr "Je sessie is verlopen. Log opnieuw in."
 
+msgid "We could not confirm that you are not a robot. Please try again."
+msgstr "We konden niet bevestigen dat je geen robot bent. Probeer het opnieuw."
+
 msgid "We could not get a price for these dates. Please try other dates."
 msgstr "We konden geen prijs voor deze datums ophalen. Probeer andere datums."
 
@@ -1503,12 +1506,6 @@ msgstr "Uitzoomen"
 
 msgid "%1$s, from %2$s a night"
 msgstr "%1$s, vanaf %2$s per nacht"
-
-msgid "The map on the search results and location pages, loaded only when a visitor opens it. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
-msgstr "De kaart op de zoekresultaten en de locatiepagina's, die pas laadt als een bezoeker hem opent. OpenStreetMap-tegels zijn gratis bij licht gebruik; een drukke productiesite stapt beter over op een betaalde tegelaanbieder."
-
-msgid "The credit this provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back."
-msgstr "De bronvermelding die deze aanbieder vereist. Die staat eerst op de kaart, klapt in na vijf seconden of de eerste aanraking, en de oogknop haalt hem terug."
 
 msgid "Map credits"
 msgstr "Kaartbronnen"

@@ -35,8 +35,15 @@ class ShortCodes
         $translation = $body['data']['translations'] ?? [];
         $group = $translation[Helper::currentLang()] ?? $translation['en'] ?? [];
 
+        $turnstileSiteKey = '';
+        if (contabai_turnstile_enabled()) {
+            $turnstileSiteKey = trim((string) get_option('contabai_turnstile_site_key', ''));
+            wp_enqueue_script('contabai-turnstile', 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=contabaiTurnstileLoad', [], null, ['strategy' => 'defer']);
+        }
+
         return View::render('auth.register', [
             'languages' => $group['languages'] ?? [],
+            'turnstileSiteKey' => $turnstileSiteKey,
         ]);
     }
 

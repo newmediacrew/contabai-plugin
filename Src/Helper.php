@@ -52,7 +52,7 @@ class Helper
         return substr(get_locale(), 0, 2);
     }
 
-    private static function visitorIp(): string
+    public static function visitorIp(): string
     {
         $ip = (string) ($_SERVER['REMOTE_ADDR'] ?? '');
 

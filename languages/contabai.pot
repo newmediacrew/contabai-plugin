@@ -1187,6 +1187,9 @@ msgstr ""
 msgid "Your session has expired. Please log in again."
 msgstr ""
 
+msgid "We could not confirm that you are not a robot. Please try again."
+msgstr ""
+
 msgid "We could not get a price for these dates. Please try other dates."
 msgstr ""
 
@@ -1332,12 +1335,6 @@ msgid "Zoom out"
 msgstr ""
 
 msgid "%1$s, from %2$s a night"
-msgstr ""
-
-msgid "The map on the search results and location pages, loaded only when a visitor opens it. OpenStreetMap tiles are free for light use; a busy production site should switch to a paid tile provider."
-msgstr ""
-
-msgid "The credit this provider requires. It shows on the map first, folds after five seconds or the first touch, and the eye button brings it back."
 msgstr ""
 
 msgid "Map credits"
