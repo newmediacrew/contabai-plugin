@@ -182,7 +182,7 @@ class SeoController
         $desc = (string) preg_replace('/\s+/u', ' ', implode(' ', $lines));
 
         if (mb_strlen($desc) > $max) {
-            $desc = preg_replace('/\s+\S*$/u', '', mb_substr($desc, 0, $max)) . '…';
+            $desc = rtrim((string) preg_replace('/\s+\S*$/u', '', mb_substr($desc, 0, $max)), ' .,;:') . '…';
         }
 
         return $desc;
