@@ -1377,8 +1377,46 @@ msgstr "No hemos podido obtener un precio para estas fechas. Prueba con otras fe
 msgid "Check-out only"
 msgstr "Solo salida"
 
+msgid "Clear dates"
+msgstr "Borrar fechas"
+
+msgid "Clear"
+msgstr "Borrar"
+
+msgid "Arrival"
+msgstr "Llegada"
+
+msgid "Departure"
+msgstr "Salida"
+
+msgid "Pick a date"
+msgstr "Elige una fecha"
+
+msgid "Deposit, settled after your stay"
+msgstr "Fianza, liquidada después de tu estancia"
+
+#, php-format
+msgid "You book directly with %s. After your request you will receive the confirmation and payment details from the host."
+msgstr "Reservas directamente con %s. Tras tu solicitud recibirás la confirmación y los datos de pago del anfitrión."
+
+msgid "Arrival or departure"
+msgstr "Llegada o salida"
+
+msgid "No arrival or departure"
+msgstr "Sin llegada ni salida"
+
+msgid "Occupied"
+msgstr "Ocupado"
+
 msgid "You can check out on this day, but not arrive. Pick an earlier arrival date."
 msgstr "Este día puedes salir, pero no llegar. Elige una fecha de llegada anterior."
+
+#, php-format
+msgid "A stay of at least %d nights does not fit from this date. Pick an underlined arrival date."
+msgstr "Una estancia de al menos %d noches no cabe a partir de esta fecha. Elige una fecha de llegada subrayada."
+
+msgid "The host needs time to prepare the home for the next guest. Pick an underlined departure date."
+msgstr "El anfitrión necesita tiempo para preparar el alojamiento para el siguiente huésped. Elige una fecha de salida subrayada."
 
 msgid "Some nights in these dates are already booked. Please pick other dates."
 msgstr "Algunas noches de estas fechas ya están reservadas. Elige otras fechas."
@@ -1395,8 +1433,8 @@ msgstr "Solo con mascotas"
 msgid "Metered utilities"
 msgstr "Consumos"
 
-msgid "Read at check-out and settled from your deposit."
-msgstr "Se lee a la salida y se descuenta de tu fianza."
+msgid "Read at check-in and check-out and, where applicable, settled from your deposit."
+msgstr "Se lee a la llegada y a la salida y, si procede, se descuenta de tu fianza."
 
 #, php-format
 msgid "Above %d guest"

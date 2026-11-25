@@ -122,7 +122,7 @@ ob_start();
     <div class="min-w-0">
 
     <?php if (! empty($host)): ?>
-        <section class="<?php echo $onPhoto ? '' : 'mt-8 '; ?>rounded-2xl border border-neutral-200 bg-white p-5">
+        <section id="contabai-host" class="<?php echo $onPhoto ? '' : 'mt-8 '; ?>scroll-mt-28 rounded-2xl border border-neutral-200 bg-white p-5">
             <div class="flex items-center gap-5">
                 <?php if (! empty($hostAvatar)): ?>
                     <img src="<?php echo esc_url($hostAvatar); ?>" alt="<?php echo esc_attr($hostName); ?>" class="h-20 w-20 rounded-full object-cover ring-2 ring-neutral-100">
@@ -296,7 +296,7 @@ ob_start();
                                     <ul class="space-y-1.5">
                                         <?php foreach ($groupKeys as $amenityKey): ?>
                                             <li class="flex items-center gap-2 text-sm text-neutral-700">
-                                                <?php echo \Contabai\Heroicon::outline('check-circle', 'w-4 h-4 shrink-0 text-green-600'); ?>
+                                                <?php echo \Contabai\Heroicon::outline('check-circle', 'w-5 h-5 shrink-0 text-green-600'); ?>
                                                 <span><?php echo esc_html($amenityLabels[$amenityKey] ?? ucfirst(str_replace('_', ' ', (string) $amenityKey))); ?></span>
                                             </li>
                                         <?php endforeach; ?>
@@ -414,18 +414,22 @@ ob_start();
             $unavailableDates[] = gmdate('Y-m-d', strtotime($windowFrom . ' +' . $day . ' days'));
         }
     }
+    $prepDays         = (int) ($availability['preparation_days'] ?? 0);
     $occupiedNights   = $availability['unavailable_dates'] ?? [];
     $disabledSet      = array_flip($unavailableDates);
     $checkoutOnly     = [];
-    foreach ($occupiedNights as $night) {
-        $prev = gmdate('Y-m-d', strtotime($night . ' -1 day'));
-        if ($windowFrom && $prev >= $windowFrom && ! isset($disabledSet[$prev])) {
-            $checkoutOnly[] = $night;
+    if ($prepDays === 0) {
+        foreach ($occupiedNights as $night) {
+            $prev = gmdate('Y-m-d', strtotime($night . ' -1 day'));
+            if ($windowFrom && $prev >= $windowFrom && ! isset($disabledSet[$prev])) {
+                $checkoutOnly[] = $night;
+            }
         }
     }
     $unavailableDates = array_values(array_diff($unavailableDates, $checkoutOnly));
     $windowTo         = $availability['window']['to'] ?? null;
     $minNights        = (int) ($listing['min_nights'] ?? 1);
+    $bookableFrom     = $windowFrom ? gmdate('Y-m-d', strtotime($windowFrom . ' +' . $leadDays . ' days')) : null;
     $maxNights        = (int) ($listing['max_nights'] ?? 0);
     $rangeErrorMsg    = ($minNights && $maxNights)
         ? sprintf(__('Stay must be between %1$d and %2$d nights.', 'contabai'), $minNights, $maxNights)
@@ -436,6 +440,7 @@ ob_start();
     $loginUrl      = home_url('/' . CONTABAI_LOGIN_PAGE_SLUG);
     $bookUrl       = home_url('/' . CONTABAI_BOOK_PAGE_SLUG . '/');
     $listingCosts  = $listing['listing_costs'] ?? [];
+    $depositCents  = (int) ($listing['deposit_cents'] ?? 0);
     $costRows = function (bool $wide) use ($listingCosts, $labels, $currency, $listing): string {
         ob_start();
         foreach ($listingCosts as $c):
@@ -452,17 +457,27 @@ ob_start();
                 : ($isExtra ? sprintf(_n('Above %d guest', 'Above %d guests', (int) $listing['base_price_guests'], 'contabai'), (int) $listing['base_price_guests'])
                 : ($labels['cost_classifications'][$c['classification']] ?? $c['classification']));
         ?>
-            <div class="flex flex-col gap-0.5<?php echo $wide ? ' sm:flex-row sm:items-center sm:justify-between sm:gap-3' : ''; ?>">
-                <span class="flex min-w-0 items-center gap-2">
-                    <span class="min-w-0 text-neutral-700<?php echo $wide ? ' sm:truncate' : ''; ?>"><?php echo esc_html($cLabel); ?></span>
-                    <?php
-                    $badge_body    = esc_html($classLabel);
-                    $badge_variant = $isMandatory ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800';
-                    include \Contabai\View::path('components.badge');
-                    ?>
-                </span>
-                <span class="whitespace-nowrap text-neutral-800<?php echo $wide ? ' sm:shrink-0' : ''; ?>"><?php echo esc_html($rate); ?> <span class="text-neutral-400"><?php echo esc_html('· ' . $unit); ?></span></span>
-            </div>
+            <?php if ($wide): ?>
+                <div class="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+                    <span class="flex min-w-0 items-center gap-2">
+                        <span class="min-w-0 text-neutral-700 sm:truncate"><?php echo esc_html($cLabel); ?></span>
+                        <?php
+                        $badge_body    = esc_html($classLabel);
+                        $badge_variant = $isMandatory ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800';
+                        include \Contabai\View::path('components.badge');
+                        ?>
+                    </span>
+                    <span class="whitespace-nowrap text-neutral-800 sm:shrink-0"><?php echo esc_html($rate); ?> <span class="text-neutral-400"><?php echo esc_html('· ' . $unit); ?></span></span>
+                </div>
+            <?php else: ?>
+                <div class="flex justify-between gap-3">
+                    <dt class="min-w-0 text-neutral-700"><?php echo esc_html($cLabel); ?></dt>
+                    <dd class="m-0 min-w-0 text-right">
+                        <span class="whitespace-nowrap font-semibold text-neutral-900"><?php echo esc_html($rate); ?></span>
+                        <span class="block text-xs text-neutral-500"><?php echo esc_html($unit . ' · ' . $classLabel); ?></span>
+                    </dd>
+                </div>
+            <?php endif; ?>
         <?php
         endforeach;
 
@@ -471,8 +486,18 @@ ob_start();
     ?>
     <section class="mt-3 rounded-2xl border border-neutral-200 bg-white">
         <h2 class="px-5 py-4 text-base font-semibold text-neutral-900"><?php echo esc_html__('Availability', 'contabai'); ?></h2>
-        <div class="border-t border-neutral-200 px-5 py-5">
+        <div class="contabai-availability border-t border-neutral-200 px-5 py-5">
             <div x-ref="cal"></div>
+            <template x-ref="clearTpl">
+                <button type="button" class="contabai-clear-date" aria-label="<?php esc_attr_e('Clear dates', 'contabai'); ?>"><span class="contabai-clear-date-x"><?php echo \Contabai\Heroicon::outline('x-mark', 'w-3 h-3'); ?></span><?php echo esc_html__('Clear', 'contabai'); ?></button>
+            </template>
+            <div class="mt-5 border-t border-neutral-100 pt-4">
+                <ul class="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs text-neutral-600 sm:grid-cols-3 !m-0 !list-none !p-0">
+                    <li class="flex items-center gap-2"><span class="contabai-cal-key is-pick" aria-hidden="true">8</span><?php echo esc_html__('Arrival or departure', 'contabai'); ?></li>
+                    <li class="flex items-center gap-2"><span class="contabai-cal-key is-no-pick" aria-hidden="true">8</span><?php echo esc_html__('No arrival or departure', 'contabai'); ?></li>
+                    <li class="flex items-center gap-2"><span class="contabai-cal-key is-booked" aria-hidden="true">8</span><?php echo esc_html__('Occupied', 'contabai'); ?></li>
+                </ul>
+            </div>
 
             <!-- Sticky booking bar — hidden until a valid range, then slides up (fixed, so DOM position here is fine) -->
             <div x-show="nights" x-cloak
@@ -504,7 +529,7 @@ ob_start();
                         <div class="flex flex-col items-end gap-1.5">
                             <button type="button" x-on:click="startBooking()" class="contabai-accent-bg inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white">
                                 <span x-show="isLoggedIn" class="inline-flex items-center gap-2"><?php echo \Contabai\Heroicon::outline('calendar-days', 'w-4 h-4'); ?><?php echo esc_html__('Book now', 'contabai'); ?></span>
-                                <span x-show="! isLoggedIn" class="inline-flex items-center gap-2"><?php echo \Contabai\Heroicon::outline('arrow-right-on-rectangle', 'w-4 h-4'); ?><?php echo esc_html__('Log in to book', 'contabai'); ?></span>
+                                <span x-show="! isLoggedIn" class="inline-flex items-center gap-2"><?php echo \Contabai\Heroicon::outline('arrow-right-on-rectangle', 'w-4 h-4'); ?><?php echo esc_html__('Log in', 'contabai'); ?></span>
                             </button>
                             <template x-if="! isLoggedIn">
                                 <span class="flex items-start gap-1 text-xs text-neutral-500"><?php echo \Contabai\Heroicon::outline('lock-closed', 'w-4 h-4 shrink-0'); ?> <?php echo esc_html__('Booking requires a verified account', 'contabai'); ?></span>
@@ -584,6 +609,10 @@ ob_start();
                 windowMax: <?php echo wp_json_encode($windowTo); ?>,               // booking horizon (today + booking_window_months), or null
                 minNights: <?php echo $minNights; ?>,
                 maxNights: <?php echo $maxNights; ?>,                               // 0 = no max
+                prepDays: <?php echo $prepDays; ?>,                                 // layover nights after a stay
+                bookableFrom: <?php echo wp_json_encode($bookableFrom); ?>,         // first possible arrival (today + notice days)
+                noArrivalErr: '<?php echo esc_js(sprintf(__('A stay of at least %d nights does not fit from this date. Pick an underlined arrival date.', 'contabai'), $minNights)); ?>',
+                layoverErr: '<?php echo esc_js(__('The host needs time to prepare the home for the next guest. Pick an underlined departure date.', 'contabai')); ?>',
                 nightsLabel: '<?php echo esc_js(__('nights', 'contabai')); ?>',
                 nightLabel: '<?php echo esc_js(__('night', 'contabai')); ?>',
                 rangeErr: '<?php echo esc_js($rangeErrorMsg); ?>',
@@ -626,8 +655,24 @@ ob_start();
                         selectedTheme: 'light',
                         onClickDate: function (cal) { component.handleSelect(cal); },
                         onCreateDateEls: function (cal, dateEl) {
-                            if (! component.checkoutOnly[dateEl.getAttribute('data-vc-date')]) return;
-                            dateEl.setAttribute('data-contabai-checkout-only', '');
+                            let date = dateEl.getAttribute('data-vc-date');
+                            if ((component.windowFrom && date < component.windowFrom) || (component.windowMax && date > component.windowMax)) {
+                                dateEl.setAttribute('data-contabai-closed', '');
+                                return;
+                            }
+                            let parts = date.split('-').map(Number);
+                            let prev = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2] - 1)).toISOString().slice(0, 10);
+                            if (component.occupied[date] && component.occupied[prev]) {
+                                dateEl.setAttribute('data-contabai-booked', '');
+                                return;
+                            }
+                            if (component.occupied[date]) {
+                                dateEl.setAttribute('data-contabai-arrival', '');
+                            } else if (component.occupied[prev]) {
+                                dateEl.setAttribute('data-contabai-departure', '');
+                            }
+                            component.markDay(dateEl);
+                            if (! component.checkoutOnly[date]) return;
                             let btn = dateEl.querySelector('[data-vc-date-btn]');
                             if (btn) { btn.setAttribute('title', component.checkoutOnlyLabel); }
                         }
@@ -647,8 +692,13 @@ ob_start();
                             this.rejectRange(cal, this.checkoutOnlyErr);
                             return;
                         }
+                        if (dates[0] && ! this.canArrive(dates[0])) {
+                            this.rejectRange(cal, this.noArrivalErr);
+                            return;
+                        }
                         this.arrival = dates[0] || ''; this.departure = ''; this.nights = 0;
                         this.quote = null;
+                        this.refreshMarks();
                         return;
                     }
                     let firstDate = dates[0], lastDate = dates[dates.length - 1];
@@ -661,14 +711,26 @@ ob_start();
                         this.rejectRange(cal, this.occupiedErr);
                         return;
                     }
+                    if (! this.nightsFree(lastDate, this.prepDays)) {
+                        this.rejectRange(cal, this.layoverErr);
+                        return;
+                    }
                     this.arrival = firstDate; this.departure = lastDate; this.nights = nights;
+                    this.refreshMarks();
                     this.fetchQuote();   // public quote — real price for everyone
                 },
                 rejectRange: function (cal, message) {
                     this.arrival = ''; this.departure = ''; this.nights = 0;
                     this.quote = null;
-                    cal.set({ selectedDates: [] });
+                    cal.set({ selectedDates: [] }, { month: false, year: false });
+                    this.refreshMarks();
                     if (window.contabaiToast && message) contabaiToast(message, 'warning');
+                },
+                clearDates: function () {
+                    this.arrival = ''; this.departure = ''; this.nights = 0;
+                    this.quote = null;
+                    this.calendar.set({ selectedDates: [] }, { month: false, year: false });
+                    this.refreshMarks();
                 },
                 hasOccupiedNight: function (firstDate, lastDate) {
                     let parts = firstDate.split('-').map(Number);
@@ -680,6 +742,52 @@ ob_start();
                         night = cursor.toISOString().slice(0, 10);
                     }
                     return false;
+                },
+                addDays: function (date, days) {
+                    let parts = date.split('-').map(Number);
+                    return new Date(Date.UTC(parts[0], parts[1] - 1, parts[2] + days)).toISOString().slice(0, 10);
+                },
+                nightsFree: function (from, count) {
+                    for (let i = 0; i < count; i++) {
+                        if (this.occupied[this.addDays(from, i)]) return false;
+                    }
+                    return true;
+                },
+                canArrive: function (date) {
+                    if (this.bookableFrom && date < this.bookableFrom) return false;
+                    if (this.windowMax && date > this.windowMax) return false;
+                    return this.nightsFree(date, this.minNights) && this.nightsFree(this.addDays(date, this.minNights), this.prepDays);
+                },
+                canDepart: function (arrival, date) {
+                    let nights = Math.round((new Date(date) - new Date(arrival)) / 86400000);
+                    if (nights < this.minNights || (this.maxNights && nights > this.maxNights)) return false;
+                    return this.nightsFree(arrival, nights) && this.nightsFree(date, this.prepDays);
+                },
+                markDay: function (dateEl) {
+                    let self = this;
+                    dateEl.removeAttribute('data-contabai-can-pick');
+                    dateEl.removeAttribute('data-contabai-no-pick');
+                    let oldClear = dateEl.querySelector('.contabai-clear-date');
+                    if (oldClear) { oldClear.remove(); }
+                    if (! dateEl.querySelector('[data-vc-date-btn]') || dateEl.hasAttribute('data-contabai-closed') || dateEl.hasAttribute('data-contabai-booked')) return;
+                    let date = dateEl.getAttribute('data-vc-date');
+                    if (this.arrival && date === this.arrival) {
+                        let clear = this.$refs.clearTpl.content.firstElementChild.cloneNode(true);
+                        clear.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            self.clearDates();
+                        });
+                        dateEl.appendChild(clear);
+                    }
+                    let picking = this.arrival && ! this.departure;
+                    if (picking && date === this.arrival) return;
+                    let ok = picking ? (date > this.arrival && this.canDepart(this.arrival, date)) : this.canArrive(date);
+                    dateEl.setAttribute(ok ? 'data-contabai-can-pick' : 'data-contabai-no-pick', '');
+                },
+                refreshMarks: function () {
+                    let self = this;
+                    self.$refs.cal.querySelectorAll('[data-vc-date]').forEach(function (el) { self.markDay(el); });
                 },
                 fmt: function (d) {
                     try { return new Date(d + 'T00:00:00').toLocaleDateString(this.locale, { weekday: 'short', day: 'numeric', month: 'short' }); }
@@ -717,7 +825,8 @@ ob_start();
                 quoteFailed: function (status) {
                     this.arrival = ''; this.departure = ''; this.nights = 0;
                     this.quote = null;
-                    if (this.calendar) { this.calendar.set({ selectedDates: [] }); }
+                    if (this.calendar) { this.calendar.set({ selectedDates: [] }, { month: false, year: false }); }
+                    this.refreshMarks();
                     if (window.contabaiToast) { contabaiToast(contabaiStatusText(status, this.quoteErr), 'danger'); }
                 },
                 startBooking: function () {
@@ -736,7 +845,7 @@ ob_start();
                     self.calendar.init();
                     window.addEventListener('resize', function () {
                         let months = self.monthsForWidth();
-                        if (months !== self.cols) { self.cols = months; self.calendar.set(self.options(months)); }
+                        if (months !== self.cols) { self.cols = months; self.calendar.set(self.options(months), { month: false, year: false, dates: false }); }
                     });
                 }
             };
@@ -775,7 +884,7 @@ ob_start();
                 </ul>
                 <p class="flex items-start gap-2 border-t border-neutral-200 bg-neutral-50 px-5 py-3.5 text-[13px] text-neutral-500">
                     <span class="mt-0.5 shrink-0 text-neutral-400"><?php echo \Contabai\Heroicon::outline('receipt-refund', 'w-4 h-4'); ?></span>
-                    <?php echo esc_html__('Read at check-out and settled from your deposit.', 'contabai'); ?>
+                    <?php echo esc_html__('Read at check-in and check-out and, where applicable, settled from your deposit.', 'contabai'); ?>
                 </p>
             </section>
         <?php endif; ?>
@@ -784,40 +893,45 @@ ob_start();
     </div>
     <aside class="hidden lg:sticky lg:top-24 lg:block">
         <div class="rounded-2xl border border-neutral-200 bg-white p-6">
-            <div>
-                <span class="text-sm text-neutral-500"><?php echo esc_html__('from', 'contabai'); ?></span>
-                <span class="text-2xl font-bold text-neutral-900"><?php echo esc_html($priceLabel()); ?></span>
-                <span class="text-sm text-neutral-500">/ <?php echo esc_html__('night', 'contabai'); ?></span>
-            </div>
-            <p x-show="! nights" class="mt-4 text-sm text-neutral-600"><?php echo esc_html__('Pick your dates in the calendar to see the price for your stay.', 'contabai'); ?></p>
-            <div x-show="nights" x-cloak class="mt-4 rounded-xl bg-neutral-50 p-4">
-                <div class="text-sm font-medium text-neutral-800" x-text="rangeLabel()"></div>
-                <div class="mt-1 text-xl font-bold text-neutral-900" x-text="quote ? money(quote.accommodation_cents) : '…'"></div>
-                <div class="text-xs text-neutral-500" x-show="quote && quote.deposit_cents">+ <span x-text="money(quote?.deposit_cents)"></span> <?php echo esc_html__('deposit (settled after your stay)', 'contabai'); ?></div>
-                <?php if (! empty($listingCosts)): ?>
-                    <div class="mt-0.5 text-xs text-neutral-500"><?php echo esc_html__('Additional costs calculated at booking', 'contabai'); ?></div>
-                <?php endif; ?>
-            </div>
-            <button type="button" x-show="! nights" x-on:click="$refs.cal.scrollIntoView({ behavior: 'smooth', block: 'center' })" class="contabai-accent-bg mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white"><?php echo \Contabai\Heroicon::outline('calendar-days', 'w-4 h-4'); ?><?php echo esc_html__('Check availability', 'contabai'); ?></button>
-            <button type="button" x-show="nights" x-cloak x-on:click="startBooking()" class="contabai-accent-bg mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold text-white">
+            <p class="text-sm text-neutral-500"><?php echo esc_html__('from', 'contabai'); ?> <strong class="contabai-book-price text-[34px] font-semibold leading-none text-neutral-900"><?php echo esc_html($priceLabel()); ?></strong> / <?php echo esc_html__('night', 'contabai'); ?></p>
+            <button type="button" x-on:click="$refs.cal.scrollIntoView({ behavior: 'smooth', block: 'center' })" class="mt-5 grid w-full grid-cols-2 overflow-hidden rounded-xl border border-neutral-300 text-left transition hover:border-neutral-400">
+                <span class="flex min-w-0 flex-col gap-0.5 border-r border-neutral-300 px-3.5 py-3">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500"><?php echo esc_html__('Arrival', 'contabai'); ?></span>
+                    <span class="truncate text-[15px] font-medium" x-bind:class="arrival ? 'text-neutral-900' : 'text-neutral-400'" x-text="arrival ? fmt(arrival) : '<?php echo esc_js(__('Pick a date', 'contabai')); ?>'"><?php echo esc_html__('Pick a date', 'contabai'); ?></span>
+                </span>
+                <span class="flex min-w-0 flex-col gap-0.5 px-3.5 py-3">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-neutral-500"><?php echo esc_html__('Departure', 'contabai'); ?></span>
+                    <span class="truncate text-[15px] font-medium" x-bind:class="departure ? 'text-neutral-900' : 'text-neutral-400'" x-text="departure ? fmt(departure) : '<?php echo esc_js(__('Pick a date', 'contabai')); ?>'"><?php echo esc_html__('Pick a date', 'contabai'); ?></span>
+                </span>
+            </button>
+            <button type="button" x-show="! nights" x-on:click="$refs.cal.scrollIntoView({ behavior: 'smooth', block: 'center' })" class="contabai-accent-bg mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold text-white"><?php echo \Contabai\Heroicon::outline('calendar-days', 'w-4 h-4'); ?><?php echo esc_html__('Check availability', 'contabai'); ?></button>
+            <button type="button" x-show="nights" x-cloak x-on:click="startBooking()" class="contabai-accent-bg mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold text-white">
                 <span x-show="isLoggedIn" class="inline-flex items-center gap-2"><?php echo \Contabai\Heroicon::outline('calendar-days', 'w-4 h-4'); ?><?php echo esc_html__('Book now', 'contabai'); ?></span>
                 <span x-show="! isLoggedIn" class="inline-flex items-center gap-2"><?php echo \Contabai\Heroicon::outline('arrow-right-on-rectangle', 'w-4 h-4'); ?><?php echo esc_html__('Log in to book', 'contabai'); ?></span>
             </button>
             <template x-if="! isLoggedIn">
                 <p class="mt-3 flex items-start gap-1 text-xs text-neutral-500"><?php echo \Contabai\Heroicon::outline('lock-closed', 'w-4 h-4 shrink-0'); ?> <?php echo esc_html__('Booking requires a verified account', 'contabai'); ?></p>
             </template>
-            <?php if (! empty($listingCosts)): ?>
-                <div class="mt-4 border-t border-neutral-200 pt-3">
-                    <button type="button" x-on:click="showDetails = ! showDetails" class="flex w-full items-center justify-between py-1 text-sm font-medium text-neutral-700">
-                        <?php echo esc_html__('Additional costs', 'contabai'); ?>
-                        <span class="text-neutral-400 transition" x-bind:class="showDetails ? 'rotate-180' : ''"><?php echo \Contabai\Heroicon::outline('chevron-down', 'w-4 h-4'); ?></span>
-                    </button>
-                    <div x-show="showDetails" x-collapse x-cloak>
-                        <div class="flex flex-col gap-3 pt-3 text-sm"><?php echo $costRows(false); ?></div>
-                    </div>
+            <dl class="m-0 mt-5 flex flex-col gap-3 border-t border-neutral-200 pt-5 text-sm">
+                <div x-show="nights" x-cloak class="flex justify-between gap-3">
+                    <dt class="text-neutral-700" x-text="nights + ' ' + (nights === 1 ? nightLabel : nightsLabel)"></dt>
+                    <dd class="m-0 font-semibold text-neutral-900" x-text="quote ? money(quote.accommodation_cents) : '…'"></dd>
                 </div>
+                <?php echo $costRows(false); ?>
+                <?php if ($depositCents > 0): ?>
+                    <div class="flex justify-between gap-3">
+                        <dt class="min-w-0 text-neutral-700"><?php echo esc_html__('Deposit, settled after your stay', 'contabai'); ?></dt>
+                        <dd class="m-0 whitespace-nowrap font-semibold text-neutral-900"><?php echo esc_html($currency . ' ' . number_format($depositCents / 100, 2, '.', '')); ?></dd>
+                    </div>
+                <?php endif; ?>
+            </dl>
+            <?php if ($hostName !== ''): ?>
+                <p class="mt-5 text-sm leading-relaxed text-neutral-500"><?php echo esc_html(sprintf(__('You book directly with %s. After your request you will receive the confirmation and payment details from the host.', 'contabai'), $hostName)); ?></p>
             <?php endif; ?>
-            <div class="mt-4 flex flex-col gap-1 border-t border-neutral-200 pt-4 text-center text-xs text-neutral-500">
+            <?php if (! empty($host['host_id'])): ?>
+                <a href="#contabai-host" class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-800 no-underline transition hover:bg-neutral-50"><?php echo \Contabai\Heroicon::outline('chat-bubble-left-right', 'w-4 h-4'); ?><?php echo esc_html__('Chat with the host', 'contabai'); ?></a>
+            <?php endif; ?>
+            <div class="mt-5 flex flex-col gap-1 border-t border-neutral-200 pt-4 text-center text-xs text-neutral-500">
                 <?php if (! empty($listing['min_nights']) || ! empty($listing['max_nights'])): ?>
                     <p><?php echo esc_html(__('Length of stay', 'contabai') . ': ' . sprintf(__('%1$s–%2$s nights', 'contabai'), (int) ($listing['min_nights'] ?? 0), (int) ($listing['max_nights'] ?? 0))); ?></p>
                 <?php endif; ?>

@@ -38,15 +38,25 @@ document.addEventListener('alpine:init', function () {
             },
             addToast: function (detail) {
                 let self = this;
+                let type = detail.type || 'info';
+                let description = detail.description || '';
+                let same = self.toasts.find(function (t) { return t.visible && t.message === detail.message && t.type === type && t.description === description; });
+                if (same) {
+                    clearTimeout(same.timer);
+                    same.timer = setTimeout(function () { self.removeToast(same.id); }, 5000);
+                    return;
+                }
                 let id = ++self.counter;
                 self.toasts.push({
                     id: id,
                     message: detail.message,
-                    description: detail.description || '',
-                    type: detail.type || 'info',
-                    visible: true
+                    description: description,
+                    type: type,
+                    visible: true,
+                    timer: setTimeout(function () { self.removeToast(id); }, 5000)
                 });
-                setTimeout(function () { self.removeToast(id); }, 5000);
+                let shown = self.toasts.filter(function (t) { return t.visible; });
+                if (shown.length > 3) { self.removeToast(shown[0].id); }
             },
             removeToast: function (id) {
                 let self = this;

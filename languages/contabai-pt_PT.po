@@ -1372,8 +1372,46 @@ msgstr "Não conseguimos obter um preço para estas datas. Experimenta outras da
 msgid "Check-out only"
 msgstr "Só partida"
 
+msgid "Clear dates"
+msgstr "Limpar datas"
+
+msgid "Clear"
+msgstr "Limpar"
+
+msgid "Arrival"
+msgstr "Chegada"
+
+msgid "Departure"
+msgstr "Saída"
+
+msgid "Pick a date"
+msgstr "Escolhe uma data"
+
+msgid "Deposit, settled after your stay"
+msgstr "Caução, acertada depois da tua estadia"
+
+#, php-format
+msgid "You book directly with %s. After your request you will receive the confirmation and payment details from the host."
+msgstr "Reservas diretamente com %s. Depois do teu pedido recebes a confirmação e os dados de pagamento do anfitrião."
+
+msgid "Arrival or departure"
+msgstr "Chegada ou saída"
+
+msgid "No arrival or departure"
+msgstr "Sem chegada nem saída"
+
+msgid "Occupied"
+msgstr "Ocupado"
+
 msgid "You can check out on this day, but not arrive. Pick an earlier arrival date."
 msgstr "Neste dia podes sair, mas não chegar. Escolhe uma data de chegada anterior."
+
+#, php-format
+msgid "A stay of at least %d nights does not fit from this date. Pick an underlined arrival date."
+msgstr "Uma estadia de pelo menos %d noites não cabe a partir desta data. Escolhe uma data de chegada sublinhada."
+
+msgid "The host needs time to prepare the home for the next guest. Pick an underlined departure date."
+msgstr "O anfitrião precisa de tempo para preparar o alojamento para o próximo hóspede. Escolhe uma data de saída sublinhada."
 
 msgid "Some nights in these dates are already booked. Please pick other dates."
 msgstr "Algumas noites nestas datas já estão reservadas. Escolhe outras datas."
@@ -1390,8 +1428,8 @@ msgstr "Só com animais"
 msgid "Metered utilities"
 msgstr "Consumos"
 
-msgid "Read at check-out and settled from your deposit."
-msgstr "Lido à saída e descontado da tua caução."
+msgid "Read at check-in and check-out and, where applicable, settled from your deposit."
+msgstr "Lido à chegada e à saída e, se aplicável, descontado da tua caução."
 
 #, php-format
 msgid "Above %d guest"

@@ -1366,8 +1366,46 @@ msgstr "We konden geen prijs voor deze datums ophalen. Probeer andere datums."
 msgid "Check-out only"
 msgstr "Alleen vertrek"
 
+msgid "Clear dates"
+msgstr "Datums wissen"
+
+msgid "Clear"
+msgstr "Wissen"
+
+msgid "Arrival"
+msgstr "Aankomst"
+
+msgid "Departure"
+msgstr "Vertrek"
+
+msgid "Pick a date"
+msgstr "Kies een datum"
+
+msgid "Deposit, settled after your stay"
+msgstr "Borg, verrekend na je verblijf"
+
+#, php-format
+msgid "You book directly with %s. After your request you will receive the confirmation and payment details from the host."
+msgstr "Je reserveert rechtstreeks bij %s. Na je aanvraag ontvang je de bevestiging en de betaalgegevens van de host."
+
+msgid "Arrival or departure"
+msgstr "Aankomst of vertrek"
+
+msgid "No arrival or departure"
+msgstr "Geen aankomst of vertrek"
+
+msgid "Occupied"
+msgstr "Bezet"
+
 msgid "You can check out on this day, but not arrive. Pick an earlier arrival date."
 msgstr "Op deze dag kun je vertrekken, maar niet aankomen. Kies een eerdere aankomstdatum."
+
+#, php-format
+msgid "A stay of at least %d nights does not fit from this date. Pick an underlined arrival date."
+msgstr "Een verblijf van minimaal %d nachten past niet vanaf deze datum. Kies een onderstreepte aankomstdatum."
+
+msgid "The host needs time to prepare the home for the next guest. Pick an underlined departure date."
+msgstr "De host heeft tijd nodig om de woning klaar te maken voor de volgende gast. Kies een onderstreepte vertrekdatum."
 
 msgid "Some nights in these dates are already booked. Please pick other dates."
 msgstr "Sommige nachten binnen deze datums zijn al geboekt. Kies andere datums."
@@ -1384,8 +1422,8 @@ msgstr "Alleen met huisdieren"
 msgid "Metered utilities"
 msgstr "Verbruikskosten"
 
-msgid "Read at check-out and settled from your deposit."
-msgstr "Afgelezen bij vertrek en verrekend met je borgsom."
+msgid "Read at check-in and check-out and, where applicable, settled from your deposit."
+msgstr "Afgelezen bij aankomst en vertrek en, indien van toepassing, verrekend met je borgsom."
 
 #, php-format
 msgid "Above %d guest"

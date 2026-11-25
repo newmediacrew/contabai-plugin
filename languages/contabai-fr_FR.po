@@ -1374,8 +1374,46 @@ msgstr "Nous n'avons pas pu obtenir de prix pour ces dates. Essaie d'autres date
 msgid "Check-out only"
 msgstr "Départ uniquement"
 
+msgid "Clear dates"
+msgstr "Effacer les dates"
+
+msgid "Clear"
+msgstr "Effacer"
+
+msgid "Arrival"
+msgstr "Arrivée"
+
+msgid "Departure"
+msgstr "Départ"
+
+msgid "Pick a date"
+msgstr "Choisis une date"
+
+msgid "Deposit, settled after your stay"
+msgstr "Caution, réglée après ton séjour"
+
+#, php-format
+msgid "You book directly with %s. After your request you will receive the confirmation and payment details from the host."
+msgstr "Tu réserves directement auprès de %s. Après ta demande, tu reçois la confirmation et les informations de paiement de l'hôte."
+
+msgid "Arrival or departure"
+msgstr "Arrivée ou départ"
+
+msgid "No arrival or departure"
+msgstr "Ni arrivée ni départ"
+
+msgid "Occupied"
+msgstr "Occupé"
+
 msgid "You can check out on this day, but not arrive. Pick an earlier arrival date."
 msgstr "Ce jour-là, tu peux partir mais pas arriver. Choisis une date d'arrivée plus tôt."
+
+#, php-format
+msgid "A stay of at least %d nights does not fit from this date. Pick an underlined arrival date."
+msgstr "Un séjour d'au moins %d nuits ne rentre pas à partir de cette date. Choisis une date d'arrivée soulignée."
+
+msgid "The host needs time to prepare the home for the next guest. Pick an underlined departure date."
+msgstr "L'hôte a besoin de temps pour préparer le logement pour le prochain voyageur. Choisis une date de départ soulignée."
 
 msgid "Some nights in these dates are already booked. Please pick other dates."
 msgstr "Certaines nuits de ces dates sont déjà réservées. Choisis d'autres dates."
@@ -1392,8 +1430,8 @@ msgstr "Uniquement avec animaux"
 msgid "Metered utilities"
 msgstr "Consommations"
 
-msgid "Read at check-out and settled from your deposit."
-msgstr "Relevé au départ et déduit de ta caution."
+msgid "Read at check-in and check-out and, where applicable, settled from your deposit."
+msgstr "Relevé à l'arrivée et au départ et, le cas échéant, déduit de ta caution."
 
 #, php-format
 msgid "Above %d guest"

@@ -128,8 +128,24 @@
 .vc [data-vc-date-holiday]:not([data-vc-date-disabled]):not([data-vc-date-selected]) .vc-date__btn { color: #0f172a !important; }
 .vc [data-vc-date-today] .vc-date__btn { background-color: transparent !important; }
 .vc [data-vc-date-today]:not([data-vc-date-disabled]):not([data-vc-date-selected]) .vc-date__btn { color: #0f172a !important; }
-.vc [data-vc-date][data-contabai-checkout-only]:not([data-vc-date-selected]):not([data-vc-date-hover]) .vc-date__btn { color: #cbd5e1 !important; }
+.contabai-availability [data-vc-date] { padding: 0 1px 1px 0; }
+.contabai-clear-date { position: absolute; bottom: calc(100% - 6px); left: 50%; z-index: 5; display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px 2px 2px; border: 0; border-radius: 9999px; background: var(--theme-color, #ff5400); color: #fff; font-size: 12px; font-weight: 600; line-height: 1; white-space: nowrap; cursor: pointer; transform: translateX(-50%); }
+.contabai-clear-date-x { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 9999px; background: #fff; color: var(--theme-color, #ff5400); }
+.contabai-availability [data-vc-date-week-day="1"] .contabai-clear-date { left: 0; transform: none; }
+.contabai-availability [data-vc-date-week-day="0"] .contabai-clear-date { left: auto; right: 0; transform: none; }
+.contabai-availability .vc-date__btn { height: auto; aspect-ratio: 1 / 1; border-radius: 0 !important; }
+.vc [data-vc-date][data-contabai-closed] .vc-date__btn { background-color: #f5f5f5 !important; color: #a3a3a3 !important; }
+.vc [data-vc-date][data-contabai-booked] .vc-date__btn { background-color: #fee2e2 !important; color: #b91c1c !important; }
+.vc [data-vc-date][data-contabai-arrival]:not([data-vc-date-selected]) .vc-date__btn { background-image: linear-gradient(to top right, transparent 50%, #fee2e2 50%); }
+.vc [data-vc-date][data-contabai-departure]:not([data-vc-date-selected]) .vc-date__btn { background-image: linear-gradient(to top left, transparent 50%, #fee2e2 50%); }
+.contabai-availability [data-contabai-can-pick]:not([data-vc-date-selected]) .vc-date__btn { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.contabai-availability [data-vc-date][data-contabai-no-pick]:not([data-vc-date-selected]) .vc-date__btn { color: #a3a3a3 !important; }
+.contabai-availability [data-vc-date][data-vc-date-hover]:not([data-vc-date-selected]) .vc-date__btn { background-color: var(--theme-color, #ff5400) !important; background-image: none !important; color: #fff !important; }
 .vc [data-vc-date-selected] .vc-date__btn { background-color: var(--theme-color, #ff5400) !important; color: #fff !important; }
+.contabai-cal-key { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 22px; height: 22px; border: 1px solid #e5e5e5; background-color: #fff; color: #0f172a; font-size: 11px; line-height: 1; }
+.contabai-cal-key.is-pick { font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.contabai-cal-key.is-no-pick { color: #a3a3a3; }
+.contabai-cal-key.is-booked { border-color: #fee2e2; background-color: #fee2e2; color: #b91c1c; }
 
 .contabai-listing-hero { min-height: clamp(460px, 74vh, 780px);
     -webkit-mask: linear-gradient(#000 0 0) top / 100% calc(100% - 79px) no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath d='M0 0H1440V40C1200 75 960 70 720 40C480 10 240 15 0 45Z'/%3E%3C/svg%3E") bottom / 100% 80px no-repeat;
@@ -139,6 +155,7 @@
 @keyframes cb-listing-zoom { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1%, 0); } }
 .contabai-listing-hero-shade { background: linear-gradient(180deg, rgba(15, 23, 30, .55) 0%, rgba(15, 23, 30, 0) 30%, rgba(15, 23, 30, .15) 55%, rgba(15, 23, 30, .82) 100%); }
 .contabai-listing-hero-shade::before { content: ""; position: absolute; inset: 0; background: var(--hero-overlay-color, #0f171e); opacity: var(--hero-overlay-opacity, .3); }
+.contabai-book-price { font-family: var(--theme-heading-font, inherit); }
 .contabai-listing-hero-title { font-family: var(--theme-heading-font, inherit); text-shadow: 0 2px 30px rgba(0, 0, 0, .3); }
 .contabai-listing-hero nav[aria-label="breadcrumb"] a,
 .contabai-listing-hero nav[aria-label="breadcrumb"] span,

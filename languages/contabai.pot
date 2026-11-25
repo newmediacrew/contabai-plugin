@@ -1196,7 +1196,45 @@ msgstr ""
 msgid "Check-out only"
 msgstr ""
 
+msgid "Clear dates"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Arrival"
+msgstr ""
+
+msgid "Departure"
+msgstr ""
+
+msgid "Pick a date"
+msgstr ""
+
+msgid "Deposit, settled after your stay"
+msgstr ""
+
+#, php-format
+msgid "You book directly with %s. After your request you will receive the confirmation and payment details from the host."
+msgstr ""
+
+msgid "Arrival or departure"
+msgstr ""
+
+msgid "No arrival or departure"
+msgstr ""
+
+msgid "Occupied"
+msgstr ""
+
 msgid "You can check out on this day, but not arrive. Pick an earlier arrival date."
+msgstr ""
+
+#, php-format
+msgid "A stay of at least %d nights does not fit from this date. Pick an underlined arrival date."
+msgstr ""
+
+msgid "The host needs time to prepare the home for the next guest. Pick an underlined departure date."
 msgstr ""
 
 msgid "Some nights in these dates are already booked. Please pick other dates."
@@ -1214,7 +1252,7 @@ msgstr ""
 msgid "Metered utilities"
 msgstr ""
 
-msgid "Read at check-out and settled from your deposit."
+msgid "Read at check-in and check-out and, where applicable, settled from your deposit."
 msgstr ""
 
 #, php-format

@@ -1380,8 +1380,46 @@ msgstr "Für diese Daten konnten wir keinen Preis ermitteln. Bitte versuche ande
 msgid "Check-out only"
 msgstr "Nur Abreise"
 
+msgid "Clear dates"
+msgstr "Daten löschen"
+
+msgid "Clear"
+msgstr "Löschen"
+
+msgid "Arrival"
+msgstr "Anreise"
+
+msgid "Departure"
+msgstr "Abreise"
+
+msgid "Pick a date"
+msgstr "Datum wählen"
+
+msgid "Deposit, settled after your stay"
+msgstr "Kaution, nach deinem Aufenthalt verrechnet"
+
+#, php-format
+msgid "You book directly with %s. After your request you will receive the confirmation and payment details from the host."
+msgstr "Du buchst direkt bei %s. Nach deiner Anfrage erhältst du die Bestätigung und die Zahlungsdaten vom Gastgeber."
+
+msgid "Arrival or departure"
+msgstr "An- oder Abreise"
+
+msgid "No arrival or departure"
+msgstr "Keine An- oder Abreise"
+
+msgid "Occupied"
+msgstr "Belegt"
+
 msgid "You can check out on this day, but not arrive. Pick an earlier arrival date."
 msgstr "An diesem Tag kannst du abreisen, aber nicht anreisen. Wähle ein früheres Anreisedatum."
+
+#, php-format
+msgid "A stay of at least %d nights does not fit from this date. Pick an underlined arrival date."
+msgstr "Ein Aufenthalt von mindestens %d Nächten passt ab diesem Datum nicht. Wähle ein unterstrichenes Anreisedatum."
+
+msgid "The host needs time to prepare the home for the next guest. Pick an underlined departure date."
+msgstr "Der Gastgeber braucht Zeit, um die Unterkunft für den nächsten Gast vorzubereiten. Wähle ein unterstrichenes Abreisedatum."
 
 msgid "Some nights in these dates are already booked. Please pick other dates."
 msgstr "Einige Nächte in diesem Zeitraum sind bereits gebucht. Bitte wähle andere Daten."
@@ -1398,8 +1436,8 @@ msgstr "Nur mit Haustieren"
 msgid "Metered utilities"
 msgstr "Verbrauchskosten"
 
-msgid "Read at check-out and settled from your deposit."
-msgstr "Wird beim Check-out abgelesen und mit deiner Kaution verrechnet."
+msgid "Read at check-in and check-out and, where applicable, settled from your deposit."
+msgstr "Wird beim Check-in und Check-out abgelesen und gegebenenfalls mit deiner Kaution verrechnet."
 
 #, php-format
 msgid "Above %d guest"
