@@ -1424,3 +1424,19 @@ msgstr ""
 
 msgid "Visitors can see this key in the page source, like every map key. Lock it to your own domain in the provider's dashboard. Without a key the map uses OpenStreetMap."
 msgstr ""
+
+msgid "Not included yet"
+msgstr ""
+
+msgid "Calculated when you book."
+msgstr ""
+
+#, php-format
+msgid "%s of the rent"
+msgstr ""
+
+#, php-format
+msgid "for %d guest"
+msgid_plural "for %d guests"
+msgstr[0] ""
+msgstr[1] ""

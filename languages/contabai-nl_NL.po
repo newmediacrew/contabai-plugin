@@ -1594,3 +1594,19 @@ msgstr "OpenStreetMap heeft geen sleutel nodig. De andere aanbieders hebben een 
 
 msgid "Visitors can see this key in the page source, like every map key. Lock it to your own domain in the provider's dashboard. Without a key the map uses OpenStreetMap."
 msgstr "Bezoekers kunnen deze sleutel in de paginabron zien, zoals elke kaartsleutel. Koppel hem in het dashboard van de aanbieder aan je eigen domein. Zonder sleutel gebruikt de kaart OpenStreetMap."
+
+msgid "Not included yet"
+msgstr "Nog niet meegerekend"
+
+msgid "Calculated when you book."
+msgstr "Wordt berekend bij het boeken."
+
+#, php-format
+msgid "%s of the rent"
+msgstr "%s van de huur"
+
+#, php-format
+msgid "for %d guest"
+msgid_plural "for %d guests"
+msgstr[0] "voor %d gast"
+msgstr[1] "voor %d gasten"

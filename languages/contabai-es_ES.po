@@ -1605,3 +1605,19 @@ msgstr "OpenStreetMap no necesita clave. Los demás proveedores necesitan una cl
 
 msgid "Visitors can see this key in the page source, like every map key. Lock it to your own domain in the provider's dashboard. Without a key the map uses OpenStreetMap."
 msgstr "Los visitantes pueden ver esta clave en el código fuente de la página, como cualquier clave de mapas. Restríngela a tu propio dominio en el panel del proveedor. Sin clave, el mapa usa OpenStreetMap."
+
+msgid "Not included yet"
+msgstr "Aún no incluido"
+
+msgid "Calculated when you book."
+msgstr "Se calcula al reservar."
+
+#, php-format
+msgid "%s of the rent"
+msgstr "%s del alquiler"
+
+#, php-format
+msgid "for %d guest"
+msgid_plural "for %d guests"
+msgstr[0] "para %d huésped"
+msgstr[1] "para %d huéspedes"

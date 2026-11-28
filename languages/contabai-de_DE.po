@@ -1608,3 +1608,19 @@ msgstr "OpenStreetMap braucht keinen Schlüssel. Die anderen Anbieter brauchen e
 
 msgid "Visitors can see this key in the page source, like every map key. Lock it to your own domain in the provider's dashboard. Without a key the map uses OpenStreetMap."
 msgstr "Besucher können diesen Schlüssel im Seitenquelltext sehen, wie jeden Kartenschlüssel. Beschränke ihn im Dashboard des Anbieters auf deine eigene Domain. Ohne Schlüssel nutzt die Karte OpenStreetMap."
+
+msgid "Not included yet"
+msgstr "Noch nicht enthalten"
+
+msgid "Calculated when you book."
+msgstr "Wird bei der Buchung berechnet."
+
+#, php-format
+msgid "%s of the rent"
+msgstr "%s der Miete"
+
+#, php-format
+msgid "for %d guest"
+msgid_plural "for %d guests"
+msgstr[0] "für %d Gast"
+msgstr[1] "für %d Gäste"
